@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="AlphaNIST is a simulation study of reinforcement learning for NIST assembly tasks, using binary task rewards. This page presents selected runs and observed behaviors.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AlphaNIST">
+    <meta property="og:description" content="A simulation study of robotic assembly with binary task rewards. Project overview, selected runs, and observed behaviors.">
+    <meta property="og:url" content="https://alpha-nist.github.io/">
+    <meta property="og:image" content="https://alpha-nist.github.io/assets/k10-strategies/poster.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:image:alt" content="A Franka robot assembling components on the NIST board in simulation.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://alpha-nist.github.io/assets/k10-strategies/poster.jpg">
+    <meta name="twitter:image:alt" content="A Franka robot assembling components on the NIST board in simulation.">
+    <link rel="canonical" href="https://alpha-nist.github.io/">
+    <link rel="stylesheet" href="styles.css?v=studio-27">
+    <title>AlphaNIST</title>
+    <script src="main.js?v=studio-20" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="#" aria-label="Alpha NIST home">Alpha NIST</a>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="project-title">
+        <div class="hero-copy media-shell">
+          <h1 id="project-title">AlphaNIST</h1>
+          <p class="hero-description">In simulation, a robot learns to grasp, reorient, and fit parts together, without demonstrations or prescribed manipulation steps. Its task reward comes only when assembly is complete.</p>
+        </div>
+        <section class="strategies" id="strategies" aria-label="Multi-component assembly demonstrations">
+          <div class="strategy-shell media-shell">
+            <figure class="film-figure">
+              <div class="video-frame">
+                <video id="strategy-video" src="assets/k10-strategies/selected-episodes.mp4" controls playsinline preload="none" poster="assets/k10-strategies/poster.jpg" width="1920" height="1080" aria-label="Five selected ten-component assembly episodes, fixed camera view" aria-describedby="strategy-caption strategy-context">
+                  Your browser does not support embedded video. <a href="assets/k10-strategies/selected-episodes.mp4">Download the film.</a>
+                </video>
+                <button class="film-play" type="button" aria-controls="strategy-video" hidden>
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>
+                  <span>Play</span><span class="film-duration">3:15</span>
+                </button>
+              </div>
+              <figcaption id="strategy-caption">Ten-component assembly.</figcaption>
+            </figure>
+            <div class="strategy-moments" role="group" aria-label="Jump to a moment" hidden>
+              <div class="moment-groups"></div>
+            </div>
+            <p class="strategy-status film-context" role="status" aria-atomic="true"></p>
+            <p class="film-context" id="strategy-context">Five separate reset-to-success runs, not a continuous rollout or a success-rate evaluation.</p>
+            <noscript><p class="film-context">Use the video controls to watch the film. <a href="assets/k10-strategies/timeline.json">View the episode timeline.</a></p></noscript>
+          </div>
+        </section>
+      </section>
+      <section class="task-challenge" aria-labelledby="task-challenge-title">
+        <div class="story-body">
+          <h2 id="task-challenge-title">The assembly challenge</h2>
+          <p>The NIST board combines twenty assemblies, from nut threading and gear meshing to peg and connector insertion. Parts as small as 4&nbsp;mm in diameter must be grasped, reoriented, and aligned with tight-fitting mating surfaces.</p>
+          <p>Small errors can cause slipping or jamming, requiring the robot to recover and try again. With several components on the board, it must also handle clutter and choose an assembly order: placing one part can obstruct access to another.</p>
+        </div>
+      </section>
+      <section class="story" id="idea" aria-label="Overview">
+        <div class="story-body">
+          <p>We study reinforcement learning for NIST assembly tasks in simulation. In the single-component experiments, we train a shared policy across twenty assembly variants.</p>
+          <p>Training uses a range of starting states, from loose parts to partial assemblies, and adjusts how often each state is sampled. The task reward is given only for completed assembly. We do not use demonstrations or rewards for intermediate steps such as grasping and partial insertion.</p>
+          <p>We also study multi-component episodes, where all active parts must be assembled before the task reward is given. The assembly order is not specified.</p>
+        </div>
+      </section>
+      <section class="research-section" id="starting-states" aria-labelledby="starting-states-title">
+        <div class="research-content media-shell">
+          <div class="research-layout">
+            <div class="research-copy">
+              <h2 id="starting-states-title">Starting states</h2>
+              <p>Training starts from different physically valid configurations, including loose parts and partial assemblies.</p>
+              <p>These are sampled resets, not prescribed stages of a manipulation sequence. The task reward still requires completed assembly.</p>
+            </div>
+            <figure class="research-figure">
+              <div class="video-frame">
+                <video id="starting-states-video" src="assets/research/k1-starting-states.mp4" controls muted loop playsinline preload="none" poster="assets/research/k1-starting-states-poster.jpg" width="1920" height="1080" aria-label="Sampled single-component starting states, held briefly without policy actions" aria-describedby="starting-states-caption">
+                  Your browser does not support embedded video. <a href="assets/research/k1-starting-states.mp4">Download the video.</a>
+                </video>
+                <button class="film-play" type="button" aria-controls="starting-states-video" hidden>
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>
+                  <span>Play</span><span class="film-duration">0:34</span>
+                </button>
+              </div>
+              <figcaption id="starting-states-caption">Sampled k=1 resets.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+      <section class="experiments" id="experiments" aria-labelledby="experiments-title">
+        <div class="section-intro media-shell">
+          <h2 id="experiments-title">Single-component assembly</h2>
+        </div>
+        <section class="demo media-shell" id="demo" aria-label="Assembly demonstration">
+          <figure class="film-figure">
+            <div class="video-frame">
+              <video id="assembly-video" controls playsinline preload="metadata" poster="assets/assembly-poster.jpg" width="3840" height="1080" aria-label="Alpha NIST assembly film, with a fixed view on the left and a synchronized close-up on the right" aria-describedby="film-caption film-context">
+                <source src="assets/assembly-demo.mp4" type="video/mp4">
+                Your browser does not support embedded video. <a href="assets/assembly-demo.mp4">Download the film.</a>
+              </video>
+              <button class="film-play" type="button" aria-controls="assembly-video" hidden>
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>
+                <span>Play</span><span class="film-duration">1:43</span>
+              </button>
+            </div>
+            <figcaption id="film-caption">Single-component examples. <span>Fixed view + synchronized close-up.</span></figcaption>
+          </figure>
+          <div class="chapter-navigation">
+            <div class="chapters" role="group" aria-label="Jump to an assembly family">
+              <button class="chapter" type="button" data-start="0" aria-pressed="true" aria-controls="assembly-video" disabled><span class="chapter-name">Gears</span></button>
+              <button class="chapter" type="button" data-start="10.76" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Nuts</span></button>
+              <button class="chapter" type="button" data-start="43.64" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Rods</span></button>
+              <button class="chapter" type="button" data-start="57.16" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Pegs</span></button>
+              <button class="chapter" type="button" data-start="73.68" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Connectors</span></button>
+            </div>
+          </div>
+          <p class="chapter-status visually-hidden" role="status" aria-atomic="true"></p>
+          <p class="film-context" id="film-context">Selected successful single-asset demonstrations in simulation.<br>Not a continuous full-board rollout or a success-rate evaluation.</p>
+          <noscript><p class="film-context">Use the video controls to watch the complete film.</p></noscript>
+        </section>
+      </section>
+      <section class="research-section training-comparison" id="training-across-assemblies" aria-labelledby="training-across-assemblies-title">
+        <div class="research-content media-shell">
+          <div class="research-layout">
+            <div class="research-copy">
+              <h2 id="training-across-assemblies-title">Training across assemblies</h2>
+              <p>We compare one shared policy with twenty task-specific policies, using binary task rewards or dense reward shaping.</p>
+            </div>
+            <figure class="research-figure">
+              <div class="research-plot" tabindex="0" role="region" aria-label="Figure 5 comparison; scroll horizontally on smaller screens">
+                <img src="assets/research/heterogeneous-training.svg?v=paper-values" alt="Figure 5 comparison: success by task for four training conditions, alongside overall success of 98.2% for a shared policy with binary rewards, 81.4% for separate policies with binary rewards, 17.8% for a shared policy with dense rewards, and 78.3% for separate policies with dense rewards." width="1120" height="440" loading="lazy" decoding="async">
+              </div>
+              <figcaption><span class="research-plot-hint">Swipe or scroll horizontally to view the full figure.</span>Training success across mixed starting states, including partial assemblies. Error bars show variation across nearby checkpoints, not independent seeds. The two panels use different reported checkpoints; total compute is not matched. <a href="assets/research/heterogeneous-training.svg?v=paper-values" target="_blank" rel="noopener">Full size ↗</a> · <a href="assets/research/heterogeneous-training-data.json?v=paper-values">Figure details and data</a></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+      <section class="discovery" id="discoveries" aria-labelledby="discovery-title">
+        <div class="section-intro media-shell">
+          <h2 id="discovery-title">Observed assembly behaviors</h2>
+          <p>Selected runs show grasp changes, contact with the board during reorientation, and different ways of turning a nut along a bolt.</p>
+        </div>
+        <div class="behavior-gallery media-shell">
+          <div class="behavior-track" id="behavior-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Assembly strategy sequences" aria-describedby="behavior-help">
+            <article class="behavior-slide" id="behavior-peg" data-label="Peg regrasp" aria-label="Peg regrasp">
+              <figure>
+                <a href="assets/peg-regrasp.png" target="_blank" rel="noopener" aria-label="Open peg regrasp sequence at full resolution"><img src="assets/peg-regrasp.png" alt="Five successive frames: the robot holds an 8 mm peg at its center, releases it onto the board, grasps near its end, lifts it, and inserts it into its socket." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-waterproof" data-label="Board reorientation" aria-label="Board reorientation">
+              <figure>
+                <a href="assets/assembly-strategies/waterproof.png" target="_blank" rel="noopener" aria-label="Open board-assisted connector reorientation at full resolution"><img src="assets/assembly-strategies/waterproof.png" alt="Five frames show the gripper using the board surface to reorient a waterproof connector before insertion." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-dsub" data-label="Connector regrasp" aria-label="Connector regrasp">
+              <figure>
+                <a href="assets/assembly-strategies/dsub.png" target="_blank" rel="noopener" aria-label="Open D-sub connector regrasp sequence at full resolution"><img src="assets/assembly-strategies/dsub.png" alt="Five frames show the gripper setting down a D-sub connector and regrasping it for socket alignment." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-gear" data-label="Gear placement" aria-label="Gear placement">
+              <figure>
+                <a href="assets/assembly-strategies/gear-medium.png" target="_blank" rel="noopener" aria-label="Open gear placement sequence at full resolution"><img src="assets/assembly-strategies/gear-medium.png" alt="Five frames show a medium gear pivoting from a side grasp toward a horizontal pose over its mounting post." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-m12" data-label="Nut reorientation" aria-label="Nut reorientation">
+              <figure>
+                <a href="assets/assembly-strategies/nut-m12.png" target="_blank" rel="noopener" aria-label="Open M12 nut reorientation sequence at full resolution"><img src="assets/assembly-strategies/nut-m12.png" alt="Five frames show an M12 nut being rolled from its edge onto a flat face and positioned on a bolt." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-m4" data-label="Nut tapping" aria-label="Nut tapping">
+              <figure>
+                <a href="assets/assembly-strategies/nut-m4.png" target="_blank" rel="noopener" aria-label="Open M4 nut tapping sequence at full resolution"><img src="assets/assembly-strategies/nut-m4.png" alt="Five frames show successive one-sided fingertip contacts advancing an M4 nut along a bolt." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-rod" data-label="Rod repositioning" aria-label="Rod repositioning">
+              <figure>
+                <a href="assets/assembly-strategies/rod-8mm.png" target="_blank" rel="noopener" aria-label="Open rod repositioning sequence at full resolution"><img src="assets/assembly-strategies/rod-8mm.png" alt="Five frames show a fingertip pushing an 8 mm rod across the surface, followed by grasping and lifting." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-m16" data-label="Circular threading" aria-label="Circular threading">
+              <figure>
+                <a href="assets/assembly-strategies/nut-m16.png" target="_blank" rel="noopener" aria-label="Open M16 circular threading sequence at full resolution"><img src="assets/assembly-strategies/nut-m16.png" alt="Five frames show different gripper positions around an M16 nut while fingertip contacts turn the nut along the bolt." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+          </div>
+          <div class="behavior-navigation chapters" role="group" aria-label="Choose an assembly strategy" hidden></div>
+          <div class="behavior-controls" hidden>
+            <button class="behavior-prev" type="button" aria-label="Previous strategy" aria-controls="behavior-track">←</button>
+            <p class="behavior-status" role="status" aria-live="polite" aria-atomic="true"></p>
+            <button class="behavior-next" type="button" aria-label="Next strategy" aria-controls="behavior-track">→</button>
+          </div>
+          <p class="behavior-help" id="behavior-help">Each sequence reads left to right. Swipe or scroll horizontally to browse strategies; open an image for the full-resolution view.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="wordmark" href="#">Alpha NIST</a>
+        <p>Robotic assembly experiments in simulation.</p>
+      </div>
+    </footer>
+  </body>
+</html>

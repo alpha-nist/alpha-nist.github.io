@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "fps": 50,
+  "view": "fixed",
+  "poster_time_s": 5,
+  "total_frames": 9764,
+  "episodes": [
+    {
+      "id": "sequence_01",
+      "start_frame": 0,
+      "start_s": 0,
+      "frames": 1714,
+      "duration_s": 34.28,
+      "keyframes": [
+        {
+          "time_s": 5,
+          "episode_time_s": 5,
+          "label": "Move / toss object away"
+        },
+        {
+          "time_s": 14,
+          "episode_time_s": 14,
+          "label": "Separate closely spaced objects"
+        }
+      ]
+    },
+    {
+      "id": "sequence_02",
+      "start_frame": 1714,
+      "start_s": 34.28,
+      "frames": 2287,
+      "duration_s": 45.74,
+      "keyframes": [
+        {
+          "time_s": 37.28,
+          "episode_time_s": 3,
+          "label": "Prehensile maneuver"
+        },
+        {
+          "time_s": 43.28,
+          "episode_time_s": 9,
+          "label": "Long-range threading"
+        },
+        {
+          "time_s": 65.28,
+          "episode_time_s": 31,
+          "label": "Long-range insertion"
+        },
+        {
+          "time_s": 77.28,
+          "episode_time_s": 43,
+          "label": "Check assembly completion (patrolling)"
+        }
+      ]
+    },
+    {
+      "id": "sequence_03",
+      "start_frame": 4001,
+      "start_s": 80.02,
+      "frames": 2225,
+      "duration_s": 44.5,
+      "keyframes": []
+    },
+    {
+      "id": "sequence_04",
+      "start_frame": 6226,
+      "start_s": 124.52,
+      "frames": 2125,
+      "duration_s": 42.5,
+      "keyframes": [
+        {
+          "time_s": 125.52,
+          "episode_time_s": 1,
+          "label": "Throw / toss object away"
+        },
+        {
+          "time_s": 128.52,
+          "episode_time_s": 4,
+          "label": "Grasp failure"
+        },
+        {
+          "time_s": 135.52,
+          "episode_time_s": 11,
+          "label": "Toss object away"
+        }
+      ]
+    },
+    {
+      "id": "sequence_05",
+      "start_frame": 8351,
+      "start_s": 167.02,
+      "frames": 1413,
+      "duration_s": 28.26,
+      "keyframes": [
+        {
+          "time_s": 170.02,
+          "episode_time_s": 3,
+          "label": "Toss object away"
+        },
+        {
+          "time_s": 175.02,
+          "episode_time_s": 8,
+          "label": "Toss object away"
+        }
+      ]
+    }
+  ],
+  "duration_s": 195.28
+}

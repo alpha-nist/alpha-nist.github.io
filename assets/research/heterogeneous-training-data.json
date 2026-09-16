@@ -1,0 +1,4360 @@
+{
+  "schema_version": 1,
+  "paper_figure": 5,
+  "units": {
+    "success": "percent",
+    "standard_deviation": "percentage points"
+  },
+  "interpretation": [
+    "These are training success metrics across mixed reset conditions, including partial assemblies, not a held-out start-random evaluation.",
+    "Shared binary heatmap: nineteen image-derived per-asset estimates from the reported run at iteration 120250 and 131072 environments; M4 is an author-local measurement with no recorded checkpoint or environment count.",
+    "Shared binary aggregate bar: the reported run at iteration 25000, reported 64K environments. It is intentionally not the average of that heatmap row.",
+    "Separate binary bars and heatmap use iteration 25000, holding the final value for gear runs ending at 14999; separate dense results use different final endpoints and average their three or four available reset strata.",
+    "Error bars are sample standard deviation across nearby checkpoints at offsets -2500, 0, +2500 where available for every contributing task. Aggregate all tasks at each common offset before computing SD (ddof=1). They are not independent-training-seed uncertainty.",
+    "Shared dense M4 is displayed as zero, matching the paper generator's fallback for a blank source CSV cell; this is not a measured zero. Its aggregate bar is unchanged.",
+    "Per-run 64K environment counts are stated in the paper, not independently present in these CSVs; verified numeric environment counts are provided where the heatmap manifest contains them. Total compute is not matched.",
+    "Website terminology maps the paper's sparse condition to binary reward and dense condition to dense shaping; dense shaping retains the binary task reward and adds progress terms."
+  ],
+  "asset_order": [
+    "nut_thread_m4",
+    "nut_thread_m8",
+    "nut_thread_m12",
+    "nut_thread_m16",
+    "gear_mesh_small",
+    "gear_mesh_medium",
+    "gear_mesh_large",
+    "rod_insert_4mm",
+    "rod_insert_8mm",
+    "rod_insert_12mm",
+    "rod_insert_16mm",
+    "peg_insert_4mm",
+    "peg_insert_8mm",
+    "peg_insert_12mm",
+    "peg_insert_16mm",
+    "usba",
+    "waterproof",
+    "bnc",
+    "dsub",
+    "rj45"
+  ],
+  "condition_order": [
+    "multi_asset_sparse",
+    "single_asset_sparse",
+    "multi_asset_dense",
+    "single_asset_dense"
+  ],
+  "heatmap": [
+    {
+      "asset": "nut_thread_m4",
+      "asset_label": "N4",
+      "condition": "multi_asset_sparse",
+      "success_percent": 98.5,
+      "source": {
+        "kind": "author_local_measurement",
+        "iteration": null,
+        "parallel_environments": null,
+        "source_color_bin_lower_fraction": null,
+        "source_color_bin_upper_fraction": null
+      }
+    },
+    {
+      "asset": "nut_thread_m4",
+      "asset_label": "N4",
+      "condition": "single_asset_sparse",
+      "success_percent": 49.41917359828949,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "nut_thread_m4",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "nut_thread_m4",
+      "asset_label": "N4",
+      "condition": "multi_asset_dense",
+      "success_percent": 0,
+      "source": {
+        "kind": "Paper plotting fallback: zero for a blank source CSV cell, not a measured zero",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "nut_thread_m4",
+      "asset_label": "N4",
+      "condition": "single_asset_dense",
+      "success_percent": 44.96774226427078,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "nut_thread_m4",
+        "iteration": 10560,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "nut_thread_m8",
+      "asset_label": "N8",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "nut_thread_m8",
+      "asset_label": "N8",
+      "condition": "single_asset_sparse",
+      "success_percent": 98.17065000534058,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "nut_thread_m8",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "nut_thread_m8",
+      "asset_label": "N8",
+      "condition": "multi_asset_dense",
+      "success_percent": 1.95,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "nut_thread_m8",
+      "asset_label": "N8",
+      "condition": "single_asset_dense",
+      "success_percent": 48.911288380622864,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "nut_thread_m8",
+        "iteration": 13225,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "nut_thread_m12",
+      "asset_label": "N12",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "nut_thread_m12",
+      "asset_label": "N12",
+      "condition": "single_asset_sparse",
+      "success_percent": 96.49224281311035,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "nut_thread_m12",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "nut_thread_m12",
+      "asset_label": "N12",
+      "condition": "multi_asset_dense",
+      "success_percent": 0.7799999999999999,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "nut_thread_m12",
+      "asset_label": "N12",
+      "condition": "single_asset_dense",
+      "success_percent": 74.29838627576828,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "nut_thread_m12",
+        "iteration": 13837,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "nut_thread_m16",
+      "asset_label": "N16",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "nut_thread_m16",
+      "asset_label": "N16",
+      "condition": "single_asset_sparse",
+      "success_percent": 99.8212456703186,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "nut_thread_m16",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "nut_thread_m16",
+      "asset_label": "N16",
+      "condition": "multi_asset_dense",
+      "success_percent": 1.17,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "nut_thread_m16",
+      "asset_label": "N16",
+      "condition": "single_asset_dense",
+      "success_percent": 92.66128987073898,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "nut_thread_m16",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "gear_mesh_small",
+      "asset_label": "Gs",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "gear_mesh_small",
+      "asset_label": "Gs",
+      "condition": "single_asset_sparse",
+      "success_percent": 97.73985743522644,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "gear_mesh_small",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "gear_mesh_small",
+      "asset_label": "Gs",
+      "condition": "multi_asset_dense",
+      "success_percent": 21.48,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "gear_mesh_small",
+      "asset_label": "Gs",
+      "condition": "single_asset_dense",
+      "success_percent": 85.612902790308,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "gear_mesh_small",
+        "iteration": 10276,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "gear_mesh_medium",
+      "asset_label": "Gm",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "gear_mesh_medium",
+      "asset_label": "Gm",
+      "condition": "single_asset_sparse",
+      "success_percent": 99.0688145160675,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "gear_mesh_medium",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "gear_mesh_medium",
+      "asset_label": "Gm",
+      "condition": "multi_asset_dense",
+      "success_percent": 23.43,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "gear_mesh_medium",
+      "asset_label": "Gm",
+      "condition": "single_asset_dense",
+      "success_percent": 93.55644881725311,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "gear_mesh_medium",
+        "iteration": 12282,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "gear_mesh_large",
+      "asset_label": "Gl",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "gear_mesh_large",
+      "asset_label": "Gl",
+      "condition": "single_asset_sparse",
+      "success_percent": 97.92606830596924,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "gear_mesh_large",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "gear_mesh_large",
+      "asset_label": "Gl",
+      "condition": "multi_asset_dense",
+      "success_percent": 22.650000000000002,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "gear_mesh_large",
+      "asset_label": "Gl",
+      "condition": "single_asset_dense",
+      "success_percent": 92.61290282011032,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "gear_mesh_large",
+        "iteration": 9588,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rod_insert_4mm",
+      "asset_label": "R4",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "rod_insert_4mm",
+      "asset_label": "R4",
+      "condition": "single_asset_sparse",
+      "success_percent": 51.17565393447876,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "rod_insert_4mm",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rod_insert_4mm",
+      "asset_label": "R4",
+      "condition": "multi_asset_dense",
+      "success_percent": 12.5,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rod_insert_4mm",
+      "asset_label": "R4",
+      "condition": "single_asset_dense",
+      "success_percent": 92.71774142980576,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "rod_insert_4mm",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rod_insert_8mm",
+      "asset_label": "R8",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "rod_insert_8mm",
+      "asset_label": "R8",
+      "condition": "single_asset_sparse",
+      "success_percent": 69.5752501487732,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "rod_insert_8mm",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rod_insert_8mm",
+      "asset_label": "R8",
+      "condition": "multi_asset_dense",
+      "success_percent": 14.45,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rod_insert_8mm",
+      "asset_label": "R8",
+      "condition": "single_asset_dense",
+      "success_percent": 92.5967738032341,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "rod_insert_8mm",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rod_insert_12mm",
+      "asset_label": "R12",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "rod_insert_12mm",
+      "asset_label": "R12",
+      "condition": "single_asset_sparse",
+      "success_percent": 99.8934805393219,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "rod_insert_12mm",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rod_insert_12mm",
+      "asset_label": "R12",
+      "condition": "multi_asset_dense",
+      "success_percent": 26.56,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rod_insert_12mm",
+      "asset_label": "R12",
+      "condition": "single_asset_dense",
+      "success_percent": 93.11290234327316,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "rod_insert_12mm",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rod_insert_16mm",
+      "asset_label": "R16",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "rod_insert_16mm",
+      "asset_label": "R16",
+      "condition": "single_asset_sparse",
+      "success_percent": 99.85243082046509,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "rod_insert_16mm",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rod_insert_16mm",
+      "asset_label": "R16",
+      "condition": "multi_asset_dense",
+      "success_percent": 26.56,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rod_insert_16mm",
+      "asset_label": "R16",
+      "condition": "single_asset_dense",
+      "success_percent": 93.26612949371338,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "rod_insert_16mm",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "peg_insert_4mm",
+      "asset_label": "P4",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "peg_insert_4mm",
+      "asset_label": "P4",
+      "condition": "single_asset_sparse",
+      "success_percent": 31.0166597366333,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "peg_insert_4mm",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "peg_insert_4mm",
+      "asset_label": "P4",
+      "condition": "multi_asset_dense",
+      "success_percent": 28.9,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "peg_insert_4mm",
+      "asset_label": "P4",
+      "condition": "single_asset_dense",
+      "success_percent": 49.612902104854584,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "peg_insert_4mm",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "peg_insert_8mm",
+      "asset_label": "P8",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "peg_insert_8mm",
+      "asset_label": "P8",
+      "condition": "single_asset_sparse",
+      "success_percent": 90.25718569755554,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "peg_insert_8mm",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "peg_insert_8mm",
+      "asset_label": "P8",
+      "condition": "multi_asset_dense",
+      "success_percent": 23.04,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "peg_insert_8mm",
+      "asset_label": "P8",
+      "condition": "single_asset_dense",
+      "success_percent": 49.45967495441437,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "peg_insert_8mm",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "peg_insert_12mm",
+      "asset_label": "P12",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "peg_insert_12mm",
+      "asset_label": "P12",
+      "condition": "single_asset_sparse",
+      "success_percent": 81.26760721206665,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "peg_insert_12mm",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "peg_insert_12mm",
+      "asset_label": "P12",
+      "condition": "multi_asset_dense",
+      "success_percent": 31.25,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "peg_insert_12mm",
+      "asset_label": "P12",
+      "condition": "single_asset_dense",
+      "success_percent": 82.7338695526123,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "peg_insert_12mm",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "peg_insert_16mm",
+      "asset_label": "P16",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "peg_insert_16mm",
+      "asset_label": "P16",
+      "condition": "single_asset_sparse",
+      "success_percent": 64.03629183769226,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "peg_insert_16mm",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "peg_insert_16mm",
+      "asset_label": "P16",
+      "condition": "multi_asset_dense",
+      "success_percent": 19.919999999999998,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "peg_insert_16mm",
+      "asset_label": "P16",
+      "condition": "single_asset_dense",
+      "success_percent": 80.39516024291515,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "peg_insert_16mm",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "usba",
+      "asset_label": "USB",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "usba",
+      "asset_label": "USB",
+      "condition": "single_asset_sparse",
+      "success_percent": 65.58253169059753,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "usba",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "usba",
+      "asset_label": "USB",
+      "condition": "multi_asset_dense",
+      "success_percent": 3.51,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "usba",
+      "asset_label": "USB",
+      "condition": "single_asset_dense",
+      "success_percent": 73.89516150578856,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "usba",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "waterproof",
+      "asset_label": "WP",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "waterproof",
+      "asset_label": "WP",
+      "condition": "single_asset_sparse",
+      "success_percent": 99.14325475692749,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "waterproof",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "waterproof",
+      "asset_label": "WP",
+      "condition": "multi_asset_dense",
+      "success_percent": 23.43,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "waterproof",
+      "asset_label": "WP",
+      "condition": "single_asset_dense",
+      "success_percent": 82.50788251558939,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 3,
+        "asset": "waterproof",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "bnc",
+      "asset_label": "BNC",
+      "condition": "multi_asset_sparse",
+      "success_percent": 98.2421875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.98046875,
+        "source_color_bin_upper_fraction": 0.984375
+      }
+    },
+    {
+      "asset": "bnc",
+      "asset_label": "BNC",
+      "condition": "single_asset_sparse",
+      "success_percent": 92.03220009803772,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "bnc",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "bnc",
+      "asset_label": "BNC",
+      "condition": "multi_asset_dense",
+      "success_percent": 17.18,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "bnc",
+      "asset_label": "BNC",
+      "condition": "single_asset_dense",
+      "success_percent": 91.59095684687296,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 3,
+        "asset": "bnc",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "dsub",
+      "asset_label": "DS",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "dsub",
+      "asset_label": "DS",
+      "condition": "single_asset_sparse",
+      "success_percent": 88.33098411560059,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "dsub",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "dsub",
+      "asset_label": "DS",
+      "condition": "multi_asset_dense",
+      "success_percent": 26.56,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "dsub",
+      "asset_label": "DS",
+      "condition": "single_asset_dense",
+      "success_percent": 76.41935274004936,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "dsub",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rj45",
+      "asset_label": "RJ",
+      "condition": "multi_asset_sparse",
+      "success_percent": 99.8046875,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 120250,
+        "parallel_environments": 131072,
+        "source_color_bin_lower_fraction": 0.99609375,
+        "source_color_bin_upper_fraction": 1
+      }
+    },
+    {
+      "asset": "rj45",
+      "asset_label": "RJ",
+      "condition": "single_asset_sparse",
+      "success_percent": 56.23817443847656,
+      "source": {
+        "kind": "Metrics/MonitorSuccessRate, interpolated to 25000 with endpoint holding",
+        "plot_target_iteration": 25000,
+        "asset": "rj45",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rj45",
+      "asset_label": "RJ",
+      "condition": "multi_asset_dense",
+      "success_percent": 14.84,
+      "source": {
+        "kind": "AssetUnassembledRate image-derived completion estimate",
+        "iteration": 25000,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    },
+    {
+      "asset": "rj45",
+      "asset_label": "RJ",
+      "condition": "single_asset_dense",
+      "success_percent": 74.6129021194065,
+      "source": {
+        "kind": "Mean of available reset-stratum success rates at the run's final endpoint",
+        "stratum_count": 4,
+        "asset": "rj45",
+        "iteration": 14999,
+        "parallel_environments_reported": "64K per run in the paper's experiment setup",
+        "parallel_environment_count_verified_in_local_csv": null
+      }
+    }
+  ],
+  "aggregate_bars": [
+    {
+      "condition": "multi_asset_sparse",
+      "label": "Shared policy / binary reward",
+      "success_percent": 98.24615120887756,
+      "nearby_checkpoint_sd_percentage_points": 0.9859577477178865,
+      "sd_ddof": 1,
+      "sd_offset_readings": [
+        {
+          "offset_iterations": -2500,
+          "aggregate_percent": 97.07881212234497
+        },
+        {
+          "offset_iterations": 0,
+          "aggregate_percent": 98.24615120887756
+        },
+        {
+          "offset_iterations": 2500,
+          "aggregate_percent": 99.038827419281
+        }
+      ],
+      "endpoint_sources": [
+        {
+          "asset": "all",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        }
+      ]
+    },
+    {
+      "condition": "single_asset_sparse",
+      "label": "Separate policies / binary reward",
+      "success_percent": 81.35198786854744,
+      "nearby_checkpoint_sd_percentage_points": 1.731517291499119,
+      "sd_ddof": 1,
+      "sd_offset_readings": [
+        {
+          "offset_iterations": -2500,
+          "aggregate_percent": 78.90325263142586
+        },
+        {
+          "offset_iterations": 0,
+          "aggregate_percent": 81.35198786854744
+        }
+      ],
+      "endpoint_sources": [
+        {
+          "asset": "bnc",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "dsub",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "gear_mesh_large",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "gear_mesh_medium",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "gear_mesh_small",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "nut_thread_m12",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "nut_thread_m16",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "nut_thread_m4",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "nut_thread_m8",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "peg_insert_12mm",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "peg_insert_16mm",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "peg_insert_4mm",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "peg_insert_8mm",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "rj45",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "rod_insert_12mm",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "rod_insert_16mm",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "rod_insert_4mm",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "rod_insert_8mm",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "usba",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "waterproof",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        }
+      ]
+    },
+    {
+      "condition": "multi_asset_dense",
+      "label": "Shared policy / dense shaping",
+      "success_percent": 17.78787076473236,
+      "nearby_checkpoint_sd_percentage_points": 0.010114522291142512,
+      "sd_ddof": 1,
+      "sd_offset_readings": [
+        {
+          "offset_iterations": -2500,
+          "aggregate_percent": 17.771655321121216
+        },
+        {
+          "offset_iterations": 0,
+          "aggregate_percent": 17.78787076473236
+        },
+        {
+          "offset_iterations": 2500,
+          "aggregate_percent": 17.790237069129944
+        }
+      ],
+      "endpoint_sources": [
+        {
+          "asset": "all",
+          "iteration": 25000,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        }
+      ]
+    },
+    {
+      "condition": "single_asset_dense",
+      "label": "Separate policies / dense shaping",
+      "success_percent": 78.2771185435801,
+      "nearby_checkpoint_sd_percentage_points": 0.5733265502779638,
+      "sd_ddof": 1,
+      "sd_offset_readings": [
+        {
+          "offset_iterations": -2500,
+          "aggregate_percent": 77.46631236050841
+        },
+        {
+          "offset_iterations": 0,
+          "aggregate_percent": 78.27711854358009
+        }
+      ],
+      "endpoint_sources": [
+        {
+          "asset": "bnc",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "dsub",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "gear_mesh_large",
+          "iteration": 9588,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "gear_mesh_medium",
+          "iteration": 12282,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "gear_mesh_small",
+          "iteration": 10276,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "nut_thread_m12",
+          "iteration": 13837,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "nut_thread_m16",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "nut_thread_m4",
+          "iteration": 10560,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "nut_thread_m8",
+          "iteration": 13225,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "peg_insert_12mm",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "peg_insert_16mm",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "peg_insert_4mm",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "peg_insert_8mm",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "rj45",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "rod_insert_12mm",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "rod_insert_16mm",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "rod_insert_4mm",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "rod_insert_8mm",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "usba",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        },
+        {
+          "asset": "waterproof",
+          "iteration": 14999,
+          "parallel_environments_reported": "64K per run in the paper's experiment setup",
+          "parallel_environment_count_verified_in_local_csv": null
+        }
+      ]
+    }
+  ],
+  "raw_source_manifest": [
+    {
+      "asset": "nut_thread_m4",
+      "label": "N4",
+      "family": "Nut",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.5199014544487",
+      "sparse_start_random_success_rate": "0.0",
+      "sparse_solved": "0",
+      "sparse_t95_iteration": "",
+      "sparse_final_iteration": "27862",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "325557.420193",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "1446.9218675244445",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.4496774226427078",
+      "dense_success_sum": "1.7987096905708313",
+      "dense_term_count": "4",
+      "dense_final_iteration": "10560",
+      "dense_grasp_asset_in_air": "0.0",
+      "dense_start_fully_assembled": "0.9887096881866455",
+      "dense_start_assembled": "0.8100000023841858",
+      "dense_start_grasped_then_assembled": "0.0",
+      "joint_sparse_success_rate": "0.985",
+      "joint_sparse_color_bin_lower": "",
+      "joint_sparse_color_bin_upper": "",
+      "joint_sparse_source": "author_local_measurement",
+      "joint_sparse_checkpoint": "",
+      "joint_sparse_parallel_envs": ""
+    },
+    {
+      "asset": "nut_thread_m8",
+      "label": "N8",
+      "family": "Nut",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9966490864753723",
+      "sparse_start_random_success_rate": "0.9845155477523804",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "26432",
+      "sparse_final_iteration": "59241",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "275579.807552617",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "1224.7991446782978",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.0195",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.48911288380622864",
+      "dense_success_sum": "1.9564515352249146",
+      "dense_term_count": "4",
+      "dense_final_iteration": "13225",
+      "dense_grasp_asset_in_air": "0.0",
+      "dense_start_fully_assembled": "0.9854838252067566",
+      "dense_start_assembled": "0.970967710018158",
+      "dense_start_grasped_then_assembled": "0.0",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "nut_thread_m12",
+      "label": "N12",
+      "family": "Nut",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9889653921127319",
+      "sparse_start_random_success_rate": "0.9887565970420837",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "26706",
+      "sparse_final_iteration": "63257",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "253143.648366953",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "1125.0828816309022",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.0078",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.7429838627576828",
+      "dense_success_sum": "2.971935451030731",
+      "dense_term_count": "4",
+      "dense_final_iteration": "13837",
+      "dense_grasp_asset_in_air": "0.0",
+      "dense_start_fully_assembled": "0.9951612949371338",
+      "dense_start_assembled": "0.9887096285820007",
+      "dense_start_grasped_then_assembled": "0.9880645275115967",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "nut_thread_m16",
+      "label": "N16",
+      "family": "Nut",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9985156655311584",
+      "sparse_start_random_success_rate": "0.9913225173950195",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "14664",
+      "sparse_final_iteration": "75809",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "207927.353664296",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "924.1215718413156",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.0117",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.9266128987073898",
+      "dense_success_sum": "3.7064515948295593",
+      "dense_term_count": "4",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.7064515948295593",
+      "dense_start_fully_assembled": "1.0",
+      "dense_start_assembled": "1.0",
+      "dense_start_grasped_then_assembled": "1.0",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "gear_mesh_small",
+      "label": "Gs",
+      "family": "Gear",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9773985743522644",
+      "sparse_start_random_success_rate": "0.9527616500854492",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "14085",
+      "sparse_final_iteration": "14999",
+      "sparse_compute_iteration": "14999",
+      "sparse_runtime_seconds": "225824.162603658",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "1003.6629449051467",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.2148",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.85612902790308",
+      "dense_success_sum": "3.42451611161232",
+      "dense_term_count": "4",
+      "dense_final_iteration": "10276",
+      "dense_grasp_asset_in_air": "0.4280644953250885",
+      "dense_start_fully_assembled": "1.0",
+      "dense_start_assembled": "0.9964516162872314",
+      "dense_start_grasped_then_assembled": "1.0",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "gear_mesh_medium",
+      "label": "Gm",
+      "family": "Gear",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.990688145160675",
+      "sparse_start_random_success_rate": "0.9755474925041199",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "5777",
+      "sparse_final_iteration": "14999",
+      "sparse_compute_iteration": "14999",
+      "sparse_runtime_seconds": "207767.741241954",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "923.4121832975734",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.2343",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.9355644881725311",
+      "dense_success_sum": "3.7422579526901245",
+      "dense_term_count": "4",
+      "dense_final_iteration": "12282",
+      "dense_grasp_asset_in_air": "0.7441934943199158",
+      "dense_start_fully_assembled": "0.9980644583702087",
+      "dense_start_assembled": "1.0",
+      "dense_start_grasped_then_assembled": "1.0",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "gear_mesh_large",
+      "label": "Gl",
+      "family": "Gear",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9792606830596924",
+      "sparse_start_random_success_rate": "0.9777708649635315",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "4527",
+      "sparse_final_iteration": "14999",
+      "sparse_compute_iteration": "14999",
+      "sparse_runtime_seconds": "211577.7837235",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "940.3457054377778",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.2265",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.9261290282011032",
+      "dense_success_sum": "3.704516112804413",
+      "dense_term_count": "4",
+      "dense_final_iteration": "9588",
+      "dense_grasp_asset_in_air": "0.7045161128044128",
+      "dense_start_fully_assembled": "1.0",
+      "dense_start_assembled": "1.0",
+      "dense_start_grasped_then_assembled": "1.0",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "rod_insert_4mm",
+      "label": "R4",
+      "family": "Rod",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.5491147637367249",
+      "sparse_start_random_success_rate": "0.00253379438072443",
+      "sparse_solved": "0",
+      "sparse_t95_iteration": "",
+      "sparse_final_iteration": "71353",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "126571.141732783",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "562.5384077012578",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.125",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.9271774142980576",
+      "dense_success_sum": "3.7087096571922302",
+      "dense_term_count": "4",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.7087096571922302",
+      "dense_start_fully_assembled": "1.0",
+      "dense_start_assembled": "1.0",
+      "dense_start_grasped_then_assembled": "1.0",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "rod_insert_8mm",
+      "label": "R8",
+      "family": "Rod",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9898644685745239",
+      "sparse_start_random_success_rate": "0.9859451651573181",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "48434",
+      "sparse_final_iteration": "70944",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "129801.88975644",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "576.8972878064",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.1445",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.925967738032341",
+      "dense_success_sum": "3.703870952129364",
+      "dense_term_count": "4",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.703870952129364",
+      "dense_start_fully_assembled": "1.0",
+      "dense_start_assembled": "1.0",
+      "dense_start_grasped_then_assembled": "1.0",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "rod_insert_12mm",
+      "label": "R12",
+      "family": "Rod",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9994113445281982",
+      "sparse_start_random_success_rate": "0.9961796402931213",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "13393",
+      "sparse_final_iteration": "70637",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "126907.15502348",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "564.0318001043555",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.2656",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.9311290234327316",
+      "dense_success_sum": "3.7245160937309265",
+      "dense_term_count": "4",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.7287096381187439",
+      "dense_start_fully_assembled": "1.0",
+      "dense_start_assembled": "1.0",
+      "dense_start_grasped_then_assembled": "0.9958064556121826",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "rod_insert_16mm",
+      "label": "R16",
+      "family": "Rod",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9991913437843323",
+      "sparse_start_random_success_rate": "0.9950109720230103",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "12575",
+      "sparse_final_iteration": "71463",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "124738.947485472",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "554.3953221576534",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.2656",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.9326612949371338",
+      "dense_success_sum": "3.730645179748535",
+      "dense_term_count": "4",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.732903242111206",
+      "dense_start_fully_assembled": "1.0",
+      "dense_start_assembled": "1.0",
+      "dense_start_grasped_then_assembled": "0.9977419376373291",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "peg_insert_4mm",
+      "label": "P4",
+      "family": "Peg",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.5404059886932373",
+      "sparse_start_random_success_rate": "0.0",
+      "sparse_solved": "0",
+      "sparse_t95_iteration": "",
+      "sparse_final_iteration": "75080",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "120290.725773656",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "534.6254478829155",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.289",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.49612902104854584",
+      "dense_success_sum": "1.9845160841941833",
+      "dense_term_count": "4",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.0",
+      "dense_start_fully_assembled": "0.9977419376373291",
+      "dense_start_assembled": "0.9867741465568542",
+      "dense_start_grasped_then_assembled": "0.0",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "peg_insert_8mm",
+      "label": "P8",
+      "family": "Peg",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9977843761444092",
+      "sparse_start_random_success_rate": "0.9936493635177612",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "27955",
+      "sparse_final_iteration": "78383",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "118275.161561489",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "525.6673847177289",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.2304",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.4945967495441437",
+      "dense_success_sum": "1.9783869981765747",
+      "dense_term_count": "4",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.0",
+      "dense_start_fully_assembled": "0.9996773600578308",
+      "dense_start_assembled": "0.9787096381187439",
+      "dense_start_grasped_then_assembled": "0.0",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "peg_insert_12mm",
+      "label": "P12",
+      "family": "Peg",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9987061023712158",
+      "sparse_start_random_success_rate": "0.9927645921707153",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "36765",
+      "sparse_final_iteration": "76419",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "122845.048479023",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "545.9779932401023",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.3125",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.827338695526123",
+      "dense_success_sum": "3.309354782104492",
+      "dense_term_count": "4",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.3329032063484192",
+      "dense_start_fully_assembled": "1.0",
+      "dense_start_assembled": "0.9896774291992188",
+      "dense_start_grasped_then_assembled": "0.9867741465568542",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "peg_insert_16mm",
+      "label": "P16",
+      "family": "Peg",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9271093606948853",
+      "sparse_start_random_success_rate": "0.680494487285614",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "74474",
+      "sparse_final_iteration": "74956",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "121066.902838483",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "538.0751237265911",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.1992",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.8039516024291515",
+      "dense_success_sum": "3.215806409716606",
+      "dense_term_count": "4",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.2406451553106308",
+      "dense_start_fully_assembled": "0.9983870387077332",
+      "dense_start_assembled": "0.9909677505493164",
+      "dense_start_grasped_then_assembled": "0.9858064651489258",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "usba",
+      "label": "USB",
+      "family": "Connector",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9960365295410156",
+      "sparse_start_random_success_rate": "0.9821080565452576",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "72112",
+      "sparse_final_iteration": "99572",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "159909.93890601",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "710.7108395822667",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.0351",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.7389516150578856",
+      "dense_success_sum": "2.9558064602315426",
+      "dense_term_count": "4",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.028064515441656113",
+      "dense_start_fully_assembled": "0.9925806522369385",
+      "dense_start_assembled": "0.9506451487541199",
+      "dense_start_grasped_then_assembled": "0.9845161437988281",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "waterproof",
+      "label": "WP",
+      "family": "Connector",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9927225708961487",
+      "sparse_start_random_success_rate": "0.9747713804244995",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "19011",
+      "sparse_final_iteration": "65216",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "242008.490702197",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "1075.5932920097646",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.2343",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.8250788251558939",
+      "dense_success_sum": "2.475236475467682",
+      "dense_term_count": "3",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.4921985864639282",
+      "dense_start_fully_assembled": "",
+      "dense_start_assembled": "0.9844904541969299",
+      "dense_start_grasped_then_assembled": "0.9985474348068237",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "bnc",
+      "label": "BNC",
+      "family": "Connector",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9804562926292419",
+      "sparse_start_random_success_rate": "0.9529132843017578",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "32706",
+      "sparse_final_iteration": "77845",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "205623.049671752",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "913.8802207633422",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.1718",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.9159095684687296",
+      "dense_success_sum": "2.747728705406189",
+      "dense_term_count": "3",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.7482312917709351",
+      "dense_start_fully_assembled": "",
+      "dense_start_assembled": "0.9996606111526489",
+      "dense_start_grasped_then_assembled": "0.999836802482605",
+      "joint_sparse_success_rate": "0.982421875",
+      "joint_sparse_color_bin_lower": "0.98046875",
+      "joint_sparse_color_bin_upper": "0.984375",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "dsub",
+      "label": "DS",
+      "family": "Connector",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.9952872395515442",
+      "sparse_start_random_success_rate": "0.9724202156066895",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "31490",
+      "sparse_final_iteration": "88250",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "189401.84917932",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "841.7859963525334",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.2656",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.7641935274004936",
+      "dense_success_sum": "3.0567741096019745",
+      "dense_term_count": "4",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.09903225302696228",
+      "dense_start_fully_assembled": "0.9980644583702087",
+      "dense_start_assembled": "0.9825806021690369",
+      "dense_start_grasped_then_assembled": "0.9770967960357666",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    },
+    {
+      "asset": "rj45",
+      "label": "RJ",
+      "family": "Connector",
+      "joint_success_rate": "0.9989261627197266",
+      "sparse_success_rate": "0.976214587688446",
+      "sparse_start_random_success_rate": "0.9101532101631165",
+      "sparse_solved": "1",
+      "sparse_t95_iteration": "97646",
+      "sparse_final_iteration": "99999",
+      "sparse_compute_iteration": "25000",
+      "sparse_runtime_seconds": "131127.218080104",
+      "sparse_world_size": "16",
+      "sparse_gpu_hours": "582.7876359115734",
+      "joint_compute_iteration": "25000",
+      "joint_runtime_seconds": "92318.263081493",
+      "joint_world_size": "16",
+      "joint_gpu_hours": "410.3033914733022",
+      "joint_dense_success_rate": "0.1484",
+      "joint_dense_aggregate_success_rate": "0.1778787076473236",
+      "joint_dense_checkpoint": "25000",
+      "dense_success_rate": "0.746129021194065",
+      "dense_success_sum": "2.98451608477626",
+      "dense_term_count": "4",
+      "dense_final_iteration": "14999",
+      "dense_grasp_asset_in_air": "0.0006451612571254373",
+      "dense_start_fully_assembled": "0.9993547797203064",
+      "dense_start_assembled": "0.9909677505493164",
+      "dense_start_grasped_then_assembled": "0.9935483932495117",
+      "joint_sparse_success_rate": "0.998046875",
+      "joint_sparse_color_bin_lower": "0.99609375",
+      "joint_sparse_color_bin_upper": "1.0",
+      "joint_sparse_source": "AssetUnassembledRate image-derived completion estimate",
+      "joint_sparse_checkpoint": "120250",
+      "joint_sparse_parallel_envs": "131072"
+    }
+  ],
+  "raw_endpoint_samples": [
+    {
+      "condition": "multi_asset_sparse",
+      "asset": "all",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "58839",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/success_rate",
+      "value": "0.9707881212234497"
+    },
+    {
+      "condition": "multi_asset_sparse",
+      "asset": "all",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "58839",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/success_rate",
+      "value": "0.9824615120887756"
+    },
+    {
+      "condition": "multi_asset_sparse",
+      "asset": "all",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "58839",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/success_rate",
+      "value": "0.9903882741928101"
+    },
+    {
+      "condition": "multi_asset_dense",
+      "asset": "all",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "99999",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/success_rate",
+      "value": "0.17771655321121216"
+    },
+    {
+      "condition": "multi_asset_dense",
+      "asset": "all",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "99999",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/success_rate",
+      "value": "0.1778787076473236"
+    },
+    {
+      "condition": "multi_asset_dense",
+      "asset": "all",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "99999",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/success_rate",
+      "value": "0.17790237069129944"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "nut_thread_m4",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "27862",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.45851317048072815"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "nut_thread_m4",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "27862",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.4941917359828949"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "nut_thread_m4",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "27862",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.5178271532058716"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m4",
+      "reported_iteration": "10560",
+      "last_logged_iteration": "10560",
+      "offset": "-2500",
+      "iteration": "8060",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m4",
+      "reported_iteration": "10560",
+      "last_logged_iteration": "10560",
+      "offset": "-2500",
+      "iteration": "8060",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9741935729980469"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m4",
+      "reported_iteration": "10560",
+      "last_logged_iteration": "10560",
+      "offset": "-2500",
+      "iteration": "8060",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.8248386979103088"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m4",
+      "reported_iteration": "10560",
+      "last_logged_iteration": "10560",
+      "offset": "-2500",
+      "iteration": "8060",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m4",
+      "reported_iteration": "10560",
+      "last_logged_iteration": "10560",
+      "offset": "0",
+      "iteration": "10560",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m4",
+      "reported_iteration": "10560",
+      "last_logged_iteration": "10560",
+      "offset": "0",
+      "iteration": "10560",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9887096881866455"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m4",
+      "reported_iteration": "10560",
+      "last_logged_iteration": "10560",
+      "offset": "0",
+      "iteration": "10560",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.8100000023841858"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m4",
+      "reported_iteration": "10560",
+      "last_logged_iteration": "10560",
+      "offset": "0",
+      "iteration": "10560",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "nut_thread_m8",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "59241",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.963555097579956"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "nut_thread_m8",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "59241",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9817065000534058"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "nut_thread_m8",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "59241",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9890896677970886"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m8",
+      "reported_iteration": "13225",
+      "last_logged_iteration": "13225",
+      "offset": "-2500",
+      "iteration": "10725",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m8",
+      "reported_iteration": "13225",
+      "last_logged_iteration": "13225",
+      "offset": "-2500",
+      "iteration": "10725",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9890322089195251"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m8",
+      "reported_iteration": "13225",
+      "last_logged_iteration": "13225",
+      "offset": "-2500",
+      "iteration": "10725",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9745161533355713"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m8",
+      "reported_iteration": "13225",
+      "last_logged_iteration": "13225",
+      "offset": "-2500",
+      "iteration": "10725",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m8",
+      "reported_iteration": "13225",
+      "last_logged_iteration": "13225",
+      "offset": "0",
+      "iteration": "13225",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m8",
+      "reported_iteration": "13225",
+      "last_logged_iteration": "13225",
+      "offset": "0",
+      "iteration": "13225",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9854838252067566"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m8",
+      "reported_iteration": "13225",
+      "last_logged_iteration": "13225",
+      "offset": "0",
+      "iteration": "13225",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.970967710018158"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m8",
+      "reported_iteration": "13225",
+      "last_logged_iteration": "13225",
+      "offset": "0",
+      "iteration": "13225",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "nut_thread_m12",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "63257",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9414172768592834"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "nut_thread_m12",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "63257",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9649224281311035"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "nut_thread_m12",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "63257",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9776803255081177"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m12",
+      "reported_iteration": "13837",
+      "last_logged_iteration": "13837",
+      "offset": "-2500",
+      "iteration": "11337",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m12",
+      "reported_iteration": "13837",
+      "last_logged_iteration": "13837",
+      "offset": "-2500",
+      "iteration": "11337",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9964515566825867"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m12",
+      "reported_iteration": "13837",
+      "last_logged_iteration": "13837",
+      "offset": "-2500",
+      "iteration": "11337",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.991290271282196"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m12",
+      "reported_iteration": "13837",
+      "last_logged_iteration": "13837",
+      "offset": "-2500",
+      "iteration": "11337",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.991290271282196"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m12",
+      "reported_iteration": "13837",
+      "last_logged_iteration": "13837",
+      "offset": "0",
+      "iteration": "13837",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m12",
+      "reported_iteration": "13837",
+      "last_logged_iteration": "13837",
+      "offset": "0",
+      "iteration": "13837",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9951612949371338"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m12",
+      "reported_iteration": "13837",
+      "last_logged_iteration": "13837",
+      "offset": "0",
+      "iteration": "13837",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9887096285820007"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m12",
+      "reported_iteration": "13837",
+      "last_logged_iteration": "13837",
+      "offset": "0",
+      "iteration": "13837",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9880645275115967"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "nut_thread_m16",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "75809",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9980697631835938"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "nut_thread_m16",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "75809",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.998212456703186"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "nut_thread_m16",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "75809",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9983746409416199"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m16",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.6606451272964478"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m16",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9967741966247559"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m16",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9996773600578308"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m16",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9935483336448669"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m16",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.7064515948295593"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m16",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m16",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "nut_thread_m16",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "gear_mesh_small",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.8723103404045105"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "gear_mesh_small",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9773985743522644"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_small",
+      "reported_iteration": "10276",
+      "last_logged_iteration": "10276",
+      "offset": "-2500",
+      "iteration": "7776",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.2519354820251465"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_small",
+      "reported_iteration": "10276",
+      "last_logged_iteration": "10276",
+      "offset": "-2500",
+      "iteration": "7776",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_small",
+      "reported_iteration": "10276",
+      "last_logged_iteration": "10276",
+      "offset": "-2500",
+      "iteration": "7776",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9970967173576355"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_small",
+      "reported_iteration": "10276",
+      "last_logged_iteration": "10276",
+      "offset": "-2500",
+      "iteration": "7776",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9977419376373291"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_small",
+      "reported_iteration": "10276",
+      "last_logged_iteration": "10276",
+      "offset": "0",
+      "iteration": "10276",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.4280644953250885"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_small",
+      "reported_iteration": "10276",
+      "last_logged_iteration": "10276",
+      "offset": "0",
+      "iteration": "10276",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_small",
+      "reported_iteration": "10276",
+      "last_logged_iteration": "10276",
+      "offset": "0",
+      "iteration": "10276",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9964516162872314"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_small",
+      "reported_iteration": "10276",
+      "last_logged_iteration": "10276",
+      "offset": "0",
+      "iteration": "10276",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "gear_mesh_medium",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9902421236038208"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "gear_mesh_medium",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.990688145160675"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_medium",
+      "reported_iteration": "12282",
+      "last_logged_iteration": "12282",
+      "offset": "-2500",
+      "iteration": "9782",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.7290321588516235"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_medium",
+      "reported_iteration": "12282",
+      "last_logged_iteration": "12282",
+      "offset": "-2500",
+      "iteration": "9782",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_medium",
+      "reported_iteration": "12282",
+      "last_logged_iteration": "12282",
+      "offset": "-2500",
+      "iteration": "9782",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_medium",
+      "reported_iteration": "12282",
+      "last_logged_iteration": "12282",
+      "offset": "-2500",
+      "iteration": "9782",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_medium",
+      "reported_iteration": "12282",
+      "last_logged_iteration": "12282",
+      "offset": "0",
+      "iteration": "12282",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.7441934943199158"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_medium",
+      "reported_iteration": "12282",
+      "last_logged_iteration": "12282",
+      "offset": "0",
+      "iteration": "12282",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9980644583702087"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_medium",
+      "reported_iteration": "12282",
+      "last_logged_iteration": "12282",
+      "offset": "0",
+      "iteration": "12282",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_medium",
+      "reported_iteration": "12282",
+      "last_logged_iteration": "12282",
+      "offset": "0",
+      "iteration": "12282",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "gear_mesh_large",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9792317152023315"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "gear_mesh_large",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9792606830596924"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_large",
+      "reported_iteration": "9588",
+      "last_logged_iteration": "9588",
+      "offset": "-2500",
+      "iteration": "7088",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.6999999284744263"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_large",
+      "reported_iteration": "9588",
+      "last_logged_iteration": "9588",
+      "offset": "-2500",
+      "iteration": "7088",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_large",
+      "reported_iteration": "9588",
+      "last_logged_iteration": "9588",
+      "offset": "-2500",
+      "iteration": "7088",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_large",
+      "reported_iteration": "9588",
+      "last_logged_iteration": "9588",
+      "offset": "-2500",
+      "iteration": "7088",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_large",
+      "reported_iteration": "9588",
+      "last_logged_iteration": "9588",
+      "offset": "0",
+      "iteration": "9588",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.7045161128044128"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_large",
+      "reported_iteration": "9588",
+      "last_logged_iteration": "9588",
+      "offset": "0",
+      "iteration": "9588",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_large",
+      "reported_iteration": "9588",
+      "last_logged_iteration": "9588",
+      "offset": "0",
+      "iteration": "9588",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "gear_mesh_large",
+      "reported_iteration": "9588",
+      "last_logged_iteration": "9588",
+      "offset": "0",
+      "iteration": "9588",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rod_insert_4mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "71353",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.5099539160728455"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rod_insert_4mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "71353",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.5117565393447876"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rod_insert_4mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "71353",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.5134001970291138"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.6851612329483032"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.7087096571922302"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rod_insert_8mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "70944",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.6845296621322632"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rod_insert_8mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "70944",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.6957525014877319"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rod_insert_8mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "70944",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.7072123885154724"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.7164515852928162"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.703870952129364"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rod_insert_12mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "70637",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9989243745803833"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rod_insert_12mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "70637",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.998934805393219"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rod_insert_12mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "70637",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9989458322525024"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.6538709402084351"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.7287096381187439"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9958064556121826"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rod_insert_16mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "71463",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9984986186027527"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rod_insert_16mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "71463",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9985243082046509"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rod_insert_16mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "71463",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9985650777816772"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.732903242111206"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.732903242111206"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rod_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9977419376373291"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "peg_insert_4mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "75080",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.22291463613510132"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "peg_insert_4mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "75080",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.310166597366333"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "peg_insert_4mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "75080",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.41987374424934387"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9987096190452576"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9864516258239746"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9977419376373291"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9867741465568542"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_4mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "peg_insert_8mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "78383",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.801389753818512"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "peg_insert_8mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "78383",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9025718569755554"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "peg_insert_8mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "78383",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.979404628276825"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9993547797203064"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9841935038566589"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9996773600578308"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9787096381187439"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_8mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.0"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "peg_insert_12mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "76419",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.7820779085159302"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "peg_insert_12mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "76419",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.8126760721206665"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "peg_insert_12mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "76419",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.8372364044189453"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.22290320694446564"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9874193668365479"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9812902808189392"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.3329032063484192"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9896774291992188"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_12mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9867741465568542"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "peg_insert_16mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "74956",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.6369653344154358"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "peg_insert_16mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "74956",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.6403629183769226"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "peg_insert_16mm",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "74956",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.6435148119926453"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.21258065104484558"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "1.0"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9845161437988281"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9758064150810242"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.2406451553106308"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9983870387077332"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9909677505493164"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "peg_insert_16mm",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9858064651489258"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "usba",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "99572",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.6458678245544434"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "usba",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "99572",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.6558253169059753"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "usba",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "99572",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.6656832695007324"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "usba",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.0006451612571254373"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "usba",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9958063960075378"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "usba",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9506451487541199"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "usba",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9877419471740723"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "usba",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.028064515441656113"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "usba",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9925806522369385"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "usba",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9506451487541199"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "usba",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9845161437988281"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "waterproof",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "65216",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9911125898361206"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "waterproof",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "65216",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9914325475692749"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "waterproof",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "65216",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9916440844535828"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "waterproof",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.4623221457004547"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "waterproof",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.982347309589386"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "waterproof",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9984611868858337"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "waterproof",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.4921985864639282"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "waterproof",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9844904541969299"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "waterproof",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9985474348068237"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "bnc",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "77845",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.8908492922782898"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "bnc",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "77845",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9203220009803772"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "bnc",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "77845",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.9428658485412598"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "bnc",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.7288764715194702"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "bnc",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9994534850120544"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "bnc",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9997793436050415"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "bnc",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.7482312917709351"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "bnc",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9996606111526489"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "bnc",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.999836802482605"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "dsub",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "88250",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.8536592125892639"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "dsub",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "88250",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.8833098411560059"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "dsub",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "88250",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.930938184261322"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "dsub",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.0038709675427526236"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "dsub",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.999032199382782"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "dsub",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9877418875694275"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "dsub",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9816128611564636"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "dsub",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.09903225302696228"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "dsub",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9980644583702087"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "dsub",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9825806021690369"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "dsub",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9770967960357666"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rj45",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "99999",
+      "offset": "-2500",
+      "iteration": "22500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.5605679154396057"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rj45",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "99999",
+      "offset": "0",
+      "iteration": "25000",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.5623817443847656"
+    },
+    {
+      "condition": "single_asset_sparse",
+      "asset": "rj45",
+      "reported_iteration": "25000",
+      "last_logged_iteration": "99999",
+      "offset": "2500",
+      "iteration": "27500",
+      "metric": "Metrics/MonitorSuccessRate",
+      "value": "0.5640999674797058"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rj45",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.00032258062856271863"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rj45",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.999032199382782"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rj45",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9883870482444763"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rj45",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "-2500",
+      "iteration": "12499",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9935483336448669"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rj45",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/grasp_asset_in_air",
+      "value": "0.0006451612571254373"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rj45",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_fully_assembled",
+      "value": "0.9993547797203064"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rj45",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_assembled",
+      "value": "0.9909677505493164"
+    },
+    {
+      "condition": "single_asset_dense",
+      "asset": "rj45",
+      "reported_iteration": "14999",
+      "last_logged_iteration": "14999",
+      "offset": "0",
+      "iteration": "14999",
+      "metric": "Metrics/SuccessRate/start_grasped_then_assembled",
+      "value": "0.9935483932495117"
+    }
+  ]
+}
