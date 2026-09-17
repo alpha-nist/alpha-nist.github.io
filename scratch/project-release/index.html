@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="referrer" content="no-referrer">
+    <meta name="description" content="An AlphaNIST project announcement draft for review.">
+    <meta property="og:title" content="AlphaNIST — announcement draft">
+    <meta property="og:description" content="A project announcement draft for review.">
+    <title>AlphaNIST — announcement draft</title>
+    <style>
+      :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #24272a; background: #f5f5f2; }
+      * { box-sizing: border-box; }
+      body { margin: 0; -webkit-font-smoothing: antialiased; }
+      a { color: #315763; text-underline-offset: 3px; }
+      a:hover { color: #152e37; }
+      :focus-visible { outline: 3px solid #9a7600; outline-offset: 4px; }
+      .shell { width: min(840px, calc(100% - 40px)); margin: 0 auto; }
+      header { padding: 32px 0 26px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+      .wordmark { color: inherit; text-decoration: none; font-size: 17px; font-weight: 550; letter-spacing: -.35px; }
+      .draft-label { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #696b69; }
+      .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin: 0 0 16px; }
+      .toolbar p { margin: 0; color: #6a6d6d; font-size: 13px; }
+      button { flex-shrink: 0; border: 1px solid #d6d7d2; border-radius: 7px; background: #fff; color: #303332; padding: 9px 15px; font: inherit; font-size: 13px; cursor: pointer; }
+      button:hover { background: #eeefeb; }
+      article { background: #fff; border: 1px solid #e2e3de; border-radius: 10px; padding: 42px 52px 40px; box-shadow: 0 12px 40px #232b2b05; }
+      .recipient { font-size: 14px; color: #626668; margin: 0 0 15px; }
+      .recipient span { color: #8a8d8d; margin-right: 9px; }
+      h1 { font-size: clamp(21px, 3vw, 26px); font-weight: 550; line-height: 1.35; letter-spacing: -.55px; margin: 0; }
+      .email-heading { padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid #e9eae5; }
+      .email-body { font-size: 16px; line-height: 1.75; }
+      .email-body p { margin: 0 0 20px; }
+      .email-body ul { margin: 0 0 22px; padding-left: 22px; }
+      .email-body li { margin: 0 0 14px; padding-left: 3px; }
+      .email-body strong { font-weight: 600; }
+      .email-body .signature { margin-bottom: 0; }
+      footer { color: #737674; font-size: 12px; line-height: 1.65; padding: 20px 0 40px; }
+      #copy-status { min-height: 18px; margin-top: 6px; }
+      @media (max-width: 600px) {
+        .shell { width: calc(100% - 28px); }
+        header { padding: 24px 0; }
+        article { padding: 27px 24px 30px; }
+        .toolbar { align-items: flex-start; gap: 14px; }
+        .toolbar p { max-width: 190px; }
+        .email-body { font-size: 15px; }
+      }
+      @media print {
+        body { background: white; }
+        header, .toolbar, footer { display: none; }
+        .shell { width: 100%; }
+        article { border: 0; box-shadow: none; padding: 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <a class="wordmark" href="/">AlphaNIST</a>
+        <span class="draft-label">Announcement draft</span>
+      </header>
+      <main>
+        <div class="toolbar">
+          <p>Draft for review. No email has been sent.</p>
+          <button type="button" id="copy-email" hidden>Copy email</button>
+        </div>
+        <article aria-labelledby="email-subject">
+          <div class="email-heading">
+            <p class="recipient"><span>To</span>NVRobotics, NVResearch</p>
+            <h1 id="email-subject">AlphaNIST: learning assembly with binary task rewards</h1>
+          </div>
+          <div class="email-body" id="email-body">
+            <p>Hi everyone,</p>
+            <p>We’re sharing <strong>AlphaNIST</strong>, a study of learning contact-rich robotic assembly through large-scale reinforcement learning. We ask how much manipulation strategy a robot can learn when we specify successful assembly, rather than the steps for getting there.</p>
+            <p>In simulation, we train one policy from scratch across all twenty tasks on NIST Assembly Task Board #1, spanning nut threading, gear meshing, and peg, rod, and connector insertion. All tasks share a training configuration, without demonstrations, scripted manipulation stages, or rewards for intermediate assembly progress. Training combines diverse, physically valid starting states with adaptive reset-state sampling.</p>
+            <p>A few highlights:</p>
+            <ul>
+              <li><strong>Shared learning across assemblies.</strong> In the reported single-component comparison, the shared policy reaches 98.2% training success, versus 81.4% on average for twenty separately trained policies. These metrics cover mixed starting states, including loose parts and partial assemblies.</li>
+              <li><strong>Dexterous behaviors without maneuver-specific supervision.</strong> Selected runs show the policy changing an unsuitable grasp, using the board to reorient a connector, and tapping a nut to advance its thread. These individual maneuvers are neither demonstrated nor directly rewarded.</li>
+              <li><strong>Coordination across longer sequences.</strong> Separately trained multi-component policies complete ten-component assemblies, with the task-success reward issued only after every active component is assembled. No assembly order is prescribed. Selected runs show a policy moving obstacles aside or preparing one part, working on another, and returning to finish the first.</li>
+            </ul>
+            <p>The results suggest that shared experience across different assemblies can help a policy acquire skills that are difficult to learn in isolation.</p>
+            <p><strong>Project overview and videos:</strong><br><a href="https://alpha-nist.github.io/">https://alpha-nist.github.io/</a></p>
+            <p>All results are in simulation. The videos are selected successful demonstrations, not a success-rate evaluation or a continuous twenty-part assembly.</p>
+            <p>We’d welcome feedback on the results, evaluation protocol, and connections to your work in manipulation and robot learning.</p>
+            <p class="signature">Best,<br>The AlphaNIST project</p>
+          </div>
+        </article>
+      </main>
+      <footer>
+        <div>Public review copy. Personal names, contact details, and internal links are omitted.</div>
+        <div id="copy-status" role="status" aria-live="polite"></div>
+      </footer>
+    </div>
+    <script>
+      const copyButton = document.querySelector('#copy-email');
+      const copyStatus = document.querySelector('#copy-status');
+      if (navigator.clipboard && window.isSecureContext) {
+        copyButton.hidden = false;
+        copyButton.addEventListener('click', async () => {
+          const paragraphs = [...document.querySelector('#email-body').children].map(element => {
+            if (element.tagName === 'UL') return [...element.children].map(item => `• ${item.innerText}`).join('\n\n');
+            return element.innerText;
+          });
+          const text = `To: NVRobotics, NVResearch\nSubject: ${document.querySelector('#email-subject').textContent}\n\n${paragraphs.join('\n\n')}`;
+          try {
+            await navigator.clipboard.writeText(text);
+            copyStatus.textContent = 'Email draft copied.';
+          } catch {
+            copyStatus.textContent = 'Copy was blocked by your browser. You can select and copy the email text directly.';
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
