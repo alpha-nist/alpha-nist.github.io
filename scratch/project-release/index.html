@@ -31,10 +31,9 @@
       .email-heading { padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid #e9eae5; }
       .email-body { font-size: 16px; line-height: 1.75; }
       .email-body p { margin: 0 0 20px; }
-      .email-body ul { margin: 0 0 22px; padding-left: 22px; }
-      .email-body li { margin: 0 0 14px; padding-left: 3px; }
       .email-body strong { font-weight: 600; }
-      .email-body .signature { margin-bottom: 0; }
+      .email-body p:last-child { margin-bottom: 0; }
+      .pending { color: #727674; }
       footer { color: #737674; font-size: 12px; line-height: 1.65; padding: 20px 0 40px; }
       #copy-status { min-height: 18px; margin-top: 6px; }
       @media (max-width: 600px) {
@@ -67,23 +66,20 @@
         <article aria-labelledby="email-subject">
           <div class="email-heading">
             <p class="recipient"><span>To</span>NVRobotics, NVResearch</p>
-            <h1 id="email-subject">AlphaNIST: learning assembly with binary task rewards</h1>
+            <h1 id="email-subject">Internal project release: AlphaNIST</h1>
           </div>
           <div class="email-body" id="email-body">
-            <p>Hi everyone,</p>
-            <p>We’re sharing <strong>AlphaNIST</strong>, a study of learning contact-rich robotic assembly through large-scale reinforcement learning. We ask how much manipulation strategy a robot can learn when we specify successful assembly, rather than the steps for getting there.</p>
-            <p>In simulation, we train one policy from scratch across all twenty tasks on NIST Assembly Task Board #1, spanning nut threading, gear meshing, and peg, rod, and connector insertion. All tasks share a training configuration, without demonstrations, scripted manipulation stages, or rewards for intermediate assembly progress. Training combines diverse, physically valid starting states with adaptive reset-state sampling.</p>
-            <p>A few highlights:</p>
-            <ul>
-              <li><strong>Shared learning across assemblies.</strong> In the reported single-component comparison, the shared policy reaches 98.2% training success, versus 81.4% on average for twenty separately trained policies. These metrics cover mixed starting states, including loose parts and partial assemblies.</li>
-              <li><strong>Dexterous behaviors without maneuver-specific supervision.</strong> Selected runs show the policy changing an unsuitable grasp, using the board to reorient a connector, and tapping a nut to advance its thread. These individual maneuvers are neither demonstrated nor directly rewarded.</li>
-              <li><strong>Coordination across longer sequences.</strong> Separately trained multi-component policies complete ten-component assemblies, with the task-success reward issued only after every active component is assembled. No assembly order is prescribed. Selected runs show a policy moving obstacles aside or preparing one part, working on another, and returning to finish the first.</li>
-            </ul>
-            <p>The results suggest that shared experience across different assemblies can help a policy acquire skills that are difficult to learn in isolation.</p>
-            <p><strong>Project overview and videos:</strong><br><a href="https://alpha-nist.github.io/">https://alpha-nist.github.io/</a></p>
-            <p>All results are in simulation. The videos are selected successful demonstrations, not a success-rate evaluation or a continuous twenty-part assembly.</p>
-            <p>We’d welcome feedback on the results, evaluation protocol, and connections to your work in manipulation and robot learning.</p>
-            <p class="signature">Best,<br>The AlphaNIST project</p>
+            <p><strong>Project:</strong> AlphaNIST: Emergent assembly skills from binary task rewards</p>
+            <p><strong>Team:</strong> <span class="pending">Omitted from this public review copy; add privately before sending.</span></p>
+            <p><strong>Keywords:</strong> Robotic assembly; Contact-rich manipulation; Multi-task reinforcement learning; Binary task rewards; Long-horizon control</p>
+            <p><strong>Summary:</strong> Robotic assembly requires precise contact interactions and extended sequences of grasping, reorientation, and insertion. We present AlphaNIST, a reinforcement-learning framework that trains one policy from scratch across all twenty tasks on NIST Assembly Task Board #1 in simulation. Training combines diverse, physically valid starting states, adaptive reset-state sampling, and large-scale parallel experience under a binary task-success objective. All tasks share one training configuration, without demonstrations, scripted manipulation stages, assembly-progress rewards, or per-asset tuning.</p>
+            <p><strong>Key results:</strong> In the reported single-component comparison, the shared policy reaches 98.2% training success, versus 81.4% on average for twenty separately trained policies. Selected runs show grasp adaptation, board-assisted connector reorientation, and fingertip tapping for nut threading, without directly supervising these maneuvers. Separately trained multi-component policies complete ten-component assemblies, with the task-success reward issued only when every active component is assembled and no prescribed assembly order. Selected runs show a policy preparing one component, assembling another, and returning to finish the first without an explicit planner.</p>
+            <p><strong>Limitations:</strong> All results are in simulation; sim-to-real transfer has not been demonstrated. The reported success rates are training metrics across mixed starting states, including partial assemblies, rather than held-out performance from fully randomized starts. The videos show selected successful runs, not the frequency or reliability of each observed behavior. Continuous twenty-component assembly remains outside the demonstrated scope.</p>
+            <p><strong>Material:</strong> <a href="https://alpha-nist.github.io/">Website</a>; <a href="https://alpha-nist.github.io/assets/assembly-demo.mp4">Single-component video</a>; <a href="https://alpha-nist.github.io/assets/k10-strategies/selected-episodes.mp4">Ten-component video</a></p>
+            <p><strong>Release:</strong> The project page and demonstration videos are available. <span class="pending">Paper publication status and code-release plans: confirm before sending.</span></p>
+            <p><strong>Restrictions:</strong> <span class="pending">Pending confirmation before sending.</span></p>
+            <p><strong>Contributors:</strong> <span class="pending">Omitted from this public review copy; add privately before sending.</span></p>
+            <p><strong>Contact:</strong> <span class="pending">Omitted from this public review copy; add privately before sending.</span></p>
           </div>
         </article>
       </main>
@@ -98,10 +94,9 @@
       if (navigator.clipboard && window.isSecureContext) {
         copyButton.hidden = false;
         copyButton.addEventListener('click', async () => {
-          const paragraphs = [...document.querySelector('#email-body').children].map(element => {
-            if (element.tagName === 'UL') return [...element.children].map(item => `• ${item.innerText}`).join('\n\n');
-            return element.innerText;
-          });
+          const body = document.querySelector('#email-body').cloneNode(true);
+          body.querySelectorAll('a').forEach(link => link.replaceWith(`${link.textContent} (${link.href})`));
+          const paragraphs = [...body.children].map(element => element.textContent.trim());
           const text = `To: NVRobotics, NVResearch\nSubject: ${document.querySelector('#email-subject').textContent}\n\n${paragraphs.join('\n\n')}`;
           try {
             await navigator.clipboard.writeText(text);
