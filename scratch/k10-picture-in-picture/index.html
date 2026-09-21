@@ -19,6 +19,13 @@
     header a { text-decoration: none; color: #3c3e37; font-weight: 600; }
     h1 { font-size: clamp(24px, 3vw, 34px); line-height: 1.2; letter-spacing: -.035em; font-weight: 500; margin: 0 0 10px; }
     .intro { color: #72746d; margin: 0 0 24px; font-size: 14px; line-height: 1.6; }
+    .episode-picker { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0 0 16px; }
+    .episode { border: 1px solid #ddded7; background: transparent; color: #6b6f62; border-radius: 6px; padding: 8px 12px; cursor: pointer; font-size: 12px; }
+    .episode:hover { background: #eeefe8; }
+    .episode[aria-pressed="true"] { background: #fff; color: #23251f; border-color: #575e4b; }
+    #duration { color: #898c82; font-size: 12px; margin-left: auto; font-variant-numeric: tabular-nums; }
+    .choices[data-count="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 600px; }
+    .choice[hidden] { display: none; }
     .player { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 12px; background: #e5e5e0; box-shadow: 0 1px 0 #0000000b, 0 14px 42px #00000008; }
     video { display: block; width: 100%; height: 100%; object-fit: contain; }
     .choices { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 22px 0 18px; }
@@ -59,43 +66,57 @@
   <main>
     <header><a href="/">Alpha NIST</a><span>Video study</span></header>
     <h1>Picture-in-picture comparison</h1>
-    <p class="intro">Four ways to show the close-up within the fixed view. Switching layouts keeps the same moment.</p>
-    <div class="player">
-      <video id="video" controls playsinline preload="metadata" poster="A.jpg" src="A.mp4" aria-label="Fixed camera view with a synchronized close-up"></video>
+    <p class="intro">Compare the circle and square across four episodes. Switching layouts keeps the same moment; changing episodes starts at the beginning.</p>
+    <div class="episode-picker" role="group" aria-label="Choose an episode">
+      <button class="episode" type="button" data-episode="163" aria-pressed="false">Episode 163</button>
+      <button class="episode" type="button" data-episode="396" aria-pressed="true">Episode 396</button>
+      <button class="episode" type="button" data-episode="404" aria-pressed="false">Episode 404</button>
+      <button class="episode" type="button" data-episode="471" aria-pressed="false">Episode 471</button>
+      <span id="duration">28.26 s</span>
     </div>
-    <div class="choices" role="group" aria-label="Choose a composition">
-      <button class="choice" type="button" data-view="A" data-src="A.mp4" aria-pressed="true"><span class="choice-line"><span class="letter">A</span>Compact landscape</span><small>Upper right · lighter footprint</small></button>
-      <button class="choice" type="button" data-view="B" data-src="B.mp4" aria-pressed="false"><span class="choice-line"><span class="letter">B</span>Large landscape</span><small>Lower right · more detail</small></button>
-      <button class="choice" type="button" data-view="C" data-src="C.mp4" aria-pressed="false"><span class="choice-line"><span class="letter">C</span>Circular detail</span><small>Right · focused cutout</small></button>
-      <button class="choice" type="button" data-view="D" data-src="D.mp4" aria-pressed="false"><span class="choice-line"><span class="letter">D</span>Soft-corner square</span><small>Right · a larger detail window</small></button>
+    <div class="player">
+      <video id="video" controls playsinline preload="metadata" poster="episode-396-C.jpg" src="episode-396-C.mp4" aria-label="Fixed camera view with a synchronized close-up"></video>
+    </div>
+    <div class="choices" data-count="2" role="group" aria-label="Choose a composition">
+      <button class="choice" type="button" data-view="A" data-src="A.mp4" aria-pressed="false" hidden><span class="choice-line"><span class="letter">A</span>Compact landscape</span><small>Upper right · lighter footprint</small></button>
+      <button class="choice" type="button" data-view="B" data-src="B.mp4" aria-pressed="false" hidden><span class="choice-line"><span class="letter">B</span>Large landscape</span><small>Lower right · more detail</small></button>
+      <button class="choice" type="button" data-view="C" data-src="episode-396-C.mp4" aria-pressed="true"><span class="choice-line"><span class="letter">C</span>Circular detail</span><small>Right · focused cutout</small></button>
+      <button class="choice" type="button" data-view="D" data-src="episode-396-D.mp4" aria-pressed="false"><span class="choice-line"><span class="letter">D</span>Soft-corner square</span><small>Right · a larger detail window</small></button>
     </div>
     <div class="view-info">
-      <p id="description" aria-live="polite">A small, wide close-up in the upper-right corner leaves more of the fixed view unobstructed.</p>
-      <a id="download" href="A.mp4" download="picture-in-picture-A.mp4">Download this version ↗</a>
+      <p id="description" aria-live="polite">A circular close-up on the right concentrates attention on the gripper and nearby parts.</p>
+      <a id="download" href="episode-396-C.mp4" download="episode-396-C.mp4">Download this version ↗</a>
     </div>
     <div class="moments" role="group" aria-label="Jump to a comparison moment">
       <span>Compare a moment</span>
       <button class="moment" type="button" data-time="0">0:00</button>
-      <button class="moment" type="button" data-time="4">0:04</button>
-      <button class="moment" type="button" data-time="11">0:11</button>
-      <button class="moment" type="button" data-time="30">0:30</button>
-      <button class="moment" type="button" data-time="40">0:40</button>
+      <button class="moment" type="button" data-time="3">0:03</button>
+      <button class="moment" type="button" data-time="8">0:08</button>
+      <button class="moment" type="button" data-time="18">0:18</button>
+      <button class="moment" type="button" data-time="26">0:26</button>
     </div>
     <p id="status" role="status"></p>
-    <p class="note">Same 42.5-second episode and synchronized camera views in every version. Real-time playback at 50 fps. Only the composition changes; the policy and recorded motion are unchanged.</p>
+    <p class="note">Each layout uses the same synchronized views of its selected episode. Real-time playback at 50 fps. Only the composition changes; the recorded motion is unchanged.</p>
   </main>
   <script>
     const video = document.getElementById('video');
     const description = document.getElementById('description');
     const download = document.getElementById('download');
     const status = document.getElementById('status');
+    const episodes = {
+      '163': { duration: 42.5, moments: [0, 4, 11, 30, 40], sources: { A: 'A.mp4', B: 'B.mp4', C: 'C.mp4', D: 'D.mp4' } },
+      '396': { duration: 28.26, moments: [0, 3, 8, 18, 26], sources: { C: 'episode-396-C.mp4', D: 'episode-396-D.mp4' } },
+      '404': { duration: 45.74, moments: [0, 3, 9, 31, 43], sources: { C: 'episode-404-C.mp4', D: 'episode-404-D.mp4' } },
+      '471': { duration: 44.5, moments: [0, 8, 18, 30, 42], sources: { C: 'episode-471-C.mp4', D: 'episode-471-D.mp4' } }
+    };
     const descriptions = {
       A: 'A small, wide close-up in the upper-right corner leaves more of the fixed view unobstructed.',
       B: 'A larger, wide close-up in the lower-right corner gives the manipulation more space.',
       C: 'A circular close-up on the right concentrates attention on the gripper and nearby parts.',
       D: 'A square close-up with softly rounded corners balances the detail view and surrounding scene.'
     };
-    let active = 'A';
+    let activeEpisode = '396';
+    let active = 'C';
     let switching = false;
     let targetTime = 0;
     let resume = false;
@@ -107,32 +128,56 @@
       else if (!switching) video.addEventListener('loadedmetadata', () => { video.currentTime = targetTime; }, { once: true });
     }
 
-    document.querySelectorAll('.choice').forEach(button => {
-      button.addEventListener('click', () => {
-        const view = button.dataset.view;
-        if (view === active) return;
-        if (!switching) {
-          targetTime = video.currentTime;
-          resume = !video.paused && !video.ended;
-        }
-        switching = true;
-        active = view;
-        status.textContent = '';
-        document.querySelectorAll('.choice').forEach(choice => choice.setAttribute('aria-pressed', String(choice === button)));
-        description.textContent = descriptions[view];
-        download.href = button.dataset.src;
-        download.download = `picture-in-picture-${view}.mp4`;
-        if (onMetadata) video.removeEventListener('loadedmetadata', onMetadata);
-        onMetadata = () => {
-          video.currentTime = Math.min(targetTime, video.duration || targetTime);
-          switching = false;
-          if (resume) video.play().catch(() => { status.textContent = 'Press play to continue at the same moment.'; });
-        };
-        video.addEventListener('loadedmetadata', onMetadata, { once: true });
-        video.poster = `${view}.jpg`;
-        video.src = button.dataset.src;
-        video.load();
+    function showEpisode(episode, view) {
+      const episodeChanged = episode !== activeEpisode;
+      if (!episodeChanged && view === active && !video.error) return;
+      if (!switching) {
+        targetTime = video.currentTime;
+        resume = !video.paused && !video.ended;
+      }
+      if (episodeChanged) targetTime = 0;
+      const entry = episodes[episode];
+      if (!entry.sources[view]) view = 'C';
+      activeEpisode = episode;
+      active = view;
+      switching = true;
+      status.textContent = '';
+      document.querySelectorAll('.episode').forEach(button => {
+        button.setAttribute('aria-pressed', String(button.dataset.episode === episode));
       });
+      document.getElementById('duration').textContent = entry.duration + ' s';
+      document.querySelector('.choices').dataset.count = Object.keys(entry.sources).length;
+      document.querySelectorAll('.choice').forEach(button => {
+        button.hidden = !entry.sources[button.dataset.view];
+        button.dataset.src = entry.sources[button.dataset.view] || '';
+        button.setAttribute('aria-pressed', String(button.dataset.view === view));
+      });
+      document.querySelectorAll('.moment').forEach((button, index) => {
+        const time = entry.moments[index];
+        button.dataset.time = time;
+        button.textContent = Math.floor(time / 60) + ':' + String(time % 60).padStart(2, '0');
+      });
+      description.textContent = descriptions[view];
+      const source = entry.sources[view];
+      download.href = source;
+      download.download = 'episode-' + episode + '-' + view + '.mp4';
+      if (onMetadata) video.removeEventListener('loadedmetadata', onMetadata);
+      onMetadata = () => {
+        video.currentTime = Math.min(targetTime, video.duration || targetTime);
+        switching = false;
+        if (resume) video.play().catch(() => { status.textContent = 'Press play to continue at the same moment.'; });
+      };
+      video.addEventListener('loadedmetadata', onMetadata, { once: true });
+      video.poster = source.replace(/\.mp4$/, '.jpg');
+      video.src = source;
+      video.load();
+    }
+
+    document.querySelectorAll('.choice').forEach(button => {
+      button.addEventListener('click', () => showEpisode(activeEpisode, button.dataset.view));
+    });
+    document.querySelectorAll('.episode').forEach(button => {
+      button.addEventListener('click', () => showEpisode(button.dataset.episode, active));
     });
     document.querySelectorAll('.moment').forEach(button => button.addEventListener('click', () => seek(Number(button.dataset.time))));
     video.addEventListener('error', () => {
@@ -142,3 +187,4 @@
   </script>
 </body>
 </html>
+
