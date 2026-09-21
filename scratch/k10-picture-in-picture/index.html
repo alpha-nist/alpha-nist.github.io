@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#f7f7f4">
+  <title>Picture-in-picture comparison · Alpha NIST</title>
+  <style>
+    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #242522; background: #f7f7f4; font-synthesis: none; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    a { color: inherit; }
+    button:focus-visible, a:focus-visible, video:focus-visible { outline: 2px solid #626b51; outline-offset: 4px; }
+    main { max-width: 1280px; padding: 32px 40px 40px; margin: auto; }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 36px; font-size: 13px; color: #72746d; }
+    header a { text-decoration: none; color: #3c3e37; font-weight: 600; }
+    h1 { font-size: clamp(24px, 3vw, 34px); line-height: 1.2; letter-spacing: -.035em; font-weight: 500; margin: 0 0 10px; }
+    .intro { color: #72746d; margin: 0 0 24px; font-size: 14px; line-height: 1.6; }
+    .player { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 12px; background: #e5e5e0; box-shadow: 0 1px 0 #0000000b, 0 14px 42px #00000008; }
+    video { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .choices { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 22px 0 18px; }
+    .choice { text-align: left; cursor: pointer; border: 1px solid #ddded7; border-radius: 9px; background: transparent; padding: 14px 15px; color: #64665e; transition: border-color .15s, background-color .15s; }
+    .choice:hover { background: #efefe9; }
+    .choice[aria-pressed="true"] { background: #fff; color: #23251f; border-color: #575e4b; box-shadow: 0 1px 3px #00000006; }
+    .choice-line { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 550; line-height: 1.4; }
+    .letter { font-size: 11px; display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1px solid currentColor; border-radius: 50%; flex: none; }
+    .choice small { display: block; margin: 7px 0 0 31px; font-size: 11px; line-height: 1.45; color: #7a7d72; }
+    .view-info { display: flex; justify-content: space-between; align-items: baseline; gap: 22px; min-height: 42px; }
+    #description { margin: 0; font-size: 13px; color: #707368; line-height: 1.6; }
+    #download { flex: none; font-size: 12px; text-underline-offset: 4px; color: #53594a; white-space: nowrap; }
+    .moments { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; padding-top: 19px; margin-top: 12px; border-top: 1px solid #dedfd8; }
+    .moments span { font-size: 12px; color: #777a6f; margin-right: 8px; }
+    .moment { background: #eeefe8; border: 1px solid transparent; border-radius: 5px; padding: 7px 11px; cursor: pointer; font-size: 12px; font-variant-numeric: tabular-nums; color: #4b5043; }
+    .moment:hover { border-color: #b8beb0; background: #fff; }
+    .note { font-size: 11px; color: #898c82; margin: 25px 0 0; line-height: 1.65; }
+    #status { font-size: 12px; line-height: 1.6; color: #80623c; margin: 12px 0 0; }
+    #status:empty { display: none; }
+    @media (max-width: 640px) {
+      main { padding: 22px 17px 30px; }
+      header { margin-bottom: 28px; }
+      .intro { font-size: 13px; margin-bottom: 19px; }
+      .player { border-radius: 7px; }
+      .choices { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 17px; }
+      .choice { padding: 11px; }
+      .choice-line { font-size: 12px; gap: 7px; }
+      .choice small { margin-left: 29px; }
+      .view-info { display: block; }
+      #download { display: inline-block; margin-top: 9px; }
+      .moments { gap: 7px; }
+      .moments span { width: 100%; margin-bottom: 3px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .choice { transition: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header><a href="/">Alpha NIST</a><span>Video study</span></header>
+    <h1>Picture-in-picture comparison</h1>
+    <p class="intro">Four ways to show the close-up within the fixed view. Switching layouts keeps the same moment.</p>
+    <div class="player">
+      <video id="video" controls playsinline preload="metadata" poster="A.jpg" src="A.mp4" aria-label="Fixed camera view with a synchronized close-up"></video>
+    </div>
+    <div class="choices" role="group" aria-label="Choose a composition">
+      <button class="choice" type="button" data-view="A" data-src="A.mp4" aria-pressed="true"><span class="choice-line"><span class="letter">A</span>Compact landscape</span><small>Upper right · lighter footprint</small></button>
+      <button class="choice" type="button" data-view="B" data-src="B.mp4" aria-pressed="false"><span class="choice-line"><span class="letter">B</span>Large landscape</span><small>Lower right · more detail</small></button>
+      <button class="choice" type="button" data-view="C" data-src="C.mp4" aria-pressed="false"><span class="choice-line"><span class="letter">C</span>Circular detail</span><small>Right · focused cutout</small></button>
+      <button class="choice" type="button" data-view="D" data-src="D.mp4" aria-pressed="false"><span class="choice-line"><span class="letter">D</span>Soft-corner square</span><small>Right · a larger detail window</small></button>
+    </div>
+    <div class="view-info">
+      <p id="description" aria-live="polite">A small, wide close-up in the upper-right corner leaves more of the fixed view unobstructed.</p>
+      <a id="download" href="A.mp4" download="picture-in-picture-A.mp4">Download this version ↗</a>
+    </div>
+    <div class="moments" role="group" aria-label="Jump to a comparison moment">
+      <span>Compare a moment</span>
+      <button class="moment" type="button" data-time="0">0:00</button>
+      <button class="moment" type="button" data-time="4">0:04</button>
+      <button class="moment" type="button" data-time="11">0:11</button>
+      <button class="moment" type="button" data-time="30">0:30</button>
+      <button class="moment" type="button" data-time="40">0:40</button>
+    </div>
+    <p id="status" role="status"></p>
+    <p class="note">Same 42.5-second episode and synchronized camera views in every version. Real-time playback at 50 fps. Only the composition changes; the policy and recorded motion are unchanged.</p>
+  </main>
+  <script>
+    const video = document.getElementById('video');
+    const description = document.getElementById('description');
+    const download = document.getElementById('download');
+    const status = document.getElementById('status');
+    const descriptions = {
+      A: 'A small, wide close-up in the upper-right corner leaves more of the fixed view unobstructed.',
+      B: 'A larger, wide close-up in the lower-right corner gives the manipulation more space.',
+      C: 'A circular close-up on the right concentrates attention on the gripper and nearby parts.',
+      D: 'A square close-up with softly rounded corners balances the detail view and surrounding scene.'
+    };
+    let active = 'A';
+    let switching = false;
+    let targetTime = 0;
+    let resume = false;
+    let onMetadata = null;
+
+    function seek(time) {
+      targetTime = time;
+      if (!switching && video.readyState >= 1) video.currentTime = Math.min(time, video.duration || time);
+      else if (!switching) video.addEventListener('loadedmetadata', () => { video.currentTime = targetTime; }, { once: true });
+    }
+
+    document.querySelectorAll('.choice').forEach(button => {
+      button.addEventListener('click', () => {
+        const view = button.dataset.view;
+        if (view === active) return;
+        if (!switching) {
+          targetTime = video.currentTime;
+          resume = !video.paused && !video.ended;
+        }
+        switching = true;
+        active = view;
+        status.textContent = '';
+        document.querySelectorAll('.choice').forEach(choice => choice.setAttribute('aria-pressed', String(choice === button)));
+        description.textContent = descriptions[view];
+        download.href = button.dataset.src;
+        download.download = `picture-in-picture-${view}.mp4`;
+        if (onMetadata) video.removeEventListener('loadedmetadata', onMetadata);
+        onMetadata = () => {
+          video.currentTime = Math.min(targetTime, video.duration || targetTime);
+          switching = false;
+          if (resume) video.play().catch(() => { status.textContent = 'Press play to continue at the same moment.'; });
+        };
+        video.addEventListener('loadedmetadata', onMetadata, { once: true });
+        video.poster = `${view}.jpg`;
+        video.src = button.dataset.src;
+        video.load();
+      });
+    });
+    document.querySelectorAll('.moment').forEach(button => button.addEventListener('click', () => seek(Number(button.dataset.time))));
+    video.addEventListener('error', () => {
+      switching = false;
+      status.textContent = 'This version could not be loaded. Try another layout or use the download link.';
+    });
+  </script>
+</body>
+</html>
