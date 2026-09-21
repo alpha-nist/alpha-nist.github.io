@@ -168,7 +168,7 @@ if (strategies) {
     play.hidden = true;
     status.textContent = "The film could not load. Try reloading the page.";
   });
-  fetch("assets/k10-strategies/timeline.json").then(response => {
+  fetch("assets/k10-strategies/timeline.json?v=detail-1").then(response => {
     if (!response.ok) throw new Error("Timeline unavailable.");
     return response.json();
   }).then(timeline => {
