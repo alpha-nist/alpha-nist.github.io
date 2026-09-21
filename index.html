@@ -18,9 +18,9 @@
     <meta name="twitter:image" content="https://alpha-nist.github.io/assets/k10-strategies/poster.jpg?v=detail-1">
     <meta name="twitter:image:alt" content="A Franka robot assembling components on the NIST board in simulation.">
     <link rel="canonical" href="https://alpha-nist.github.io/">
-    <link rel="stylesheet" href="styles.css?v=studio-28">
+    <link rel="stylesheet" href="styles.css?v=studio-29">
     <title>AlphaNIST</title>
-    <script src="main.js?v=studio-22" defer></script>
+    <script src="main.js?v=studio-23" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -37,11 +37,12 @@
         </div>
         <section class="strategies" id="strategies" aria-label="Multi-component assembly demonstrations">
           <div class="strategy-shell media-shell">
-            <figure class="film-figure">
+            <figure class="film-figure" id="strategy-player">
               <div class="video-frame">
-                <video id="strategy-video" src="assets/k10-strategies/selected-episodes.mp4?v=detail-1" controls playsinline preload="none" poster="assets/k10-strategies/poster.jpg?v=detail-1" width="1920" height="1080" aria-label="Four selected ten-component assembly episodes, fixed camera view with synchronized rounded-square close-up" aria-describedby="strategy-caption strategy-context">
-                  Your browser does not support embedded video. <a href="assets/k10-strategies/selected-episodes.mp4?v=detail-1">Download the film.</a>
+                <video id="strategy-video" src="assets/k10-strategies/selected-episodes-fixed.mp4?v=fixed-2" controls playsinline preload="none" poster="assets/k10-strategies/poster-fixed.jpg?v=fixed-2" width="1920" height="1080" aria-label="Four selected ten-component assembly episodes, fixed camera view with optional synchronized close-up" aria-describedby="strategy-caption strategy-context">
+                  Your browser does not support embedded video. <a href="assets/k10-strategies/selected-episodes-fixed.mp4?v=fixed-2">Download the film.</a>
                 </video>
+                <video id="strategy-detail" src="assets/k10-strategies/selected-episodes-closeup.mp4?v=layer-1" poster="assets/k10-strategies/poster-closeup.jpg?v=layer-1" width="736" height="736" muted playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture hidden></video>
                 <button class="film-play" type="button" aria-controls="strategy-video" hidden>
                   <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>
                   <span>Play</span><span class="film-duration">2:41</span>
@@ -49,7 +50,10 @@
               </div>
               <figcaption id="strategy-caption">
                 Ten-component assembly.
-                <button class="closeup-toggle" type="button" role="switch" aria-checked="true" aria-controls="strategy-video" hidden>Close-up<span class="switch-track" aria-hidden="true"></span></button>
+                <span class="strategy-view-controls">
+                  <button class="closeup-toggle" type="button" role="switch" aria-checked="true" aria-controls="strategy-detail" hidden>Close-up<span class="switch-track" aria-hidden="true"></span></button>
+                  <button class="strategy-fullscreen" type="button" aria-label="Enter fullscreen" aria-controls="strategy-player" title="Fullscreen" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H3v4M13 3h4v4M3 13v4h4M17 13v4h-4"/></svg></button>
+                </span>
               </figcaption>
             </figure>
             <div class="strategy-moments" role="group" aria-label="Jump to a moment" hidden>

@@ -1,7 +1,7 @@
 const video = document.querySelector("#assembly-video");
 const chapters = [...document.querySelectorAll("#demo .chapter")];
 const chapterStatus = document.querySelector("#demo .chapter-status");
-const films = [...document.querySelectorAll("video")];
+const films = [...document.querySelectorAll("video:not(#strategy-detail)")];
 
 for (const player of films) {
   player.addEventListener("play", () => {
@@ -120,15 +120,103 @@ if (strategies) {
   const labels = moments.querySelector(".moment-groups");
   const status = strategies.querySelector(".strategy-status");
   const closeup = strategies.querySelector(".closeup-toggle");
+  const detail = strategies.querySelector("#strategy-detail");
+  const frame = strategies.querySelector("#strategy-player");
+  const fullscreen = strategies.querySelector(".strategy-fullscreen");
   let pendingSeek, loading = false, playRequest = 0;
+  let detailStarted = false, detailFailed = false, detailReady = true, detailPlayPending = false;
+  let exactDetailSeek = false, lastDetailSeek = -Infinity;
   player.controls = false;
   play.hidden = false;
   closeup.hidden = false;
 
-  const remember = (time = pendingSeek?.time ?? player.currentTime) => ({
-    time, rate: pendingSeek?.rate ?? player.playbackRate, playing: pendingSeek?.playing ?? !player.paused,
-    volume: pendingSeek?.volume ?? player.volume, muted: pendingSeek?.muted ?? player.muted,
+  const updateDetailVisibility = () => {
+    detail.hidden = closeup.getAttribute("aria-checked") !== "true" || detailFailed || !detailReady;
+  };
+  closeup.addEventListener("click", () => {
+    closeup.setAttribute("aria-checked", String(closeup.getAttribute("aria-checked") !== "true"));
+    updateDetailVisibility();
   });
+  updateDetailVisibility();
+
+  const failDetail = () => {
+    detailFailed = true;
+    closeup.disabled = true;
+    closeup.setAttribute("aria-checked", "false");
+    updateDetailVisibility();
+    status.textContent = "The close-up is unavailable. The fixed view can still be played.";
+  };
+  const syncDetail = (force = false) => {
+    exactDetailSeek ||= force;
+    if (detailFailed || player.readyState < 1) return;
+    if (!detailStarted) {
+      detailStarted = true;
+      detailReady = false;
+      updateDetailVisibility();
+      detail.preload = "auto";
+      detail.load();
+      return;
+    }
+    if (detail.readyState < 1) return;
+    if (detail.playbackRate !== player.playbackRate) detail.playbackRate = player.playbackRate;
+    const masterStable = !player.seeking && (player.paused || player.readyState >= 3);
+    if (player.paused || player.ended || !masterStable) {
+      if (!detail.paused) detail.pause();
+    } else if (detail.paused && !detailPlayPending) {
+      detailPlayPending = true;
+      detail.play().catch(error => {
+        if (error.name !== "AbortError") failDetail();
+      }).finally(() => { detailPlayPending = false; });
+    }
+    const offset = Math.abs(detail.currentTime - player.currentTime);
+    if (offset <= .001) exactDetailSeek = false;
+    if (!detail.seeking && (exactDetailSeek || (masterStable && offset > .06 && performance.now() - lastDetailSeek > 500))) {
+      detail.currentTime = Math.min(player.currentTime, detail.duration);
+      exactDetailSeek = false;
+      lastDetailSeek = performance.now();
+    }
+    detailReady = masterStable && detail.readyState >= (player.paused ? 2 : 3) && !detail.seeking && offset <= .06;
+    updateDetailVisibility();
+  };
+  for (const event of ["loadedmetadata", "play", "playing", "canplay", "waiting", "stalled", "ratechange", "timeupdate", "ended"]) {
+    player.addEventListener(event, () => syncDetail());
+  }
+  for (const event of ["pause", "seeked"]) player.addEventListener(event, () => syncDetail(true));
+  player.addEventListener("seeking", () => {
+    detailReady = false;
+    updateDetailVisibility();
+    syncDetail(true);
+  });
+  for (const event of ["loadedmetadata", "loadeddata", "canplay", "seeked", "timeupdate"]) {
+    detail.addEventListener(event, () => syncDetail());
+  }
+  detail.addEventListener("waiting", () => {
+    detailReady = false;
+    updateDetailVisibility();
+  });
+  detail.addEventListener("error", failDetail);
+  if (player.requestVideoFrameCallback) {
+    const followFrame = () => {
+      syncDetail();
+      player.requestVideoFrameCallback(followFrame);
+    };
+    player.requestVideoFrameCallback(followFrame);
+  }
+
+  if (frame.requestFullscreen && document.fullscreenEnabled) {
+    fullscreen.hidden = false;
+    player.controlsList?.add("nofullscreen");
+    fullscreen.addEventListener("click", () => {
+      const request = document.fullscreenElement === frame ? document.exitFullscreen() : frame.requestFullscreen();
+      request.catch(() => { status.textContent = "Fullscreen is unavailable in this browser."; });
+    });
+    document.addEventListener("fullscreenchange", () => {
+      const label = document.fullscreenElement === frame ? "Exit fullscreen" : "Enter fullscreen";
+      fullscreen.setAttribute("aria-label", label);
+      fullscreen.title = label;
+    });
+  }
+
   const startPlayback = () => {
     const request = ++playRequest;
     player.play().catch(() => {
@@ -138,61 +226,35 @@ if (strategies) {
     });
   };
   const restoreSeek = () => {
-    if (!pendingSeek || player.readyState < 1 || player.currentSrc !== player.src) return;
+    if (!pendingSeek || player.readyState < 1) return;
     const restore = pendingSeek;
     pendingSeek = undefined;
-    if (player.controls || restore.time > 0) player.currentTime = Math.min(restore.time, player.duration);
+    player.currentTime = Math.min(restore.time, player.duration);
     player.playbackRate = restore.rate;
-    player.volume = restore.volume;
-    player.muted = restore.muted;
     if (restore.playing) startPlayback();
   };
-  const loadMedia = () => {
-    loading = true;
-    playRequest++;
-    player.preload = player.controls || pendingSeek.playing ? "auto" : "metadata";
-    player.defaultPlaybackRate = pendingSeek.rate;
-    player.load();
-  };
   const seek = (time) => {
-    pendingSeek = remember(time);
+    pendingSeek = { time, rate: pendingSeek?.rate ?? player.playbackRate, playing: pendingSeek?.playing ?? !player.paused };
     player.controls = true;
     play.hidden = true;
     status.textContent = "";
-    if (!loading && player.readyState >= 1) restoreSeek();
-    else if (!loading) loadMedia();
+    if (player.readyState >= 1) restoreSeek();
+    else if (!loading) {
+      loading = true;
+      player.preload = "auto";
+      player.defaultPlaybackRate = pendingSeek.rate;
+      player.load();
+    }
   };
-  closeup.addEventListener("click", () => {
-    const enabled = closeup.getAttribute("aria-checked") !== "true";
-    pendingSeek = remember();
-    closeup.setAttribute("aria-checked", String(enabled));
-    player.src = enabled ? "assets/k10-strategies/selected-episodes.mp4?v=detail-1" : "assets/k10-strategies/selected-episodes-fixed.mp4?v=fixed-1";
-    player.poster = enabled ? "assets/k10-strategies/poster.jpg?v=detail-1" : "assets/k10-strategies/poster-fixed.jpg?v=fixed-1";
-    player.setAttribute("aria-label", "Four selected ten-component assembly episodes, fixed camera view" + (enabled ? " with synchronized rounded-square close-up" : ""));
-    player.querySelector("a").href = player.src;
-    status.textContent = "";
-    loadMedia();
-  });
   play.addEventListener("click", () => {
     player.controls = true;
     play.hidden = true;
     if (pendingSeek) pendingSeek.playing = true;
     startPlayback();
   });
-  player.addEventListener("loadedmetadata", () => {
-    if (player.readyState < 1 || player.currentSrc !== player.src) return;
-    loading = false;
-    restoreSeek();
-  });
+  player.addEventListener("loadedmetadata", () => { loading = false; restoreSeek(); });
   player.addEventListener("ratechange", () => { if (pendingSeek) pendingSeek.rate = player.playbackRate; });
-  player.addEventListener("volumechange", () => {
-    if (pendingSeek) {
-      pendingSeek.volume = player.volume;
-      pendingSeek.muted = player.muted;
-    }
-  });
   player.addEventListener("play", () => {
-    if (pendingSeek) pendingSeek.playing = true;
     play.hidden = true;
     status.textContent = "";
   });
