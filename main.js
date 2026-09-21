@@ -119,51 +119,93 @@ if (strategies) {
   const moments = strategies.querySelector(".strategy-moments");
   const labels = moments.querySelector(".moment-groups");
   const status = strategies.querySelector(".strategy-status");
-  let pendingSeek, loading = false;
+  const closeup = strategies.querySelector(".closeup-toggle");
+  let pendingSeek, loading = false, playRequest = 0;
   player.controls = false;
   play.hidden = false;
+  closeup.hidden = false;
 
+  const remember = (time = pendingSeek?.time ?? player.currentTime) => ({
+    time, rate: pendingSeek?.rate ?? player.playbackRate, playing: pendingSeek?.playing ?? !player.paused,
+    volume: pendingSeek?.volume ?? player.volume, muted: pendingSeek?.muted ?? player.muted,
+  });
+  const startPlayback = () => {
+    const request = ++playRequest;
+    player.play().catch(() => {
+      if (request !== playRequest || !player.paused) return;
+      play.hidden = false;
+      status.textContent = "Press Play in the video controls to continue.";
+    });
+  };
   const restoreSeek = () => {
-    if (!pendingSeek || player.readyState < 1) return;
+    if (!pendingSeek || player.readyState < 1 || player.currentSrc !== player.src) return;
     const restore = pendingSeek;
     pendingSeek = undefined;
-    player.currentTime = Math.min(restore.time, player.duration);
+    if (player.controls || restore.time > 0) player.currentTime = Math.min(restore.time, player.duration);
     player.playbackRate = restore.rate;
-    if (restore.playing) player.play().catch(() => { status.textContent = "Press Play in the video controls to continue."; });
+    player.volume = restore.volume;
+    player.muted = restore.muted;
+    if (restore.playing) startPlayback();
+  };
+  const loadMedia = () => {
+    loading = true;
+    playRequest++;
+    player.preload = player.controls || pendingSeek.playing ? "auto" : "metadata";
+    player.defaultPlaybackRate = pendingSeek.rate;
+    player.load();
   };
   const seek = (time) => {
-    pendingSeek = { time, rate: pendingSeek?.rate ?? player.playbackRate, playing: pendingSeek?.playing ?? !player.paused };
+    pendingSeek = remember(time);
     player.controls = true;
     play.hidden = true;
     status.textContent = "";
-    if (player.readyState >= 1) restoreSeek();
-    else if (!loading) {
-      loading = true;
-      player.preload = "auto";
-      player.defaultPlaybackRate = pendingSeek.rate;
-      player.load();
-    }
+    if (!loading && player.readyState >= 1) restoreSeek();
+    else if (!loading) loadMedia();
   };
+  closeup.addEventListener("click", () => {
+    const enabled = closeup.getAttribute("aria-checked") !== "true";
+    pendingSeek = remember();
+    closeup.setAttribute("aria-checked", String(enabled));
+    player.src = enabled ? "assets/k10-strategies/selected-episodes.mp4?v=detail-1" : "assets/k10-strategies/selected-episodes-fixed.mp4?v=fixed-1";
+    player.poster = enabled ? "assets/k10-strategies/poster.jpg?v=detail-1" : "assets/k10-strategies/poster-fixed.jpg?v=fixed-1";
+    player.setAttribute("aria-label", "Four selected ten-component assembly episodes, fixed camera view" + (enabled ? " with synchronized rounded-square close-up" : ""));
+    player.querySelector("a").href = player.src;
+    status.textContent = "";
+    loadMedia();
+  });
   play.addEventListener("click", () => {
     player.controls = true;
     play.hidden = true;
     if (pendingSeek) pendingSeek.playing = true;
-    player.play().catch(() => { if (player.paused) play.hidden = false; });
+    startPlayback();
   });
-  player.addEventListener("loadedmetadata", () => { loading = false; restoreSeek(); });
+  player.addEventListener("loadedmetadata", () => {
+    if (player.readyState < 1 || player.currentSrc !== player.src) return;
+    loading = false;
+    restoreSeek();
+  });
   player.addEventListener("ratechange", () => { if (pendingSeek) pendingSeek.rate = player.playbackRate; });
+  player.addEventListener("volumechange", () => {
+    if (pendingSeek) {
+      pendingSeek.volume = player.volume;
+      pendingSeek.muted = player.muted;
+    }
+  });
   player.addEventListener("play", () => {
+    if (pendingSeek) pendingSeek.playing = true;
     play.hidden = true;
     status.textContent = "";
   });
   for (const other of films) {
     if (other !== player) other.addEventListener("play", () => {
+      playRequest++;
       if (pendingSeek) pendingSeek.playing = false;
     });
   }
   player.addEventListener("error", () => {
     loading = false;
     pendingSeek = undefined;
+    playRequest++;
     player.controls = true;
     play.hidden = true;
     status.textContent = "The film could not load. Try reloading the page.";
