@@ -1,0 +1,336 @@
+1
+00:00:00,550 --> 00:00:03,913
+Watch this ten-component
+assembly, without cuts.
+
+2
+00:00:03,913 --> 00:00:06,900
+The robot must assemble
+every active component,
+
+3
+00:00:06,900 --> 00:00:12,000
+but the task does not prescribe an order.
+Notice the long reach across the board,
+
+4
+00:00:12,000 --> 00:00:14,750
+and the small contacts
+used to turn the nut.
+
+5
+00:00:18,500 --> 00:00:21,988
+There is no separate planner
+choosing a sequence of skills.
+
+6
+00:00:21,988 --> 00:00:24,913
+These actions come from
+one learned policy.
+
+7
+00:00:24,913 --> 00:00:28,975
+The task reward arrives only when
+all ten assemblies are complete,
+
+8
+00:00:28,975 --> 00:00:31,225
+not after each intermediate step.
+
+9
+00:00:32,500 --> 00:00:37,038
+If success is so far away, where
+does useful experience come from?
+
+10
+00:00:37,038 --> 00:00:42,013
+Alpha NIST combines diverse starting
+states, shared training across assemblies,
+
+11
+00:00:42,013 --> 00:00:44,100
+and large-scale simulation.
+
+12
+00:00:46,265 --> 00:00:49,115
+The NIST board brings
+together twenty assemblies,
+
+13
+00:00:49,115 --> 00:00:51,903
+with parts as small as four millimeters.
+
+14
+00:00:51,903 --> 00:00:57,315
+A grasp that lifts a part may still block
+its insertion. With several parts present,
+
+15
+00:00:57,315 --> 00:01:01,465
+the robot must also work around
+clutter and neighboring assemblies.
+
+16
+00:01:04,215 --> 00:01:08,690
+We use a binary task reward for completed
+assembly. Reaching, grasping,
+
+17
+00:01:08,690 --> 00:01:12,340
+and partial insertion receive
+no assembly-progress reward.
+
+18
+00:01:12,340 --> 00:01:16,165
+Separate control costs discourage
+large actions, rapid motion,
+
+19
+00:01:16,165 --> 00:01:19,690
+and excessive torque.
+The objective specifies the result,
+
+20
+00:01:19,690 --> 00:01:22,015
+not a rewarded sequence of maneuvers.
+
+21
+00:01:23,265 --> 00:01:27,203
+A binary objective does not mean
+always starting from loose parts.
+
+22
+00:01:27,203 --> 00:01:32,565
+A cached bank provides valid states, from
+objects on the table to in-hand grasps and
+
+23
+00:01:32,565 --> 00:01:36,065
+partial assemblies. These
+are starting conditions,
+
+24
+00:01:36,065 --> 00:01:39,065
+not demonstrations or prescribed stages.
+
+25
+00:01:39,065 --> 00:01:41,915
+The policy must still
+discover how to finish.
+
+26
+00:01:45,240 --> 00:01:49,227
+Which states should the learner
+revisit? Success-guided sampling favors
+
+27
+00:01:49,227 --> 00:01:53,252
+intermediate recent success:
+neither almost always solved,
+
+28
+00:01:53,252 --> 00:01:57,828
+nor almost always failed. Every cached
+state retains some chance of being
+
+29
+00:01:57,828 --> 00:02:02,452
+sampled. This choice spans
+the entire assembly-and-reset bank,
+
+30
+00:02:02,452 --> 00:02:06,065
+selecting both the geometry
+and the starting condition.
+
+31
+00:02:09,240 --> 00:02:13,915
+For single-component experiments, one
+policy trains across all twenty tasks
+
+32
+00:02:13,915 --> 00:02:18,490
+using PPO. It observes robot
+state and surface point clouds,
+
+33
+00:02:18,490 --> 00:02:23,315
+without a discrete task label. Different
+geometries share the same learner and
+
+34
+00:02:23,315 --> 00:02:24,965
+completion objective.
+
+35
+00:02:26,265 --> 00:02:29,390
+Does sharing help?
+With binary task rewards,
+
+36
+00:02:29,390 --> 00:02:33,553
+the shared policy reaches ninety-eight
+point two percent training success,
+
+37
+00:02:33,553 --> 00:02:37,928
+versus eighty-one point four averaged
+over twenty separate policies.
+
+38
+00:02:37,928 --> 00:02:43,127
+These results include partially assembled
+starts, with budgets matched per run.
+
+39
+00:02:43,127 --> 00:02:47,415
+The tested dense reward does not
+show the same benefit from sharing.
+
+40
+00:02:50,265 --> 00:02:54,790
+In a separate evaluation, success
+improves with parallel experience.
+
+41
+00:02:54,790 --> 00:02:57,778
+At two hundred and fifty-six
+thousand environments,
+
+42
+00:02:57,778 --> 00:03:01,478
+success-guided sampling reaches
+ninety-seven point four percent,
+
+43
+00:03:01,478 --> 00:03:05,090
+versus eighty-four point
+three with uniform sampling.
+
+44
+00:03:05,090 --> 00:03:08,403
+Both use a common
+mixed-reset evaluation bank.
+
+45
+00:03:08,403 --> 00:03:11,990
+Scale and the allocation
+of experience matter together.
+
+46
+00:03:13,290 --> 00:03:17,627
+Look at what completion can require.
+This peg is held near its center:
+
+47
+00:03:17,627 --> 00:03:21,928
+a successful pickup, but
+an inconvenient grasp for insertion.
+
+48
+00:03:21,928 --> 00:03:26,665
+The gripper releases it and regrasps
+near one end, exposing more shaft.
+
+49
+00:03:26,665 --> 00:03:31,890
+We call this grasp adaptation. No
+grasp-changing instruction was supplied.
+
+50
+00:03:34,240 --> 00:03:38,090
+For this connector, the board
+becomes part of the manipulation.
+
+51
+00:03:38,090 --> 00:03:42,703
+Surface contact changes the part's
+orientation before insertion:
+
+52
+00:03:42,703 --> 00:03:47,765
+board-assisted reorientation. The useful
+motion is not confined to what the fingers
+
+53
+00:03:47,765 --> 00:03:50,865
+can do while holding
+the object in free space.
+
+54
+00:03:52,290 --> 00:03:56,765
+Threading shows another kind of
+contact-driven motion. On the small nut,
+
+55
+00:03:56,765 --> 00:04:01,090
+repeated one-sided contacts advance
+the thread. On the larger nut,
+
+56
+00:04:01,090 --> 00:04:04,415
+the fingers move around it
+through successive contacts.
+
+57
+00:04:04,415 --> 00:04:08,928
+We call these fingertip tapping and
+circular threading: different solutions,
+
+58
+00:04:08,928 --> 00:04:11,540
+not instructions written into the task.
+
+59
+00:04:14,265 --> 00:04:18,190
+Return to a cluttered board.
+Overlapping parts are displaced,
+
+60
+00:04:18,190 --> 00:04:20,990
+and a gear is then
+picked up and assembled.
+
+61
+00:04:20,990 --> 00:04:23,840
+Object separation names
+the visible behavior,
+
+62
+00:04:23,840 --> 00:04:27,465
+without assuming human-like
+reasoning about obstacles.
+
+63
+00:04:27,465 --> 00:04:30,790
+This is a separately trained
+ten-component policy.
+
+64
+00:04:30,790 --> 00:04:35,315
+We leave the successful episode running
+so the local motions can be seen in the
+
+65
+00:04:35,315 --> 00:04:37,340
+context of the whole task.
+
+66
+00:04:42,500 --> 00:04:47,225
+All results are in simulation. Physical
+transfer and continuous twenty-component
+
+67
+00:04:47,225 --> 00:04:50,975
+assembly under one terminal
+objective remain open.
+
+68
+00:04:50,975 --> 00:04:55,325
+What we see here is that diverse starts
+and shared experience can support several
+
+69
+00:04:55,325 --> 00:04:59,200
+kinds of dexterous behavior under
+a common completion objective.

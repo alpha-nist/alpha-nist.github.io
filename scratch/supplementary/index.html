@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="theme-color" content="#f7f6f2">
+    <meta name="description" content="A five-minute supplementary film for AlphaNIST, with chapter navigation and a synchronized narration transcript.">
+    <title>AlphaNIST · supplementary film</title>
+    <link rel="stylesheet" href="review.css">
+    <script src="review.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#film">Skip to film</a>
+    <header class="site-header shell">
+      <a class="wordmark" href="#top" aria-label="AlphaNIST supplementary film">AlphaNIST<span aria-hidden="true">.</span></a>
+      <span class="review-label">Supplementary film</span>
+    </header>
+    <main id="top" class="shell">
+      <section class="introduction" aria-labelledby="page-title">
+        <p class="eyebrow">Assembly through reinforcement learning</p>
+        <h1 id="page-title">AlphaNIST <span>· supplementary film</span></h1>
+        <p class="lede">From a complete ten-component episode to the objective, training, results, and observed assembly behaviors.</p>
+        <p class="edition"><span class="edition-dot" aria-hidden="true"></span>First voiced cut <span aria-hidden="true">·</span> 5:00</p>
+      </section>
+      <section id="film" class="film-section" aria-label="Supplementary film">
+        <figure>
+          <div class="video-frame">
+            <video id="film-player" controls playsinline preload="metadata" poster="poster.jpg" width="1920" height="1080" aria-label="AlphaNIST five-minute supplementary film" aria-describedby="film-context">
+              <source src="supplementary-v1.mp4" type="video/mp4">
+              <track kind="captions" src="captions.vtt" srclang="en" label="English">
+              Your browser does not support embedded video. <a href="supplementary-v1.mp4">Download the film.</a>
+            </video>
+          </div>
+          <figcaption>
+            <p id="current-section" aria-live="polite" aria-atomic="true"><span class="status-dot" aria-hidden="true"></span><span id="current-title">Ten components, one episode</span></p>
+            <span class="time-readout"><span id="current-time">0:00</span> <span class="time-divider">/</span> 5:00</span>
+          </figcaption>
+        </figure>
+        <p id="film-context" class="context">Simulation footage. Selected successful runs illustrate behavior; they are not a success-rate evaluation. Single- and ten-component examples use different trained policies.</p>
+      </section>
+      <section class="navigation-block" aria-labelledby="chapters-title">
+        <div class="section-heading">
+          <h2 id="chapters-title">Chapters</h2>
+          <p>Jump without starting playback.</p>
+        </div>
+        <div id="chapters" class="chapter-grid" role="group" aria-label="Jump to a chapter" aria-busy="true"></div>
+      </section>
+      <section class="navigation-block behaviors" aria-labelledby="behaviors-title">
+        <div class="section-heading">
+          <h2 id="behaviors-title">Observed behaviors</h2>
+          <p>Names describe visible motion, not inferred intent.</p>
+        </div>
+        <div id="behaviors" class="behavior-list" role="group" aria-label="Jump to an observed behavior"></div>
+      </section>
+      <p id="data-error" class="notice" role="status" hidden>The film can still be played, but the chapter and script data could not be loaded. Reload this page to try again.</p>
+      <details id="script-review" class="script-review" hidden>
+        <summary>
+          <span><span class="summary-title">Narration &amp; storyboard</span><span class="summary-note">A synchronized, section-by-section reading view</span></span>
+          <span class="details-icon" aria-hidden="true">+</span>
+        </summary>
+        <div class="script-body">
+          <p class="script-help">Select a section heading to move the film to that moment. The current section is highlighted as the film plays.</p>
+          <div id="script-sections"></div>
+        </div>
+      </details>
+      <section class="downloads" aria-label="Download review files">
+        <span class="downloads-label">Review files</span>
+        <a href="supplementary-v1.mp4" download>Film <span>MP4</span><span class="download-arrow" aria-hidden="true">↗</span></a>
+        <a id="script-download" href="narration.txt" download>Narration <span>TXT</span><span class="download-arrow" aria-hidden="true">↗</span></a>
+        <a id="srt-download" href="captions.srt" download hidden>Subtitles <span>SRT</span><span class="download-arrow" aria-hidden="true">↗</span></a>
+      </section>
+      <noscript><p class="notice">JavaScript is needed for chapter jumps and the synchronized script. The video controls, captions, and download links still work.</p></noscript>
+    </main>
+    <footer class="site-footer shell">
+      <span>AlphaNIST <span aria-hidden="true">·</span> Supplementary material</span>
+      <span>Stock synthetic voice: Kokoro-82M · af_heart. No voice cloning.</span>
+    </footer>
+  </body>
+</html>
