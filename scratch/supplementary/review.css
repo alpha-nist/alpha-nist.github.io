@@ -54,10 +54,15 @@ h2 { margin: 0; font-size: 13px; font-weight: 550; }
 .chapter-time { flex: 0 0 31px; color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
 .chapter-title { font-size: 12px; line-height: 1.5; }
 .behaviors { margin-top: 23px; }
+.behavior-groups { display: grid; gap: 18px; }
+.behavior-horizon + .behavior-horizon { padding-top: 17px; border-top: 1px solid var(--line); }
+.behavior-heading { margin: 0 0 11px; font-size: 13px; line-height: 1.5; font-weight: 400; }
+.behavior-category { margin: 12px 0 7px; color: var(--muted); font-size: 11px; line-height: 1.5; font-weight: 400; }
 .behavior-list { display: flex; flex-wrap: wrap; gap: 7px; }
-.behavior { min-height: 37px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 25px; color: #55554e; background: transparent; font-size: 11px; line-height: 1.4; text-align: left; }
+.behavior { display: inline-flex; align-items: baseline; gap: 9px; max-width: 100%; min-height: 34px; padding: 8px 11px; border: 1px solid var(--line); border-radius: 5px; color: #55554e; background: transparent; font-size: 11px; line-height: 1.4; font-weight: 400; text-align: left; }
 .behavior:hover { background: #eae8df; border-color: #c2c1b4; }
-.behavior time { padding-left: 8px; color: #77766a; font-variant-numeric: tabular-nums; font-size: 10px; }
+.behavior time { flex: 0 0 auto; color: #77766a; font-variant-numeric: tabular-nums; font-size: 10px; }
+.behavior span { overflow-wrap: anywhere; }
 .script-review { margin-top: 32px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .script-review > summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; cursor: pointer; list-style: none; }
 .script-review > summary::-webkit-details-marker { display: none; }

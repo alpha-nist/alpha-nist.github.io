@@ -11,10 +11,19 @@ let sections = [];
 let activeSection = -1;
 let activeChapter = -1;
 let requestedTime = null;
+let filmDuration = Number(player.dataset.duration);
 
 function timestamp(seconds) {
   const whole = Math.max(0, Math.floor(Number(seconds) || 0));
   return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, "0")}`;
+}
+
+function updateDuration(seconds) {
+  const duration = Number.isFinite(player.duration) && player.duration > 0 ? player.duration : Number(seconds);
+  if (!Number.isFinite(duration) || duration <= 0) return;
+  filmDuration = duration;
+  for (const label of document.querySelectorAll("[data-film-duration]")) label.textContent = timestamp(duration);
+  for (const input of document.querySelectorAll("#cue-start, #cue-end")) input.max = String(duration);
 }
 
 function makeElement(tag, className, text) {
@@ -34,7 +43,7 @@ function seek(time) {
 
 function applyRequestedTime() {
   if (requestedTime === null) return;
-  const end = Number.isFinite(player.duration) ? Math.max(0, player.duration - 0.01) : 300;
+  const end = Math.max(0, filmDuration - 0.01);
   player.currentTime = Math.min(requestedTime, end);
   requestedTime = null;
 }
@@ -42,7 +51,7 @@ function applyRequestedTime() {
 function updatePosition(time = player.currentTime) {
   currentTime.textContent = timestamp(time);
   const sectionIndex = sections.findIndex(section => time >= section.start && time < section.end);
-  const nextSection = sectionIndex >= 0 ? sectionIndex : time >= 300 ? sections.length - 1 : -1;
+  const nextSection = sectionIndex >= 0 ? sectionIndex : time >= filmDuration ? sections.length - 1 : -1;
   if (nextSection !== activeSection) {
     if (activeSection >= 0) sections[activeSection].element.classList.remove("is-current");
     activeSection = nextSection;
@@ -62,6 +71,7 @@ function updatePosition(time = player.currentTime) {
 
 function renderStory(story) {
   if (!Array.isArray(story.chapters) || !Array.isArray(story.sections)) throw new Error("Invalid story data");
+  updateDuration(story.duration_s);
   chapters = story.chapters.map(chapter => {
     const button = makeElement("button", "chapter");
     button.type = "button";
@@ -72,14 +82,31 @@ function renderStory(story) {
     chapterContainer.append(button);
     return { ...chapter, element: button };
   });
-  for (const behavior of story.behavior_names || []) {
-    const button = makeElement("button", "behavior", behavior.name);
-    button.type = "button";
-    button.title = behavior.description || "";
-    button.setAttribute("aria-controls", "film-player");
-    button.append(makeElement("time", "", timestamp(behavior.time)));
-    button.addEventListener("click", () => seek(behavior.time));
-    behaviorContainer.append(button);
+  for (const [horizon, title] of [["short", "Short-horizon dexterity"], ["long", "Long-horizon coordination"]]) {
+    const behaviors = (story.behavior_names || []).filter(behavior => behavior.horizon === horizon);
+    if (!behaviors.length) continue;
+    const group = makeElement("section", "behavior-horizon");
+    const heading = makeElement("h3", "behavior-heading", title);
+    heading.id = `behaviors-${horizon}`;
+    group.setAttribute("aria-labelledby", heading.id);
+    group.append(heading);
+    for (const category of new Set(behaviors.map(behavior => behavior.category))) {
+      const label = makeElement("h4", "behavior-category", category);
+      const row = makeElement("div", "behavior-list");
+      row.setAttribute("role", "group");
+      row.setAttribute("aria-label", category);
+      for (const behavior of behaviors.filter(behavior => behavior.category === category)) {
+        const button = makeElement("button", "behavior");
+        button.type = "button";
+        button.title = behavior.description || "";
+        button.setAttribute("aria-controls", "film-player");
+        button.append(makeElement("time", "", timestamp(behavior.time)), makeElement("span", "", behavior.name));
+        button.addEventListener("click", () => seek(behavior.time));
+        row.append(button);
+      }
+      group.append(label, row);
+    }
+    behaviorContainer.append(group);
   }
   sections = story.sections.map((section, index) => {
     const article = makeElement("article", "script-section");
@@ -107,12 +134,13 @@ function renderStory(story) {
   updatePosition(requestedTime ?? player.currentTime);
 }
 
-player.addEventListener("loadedmetadata", applyRequestedTime);
+player.addEventListener("loadedmetadata", () => { updateDuration(player.duration); applyRequestedTime(); });
+player.addEventListener("durationchange", () => updateDuration(player.duration));
 player.addEventListener("timeupdate", () => updatePosition(requestedTime ?? player.currentTime));
 player.addEventListener("seeked", () => updatePosition());
 player.addEventListener("ended", () => updatePosition());
 
-fetch("story.json?v=2", { cache: "no-cache" })
+fetch("story.json?v=3", { cache: "no-cache" })
   .then(response => {
     if (!response.ok) throw new Error("Story unavailable");
     return response.json();
@@ -123,7 +151,7 @@ fetch("story.json?v=2", { cache: "no-cache" })
     document.getElementById("data-error").hidden = false;
   });
 
-fetch("captions.srt?v=2", { method: "HEAD", cache: "no-cache" })
+fetch("captions.srt?v=3", { method: "HEAD", cache: "no-cache" })
   .then(response => { document.getElementById("srt-download").hidden = !response.ok; })
   .catch(() => {});
 
@@ -166,7 +194,7 @@ function parseCaptions(source) {
 function validCues(items) {
   return Array.isArray(items) && items.length > 0 && items.every((cue, index) =>
     cue && typeof cue.text === "string" && cue.text.length <= 3000 && Number.isFinite(cue.start) &&
-    Number.isFinite(cue.end) && cue.start >= 0 && cue.end > cue.start && cue.end <= 300 &&
+    Number.isFinite(cue.end) && cue.start >= 0 && cue.end > cue.start && cue.end <= filmDuration &&
     (!index || cue.start >= items[index - 1].end));
 }
 
@@ -279,9 +307,9 @@ function changeTiming() {
   lockCue();
   const start = startField.valueAsNumber, end = endField.valueAsNumber;
   const previousEnd = selectedCue ? cues[selectedCue - 1].end : 0;
-  const nextStart = selectedCue < cues.length - 1 ? cues[selectedCue + 1].start : 300;
+  const nextStart = selectedCue < cues.length - 1 ? cues[selectedCue + 1].start : filmDuration;
   let error = "";
-  if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end > 300 || end <= start) error = "Use a start before the end, between 0 and 300 seconds.";
+  if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end > filmDuration || end <= start) error = `Use a start before the end, between 0 and ${filmDuration} seconds.`;
   else if (start < previousEnd || end > nextStart) error = `Keep this subtitle between ${previousEnd.toFixed(3)} and ${nextStart.toFixed(3)} s so it does not overlap its neighbors.`;
   setTimingError(error);
   if (error) return;
@@ -339,7 +367,7 @@ for (const button of document.querySelectorAll("[data-caption-export]")) button.
   if (!cueError.hidden && !window.confirm("Invalid draft times are not included. Export the saved, valid subtitle times?")) return;
   const format = button.dataset.captionExport;
   let content;
-  if (format === "json") content = JSON.stringify({ schema_version: 1, source_fingerprint: fingerprint, duration_s: 300, cues }, null, 2);
+  if (format === "json") content = JSON.stringify({ schema_version: 1, source_fingerprint: fingerprint, duration_s: filmDuration, cues }, null, 2);
   else {
     const separator = format === "srt" ? "," : ".";
     content = (format === "vtt" ? "WEBVTT\n\n" : "") + cues.filter(cue => cue.text.trim()).map((cue, index) => {

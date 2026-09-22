@@ -1,11 +1,31 @@
 {
-  "schema_version": 1,
-  "title": "Parallel scaling with binary task rewards",
+  "schema_version": 2,
+  "title": "Parallel scaling: reset sampling and task-reward formulation",
   "x_axis": {
     "label": "Parallel training environments",
     "scale": "log2",
-    "values": [1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144],
-    "tick_labels": ["1K", "2K", "4K", "8K", "16K", "32K", "64K", "128K", "256K"],
+    "values": [
+      1024,
+      2048,
+      4096,
+      8192,
+      16384,
+      32768,
+      65536,
+      131072,
+      262144
+    ],
+    "tick_labels": [
+      "1K",
+      "2K",
+      "4K",
+      "8K",
+      "16K",
+      "32K",
+      "64K",
+      "128K",
+      "256K"
+    ],
     "note": "K denotes 1024 environments. These are separate training conditions, not successive training times."
   },
   "y_axis": {
@@ -35,23 +55,129 @@
     "horizon_seconds": 15,
     "success": "First full assembly without a simultaneous safety failure; incomplete episodes fail at 15 seconds",
     "sampler_comparison": "The curves differ in training reset sampling; their evaluation reset sampling and frozen bank are shared",
-    "scale_comparison": "Parallel environments, GPUs, and rollout batch size increase together at a fixed training iteration count"
+    "scale_comparison": "Parallel environments, GPUs, and rollout batch size increase together at a fixed training iteration count",
+    "reward_description": {
+      "sparse": "Binary full-assembly success reward minus per-step control costs; no reaching or alignment progress rewards",
+      "dense": "The same binary success reward and control costs, plus 0.01 times the reaching term and 0.01 times the alignment term",
+      "reaching_term": "End-effector proximity to the asset centroid",
+      "alignment_term": "Alignment with the target assembly orientation",
+      "control_costs": "Unchanged penalties on squared action magnitude, joint velocity, and joint torque",
+      "comparison_scope": "Sparse versus the tested reaching-and-alignment shaping formulation, not every possible dense reward"
+    }
   },
   "series": {
     "beta_sparse": {
       "label": "Binary reward · success-guided sampling",
       "sampling": "beta",
-      "mean_percent": [38.55263157894737, 44.276315789473685, 78.94736842105263, 86.90789473684211, 92.23684210526315, 94.24342105263158, 95.95394736842105, 97.20394736842105, 97.36842105263158],
-      "sample_sd_percentage_points": [0.6939152338726656, 1.199643587421742, 1.1803207314479702, 0.8190723419729458, 0.2942194707236597, 1.4100681085100524, 0.4288948950791248, 0.5577573999280676, 0.5697535551213451]
+      "mean_percent": [
+        38.55263157894737,
+        44.276315789473685,
+        78.94736842105263,
+        86.90789473684211,
+        92.23684210526315,
+        94.24342105263158,
+        95.95394736842105,
+        97.20394736842105,
+        97.36842105263158
+      ],
+      "sample_sd_percentage_points": [
+        0.6939152338726656,
+        1.199643587421742,
+        1.1803207314479702,
+        0.8190723419729458,
+        0.2942194707236597,
+        1.4100681085100524,
+        0.4288948950791248,
+        0.5577573999280676,
+        0.5697535551213451
+      ]
     },
     "uniform_sparse": {
       "label": "Binary reward · uniform sampling",
       "sampling": "uniform",
-      "mean_percent": [34.86842105263158, 41.973684210526315, 48.0921052631579, 79.3092105263158, 82.30263157894737, 83.45394736842105, 82.46710526315789, 82.99342105263158, 84.27631578947368],
-      "sample_sd_percentage_points": [1.771435791820562, 0.701668717358602, 1.5971741297776603, 0.6087748527408458, 0.8434790397998723, 0.8190723419729425, 0.9632598989701484, 1.0822818339711946, 0.5278554781539863]
+      "mean_percent": [
+        34.86842105263158,
+        41.973684210526315,
+        48.0921052631579,
+        79.3092105263158,
+        82.30263157894737,
+        83.45394736842105,
+        82.46710526315789,
+        82.99342105263158,
+        84.27631578947368
+      ],
+      "sample_sd_percentage_points": [
+        1.771435791820562,
+        0.701668717358602,
+        1.5971741297776603,
+        0.6087748527408458,
+        0.8434790397998723,
+        0.8190723419729425,
+        0.9632598989701484,
+        1.0822818339711946,
+        0.5278554781539863
+      ]
+    },
+    "beta_dense": {
+      "label": "Dense reward · success-guided sampling",
+      "sampling": "beta",
+      "mean_percent": [
+        11.907894736842106,
+        11.875,
+        11.776315789473683,
+        11.973684210526315,
+        11.940789473684209,
+        12.203947368421051,
+        12.171052631578947,
+        62.368421052631575,
+        77.43421052631578
+      ],
+      "sample_sd_percentage_points": [
+        1.2395686632511045,
+        1.2866846852373657,
+        1.26655416501174,
+        1.2219852382241252,
+        1.1664883701642854,
+        1.135940569067896,
+        1.0004543635358913,
+        0.9113088932365131,
+        1.2384770129616278
+      ]
+    },
+    "uniform_dense": {
+      "label": "Dense reward · uniform sampling",
+      "sampling": "uniform",
+      "mean_percent": [
+        11.940789473684209,
+        11.907894736842106,
+        12.105263157894736,
+        11.940789473684209,
+        12.86184210526316,
+        13.75,
+        15.263157894736844,
+        30,
+        34.3421052631579
+      ],
+      "sample_sd_percentage_points": [
+        1.2007705426607878,
+        1.1311676884243025,
+        1.2230916080643557,
+        1.1069946493726206,
+        1.2601303493011822,
+        1.4366755132843725,
+        1.3829488822090736,
+        1.0822818339711908,
+        0.8338020957655653
+      ]
     }
   },
-  "sources": ["plot_scaling.py", "scaling_evaluation_seeds.csv", "scaling_evaluation_protocol.json"],
+  "sources": [
+    "plot_scaling.py",
+    "scaling_evaluation_seeds.csv",
+    "scaling_evaluation_protocol.json",
+    "05_method.tex",
+    "06_experiments.tex"
+  ],
   "validation": {
     "points_per_series": 9,
     "evaluation_seeds_per_point": 5,
@@ -62,7 +188,16 @@
     "notes": [
       "The current plot reads evaluation counts, not the legacy scaling_data.csv training-log values or corrections.",
       "Preserve the observed uniform-sampling dip at 64K; do not force a monotonic curve.",
-      "Connecting lines and animation order visualize the measurements and are not additional observations."
-    ]
+      "Connecting lines and animation order visualize the measurements and are not additional observations.",
+      "All four conditions cover the same nine environment scales and all five evaluation seeds; no values were filled in or interpolated.",
+      "Dense-reward values are evaluation success rates, not the shaped reward magnitudes.",
+      "The dense beta-sampling rise between 64K and 128K is measured; connecting lines do not imply intermediate observations.",
+      "Previously published sparse means and sample SDs are preserved exactly; they agree with the plotting function to floating-point roundoff."
+    ],
+    "series_count": 4,
+    "condition_environment_grid_points": 36,
+    "checkpoint_source_count": 36,
+    "evaluation_seed_rows": 180,
+    "source_provenance_verified": true
   }
 }

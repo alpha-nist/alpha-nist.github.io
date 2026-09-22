@@ -190,133 +190,136 @@ The tested dense reward does not
 show the same benefit from sharing.
 
 40
-00:02:50.265 --> 00:02:54.790
-In a separate evaluation, success
-improves with parallel experience.
+00:02:50.215 --> 00:02:54.940
+At the largest scale, binary task rewards
+reach ninety-seven point four percent with
 
 41
-00:02:54.790 --> 00:02:57.778
-At two hundred and fifty-six
-thousand environments,
+00:02:54.940 --> 00:02:59.565
+success-guided sampling, versus
+eighty-four point three with uniform.
 
 42
-00:02:57.778 --> 00:03:01.478
-success-guided sampling reaches
-ninety-seven point four percent,
+00:02:59.565 --> 00:03:05.065
+Now add dense shaping: seventy-seven point
+four and thirty-four point three percent.
 
 43
-00:03:01.478 --> 00:03:05.090
-versus eighty-four point
-three with uniform sampling.
+00:03:05.065 --> 00:03:10.215
+Here, sparsity matters too: binary task
+rewards outperform the tested shaping
 
 44
-00:03:05.090 --> 00:03:08.403
-Both use a common
-mixed-reset evaluation bank.
+00:03:10.215 --> 00:03:11.890
+under both samplers.
 
 45
-00:03:08.403 --> 00:03:11.990
-Scale and the allocation
-of experience matter together.
+00:03:13.240 --> 00:03:18.790
+At short horizons, we observe unexpected
+dexterity and varied uses of the gripper,
 
 46
-00:03:13.265 --> 00:03:17.828
+00:03:18.790 --> 00:03:21.640
+beyond simply picking
+up and placing parts.
+
+47
+00:03:23.265 --> 00:03:27.627
 This peg is held near its center,
 leaving little room for insertion.
 
-47
-00:03:17.828 --> 00:03:21.303
-The gripper sets it down and picks
-it up again near one end.
-
 48
-00:03:21.303 --> 00:03:24.465
-That exposes enough of the
-shaft to enter the socket.
+00:03:27.627 --> 00:03:32.515
+The gripper sets it down, then regrasps
+near one end to expose enough shaft.
 
 49
-00:03:34.240 --> 00:03:38.790
-The gripper uses the board surface
-to change this connector's orientation,
+00:03:36.240 --> 00:03:39.990
+The gripper uses the board to change
+the connector's orientation,
 
 50
-00:03:38.790 --> 00:03:43.553
-then lifts it into the socket. Contact
-with the environment extends what the
+00:03:39.990 --> 00:03:45.265
+then lifts it into the socket. Surface
+contact extends what the fingers can do in
 
 51
-00:03:43.553 --> 00:03:47.115
-fingers can do while holding
-the object in free space.
+00:03:45.265 --> 00:03:46.440
+free space.
 
 52
-00:03:52.265 --> 00:03:56.178
+00:03:48.265 --> 00:03:52.178
 On the small nut, the fingertip
 repeatedly contacts one side,
 
 53
-00:03:56.178 --> 00:03:57.940
+00:03:52.178 --> 00:03:53.940
 turning it along the thread.
 
 54
-00:03:59.490 --> 00:04:03.440
+00:03:55.490 --> 00:03:59.440
 In another example, the gripper changes
 its position around the nut to keep
 
 55
-00:04:03.440 --> 00:04:04.465
+00:03:59.440 --> 00:04:00.465
 turning it.
 
 56
-00:04:06.465 --> 00:04:11.490
+00:04:02.465 --> 00:04:07.490
 Here, the outside of a finger contacts
 the nut, advancing it through short turns.
 
 57
-00:04:14.265 --> 00:04:18.290
-Return to a cluttered board.
-Overlapping parts are displaced,
+00:04:10.265 --> 00:04:14.540
+Here, the gripper circles the nut,
+turning it through successive contacts.
 
 58
-00:04:18.290 --> 00:04:21.053
-and a gear is then
-picked up and assembled.
+00:04:16.240 --> 00:04:20.640
+At longer horizons, the more surprising
+behavior is how these local maneuvers fit
 
 59
-00:04:21.053 --> 00:04:24.640
-The robot then continues working
-through the other components.
+00:04:20.640 --> 00:04:24.090
+together. The robot
+tosses loose parts aside,
 
 60
-00:04:24.640 --> 00:04:27.990
-This is a separately trained
-ten-component policy.
+00:04:24.090 --> 00:04:28.653
+opening space to work on other
+components first. It then links grasping,
 
 61
-00:04:27.990 --> 00:04:32.440
-We leave the successful episode running
-so the local motions can be seen in the
+00:04:28.653 --> 00:04:34.390
+reorientation, and insertion across the
+task, without a prescribed assembly order.
 
 62
-00:04:32.440 --> 00:04:34.465
-context of the whole task.
+00:04:34.390 --> 00:04:38.565
+These selected runs show how local
+dexterity can combine into a longer
 
 63
-00:04:42.500 --> 00:04:47.225
+00:04:38.565 --> 00:04:39.565
+sequence.
+
+64
+00:04:44.500 --> 00:04:49.225
 All results are in simulation. Physical
 transfer and continuous twenty-component
 
-64
-00:04:47.225 --> 00:04:50.975
+65
+00:04:49.225 --> 00:04:52.975
 assembly under one terminal
 objective remain open.
 
-65
-00:04:50.975 --> 00:04:55.325
+66
+00:04:52.975 --> 00:04:57.325
 What we see here is that diverse starts
 and shared experience can support several
 
-66
-00:04:55.325 --> 00:04:59.200
+67
+00:04:57.325 --> 00:05:01.200
 kinds of dexterous behavior under
 a common completion objective.
