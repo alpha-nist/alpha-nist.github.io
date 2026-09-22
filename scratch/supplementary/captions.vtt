@@ -165,161 +165,162 @@ geometries share the same learner and
 completion objective.
 
 35
-00:02:26.265 --> 00:02:29.390
+00:02:26.265 --> 00:02:29.440
 Does sharing help?
 With binary task rewards,
 
 36
-00:02:29.390 --> 00:02:33.553
+00:02:29.440 --> 00:02:33.752
 the shared policy reaches ninety-eight
 point two percent training success,
 
 37
-00:02:33.553 --> 00:02:37.928
+00:02:33.752 --> 00:02:38.353
 versus eighty-one point four averaged
 over twenty separate policies.
 
 38
-00:02:37.928 --> 00:02:43.127
-These results include partially assembled
-starts, with budgets matched per run.
-
-39
-00:02:43.127 --> 00:02:47.415
+00:02:38.353 --> 00:02:42.715
 The tested dense reward does not
 show the same benefit from sharing.
 
+39
+00:02:45.290 --> 00:02:49.778
+Look at the trends as simulation
+scales up. With binary task rewards,
+
 40
-00:02:50.215 --> 00:02:54.940
-At the largest scale, binary task rewards
-reach ninety-seven point four percent with
+00:02:49.778 --> 00:02:52.590
+success improves at much smaller scales,
 
 41
-00:02:54.940 --> 00:02:59.565
-success-guided sampling, versus
-eighty-four point three with uniform.
+00:02:52.590 --> 00:02:55.728
+and success-guided
+sampling raises it further.
 
 42
-00:02:59.565 --> 00:03:05.065
-Now add dense shaping: seventy-seven point
-four and thirty-four point three percent.
+00:02:55.728 --> 00:02:59.515
+The tested dense shaping stays
+low across most of the range.
 
 43
-00:03:05.065 --> 00:03:10.215
-Here, sparsity matters too: binary task
-rewards outperform the tested shaping
+00:02:59.515 --> 00:03:04.640
+It improves at the largest scales,
+but remains below binary task rewards.
 
 44
-00:03:10.215 --> 00:03:11.890
-under both samplers.
-
-45
-00:03:13.240 --> 00:03:18.790
+00:03:08.240 --> 00:03:13.790
 At short horizons, we observe unexpected
 dexterity and varied uses of the gripper,
 
-46
-00:03:18.790 --> 00:03:21.640
+45
+00:03:13.790 --> 00:03:16.640
 beyond simply picking
 up and placing parts.
 
+46
+00:03:18.240 --> 00:03:21.103
+The gripper approaches
+with the small gear tilted,
+
 47
-00:03:23.265 --> 00:03:27.627
+00:03:21.103 --> 00:03:25.365
+adjusts its orientation near
+the post, and lowers it into place.
+
+48
+00:03:28.465 --> 00:03:32.827
 This peg is held near its center,
 leaving little room for insertion.
 
-48
-00:03:27.627 --> 00:03:32.515
+49
+00:03:32.827 --> 00:03:37.715
 The gripper sets it down, then regrasps
 near one end to expose enough shaft.
 
-49
-00:03:36.240 --> 00:03:39.990
+50
+00:03:41.440 --> 00:03:45.190
 The gripper uses the board to change
 the connector's orientation,
 
-50
-00:03:39.990 --> 00:03:45.265
+51
+00:03:45.190 --> 00:03:50.465
 then lifts it into the socket. Surface
 contact extends what the fingers can do in
 
-51
-00:03:45.265 --> 00:03:46.440
+52
+00:03:50.465 --> 00:03:51.640
 free space.
 
-52
-00:03:48.265 --> 00:03:52.178
+53
+00:03:53.465 --> 00:03:57.378
 On the small nut, the fingertip
 repeatedly contacts one side,
 
-53
-00:03:52.178 --> 00:03:53.940
+54
+00:03:57.378 --> 00:03:59.140
 turning it along the thread.
 
-54
-00:03:55.490 --> 00:03:59.440
-In another example, the gripper changes
-its position around the nut to keep
-
 55
-00:03:59.440 --> 00:04:00.465
-turning it.
-
-56
-00:04:02.465 --> 00:04:07.490
+00:04:00.665 --> 00:04:05.690
 Here, the outside of a finger contacts
 the nut, advancing it through short turns.
 
-57
-00:04:10.265 --> 00:04:14.540
+56
+00:04:08.465 --> 00:04:12.740
 Here, the gripper circles the nut,
 turning it through successive contacts.
 
+57
+00:04:14.440 --> 00:04:20.015
+At longer horizons, the robot also changes
+the workspace: tossing one part aside,
+
 58
-00:04:16.240 --> 00:04:20.640
-At longer horizons, the more surprising
-behavior is how these local maneuvers fit
+00:04:20.015 --> 00:04:23.940
+then separating overlapping gears
+before assembling one of them.
 
 59
-00:04:20.640 --> 00:04:24.090
-together. The robot
-tosses loose parts aside,
+00:04:23.940 --> 00:04:28.027
+Moving a part away is not progress
+toward inserting it. Here,
 
 60
-00:04:24.090 --> 00:04:28.653
-opening space to work on other
-components first. It then links grasping,
+00:04:28.027 --> 00:04:32.303
+it leaves room to work on other
+components—a situation the isolated
 
 61
-00:04:28.653 --> 00:04:34.390
-reorientation, and insertion across the
-task, without a prescribed assembly order.
+00:04:32.303 --> 00:04:35.290
+single-component task does not present.
 
 62
-00:04:34.390 --> 00:04:38.565
-These selected runs show how local
-dexterity can combine into a longer
+00:04:42.725 --> 00:04:47.637
+Here, a fingertip turns the small gear
+until its teeth mesh with its neighbor.
 
 63
-00:04:38.565 --> 00:04:39.565
-sequence.
+00:04:47.637 --> 00:04:52.025
+Already assembled parts now constrain
+how another component can be placed.
 
 64
-00:04:44.500 --> 00:04:49.225
+00:04:56.700 --> 00:05:01.425
 All results are in simulation. Physical
 transfer and continuous twenty-component
 
 65
-00:04:49.225 --> 00:04:52.975
+00:05:01.425 --> 00:05:05.175
 assembly under one terminal
 objective remain open.
 
 66
-00:04:52.975 --> 00:04:57.325
+00:05:05.175 --> 00:05:09.525
 What we see here is that diverse starts
 and shared experience can support several
 
 67
-00:04:57.325 --> 00:05:01.200
+00:05:09.525 --> 00:05:13.400
 kinds of dexterous behavior under
 a common completion objective.

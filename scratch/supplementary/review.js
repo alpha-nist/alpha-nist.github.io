@@ -82,7 +82,7 @@ function renderStory(story) {
     chapterContainer.append(button);
     return { ...chapter, element: button };
   });
-  for (const [horizon, title] of [["short", "Short-horizon dexterity"], ["long", "Long-horizon coordination"]]) {
+  for (const [horizon, title] of [["short", "Short-horizon dexterity"], ["long", "Long-horizon behavior"]]) {
     const behaviors = (story.behavior_names || []).filter(behavior => behavior.horizon === horizon);
     if (!behaviors.length) continue;
     const group = makeElement("section", "behavior-horizon");
@@ -140,7 +140,7 @@ player.addEventListener("timeupdate", () => updatePosition(requestedTime ?? play
 player.addEventListener("seeked", () => updatePosition());
 player.addEventListener("ended", () => updatePosition());
 
-fetch("story.json?v=3", { cache: "no-cache" })
+fetch("story.json?v=4", { cache: "no-cache" })
   .then(response => {
     if (!response.ok) throw new Error("Story unavailable");
     return response.json();
@@ -151,7 +151,7 @@ fetch("story.json?v=3", { cache: "no-cache" })
     document.getElementById("data-error").hidden = false;
   });
 
-fetch("captions.srt?v=3", { method: "HEAD", cache: "no-cache" })
+fetch("captions.srt?v=4", { method: "HEAD", cache: "no-cache" })
   .then(response => { document.getElementById("srt-download").hidden = !response.ok; })
   .catch(() => {});
 

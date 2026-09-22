@@ -1,5 +1,5 @@
 AlphaNIST — supplementary film
-Revised voiced cut · reward comparison and moving behavior examples · 05:02
+Revised voiced cut · scaling trends and multi-component interactions · 05:14
 Stock synthetic narration · Kokoro-82M / af_heart
 
 Simulation footage. Selected successful runs are illustrations, not a success-rate evaluation. Single-component and ten-component policies are different trained models.
@@ -52,49 +52,61 @@ For single-component experiments, one policy trains across all twenty tasks usin
 
 On screen: Restrained input-to-policy-to-control diagram, with geometry, robot state and action history. Show different assembly examples as context, not separate policy heads.
 
-02:25–02:49  Does sharing help?
+02:25–02:44  Does sharing help?
 
-Does sharing help? With binary task rewards, the shared policy reaches ninety-eight point two percent training success, versus eighty-one point four averaged over twenty separate policies. These results include partially assembled starts, with budgets matched per run. The tested dense reward does not show the same benefit from sharing.
+Does sharing help? With binary task rewards, the shared policy reaches ninety-eight point two percent training success, versus eighty-one point four averaged over twenty separate policies. The tested dense reward does not show the same benefit from sharing.
 
 On screen: Reveal each bar as it is described: 98.2% shared binary-task-reward policy, then 81.4% mean of twenty separate policies. Persistent labels: mixed-reset training success; 64K environments per run; 25K iterations; budgets matched per run, not total compute. Reveal the dense-reward caveat with its narration.
 
-02:49–03:12  Scale, sampling, and reward
+02:44–03:07  Scale, sampling, and reward
 
-At the largest scale, binary task rewards reach ninety-seven point four percent with success-guided sampling, versus eighty-four point three with uniform. Now add dense shaping: seventy-seven point four and thirty-four point three percent. Here, sparsity matters too: binary task rewards outperform the tested shaping under both samplers.
+Look at the trends as simulation scales up. With binary task rewards, success improves at much smaller scales, and success-guided sampling raises it further. The tested dense shaping stays low across most of the range. It improves at the largest scales, but remains below binary task rewards.
 
-On screen: First reveal the two binary-task-reward curves, then add both dense-shaping curves as the narration introduces them. Gold denotes binary task rewards, blue adds dense shaping; solid lines use success-guided sampling and dashed lines use uniform sampling. All four curves show nine measured environment counts, with mean and sample SD over five evaluation seeds, without smoothing. Highlight the four 256K endpoints: 97.4%, 84.3%, 77.4%, and 34.3%. The comparison concerns the tested reach-and-alignment shaping, not every possible dense reward.
+On screen: Reveal the binary-task-reward curves across scale, then the dense-shaping curves. Emphasize earlier improvement with binary task rewards, the sampling gap, and the late rise with dense shaping—not individual endpoint numbers. Gold denotes binary task rewards, blue adds dense shaping; solid lines use success-guided sampling and dashed lines use uniform sampling. Preserve all nine measurements and sample SD over five evaluation seeds, without smoothing. The comparison concerns the tested reach-and-alignment shaping, not every possible dense reward.
 
-03:12–03:22  Short-horizon dexterity
+03:07–03:17  Short-horizon dexterity
 
 At short horizons, we observe unexpected dexterity and varied uses of the gripper, beyond simply picking up and placing parts.
 
 On screen: A medium-gear close-up introduces local dexterity: the gripper changes wrist orientation, the gear briefly rests on its side, and the fingers regrasp it at the fixture. Source 1.5–5.5 seconds at 0.4× speed. No static paper panel.
 
-03:22–03:35  Grasp adaptation
+03:17–03:27  Small-gear placement
+
+The gripper approaches with the small gear tilted, adjusts its orientation near the post, and lowers it into place.
+
+On screen: The homepage's first single-component demonstration, shown in close-up from pickup to seating. Source 0–4.08 seconds at 0.4× speed; keep the gear, fingers, and mounting post visible. No neighboring gears are present.
+
+03:27–03:40  Grasp adaptation
 
 This peg is held near its center, leaving little room for insertion. The gripper sets it down, then regrasps near one end to expose enough shaft.
 
 On screen: Moving close-up of the 8 mm peg: center grasp, release, end regrasp, insertion. Show the entire maneuver at 0.2× speed; no static paper sequence.
 
-03:35–03:47  Board-assisted reorientation
+03:40–03:52  Board-assisted reorientation
 
 The gripper uses the board to change the connector's orientation, then lifts it into the socket. Surface contact extends what the fingers can do in free space.
 
 On screen: Moving close-up of the waterproof connector: board contact changes pose, followed by lift and insertion. Source 0.4–2.8 seconds, ending before the reset, at 0.2× speed. No static paper sequence.
 
-03:47–04:15  Contact-driven threading
+03:52–04:13  Contact-driven threading
 
-On the small nut, the fingertip repeatedly contacts one side, turning it along the thread. In another example, the gripper changes its position around the nut to keep turning it. Here, the outside of a finger contacts the nut, advancing it through short turns. Here, the gripper circles the nut, turning it through successive contacts.
+On the small nut, the fingertip repeatedly contacts one side, turning it along the thread. Here, the outside of a finger contacts the nut, advancing it through short turns. Here, the gripper circles the nut, turning it through successive contacts.
 
-On screen: Four moving shots synchronized to four descriptions: M4 one-sided tapping (0–7.2 seconds), M16 contacts around the nut (7.2–14.2 seconds), outside-finger tapping in the ten-component hero episode (14.2–22 seconds), then circular gripper motion from the hero episode at 25–27 seconds, replayed at one-third speed (22–28 seconds). Each shot is explicitly labeled with playback speed.
+On screen: Three moving shots synchronized to three descriptions: M4 one-sided tapping (0–7.2 seconds), outside-finger tapping in the ten-component hero episode (7.2–15 seconds), then circular gripper motion from the hero episode at 25–27 seconds, replayed at one-third speed (15–21 seconds). Each shot is explicitly labeled with playback speed.
 
-04:15–04:44  Long-horizon coordination
+04:13–04:42  Changing the workspace
 
-At longer horizons, the more surprising behavior is how these local maneuvers fit together. The robot tosses loose parts aside, opening space to work on other components first. It then links grasping, reorientation, and insertion across the task, without a prescribed assembly order. These selected runs show how local dexterity can combine into a longer sequence.
+At longer horizons, the robot also changes the workspace: tossing one part aside, then separating overlapping gears before assembling one of them. Moving a part away is not progress toward inserting it. Here, it leaves room to work on other components—a situation the isolated single-component task does not present.
 
 On screen: A second complete ten-component episode, 28.26 seconds at real time. Wide plus synchronized detail. Label overlapping-gear displacement around 4–8 seconds as object separation, not asserted intent.
 
-04:44–05:02  What this establishes—and what remains open
+04:42–04:56  Interacting assemblies
+
+Here, a fingertip turns the small gear until its teeth mesh with its neighbor. Already assembled parts now constrain how another component can be placed.
+
+On screen: Replay the opening episode's small-gear adjustment at 39.5–42.3 seconds, at 0.2× speed, with the Style D synchronized close-up overlay on the fixed view. The fingertip turns the raised small gear; it seats beside the already placed medium gear. Keep the neighboring gears visible.
+
+04:56–05:14  What this establishes—and what remains open
 
 All results are in simulation. Physical transfer and continuous twenty-component assembly under one terminal objective remain open. What we see here is that diverse starts and shared experience can support several kinds of dexterous behavior under a common completion objective.
 

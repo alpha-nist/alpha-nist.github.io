@@ -1,7 +1,7 @@
 {
   "title": "AlphaNIST — supplementary film",
-  "version": "Revised voiced cut · reward comparison and moving behavior examples",
-  "duration_s": 302,
+  "version": "Revised voiced cut · scaling trends and multi-component interactions",
+  "duration_s": 314.2,
   "voice": "Stock synthetic English narration; no voice cloning",
   "scope": "Simulation footage. Selected successful runs are illustrations, not a success-rate evaluation. Single-component and ten-component policies are different trained models.",
   "chapters": [
@@ -9,9 +9,9 @@
     {"start": 45.74, "title": "The assembly problem"},
     {"start": 63.74, "title": "Objective and training"},
     {"start": 145.74, "title": "What the experiments show"},
-    {"start": 192.74, "title": "Short-horizon dexterity"},
-    {"start": 255.74, "title": "Long-horizon coordination"},
-    {"start": 284, "title": "Scope and limitations"}
+    {"start": 187.74, "title": "Short-horizon dexterity"},
+    {"start": 253.94, "title": "Long-horizon behavior"},
+    {"start": 296.2, "title": "Scope and limitations"}
   ],
   "sections": [
     {
@@ -71,56 +71,70 @@
       "evidence": "Method: Shared Policy and Robot Control. The diagram describes the single-component policy, not a claimed identical k10 architecture."
     },
     {
-      "id": "heterogeneity", "start": 145.74, "end": 169.74,
+      "id": "heterogeneity", "start": 145.74, "end": 164.74,
       "title": "Does sharing help?",
       "visual": "Reveal each bar as it is described: 98.2% shared binary-task-reward policy, then 81.4% mean of twenty separate policies. Persistent labels: mixed-reset training success; 64K environments per run; 25K iterations; budgets matched per run, not total compute. Reveal the dense-reward caveat with its narration.",
-      "narration": "Does sharing help? With binary task rewards, the shared policy reaches ninety-eight point two percent training success, versus eighty-one point four averaged over twenty separate policies. These results include partially assembled starts, with budgets matched per run. The tested dense reward does not show the same benefit from sharing.",
+      "narration": "Does sharing help? With binary task rewards, the shared policy reaches ninety-eight point two percent training success, versus eighty-one point four averaged over twenty separate policies. The tested dense reward does not show the same benefit from sharing.",
       "evidence": "Experiments: Asset Heterogeneity Enables Learning. 98.2 and 81.4 are training success, not random-start evaluation."
     },
     {
-      "id": "scaling", "start": 169.74, "end": 192.74,
+      "id": "scaling", "start": 164.74, "end": 187.74,
       "title": "Scale, sampling, and reward",
-      "visual": "First reveal the two binary-task-reward curves, then add both dense-shaping curves as the narration introduces them. Gold denotes binary task rewards, blue adds dense shaping; solid lines use success-guided sampling and dashed lines use uniform sampling. All four curves show nine measured environment counts, with mean and sample SD over five evaluation seeds, without smoothing. Highlight the four 256K endpoints: 97.4%, 84.3%, 77.4%, and 34.3%. The comparison concerns the tested reach-and-alignment shaping, not every possible dense reward.",
-      "narration": "At the largest scale, binary task rewards reach ninety-seven point four percent with success-guided sampling, versus eighty-four point three with uniform. Now add dense shaping: seventy-seven point four and thirty-four point three percent. Here, sparsity matters too: binary task rewards outperform the tested shaping under both samplers.",
+      "visual": "Reveal the binary-task-reward curves across scale, then the dense-shaping curves. Emphasize earlier improvement with binary task rewards, the sampling gap, and the late rise with dense shaping—not individual endpoint numbers. Gold denotes binary task rewards, blue adds dense shaping; solid lines use success-guided sampling and dashed lines use uniform sampling. Preserve all nine measurements and sample SD over five evaluation seeds, without smoothing. The comparison concerns the tested reach-and-alignment shaping, not every possible dense reward.",
+      "narration": "Look at the trends as simulation scales up. With binary task rewards, success improves at much smaller scales, and success-guided sampling raises it further. The tested dense shaping stays low across most of the range. It improves at the largest scales, but remains below binary task rewards.",
       "evidence": "Underlying scaling evaluation seed data and protocol: 19 evaluated assets (M4 excluded), five evaluation seeds, 32 trials per asset per seed, stochastic actions, 15-second episodes, 25K-iteration checkpoints. SD is across evaluation seeds, not independently trained policies. The reward ablation adds reach and alignment terms, each weighted 0.01, while retaining the binary completion reward and control costs."
     },
     {
-      "id": "short_horizon", "start": 192.74, "end": 202.74,
+      "id": "short_horizon", "start": 187.74, "end": 197.74,
       "title": "Short-horizon dexterity",
       "visual": "A medium-gear close-up introduces local dexterity: the gripper changes wrist orientation, the gear briefly rests on its side, and the fingers regrasp it at the fixture. Source 1.5–5.5 seconds at 0.4× speed. No static paper panel.",
       "narration": "At short horizons, we observe unexpected dexterity and varied uses of the gripper, beyond simply picking up and placing parts.",
       "evidence": "Selected qualitative examples of grasp changes, contact-assisted reorientation, and threading. The objective did not prescribe these individual maneuvers."
     },
     {
-      "id": "peg", "start": 202.74, "end": 215.74,
+      "id": "small_gear", "start": 197.74, "end": 207.94,
+      "title": "Small-gear placement",
+      "visual": "The homepage's first single-component demonstration, shown in close-up from pickup to seating. Source 0–4.08 seconds at 0.4× speed; keep the gear, fingers, and mounting post visible. No neighboring gears are present.",
+      "narration": "The gripper approaches with the small gear tilted, adjusts its orientation near the post, and lowers it into place.",
+      "evidence": "Visually verified first clip of the homepage single-component montage. Tilt, alignment adjustments, and seating are visible; a release-and-regrasp is not claimed."
+    },
+    {
+      "id": "peg", "start": 207.94, "end": 220.94,
       "title": "Grasp adaptation",
       "visual": "Moving close-up of the 8 mm peg: center grasp, release, end regrasp, insertion. Show the entire maneuver at 0.2× speed; no static paper sequence.",
       "narration": "This peg is held near its center, leaving little room for insertion. The gripper sets it down, then regrasps near one end to expose enough shaft.",
       "evidence": "Experiments: Emergent Strategies over Short Horizons; visually checked peg clip and gallery sequence."
     },
     {
-      "id": "connector", "start": 215.74, "end": 227.74,
+      "id": "connector", "start": 220.94, "end": 232.94,
       "title": "Board-assisted reorientation",
       "visual": "Moving close-up of the waterproof connector: board contact changes pose, followed by lift and insertion. Source 0.4–2.8 seconds, ending before the reset, at 0.2× speed. No static paper sequence.",
       "narration": "The gripper uses the board to change the connector's orientation, then lifts it into the socket. Surface contact extends what the fingers can do in free space.",
       "evidence": "Experiments: extrinsic reorientation; visually checked waterproof connector clip."
     },
     {
-      "id": "tapping", "start": 227.74, "end": 255.74,
+      "id": "tapping", "start": 232.94, "end": 253.94,
       "title": "Contact-driven threading",
-      "visual": "Four moving shots synchronized to four descriptions: M4 one-sided tapping (0–7.2 seconds), M16 contacts around the nut (7.2–14.2 seconds), outside-finger tapping in the ten-component hero episode (14.2–22 seconds), then circular gripper motion from the hero episode at 25–27 seconds, replayed at one-third speed (22–28 seconds). Each shot is explicitly labeled with playback speed.",
-      "narration": "On the small nut, the fingertip repeatedly contacts one side, turning it along the thread. In another example, the gripper changes its position around the nut to keep turning it. Here, the outside of a finger contacts the nut, advancing it through short turns. Here, the gripper circles the nut, turning it through successive contacts.",
+      "visual": "Three moving shots synchronized to three descriptions: M4 one-sided tapping (0–7.2 seconds), outside-finger tapping in the ten-component hero episode (7.2–15 seconds), then circular gripper motion from the hero episode at 25–27 seconds, replayed at one-third speed (15–21 seconds). Each shot is explicitly labeled with playback speed.",
+      "narration": "On the small nut, the fingertip repeatedly contacts one side, turning it along the thread. Here, the outside of a finger contacts the nut, advancing it through short turns. Here, the gripper circles the nut, turning it through successive contacts.",
       "evidence": "Short-horizon strategy section and qualitative gallery, followed by an excerpt of the ten-component opening episode. M4 is a saved-state replay from an earlier trained policy; examples span checkpoints. Exterior contacts are visible; no finger entry into the nut bore is claimed."
     },
     {
-      "id": "coordination", "start": 255.74, "end": 284,
-      "title": "Long-horizon coordination",
+      "id": "coordination", "start": 253.94, "end": 282.2,
+      "title": "Changing the workspace",
       "visual": "A second complete ten-component episode, 28.26 seconds at real time. Wide plus synchronized detail. Label overlapping-gear displacement around 4–8 seconds as object separation, not asserted intent.",
-      "narration": "At longer horizons, the more surprising behavior is how these local maneuvers fit together. The robot tosses loose parts aside, opening space to work on other components first. It then links grasping, reorientation, and insertion across the task, without a prescribed assembly order. These selected runs show how local dexterity can combine into a longer sequence.",
+      "narration": "At longer horizons, the robot also changes the workspace: tossing one part aside, then separating overlapping gears before assembling one of them. Moving a part away is not progress toward inserting it. Here, it leaves room to work on other components—a situation the isolated single-component task does not present.",
       "evidence": "Selected complete ten-component rollout; qualitative evidence only. K1 and K10 are different trained policies."
     },
     {
-      "id": "scope", "start": 284, "end": 302,
+      "id": "gear_meshing", "start": 282.2, "end": 296.2,
+      "title": "Interacting assemblies",
+      "visual": "Replay the opening episode's small-gear adjustment at 39.5–42.3 seconds, at 0.2× speed, with the Style D synchronized close-up overlay on the fixed view. The fingertip turns the raised small gear; it seats beside the already placed medium gear. Keep the neighboring gears visible.",
+      "narration": "Here, a fingertip turns the small gear until its teeth mesh with its neighbor. Already assembled parts now constrain how another component can be placed.",
+      "evidence": "Visually verified contact around source 40.3–41.15 seconds and seating by 41.28 seconds in the opening ten-component episode. The single-component example has no neighboring gears; the comparison illustrates the added interaction, not a claim that its policy is fundamentally incapable of this motion."
+    },
+    {
+      "id": "scope", "start": 296.2, "end": 314.2,
       "title": "What this establishes—and what remains open",
       "visual": "Hold the completed final board, then a minimal scope card. Keep the end frame uncluttered. No new synthetic robot imagery.",
       "narration": "All results are in simulation. Physical transfer and continuous twenty-component assembly under one terminal objective remain open. What we see here is that diverse starts and shared experience can support several kinds of dexterous behavior under a common completion objective.",
@@ -128,18 +142,19 @@
     }
   ],
   "behavior_names": [
-    {"name":"Gear reorientation","time":192.74,"horizon":"short","category":"Grasp and pose changes","description":"A moving gear example introduces short-horizon dexterity."},
-    {"name":"Peg regrasp","time":202.74,"horizon":"short","category":"Grasp and pose changes","description":"Release a center-held peg and regrasp near one end."},
-    {"name":"Board-assisted reorientation","time":215.74,"horizon":"short","category":"Grasp and pose changes","description":"Use surface contact to change a connector's pose."},
-    {"name":"One-sided tapping","time":227.74,"horizon":"short","category":"Threading contacts","description":"Repeated one-sided fingertip contacts during small-nut threading."},
-    {"name":"Contacts around the nut","time":234.94,"horizon":"short","category":"Threading contacts","description":"The gripper changes its position around an M16 nut."},
-    {"name":"Outside-finger tapping","time":241.94,"horizon":"short","category":"Threading contacts","description":"The outside face of a finger nudges an engaged nut through short turns in the ten-component episode."},
-    {"name":"Circular threading","time":249.74,"horizon":"short","category":"Threading contacts","description":"The gripper circles a mounted nut through successive exterior contacts."},
+    {"name":"Gear reorientation","time":187.74,"horizon":"short","category":"Grasp and pose changes","description":"A moving gear example introduces short-horizon dexterity."},
+    {"name":"Small-gear placement","time":197.74,"horizon":"short","category":"Grasp and pose changes","description":"Adjust a tilted small gear near its post, then lower it into place."},
+    {"name":"Peg regrasp","time":207.94,"horizon":"short","category":"Grasp and pose changes","description":"Release a center-held peg and regrasp near one end."},
+    {"name":"Board-assisted reorientation","time":220.94,"horizon":"short","category":"Grasp and pose changes","description":"Use surface contact to change a connector's pose."},
+    {"name":"One-sided tapping","time":232.94,"horizon":"short","category":"Threading contacts","description":"Repeated one-sided fingertip contacts during small-nut threading."},
+    {"name":"Outside-finger tapping","time":240.14,"horizon":"short","category":"Threading contacts","description":"The outside face of a finger nudges an engaged nut through short turns in the ten-component episode."},
+    {"name":"Circular threading","time":247.94,"horizon":"short","category":"Threading contacts","description":"The gripper circles a mounted nut through successive exterior contacts."},
     {"name":"Long-range manipulation","time":9,"horizon":"long","category":"Reach and coordination","description":"Reaching to a distant board location to thread a component."},
     {"name":"Revisiting assemblies","time":43,"horizon":"long","category":"Reach and coordination","description":"Revisit assembled parts near the end of the opening episode."},
     {"name":"Moving objects aside","time":55,"horizon":"long","category":"Working around clutter","description":"A loose part is displaced, leaving more open space on the board."},
-    {"name":"Combining local maneuvers","time":255.74,"horizon":"long","category":"Reach and coordination","description":"A full episode shows local manipulation behaviors connected across several assemblies."},
-    {"name":"Separating overlapping parts","time":259.94,"horizon":"long","category":"Working around clutter","description":"Displace overlapping gears, then pick up and assemble one."},
-    {"name":"Clearing space again","time":263.74,"horizon":"long","category":"Working around clutter","description":"A further object displacement precedes continued assembly in the same episode."}
+    {"name":"Changing the workspace","time":253.94,"horizon":"long","category":"Working around clutter","description":"Moving one part changes access to the others."},
+    {"name":"Separating overlapping parts","time":258.14,"horizon":"long","category":"Working around clutter","description":"Displace overlapping gears, then pick up and assemble one."},
+    {"name":"Clearing space again","time":261.94,"horizon":"long","category":"Working around clutter","description":"A further object displacement precedes continued assembly in the same episode."},
+    {"name":"Gear-tooth alignment","time":282.2,"horizon":"long","category":"Interacting assemblies","description":"A fingertip turns a small gear into mesh with its already placed neighbor."}
   ]
 }
