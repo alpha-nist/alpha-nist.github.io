@@ -1,5 +1,5 @@
 AlphaNIST — supplementary film
-First voiced cut · 5:00
+Revised voiced cut · animated plots and synchronized behavior descriptions · 5:00
 Stock synthetic narration · Kokoro-82M / af_heart
 
 Simulation footage. Selected successful runs are illustrations, not a success-rate evaluation. Single-component and ten-component policies are different trained models.
@@ -44,7 +44,7 @@ On screen: Existing reset showcase. Label it as sampled starting states, not rob
 
 Which states should the learner revisit? Success-guided sampling favors intermediate recent success: neither almost always solved, nor almost always failed. Every cached state retains some chance of being sampled. This choice spans the entire assembly-and-reset bank, selecting both the geometry and the starting condition.
 
-On screen: Illustrative beta-sampling curve versus recent reset success: nonzero at both endpoints, largest near intermediate success. Mark the graphic as a sampling rule, not measured data.
+On screen: Animate the illustrative sampling curve, then follow the narration from intermediate success to the two extremes and the nonzero floor. Finish with geometry plus starting state as one joint sample. The curve illustrates the rule, not measured frequencies.
 
 02:08–02:25  Share the learner across geometries
 
@@ -56,35 +56,35 @@ On screen: Restrained input-to-policy-to-control diagram, with geometry, robot s
 
 Does sharing help? With binary task rewards, the shared policy reaches ninety-eight point two percent training success, versus eighty-one point four averaged over twenty separate policies. These results include partially assembled starts, with budgets matched per run. The tested dense reward does not show the same benefit from sharing.
 
-On screen: Two bars: 98.2% shared binary-task-reward policy and 81.4% mean of twenty separate binary-task-reward policies. Persistent labels: mixed-reset training success; 64K environments per run; 25K iterations; budgets matched per run, not total compute.
+On screen: Reveal each bar as it is described: 98.2% shared binary-task-reward policy, then 81.4% mean of twenty separate policies. Persistent labels: mixed-reset training success; 64K environments per run; 25K iterations; budgets matched per run, not total compute. Reveal the dense-reward caveat with its narration.
 
 02:49–03:12  Scale and sampling both matter
 
 In a separate evaluation, success improves with parallel experience. At two hundred and fifty-six thousand environments, success-guided sampling reaches ninety-seven point four percent, versus eighty-four point three with uniform sampling. Both use a common mixed-reset evaluation bank. Scale and the allocation of experience matter together.
 
-On screen: Evaluation plot with 1K:38.6, 4K:78.9, 8K:86.9, 256K:97.4, plus uniform-reset training baseline at 256K:84.3. Label log environment axis and evaluation protocol. No invented error bars.
+On screen: Animate all nine measured environment counts, from 1K to 256K, for success-guided and uniform sampling. Show mean and sample SD over five evaluation seeds, without smoothing. Highlight 97.4% versus 84.3% at 256K as each is spoken. Label the logarithmic axis and the actual 19-asset evaluation protocol, which excludes M4.
 
 03:12–03:33  Grasp adaptation
 
-Look at what completion can require. This peg is held near its center: a successful pickup, but an inconvenient grasp for insertion. The gripper releases it and regrasps near one end, exposing more shaft. We call this grasp adaptation. No grasp-changing instruction was supplied.
+This peg is held near its center, leaving little room for insertion. The gripper sets it down and picks it up again near one end. That exposes enough of the shaft to enter the socket.
 
 On screen: 8 mm peg: center grasp, release, end regrasp, insertion. First show the motion slowly, then replay or hold its five-frame sequence. Label any slowed footage and replay.
 
 03:33–03:51  Board-assisted reorientation
 
-For this connector, the board becomes part of the manipulation. Surface contact changes the part's orientation before insertion: board-assisted reorientation. The useful motion is not confined to what the fingers can do while holding the object in free space.
+The gripper uses the board surface to change this connector's orientation, then lifts it into the socket. Contact with the environment extends what the fingers can do while holding the object in free space.
 
 On screen: Waterproof connector: board contact changes pose, followed by lift and insertion. Slow the short maneuver with an explicit speed label; show a replay or the corresponding sequence.
 
 03:51–04:13  Contact-driven threading
 
-Threading shows another kind of contact-driven motion. On the small nut, repeated one-sided contacts advance the thread. On the larger nut, the fingers move around it through successive contacts. We call these fingertip tapping and circular threading: different solutions, not instructions written into the task.
+On the small nut, the fingertip repeatedly contacts one side, turning it along the thread. In another example, the gripper changes its position around the nut to keep turning it. Here, the outside of a finger contacts the nut, advancing it through short turns.
 
-On screen: M4 one-sided fingertip tapping, followed by M16 circular fingertip contacts. Label separate assemblies and slowed motion. Do not imply they are one continuous rollout or the same checkpoint.
+On screen: Three distinct shots synchronized to three descriptions: M4 one-sided tapping (0–7.2 seconds), M16 contacts around the nut (7.2–14.2 seconds), then outside-finger tapping in the ten-component hero episode (14.2–22 seconds). Each shot is explicitly labeled with playback speed.
 
 04:13–04:42  Object separation and assembly
 
-Return to a cluttered board. Overlapping parts are displaced, and a gear is then picked up and assembled. Object separation names the visible behavior, without assuming human-like reasoning about obstacles. This is a separately trained ten-component policy. We leave the successful episode running so the local motions can be seen in the context of the whole task.
+Return to a cluttered board. Overlapping parts are displaced, and a gear is then picked up and assembled. The robot then continues working through the other components. This is a separately trained ten-component policy. We leave the successful episode running so the local motions can be seen in the context of the whole task.
 
 On screen: A second complete ten-component episode, 28.26 seconds at real time. Wide plus synchronized detail. Label overlapping-gear displacement around 4–8 seconds as object separation, not asserted intent.
 

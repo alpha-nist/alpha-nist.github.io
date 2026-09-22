@@ -13,14 +13,14 @@
 * { box-sizing: border-box; }
 html { scroll-padding-top: 24px; }
 body { margin: 0; background: var(--page); color: var(--ink); -webkit-font-smoothing: antialiased; }
-button, input { font: inherit; }
+button, input, textarea, select { font: inherit; }
 a { color: inherit; text-underline-offset: 4px; }
 button, a, summary { -webkit-tap-highlight-color: transparent; }
 button { cursor: pointer; }
-button:focus-visible, a:focus-visible, summary:focus-visible, video:focus-visible { outline: 3px solid #766913; outline-offset: 4px; }
+button:focus-visible, a:focus-visible, summary:focus-visible, video:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid #766913; outline-offset: 3px; }
 [hidden] { display: none !important; }
 ::selection { color: var(--ink); background: var(--yellow-soft); }
-.shell { width: min(1120px, calc(100% - 80px)); margin-inline: auto; }
+.shell { width: min(1360px, calc(100% - 80px)); margin-inline: auto; }
 .skip-link { position: absolute; top: 12px; left: 12px; z-index: 5; transform: translateY(-160%); padding: 12px 20px; border-radius: 8px; background: var(--ink); color: #fff; }
 .skip-link:focus { transform: none; }
 .site-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 84px; border-bottom: 1px solid var(--line); }
@@ -35,7 +35,7 @@ h1 span { color: #77776d; font-weight: 350; }
 .edition { display: flex; gap: 10px; align-items: center; margin: 23px 0 0; font-size: 12px; color: #57574f; font-variant-numeric: tabular-nums; }
 .edition-dot { height: 7px; width: 7px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 3px #ebe7bc; }
 figure { margin: 0; }
-.video-frame { overflow: hidden; border: 1px solid #d2d1c7; border-radius: 16px; background: #b9b8b2; }
+.video-frame { position: relative; overflow: hidden; border: 1px solid #d2d1c7; border-radius: 16px; background: #b9b8b2; }
 video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
 figcaption { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 15px 1px 0; font-size: 12px; }
 #current-section { display: flex; align-items: center; gap: 9px; margin: 0; line-height: 1.5; }
@@ -85,6 +85,53 @@ h2 { margin: 0; font-size: 13px; font-weight: 550; }
 .downloads a .download-arrow { font-size: 13px; }
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); padding: 21px 0 32px; color: #77766c; font-size: 10px; line-height: 1.6; }
 .notice { padding: 13px 16px; border: 1px solid #d6ce90; border-radius: 8px; color: #625b28; background: #f3f0d9; font-size: 12px; line-height: 1.7; }
+.review-layout { display: grid; grid-template-columns: minmax(0, 1fr) 286px; gap: 20px; align-items: start; }
+.review-layout.editor-hidden { grid-template-columns: minmax(0, 1fr); }
+.film-column { min-width: 0; }
+.caption-overlay { position: absolute; z-index: 2; bottom: 58px; left: 50%; transform: translateX(-50%); width: max-content; max-width: 92%; pointer-events: none; text-align: center; font-size: 30px; font-weight: 600; line-height: 1.3; color: #fff; text-shadow: 0 1px 3px #000; }
+.caption-overlay span { display: block; padding: .22em .48em .3em; border-radius: 5px; background: rgb(15 15 15 / 84%); white-space: pre-wrap; overflow-wrap: anywhere; }
+.video-frame.caption-below { display: flex; flex-direction: column; }
+.caption-below .caption-overlay { position: relative; left: auto; bottom: auto; transform: none; display: flex; align-items: center; justify-content: center; width: 100%; max-width: none; height: var(--caption-band-height, 144px); flex: 0 0 var(--caption-band-height, 144px); padding: 10px 12px; background: #20201e; pointer-events: auto; }
+.caption-below .caption-overlay span { max-width: 96%; max-height: 100%; padding: 0; border-radius: 0; background: none; overflow-y: auto; scrollbar-width: thin; }
+.fullscreen-toggle { position: absolute; top: 12px; right: 12px; z-index: 3; width: 34px; height: 34px; border: 1px solid #ffffff70; border-radius: 6px; background: #222c; color: white; font-size: 25px; line-height: 1; }
+.video-frame:fullscreen { width: 100vw; height: 100vh; border: 0; border-radius: 0; background: #000; }
+.video-frame:fullscreen video { width: 100%; height: 100%; }
+.video-frame.caption-below:fullscreen video { flex: 1 1 0; min-height: 0; height: 0; aspect-ratio: auto; }
+.caption-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 16px; font-size: 11px; color: var(--muted); }
+.caption-toolbar button, .caption-editor button { min-height: 30px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 5px; background: #fdfcf9; color: var(--ink); font-size: 11px; }
+.caption-toolbar button:hover, .caption-editor button:hover { background: #eeede6; }
+.caption-toolbar button[aria-pressed="true"] { background: var(--yellow-soft); border-color: #d3cb83; }
+.caption-size-label { display: flex; align-items: center; gap: 7px; }
+.caption-size-label input { width: 80px; margin: 0; accent-color: #8a7c19; }
+.caption-size-label output { width: 17px; font-variant-numeric: tabular-nums; }
+.caption-placement-label { display: flex; align-items: center; gap: 7px; }
+.caption-placement-label select { max-width: 125px; min-height: 30px; padding: 4px 5px; border: 1px solid var(--line); border-radius: 5px; background: #fdfcf9; color: var(--ink); font-size: 11px; }
+#editor-toggle { margin-left: auto; }
+.caption-editor { min-width: 0; padding: 17px; border: 1px solid var(--line); border-radius: 12px; background: #fdfcf9; }
+.editor-help { margin: 9px 0 12px; color: var(--muted); font-size: 11px; line-height: 1.65; }
+.caption-status { margin: 0 0 10px; min-height: 30px; color: #655c26; font-size: 11px; line-height: 1.5; }
+.caption-editor fieldset { padding: 0; margin: 0; border: 0; min-width: 0; }
+.caption-editor label { display: block; color: var(--muted); font-size: 10px; line-height: 1.5; }
+.cue-navigation { display: flex; align-items: center; gap: 5px; margin-bottom: 13px; }
+#cue-number { min-width: 43px; text-align: center; color: var(--muted); font-size: 10px; font-variant-numeric: tabular-nums; }
+.caption-editor #cue-follow { margin-left: auto; padding-inline: 7px; font-size: 10px; }
+.caption-editor textarea { display: block; width: 100%; min-height: 103px; max-height: 250px; resize: vertical; margin: 5px 0 12px; padding: 9px; border: 1px solid #cccbc1; border-radius: 5px; background: #fff; color: var(--ink); font-size: 13px; line-height: 1.55; }
+.cue-timing { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.cue-timing input { display: block; width: 100%; margin-top: 4px; padding: 7px; border: 1px solid #cccbc1; border-radius: 5px; background: #fff; color: var(--ink); font-size: 12px; font-variant-numeric: tabular-nums; }
+.cue-timing input[aria-invalid="true"] { border-color: #a6362b; }
+.cue-error { margin: 9px 0 0; color: #a6362b; font-size: 11px; line-height: 1.5; }
+.cue-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+#caption-save { color: var(--muted); font-size: 10px; }
+.caption-exports { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; margin-top: 15px; padding-top: 12px; border-top: 1px solid var(--line); }
+.caption-exports > span { margin-right: 3px; color: var(--muted); font-size: 10px; }
+.caption-editor .caption-exports button { min-height: 27px; padding: 4px 7px; font-size: 10px; }
+.caption-editor .reset-captions { margin-left: auto; border-color: transparent; background: transparent; color: var(--muted); }
+button:disabled { opacity: .45; cursor: default; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+@media (max-width: 1080px) {
+  .review-layout { grid-template-columns: minmax(0, 1fr); }
+  .caption-editor { max-width: 640px; width: 100%; }
+}
 @media (max-width: 760px) {
   .shell { width: calc(100% - 40px); }
   .site-header { min-height: 65px; }

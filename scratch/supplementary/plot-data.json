@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "title": "Parallel scaling with binary task rewards",
+  "x_axis": {
+    "label": "Parallel training environments",
+    "scale": "log2",
+    "values": [1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144],
+    "tick_labels": ["1K", "2K", "4K", "8K", "16K", "32K", "64K", "128K", "256K"],
+    "note": "K denotes 1024 environments. These are separate training conditions, not successive training times."
+  },
+  "y_axis": {
+    "label": "Evaluated success (%)",
+    "mean_unit": "percent",
+    "sd_unit": "percentage points"
+  },
+  "calculation": {
+    "per_seed": "100 * successes / 608",
+    "mean": "Arithmetic mean of the five per-seed success percentages",
+    "sd": "Sample standard deviation of the five per-seed success percentages (ddof=1)",
+    "weighting": "Equal weight per asset within each seed; 32 trials for each of 19 assets",
+    "error_bar_interpretation": "Variation across evaluation seeds, not independent training seeds, standard error, or confidence intervals"
+  },
+  "protocol": {
+    "checkpoint_iteration": 25000,
+    "evaluated_assets": 19,
+    "excluded_asset": "M4 nut threading",
+    "evaluation_seed_count": 5,
+    "episodes_per_asset_per_seed": 32,
+    "episodes_per_seed": 608,
+    "episodes_per_checkpoint": 3040,
+    "reset_bank_size": 8192,
+    "reset_distribution": "Uniform within each asset in the same frozen mixed-reset bank, including partially assembled starting states",
+    "action_mode": "stochastic",
+    "policy_hz": 25,
+    "horizon_seconds": 15,
+    "success": "First full assembly without a simultaneous safety failure; incomplete episodes fail at 15 seconds",
+    "sampler_comparison": "The curves differ in training reset sampling; their evaluation reset sampling and frozen bank are shared",
+    "scale_comparison": "Parallel environments, GPUs, and rollout batch size increase together at a fixed training iteration count"
+  },
+  "series": {
+    "beta_sparse": {
+      "label": "Binary reward · success-guided sampling",
+      "sampling": "beta",
+      "mean_percent": [38.55263157894737, 44.276315789473685, 78.94736842105263, 86.90789473684211, 92.23684210526315, 94.24342105263158, 95.95394736842105, 97.20394736842105, 97.36842105263158],
+      "sample_sd_percentage_points": [0.6939152338726656, 1.199643587421742, 1.1803207314479702, 0.8190723419729458, 0.2942194707236597, 1.4100681085100524, 0.4288948950791248, 0.5577573999280676, 0.5697535551213451]
+    },
+    "uniform_sparse": {
+      "label": "Binary reward · uniform sampling",
+      "sampling": "uniform",
+      "mean_percent": [34.86842105263158, 41.973684210526315, 48.0921052631579, 79.3092105263158, 82.30263157894737, 83.45394736842105, 82.46710526315789, 82.99342105263158, 84.27631578947368],
+      "sample_sd_percentage_points": [1.771435791820562, 0.701668717358602, 1.5971741297776603, 0.6087748527408458, 0.8434790397998723, 0.8190723419729425, 0.9632598989701484, 1.0822818339711946, 0.5278554781539863]
+    }
+  },
+  "sources": ["plot_scaling.py", "scaling_evaluation_seeds.csv", "scaling_evaluation_protocol.json"],
+  "validation": {
+    "points_per_series": 9,
+    "evaluation_seeds_per_point": 5,
+    "missing_points": 0,
+    "missing_seed_results": 0,
+    "imputed_values": 0,
+    "legacy_training_log_used": false,
+    "notes": [
+      "The current plot reads evaluation counts, not the legacy scaling_data.csv training-log values or corrections.",
+      "Preserve the observed uniform-sampling dip at 64K; do not force a monotonic curve.",
+      "Connecting lines and animation order visualize the measurements and are not additional observations."
+    ]
+  }
+}

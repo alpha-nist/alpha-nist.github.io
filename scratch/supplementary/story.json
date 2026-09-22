@@ -1,6 +1,6 @@
 {
   "title": "AlphaNIST — supplementary film",
-  "version": "First voiced cut",
+  "version": "Revised voiced cut · animated plots and synchronized behavior descriptions",
   "duration_s": 300,
   "voice": "Stock synthetic English narration; no voice cloning",
   "scope": "Simulation footage. Selected successful runs are illustrations, not a success-rate evaluation. Single-component and ten-component policies are different trained models.",
@@ -58,7 +58,7 @@
     {
       "id": "sampling", "start": 104.74, "end": 128.74,
       "title": "Spend experience near the learning frontier",
-      "visual": "Illustrative beta-sampling curve versus recent reset success: nonzero at both endpoints, largest near intermediate success. Mark the graphic as a sampling rule, not measured data.",
+      "visual": "Animate the illustrative sampling curve, then follow the narration from intermediate success to the two extremes and the nonzero floor. Finish with geometry plus starting state as one joint sample. The curve illustrates the rule, not measured frequencies.",
       "narration": "Which states should the learner revisit? Success-guided sampling favors intermediate recent success: neither almost always solved, nor almost always failed. Every cached state retains some chance of being sampled. This choice spans the entire assembly-and-reset bank, selecting both the geometry and the starting condition.",
       "evidence": "Method beta-sampling equation: probability proportional to epsilon plus square root of p times one minus p, normalized over the joint bank."
     },
@@ -72,43 +72,43 @@
     {
       "id": "heterogeneity", "start": 145.74, "end": 169.74,
       "title": "Does sharing help?",
-      "visual": "Two bars: 98.2% shared binary-task-reward policy and 81.4% mean of twenty separate binary-task-reward policies. Persistent labels: mixed-reset training success; 64K environments per run; 25K iterations; budgets matched per run, not total compute.",
+      "visual": "Reveal each bar as it is described: 98.2% shared binary-task-reward policy, then 81.4% mean of twenty separate policies. Persistent labels: mixed-reset training success; 64K environments per run; 25K iterations; budgets matched per run, not total compute. Reveal the dense-reward caveat with its narration.",
       "narration": "Does sharing help? With binary task rewards, the shared policy reaches ninety-eight point two percent training success, versus eighty-one point four averaged over twenty separate policies. These results include partially assembled starts, with budgets matched per run. The tested dense reward does not show the same benefit from sharing.",
       "evidence": "Experiments: Asset Heterogeneity Enables Learning. 98.2 and 81.4 are training success, not random-start evaluation."
     },
     {
       "id": "scaling", "start": 169.74, "end": 192.74,
       "title": "Scale and sampling both matter",
-      "visual": "Evaluation plot with 1K:38.6, 4K:78.9, 8K:86.9, 256K:97.4, plus uniform-reset training baseline at 256K:84.3. Label log environment axis and evaluation protocol. No invented error bars.",
+      "visual": "Animate all nine measured environment counts, from 1K to 256K, for success-guided and uniform sampling. Show mean and sample SD over five evaluation seeds, without smoothing. Highlight 97.4% versus 84.3% at 256K as each is spoken. Label the logarithmic axis and the actual 19-asset evaluation protocol, which excludes M4.",
       "narration": "In a separate evaluation, success improves with parallel experience. At two hundred and fifty-six thousand environments, success-guided sampling reaches ninety-seven point four percent, versus eighty-four point three with uniform sampling. Both use a common mixed-reset evaluation bank. Scale and the allocation of experience matter together.",
-      "evidence": "Experiments: Sparse Binary Task Rewards Amplify Scaling Gains; five evaluation seeds, 32 trials per asset per seed, stochastic actions, 15-second episodes, 25K-iteration checkpoints."
+      "evidence": "Underlying scaling evaluation seed data and protocol: 19 evaluated assets (M4 excluded), five evaluation seeds, 32 trials per asset per seed, stochastic actions, 15-second episodes, 25K-iteration checkpoints. SD is across evaluation seeds, not independently trained policies."
     },
     {
       "id": "peg", "start": 192.74, "end": 213.74,
       "title": "Grasp adaptation",
       "visual": "8 mm peg: center grasp, release, end regrasp, insertion. First show the motion slowly, then replay or hold its five-frame sequence. Label any slowed footage and replay.",
-      "narration": "Look at what completion can require. This peg is held near its center: a successful pickup, but an inconvenient grasp for insertion. The gripper releases it and regrasps near one end, exposing more shaft. We call this grasp adaptation. No grasp-changing instruction was supplied.",
+      "narration": "This peg is held near its center, leaving little room for insertion. The gripper sets it down and picks it up again near one end. That exposes enough of the shaft to enter the socket.",
       "evidence": "Experiments: Emergent Strategies over Short Horizons; visually checked peg clip and gallery sequence."
     },
     {
       "id": "connector", "start": 213.74, "end": 231.74,
       "title": "Board-assisted reorientation",
       "visual": "Waterproof connector: board contact changes pose, followed by lift and insertion. Slow the short maneuver with an explicit speed label; show a replay or the corresponding sequence.",
-      "narration": "For this connector, the board becomes part of the manipulation. Surface contact changes the part's orientation before insertion: board-assisted reorientation. The useful motion is not confined to what the fingers can do while holding the object in free space.",
+      "narration": "The gripper uses the board surface to change this connector's orientation, then lifts it into the socket. Contact with the environment extends what the fingers can do while holding the object in free space.",
       "evidence": "Experiments: extrinsic reorientation; visually checked waterproof connector clip."
     },
     {
       "id": "tapping", "start": 231.74, "end": 253.74,
       "title": "Contact-driven threading",
-      "visual": "M4 one-sided fingertip tapping, followed by M16 circular fingertip contacts. Label separate assemblies and slowed motion. Do not imply they are one continuous rollout or the same checkpoint.",
-      "narration": "Threading shows another kind of contact-driven motion. On the small nut, repeated one-sided contacts advance the thread. On the larger nut, the fingers move around it through successive contacts. We call these fingertip tapping and circular threading: different solutions, not instructions written into the task.",
-      "evidence": "Short-horizon strategy section and qualitative gallery. M4 is a saved-state replay from an earlier trained policy; examples span checkpoints."
+      "visual": "Three distinct shots synchronized to three descriptions: M4 one-sided tapping (0–7.2 seconds), M16 contacts around the nut (7.2–14.2 seconds), then outside-finger tapping in the ten-component hero episode (14.2–22 seconds). Each shot is explicitly labeled with playback speed.",
+      "narration": "On the small nut, the fingertip repeatedly contacts one side, turning it along the thread. In another example, the gripper changes its position around the nut to keep turning it. Here, the outside of a finger contacts the nut, advancing it through short turns.",
+      "evidence": "Short-horizon strategy section and qualitative gallery, followed by an excerpt of the ten-component opening episode. M4 is a saved-state replay from an earlier trained policy; examples span checkpoints. Exterior contacts are visible; no finger entry into the nut bore is claimed."
     },
     {
       "id": "coordination", "start": 253.74, "end": 282,
       "title": "Object separation and assembly",
       "visual": "A second complete ten-component episode, 28.26 seconds at real time. Wide plus synchronized detail. Label overlapping-gear displacement around 4–8 seconds as object separation, not asserted intent.",
-      "narration": "Return to a cluttered board. Overlapping parts are displaced, and a gear is then picked up and assembled. Object separation names the visible behavior, without assuming human-like reasoning about obstacles. This is a separately trained ten-component policy. We leave the successful episode running so the local motions can be seen in the context of the whole task.",
+      "narration": "Return to a cluttered board. Overlapping parts are displaced, and a gear is then picked up and assembled. The robot then continues working through the other components. This is a separately trained ten-component policy. We leave the successful episode running so the local motions can be seen in the context of the whole task.",
       "evidence": "Selected complete ten-component rollout; qualitative evidence only. K1 and K10 are different trained policies."
     },
     {
@@ -125,7 +125,8 @@
     {"name":"Grasp adaptation","time":192.74,"description":"Release a center-held peg and regrasp near one end."},
     {"name":"Board-assisted reorientation","time":213.74,"description":"Use surface contact to change a connector's pose."},
     {"name":"Fingertip tapping","time":231.74,"description":"Repeated one-sided fingertip contacts during small-nut threading."},
-    {"name":"Circular threading","time":243.74,"description":"Successive fingertip contacts around a larger nut."},
+    {"name":"Contacts around the nut","time":238.94,"description":"The gripper changes its position around an M16 nut."},
+    {"name":"Outside-finger tapping","time":245.94,"description":"The outside face of a finger nudges an engaged nut through short turns in the ten-component episode."},
     {"name":"Object separation","time":257.94,"description":"Displace overlapping gears, then pick up and assemble one."}
   ]
 }

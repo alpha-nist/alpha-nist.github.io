@@ -218,119 +218,103 @@ Scale and the allocation
 of experience matter together.
 
 46
-00:03:13,290 --> 00:03:17,627
-Look at what completion can require.
-This peg is held near its center:
+00:03:13,265 --> 00:03:17,828
+This peg is held near its center,
+leaving little room for insertion.
 
 47
-00:03:17,627 --> 00:03:21,928
-a successful pickup, but
-an inconvenient grasp for insertion.
+00:03:17,828 --> 00:03:21,303
+The gripper sets it down and picks
+it up again near one end.
 
 48
-00:03:21,928 --> 00:03:26,665
-The gripper releases it and regrasps
-near one end, exposing more shaft.
+00:03:21,303 --> 00:03:24,465
+That exposes enough of the
+shaft to enter the socket.
 
 49
-00:03:26,665 --> 00:03:31,890
-We call this grasp adaptation. No
-grasp-changing instruction was supplied.
+00:03:34,240 --> 00:03:38,790
+The gripper uses the board surface
+to change this connector's orientation,
 
 50
-00:03:34,240 --> 00:03:38,090
-For this connector, the board
-becomes part of the manipulation.
+00:03:38,790 --> 00:03:43,553
+then lifts it into the socket. Contact
+with the environment extends what the
 
 51
-00:03:38,090 --> 00:03:42,703
-Surface contact changes the part's
-orientation before insertion:
-
-52
-00:03:42,703 --> 00:03:47,765
-board-assisted reorientation. The useful
-motion is not confined to what the fingers
-
-53
-00:03:47,765 --> 00:03:50,865
-can do while holding
+00:03:43,553 --> 00:03:47,115
+fingers can do while holding
 the object in free space.
 
+52
+00:03:52,265 --> 00:03:56,178
+On the small nut, the fingertip
+repeatedly contacts one side,
+
+53
+00:03:56,178 --> 00:03:57,940
+turning it along the thread.
+
 54
-00:03:52,290 --> 00:03:56,765
-Threading shows another kind of
-contact-driven motion. On the small nut,
+00:03:59,490 --> 00:04:03,440
+In another example, the gripper changes
+its position around the nut to keep
 
 55
-00:03:56,765 --> 00:04:01,090
-repeated one-sided contacts advance
-the thread. On the larger nut,
+00:04:03,440 --> 00:04:04,465
+turning it.
 
 56
-00:04:01,090 --> 00:04:04,415
-the fingers move around it
-through successive contacts.
+00:04:06,465 --> 00:04:11,490
+Here, the outside of a finger contacts
+the nut, advancing it through short turns.
 
 57
-00:04:04,415 --> 00:04:08,928
-We call these fingertip tapping and
-circular threading: different solutions,
-
-58
-00:04:08,928 --> 00:04:11,540
-not instructions written into the task.
-
-59
-00:04:14,265 --> 00:04:18,190
+00:04:14,265 --> 00:04:18,290
 Return to a cluttered board.
 Overlapping parts are displaced,
 
-60
-00:04:18,190 --> 00:04:20,990
+58
+00:04:18,290 --> 00:04:21,053
 and a gear is then
 picked up and assembled.
 
-61
-00:04:20,990 --> 00:04:23,840
-Object separation names
-the visible behavior,
+59
+00:04:21,053 --> 00:04:24,640
+The robot then continues working
+through the other components.
 
-62
-00:04:23,840 --> 00:04:27,465
-without assuming human-like
-reasoning about obstacles.
-
-63
-00:04:27,465 --> 00:04:30,790
+60
+00:04:24,640 --> 00:04:27,990
 This is a separately trained
 ten-component policy.
 
-64
-00:04:30,790 --> 00:04:35,315
+61
+00:04:27,990 --> 00:04:32,440
 We leave the successful episode running
 so the local motions can be seen in the
 
-65
-00:04:35,315 --> 00:04:37,340
+62
+00:04:32,440 --> 00:04:34,465
 context of the whole task.
 
-66
+63
 00:04:42,500 --> 00:04:47,225
 All results are in simulation. Physical
 transfer and continuous twenty-component
 
-67
+64
 00:04:47,225 --> 00:04:50,975
 assembly under one terminal
 objective remain open.
 
-68
+65
 00:04:50,975 --> 00:04:55,325
 What we see here is that diverse starts
 and shared experience can support several
 
-69
+66
 00:04:55,325 --> 00:04:59,200
 kinds of dexterous behavior under
 a common completion objective.
