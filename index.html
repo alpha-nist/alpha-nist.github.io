@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="AlphaNIST is a simulation study of reinforcement learning for NIST assembly tasks, using binary task rewards. This page presents selected runs and observed behaviors.">
+    <meta name="description" content="AlphaNIST studies how dexterity and coordination can be learned in simulation with binary task rewards, cached starting states, and large-scale training, without prescribed manipulation stages.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="AlphaNIST">
-    <meta property="og:description" content="A simulation study of robotic assembly with binary task rewards. Project overview, selected runs, and observed behaviors.">
+    <meta property="og:description" content="Learning dexterity and coordination for robotic assembly in simulation, with binary task rewards and no prescribed manipulation stages.">
     <meta property="og:url" content="https://alpha-nist.github.io/">
     <meta property="og:image" content="https://alpha-nist.github.io/assets/k10-strategies/poster.jpg?v=detail-1">
     <meta property="og:image:type" content="image/jpeg">
@@ -33,7 +33,8 @@
       <section class="hero" aria-labelledby="project-title">
         <div class="hero-copy media-shell">
           <h1 id="project-title">AlphaNIST</h1>
-          <p class="hero-description">In simulation, a robot learns to grasp, reorient, and fit parts together, without demonstrations or prescribed manipulation steps. Its task reward comes only when assembly is complete.</p>
+          <p class="hero-description">Assembly has a clear goal, but many possible solutions. In simulation, AlphaNIST learns to grasp, reorient, and assemble parts using binary task rewards, without demonstrations or prescribed manipulation stages.</p>
+          <p class="hero-description"><a href="assets/overview.mp4" type="video/mp4" target="_blank" rel="noopener">Narrated overview · 2:57</a></p>
         </div>
         <section class="strategies" id="strategies" aria-label="Multi-component assembly demonstrations">
           <div class="strategy-shell media-shell">
@@ -74,9 +75,9 @@
       </section>
       <section class="story" id="idea" aria-label="Overview">
         <div class="story-body">
-          <p>We study reinforcement learning for NIST assembly tasks in simulation. In the single-component experiments, we train a shared policy across twenty assembly variants.</p>
-          <p>Training uses a range of starting states, from loose parts to partial assemblies, and adjusts how often each state is sampled. The task reward is given only for completed assembly. We do not use demonstrations or rewards for intermediate steps such as grasping and partial insertion.</p>
-          <p>We also study multi-component episodes, where all active parts must be assembled before the task reward is given. The assembly order is not specified.</p>
+          <p>We ask how much dexterity and coordination can be learned from a reward for the completed task. In the single-component experiments, one shared policy learns across twenty NIST assembly tasks.</p>
+          <p>Training combines cached starting states, beta sampling, and large-scale parallel experience. The task reward is binary: completed assembly receives a reward; reaching, grasping, and partial insertion do not receive progress rewards.</p>
+          <p>Multi-component policies are trained separately from the single-component policy. Here, the task reward requires all active parts to be assembled. Neither the assembly order nor the individual maneuvers are prescribed.</p>
         </div>
       </section>
       <section class="research-section" id="starting-states" aria-labelledby="starting-states-title">
@@ -84,8 +85,8 @@
           <div class="research-layout">
             <div class="research-copy">
               <h2 id="starting-states-title">Starting states</h2>
-              <p>Training starts from different physically valid configurations, including loose parts and partial assemblies.</p>
-              <p>These are sampled resets, not prescribed stages of a manipulation sequence. The task reward still requires completed assembly.</p>
+              <p>A cached bank contains physically valid starting states: loose parts, in-hand grasps, and partial assemblies.</p>
+              <p>Beta sampling puts more training on states the policy sometimes solves, while retaining a chance to sample every state. These are starting states, not demonstrations of how to finish.</p>
             </div>
             <figure class="research-figure">
               <div class="video-frame">
@@ -139,7 +140,7 @@
           <div class="research-layout">
             <div class="research-copy">
               <h2 id="training-across-assemblies-title">Training across assemblies</h2>
-              <p>We compare one shared policy with twenty task-specific policies, using binary task rewards or dense reward shaping.</p>
+              <p>With binary task rewards, one shared policy reaches higher training success than twenty separately trained specialists. In this comparison, adding the tested dense reward shaping reduces success, especially for shared training.</p>
             </div>
             <figure class="research-figure">
               <div class="research-plot" tabindex="0" role="region" aria-label="Figure 5 comparison; scroll horizontally on smaller screens">
@@ -153,7 +154,7 @@
       <section class="discovery" id="discoveries" aria-labelledby="discovery-title">
         <div class="section-intro media-shell">
           <h2 id="discovery-title">Observed assembly behaviors</h2>
-          <p>Selected runs show grasp changes, contact with the board during reorientation, and different ways of turning a nut along a bolt.</p>
+          <p>The robot sets down a center-held peg and grasps nearer its end for insertion. It uses the board to reorient a connector, and turns nuts through repeated fingertip contacts.</p>
         </div>
         <div class="behavior-gallery media-shell">
           <div class="behavior-track" id="behavior-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Assembly strategy sequences" aria-describedby="behavior-help">
@@ -205,6 +206,13 @@
             <button class="behavior-next" type="button" aria-label="Next strategy" aria-controls="behavior-track">→</button>
           </div>
           <p class="behavior-help" id="behavior-help">Each sequence reads left to right. Swipe or scroll horizontally to browse strategies; open an image for the full-resolution view.</p>
+        </div>
+      </section>
+      <section class="story" aria-labelledby="findings-title">
+        <div class="story-body research-copy">
+          <h2 id="findings-title">Learning dexterity and coordination</h2>
+          <p>Training for completed assembly produces both precise manipulation and choices about how to organize longer sequences. The policies learn grasp changes, move obstructing parts, and adjust their motions around neighboring components, without prescribed manipulation stages.</p>
+          <p>In these experiments, shared training gives higher training success than separate specialists, and binary task rewards outperform the dense shaping tested here. The multi-component examples show that the same kind of objective can also support sequences in which the policy chooses what to assemble next.</p>
         </div>
       </section>
     </main>
