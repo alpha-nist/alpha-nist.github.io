@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#fafaf7">
+  <meta name="description" content="A research-first design study for AlphaNIST: learning simulated assembly from task rewards, cached starting states, and parallel experience.">
+  <title>AlphaNIST — Research study</title>
+  <style>
+    :root { --paper: #fafaf7; --white: #fff; --ink: #252b24; --muted: #687064; --olive: #546540; --tint: #eef0e8; --line: #dce0d5; }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: smooth; scroll-padding-top: 30px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    a:hover { color: var(--olive); }
+    button { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 2px solid var(--olive); outline-offset: 5px; }
+    p, h1, h2, h3, figure { margin: 0; }
+    p + p { margin-top: 15px; }
+    h1, h2, h3 { font-weight: 400; }
+    h2 { font-size: 29px; line-height: 1.27; letter-spacing: -.7px; }
+    h3 { font-size: 19px; line-height: 1.4; }
+    .shell { width: min(1160px, calc(100% - 88px)); margin-inline: auto; }
+    .skip { position: absolute; left: 16px; top: -80px; padding: 10px 15px; background: var(--ink); color: white; z-index: 5; }
+    .skip:focus { top: 12px; }
+    .study-bar { border-bottom: 1px solid var(--line); background: var(--tint); font-size: 12px; }
+    .study-inner { min-height: 42px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .study-label { color: var(--olive); letter-spacing: .04em; }
+    .study-nav { display: flex; align-items: center; gap: 24px; }
+    .study-nav a { text-decoration: none; }
+    .study-nav a[aria-current] { text-decoration: underline; }
+    .site-header { min-height: 99px; display: flex; align-items: center; justify-content: space-between; gap: 32px; border-bottom: 1px solid var(--line); }
+    .wordmark { font-size: 23px; letter-spacing: -.8px; text-decoration: none; }
+    .site-nav { display: flex; gap: 29px; font-size: 13px; color: var(--muted); }
+    .site-nav a { text-decoration: none; }
+    .eyebrow { color: var(--olive); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; }
+    .intro { display: grid; grid-template-columns: 1.1fr 1fr; gap: 90px; padding: 58px 0 38px; align-items: end; }
+    .intro h1 { margin-top: 17px; font-size: clamp(32px, 3vw, 40px); line-height: 1.18; letter-spacing: -1.3px; max-width: 560px; }
+    .intro-summary { max-width: 440px; color: var(--muted); font-size: 16px; line-height: 1.75; padding-bottom: 3px; }
+    .hero-study { display: grid; grid-template-columns: minmax(0, 3fr) minmax(230px, 1fr); column-gap: 36px; }
+    .video-frame { background: #c5c6c0; overflow: hidden; }
+    video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+    #single-video { height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: right center; }
+    .media-toolbar { min-height: 48px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 20px; border-bottom: 1px solid var(--line); font-size: 12px; }
+    .media-kind { color: var(--muted); }
+    .view-switch { display: flex; align-items: center; gap: 14px; }
+    .view-switch button { background: none; border: 0; padding: 8px 0; color: var(--muted); cursor: pointer; font-size: 12px; }
+    .view-switch button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 5px; }
+    figcaption { font-size: 13px; line-height: 1.65; color: var(--muted); margin-top: 13px; }
+    .hero-note { border-top: 2px solid var(--olive); padding-top: 21px; display: flex; flex-direction: column; align-items: flex-start; }
+    .tag { display: inline-block; color: var(--olive); background: var(--tint); font-size: 11px; line-height: 1.8; padding: 2px 8px; letter-spacing: .03em; }
+    .hero-note h2 { margin-top: 22px; font-size: 24px; letter-spacing: -.5px; }
+    .hero-note > p { margin-top: 16px; font-size: 14px; color: var(--muted); }
+    .hero-note .watch-link { margin-top: auto; padding-top: 26px; font-size: 13px; }
+    .fact-list { list-style: none; margin: 23px 0 18px; padding: 0; width: 100%; font-size: 12px; }
+    .fact-list li { display: flex; justify-content: space-between; gap: 14px; border-top: 1px solid var(--line); padding: 10px 0; }
+    .fact-list span:first-child { color: var(--muted); }
+    .section { margin-top: 81px; padding-top: 27px; border-top: 1px solid var(--line); }
+    .section-heading { display: grid; grid-template-columns: 235px 1fr; gap: 60px; }
+    .section-heading > .eyebrow { padding-top: 7px; }
+    .section-heading h2 { max-width: 620px; }
+    .section-heading .section-summary { max-width: 650px; color: var(--muted); margin-top: 18px; }
+    .method-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; margin-top: 39px; align-items: start; }
+    .method-steps { list-style: none; padding: 0; margin: 0; }
+    .method-steps li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 20px 0; border-top: 1px solid var(--line); }
+    .method-steps li:first-child { padding-top: 0; border-top: 0; }
+    .step-number { color: var(--olive); font-size: 11px; font-variant-numeric: tabular-nums; padding-top: 5px; }
+    .method-steps p { font-size: 14px; color: var(--muted); margin-top: 7px; }
+    .starting-figure { padding-top: 3px; }
+    .starting-figure .figure-label { display: flex; justify-content: space-between; gap: 20px; font-size: 12px; margin-bottom: 12px; }
+    .starting-figure .figure-label span:last-child { color: var(--muted); }
+    .evidence { padding-bottom: 35px; }
+    .evaluation-figure { margin: 32px 0 0 0; }
+    .plot-scroll { overflow-x: auto; background: var(--white); border: 1px solid var(--line); padding: 21px 22px 10px; }
+    .plot-scroll img { display: block; width: min(100%, 1000px); min-width: 760px; height: auto; margin-inline: auto; }
+    .evaluation-figure figcaption { display: grid; grid-template-columns: 1fr auto; gap: 36px; font-size: 13px; margin-top: 19px; }
+    .evaluation-figure figcaption p { max-width: 835px; }
+    .full-figure { white-space: nowrap; }
+    .scroll-hint { display: none; font-size: 12px; color: var(--muted); padding: 9px 0 0; }
+    .mobile-results { display: none; }
+    .protocol { margin-top: 19px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    .protocol summary { cursor: pointer; color: var(--ink); width: fit-content; }
+    .protocol-body { display: grid; grid-template-columns: 1fr 1fr; gap: 45px; padding: 17px 0 3px; }
+    .protocol-body p { margin: 0; }
+    .extension-band { margin-top: 33px; padding: 42px 0 50px; background: var(--tint); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .extension-layout { display: grid; grid-template-columns: minmax(230px, 1fr) minmax(0, 2fr); gap: 60px; align-items: start; }
+    .extension-copy h2 { margin-top: 23px; font-size: 28px; }
+    .extension-copy p { color: var(--muted); font-size: 14px; margin-top: 17px; }
+    .extension-copy .tag { background: var(--paper); margin-top: 25px; }
+    .extension-copy .qualification { border-top: 1px solid #cfd5c5; padding-top: 19px; margin-top: 26px; font-size: 13px; }
+    .extension-figure figcaption { display: flex; gap: 20px; justify-content: space-between; }
+    .outlook { padding: 54px 0 57px; display: grid; grid-template-columns: 235px 1fr; gap: 60px; }
+    .outlook .eyebrow { padding-top: 5px; }
+    .outlook p { font-size: 20px; line-height: 1.6; max-width: 700px; letter-spacing: -.2px; }
+    .site-footer { border-top: 1px solid var(--line); padding: 25px 0 38px; display: flex; justify-content: space-between; gap: 24px; font-size: 12px; color: var(--muted); }
+    .site-footer a { text-decoration: none; }
+    @media (min-width: 1500px) { .shell { width: min(1240px, calc(100% - 120px)); } }
+    @media (max-width: 1000px) {
+      .shell { width: calc(100% - 56px); }
+      .intro { gap: 45px; }
+      .hero-study { grid-template-columns: minmax(0, 2.6fr) minmax(205px, 1fr); gap: 26px; }
+      .hero-note h2 { font-size: 21px; margin-top: 16px; }
+      .hero-note { padding-top: 15px; }
+      .hero-note > p { font-size: 13px; margin-top: 12px; }
+      .fact-list { margin-top: 16px; margin-bottom: 0; }
+      .hero-note .watch-link { padding-top: 17px; }
+      .section-heading, .outlook { grid-template-columns: 180px 1fr; gap: 35px; }
+      .method-layout { gap: 35px; }
+      .extension-layout { gap: 35px; }
+      .extension-copy h2 { font-size: 25px; }
+      .extension-copy .qualification { margin-top: 17px; padding-top: 13px; }
+      .extension-copy .tag { margin-top: 17px; }
+      .plot-scroll { padding-inline: 0; }
+    }
+    @media (max-width: 720px) {
+      body { font-size: 15px; }
+      .shell { width: calc(100% - 36px); }
+      .study-inner { min-height: 44px; gap: 10px; }
+      .study-label { font-size: 10px; white-space: nowrap; }
+      .study-nav { gap: 15px; font-size: 11px; }
+      .study-nav .direction-name { display: none; }
+      .site-header { min-height: 77px; gap: 20px; }
+      .wordmark { font-size: 22px; }
+      .site-nav { gap: 19px; font-size: 12px; }
+      .site-nav a:first-child, .site-nav a:last-child { display: none; }
+      .intro { display: block; padding: 34px 0 25px; }
+      .intro h1 { font-size: 33px; max-width: 480px; letter-spacing: -1px; margin-top: 14px; }
+      .intro-summary { max-width: 530px; margin-top: 21px; font-size: 15px; line-height: 1.7; }
+      .hero-study { display: block; }
+      .hero-note { margin-top: 28px; padding-top: 18px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; }
+      .hero-note .tag { justify-self: start; grid-column: 1 / -1; }
+      .hero-note h2 { margin-top: 16px; max-width: 245px; grid-column: 1 / -1; font-size: 23px; }
+      .hero-note > p { grid-column: 1 / -1; font-size: 14px; max-width: 540px; }
+      .fact-list { grid-column: 1 / -1; margin-top: 16px; }
+      .fact-list li { padding-block: 9px; }
+      .hero-note .watch-link { grid-column: 1 / -1; font-size: 13px; }
+      .section { margin-top: 51px; padding-top: 21px; }
+      .section-heading { display: block; }
+      .section-heading h2 { margin-top: 17px; font-size: 27px; }
+      .section-heading .section-summary { margin-top: 15px; }
+      .method-layout { display: flex; flex-direction: column; gap: 25px; margin-top: 28px; }
+      .method-steps li { padding-block: 18px; }
+      .starting-figure { width: 100%; }
+      .evaluation-figure { margin-top: 26px; }
+      .plot-scroll { margin-inline: -18px; border-inline: 0; padding-block: 20px 10px; }
+      .plot-scroll img { min-width: 800px; }
+      .scroll-hint { display: block; }
+      .mobile-results { display: block; margin-top: 20px; }
+      .mobile-results h3 { font-size: 14px; margin-bottom: 7px; }
+      .mobile-results dl { margin: 0; font-size: 13px; }
+      .mobile-results dl > div { display: flex; justify-content: space-between; gap: 18px; border-bottom: 1px solid var(--line); padding-block: 9px; }
+      .mobile-results dt { color: var(--muted); }
+      .mobile-results dd { margin: 0; font-size: 15px; font-variant-numeric: tabular-nums; }
+      .evaluation-figure figcaption { display: block; margin-top: 14px; }
+      .full-figure { display: inline-block; margin-top: 11px; }
+      .protocol-body { display: block; }
+      .protocol-body p + p { margin-top: 14px; }
+      .evidence { padding-bottom: 5px; }
+      .extension-band { margin-top: 41px; padding-top: 28px; padding-bottom: 28px; }
+      .extension-layout { display: flex; flex-direction: column; gap: 26px; }
+      .extension-copy h2 { margin-top: 17px; font-size: 27px; max-width: 380px; }
+      .extension-copy p { font-size: 14px; }
+      .extension-figure { width: 100%; }
+      .extension-figure figcaption { font-size: 12px; gap: 12px; }
+      .outlook { display: block; padding-block: 35px 38px; }
+      .outlook p { margin-top: 18px; font-size: 18px; }
+      .site-footer { padding-top: 21px; flex-wrap: wrap; gap: 9px; }
+      .site-footer span { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="study-bar">
+    <div class="shell study-inner">
+      <span class="study-label">Design study A</span>
+      <nav class="study-nav" aria-label="Compare design studies">
+        <a href="research.html" aria-current="page">A<span class="direction-name"> · Research</span></a>
+        <a href="studio.html">B<span class="direction-name"> · Studio</span></a>
+        <a href="essay.html">C<span class="direction-name"> · Essay</span></a>
+        <a href="/scratch/">Compare ↗</a>
+      </nav>
+    </div>
+  </div>
+  <header class="site-header shell">
+    <a class="wordmark" href="#main" aria-label="AlphaNIST, top of page">AlphaNIST</a>
+    <nav class="site-nav" aria-label="On this page">
+      <a href="#outcome">Observation</a><a href="#method">Method</a><a href="#evidence">Evidence</a><a href="#extension">Extension</a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="shell">
+      <section id="outcome" aria-labelledby="title">
+        <div class="intro">
+          <div>
+            <p class="eyebrow">Robotic assembly · In simulation</p>
+            <h1 id="title">Learning assembly without prescribed manipulation stages.</h1>
+          </div>
+          <p class="intro-summary">Assembly specifies an outcome, not a sequence of moves. AlphaNIST studies how grasping, reorientation, and insertion can be learned from task rewards, cached starting states, and parallel experience.</p>
+        </div>
+        <div class="hero-study">
+          <figure>
+            <div class="video-frame">
+              <video id="single-video" controls playsinline preload="metadata" poster="/assets/assembly-poster.jpg" width="1920" height="1080" aria-label="Selected successful single-component assembly episodes, close-up view" aria-describedby="single-caption">
+                <source src="/assets/assembly-demo.mp4" type="video/mp4">
+                <a href="/assets/assembly-demo.mp4">Watch the single-component assembly video.</a>
+              </video>
+            </div>
+            <div class="media-toolbar">
+              <span class="media-kind">K1 / One active component</span>
+              <div class="view-switch" role="group" aria-label="Choose video crop" hidden>
+                <button type="button" aria-controls="single-video" aria-pressed="true" data-view="right">Close-up</button>
+                <button type="button" aria-controls="single-video" aria-pressed="false" data-view="left">Board view</button>
+              </div>
+            </div>
+            <figcaption id="single-caption">Selected successful episodes from the single-component policy, not a continuous board assembly or a success-rate evaluation. The player shows one view from a synchronized two-view recording.</figcaption>
+          </figure>
+          <aside class="hero-note" aria-label="Scope of the single-component experiments">
+            <span class="tag">Single-component study</span>
+            <h2>One policy, different assembly problems.</h2>
+            <p>A shared policy trains across twenty NIST assembly tasks: gears, nuts, rods, pegs, and connectors. Its inputs are point clouds and robot state.</p>
+            <ul class="fact-list">
+              <li><span>Training setting</span><span>Simulation</span></li>
+              <li><span>Task reward</span><span>Completed assembly</span></li>
+              <li><span>Prescribed stages</span><span>None</span></li>
+            </ul>
+            <a class="watch-link" href="/assets/overview.mp4">Watch the narrated overview ↗</a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="method" aria-labelledby="method-title">
+        <div class="section-heading">
+          <p class="eyebrow">01 / Learning setup</p>
+          <div><h2 id="method-title">A clear objective. Room to find a way.</h2><p class="section-summary">The policy is not given a grasp–lift–insert program. Training supplies a distribution of physically valid starting states and rewards the completed assembly.</p></div>
+        </div>
+        <div class="method-layout">
+          <ol class="method-steps">
+            <li><span class="step-number">01</span><div><h3>Start from varied states</h3><p>A cached bank includes loose parts, in-hand grasps, and partial assemblies. These are starting states, not demonstrations of how to finish.</p></div></li>
+            <li><span class="step-number">02</span><div><h3>Spend experience where it helps</h3><p>Beta sampling emphasizes states the policy sometimes solves, while retaining a chance to sample every state. Parallel environments provide more experience.</p></div></li>
+            <li><span class="step-number">03</span><div><h3>Reward the finished task</h3><p>The task reward is binary, alongside per-step control costs. Reaching, grasping, and partial insertion receive no progress rewards in this condition.</p></div></li>
+          </ol>
+          <figure class="starting-figure">
+            <div class="figure-label"><span>Inside the starting-state bank</span><span>K1 · sampled resets</span></div>
+            <div class="video-frame"><video controls muted playsinline preload="none" poster="/assets/research/k1-starting-states-poster.jpg" width="1920" height="1080" aria-label="Sampled single-component starting states held without policy actions" aria-describedby="reset-caption"><source src="/assets/research/k1-starting-states.mp4" type="video/mp4"><a href="/assets/research/k1-starting-states.mp4">Watch the sampled starting states.</a></video></div>
+            <figcaption id="reset-caption">Sampled resets, held briefly without policy actions. The bank includes partial assemblies; not every episode begins with an untouched loose part.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section evidence" id="evidence" aria-labelledby="evidence-title">
+        <div class="section-heading">
+          <p class="eyebrow">02 / Single-component evidence</p>
+          <div><h2 id="evidence-title">Success improves with parallel training scale.</h2><p class="section-summary">Binary task rewards with beta sampling yield the highest evaluated success among these three conditions. The comparison isolates the tested sampling and reward choices—not every possible form of reward shaping.</p></div>
+        </div>
+        <figure class="evaluation-figure">
+          <div class="plot-scroll" tabindex="0" role="region" aria-label="Evaluation success chart; scroll horizontally on small screens">
+            <img src="evaluation.svg" width="900" height="520" alt="Evaluated single-component success at nine training scales. Binary reward with beta sampling rises from 38.55% at 1,024 environments to 97.37% at 262,144. Binary reward with uniform sampling rises from 34.87% to 84.28%, with a dip at 65,536. Dense reward with beta sampling rises from 11.91% to 77.43%." loading="lazy">
+          </div>
+          <p class="scroll-hint">Scroll the chart horizontally to read every training scale.</p>
+          <div class="mobile-results" aria-label="Chart summary at the largest training scale">
+            <h3>Evaluated success at 256K environments</h3>
+            <dl><div><dt>Binary reward · beta sampling</dt><dd>97.4%</dd></div><div><dt>Binary reward · uniform sampling</dt><dd>84.3%</dd></div><div><dt>Dense reward · beta sampling</dt><dd>77.4%</dd></div></dl>
+          </div>
+          <figcaption><p>Means over <strong>five evaluation seeds, not independent training replicates</strong>, at 25,000 training iterations. Evaluation covers 19 tasks, excluding M4 nut threading, on the same frozen mixed-reset bank, including partial assemblies. Compute increases with scale. The dense condition adds reaching and alignment rewards to the binary task reward and unchanged control costs.</p><a class="full-figure" href="evaluation.svg" target="_blank" rel="noopener">Open full figure ↗</a></figcaption>
+        </figure>
+        <details class="protocol">
+          <summary>Evaluation protocol and scope</summary>
+          <div class="protocol-body">
+            <p>Each evaluation seed contains 32 trials per task: 608 episodes, with equal weight per task. Resets are sampled uniformly within each task from the shared frozen bank. Success is the first full assembly without a simultaneous safety failure; unfinished episodes fail at 15 seconds.</p>
+            <p>All nine scales are measured; lines only connect observations. Environment count, GPU count, and rollout batch size grow together at a fixed iteration count, so this is not a compute-matched comparison. The chart reports means, without error bars.</p>
+          </div>
+        </details>
+      </section>
+    </div>
+
+    <section class="extension-band" id="extension" aria-labelledby="extension-title">
+      <div class="shell extension-layout">
+        <div class="extension-copy">
+          <p class="eyebrow">03 / Qualitative extension</p>
+          <h2 id="extension-title">When several parts share the board.</h2>
+          <p>With ten active components, placement changes what remains accessible. Separately trained K10 policies learn longer assembly sequences, without a prescribed assembly order.</p>
+          <span class="tag">K10 · Separately trained policies</span>
+          <p class="qualification">These four selected reset-to-success runs are qualitative examples. They are not the K1 policy, a continuous rollout, or a numerical K10 success-rate evaluation.</p>
+        </div>
+        <figure class="extension-figure">
+          <div class="video-frame"><video controls playsinline preload="none" poster="/assets/k10-strategies/poster-fixed.jpg" width="1920" height="1080" aria-label="Four selected ten-component assembly runs, fixed camera view" aria-describedby="multi-caption"><source src="/assets/k10-strategies/selected-episodes-fixed.mp4" type="video/mp4"><a href="/assets/k10-strategies/selected-episodes-fixed.mp4">Watch the ten-component assembly runs.</a></video></div>
+          <figcaption id="multi-caption"><span>Ten-component assembly in simulation</span><span>Four selected runs</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="shell">
+      <section class="outlook" aria-labelledby="outlook-label"><h2 class="eyebrow" id="outlook-label">The research question</h2><p>How much dexterity and coordination can emerge when we specify the assembly goal, but leave the sequence of actions to learning?</p></section>
+      <footer class="site-footer"><span>AlphaNIST · Robotic assembly experiments in simulation</span><a href="#main">Back to top ↑</a></footer>
+    </div>
+  </main>
+  <script>
+    const singleVideo = document.querySelector('#single-video');
+    const viewSwitch = document.querySelector('.view-switch');
+    viewSwitch.hidden = false;
+    viewSwitch.querySelectorAll('button').forEach((button) => {
+      button.addEventListener('click', () => {
+        singleVideo.style.objectPosition = `${button.dataset.view} center`;
+        singleVideo.setAttribute('aria-label', `Selected successful single-component assembly episodes, ${button.textContent.toLowerCase()} view`);
+        viewSwitch.querySelectorAll('button').forEach((choice) => choice.setAttribute('aria-pressed', String(choice === button)));
+      });
+    });
+    document.querySelectorAll('video').forEach((video) => {
+      video.addEventListener('play', () => {
+        document.querySelectorAll('video').forEach((other) => { if (other !== video) other.pause(); });
+      });
+    });
+  </script>
+</body>
+</html>

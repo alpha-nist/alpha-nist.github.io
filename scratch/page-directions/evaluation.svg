@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title description">
+  <title id="title">Single-component assembly: evaluated success across parallel training scales</title>
+  <desc id="description">Three training conditions, each measured at all nine scales from 1,024 to 262,144 parallel environments. Binary reward with beta sampling rises from 38.55 to 97.37 percent; binary reward with uniform sampling rises from 34.87 to 84.28 percent, including an observed dip at 65,536; dense reward with beta sampling rises from 11.91 to 77.43 percent. Points are means of five evaluation seeds, not independent training replicates. All checkpoints are at 25,000 training iterations. Evaluation covers 19 tasks, excluding M4 nut threading, on the same frozen mixed-reset bank including partial assemblies. Compute increases with scale. Connecting lines do not represent additional observations.</desc>
+  <rect width="900" height="520" fill="#fff"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#33372f">
+    <text x="100" y="31" font-size="22">Evaluated success (%)</text>
+    <g font-size="18">
+      <path d="M100 64h34" stroke="#546540" stroke-width="3"/>
+      <circle cx="117" cy="64" r="4.5" fill="#546540"/>
+      <text x="145" y="70">Binary · beta sampling</text>
+      <path d="M390 64h34" stroke="#8b8e81" stroke-width="3" stroke-dasharray="8 5"/>
+      <circle cx="407" cy="64" r="4.5" fill="#fff" stroke="#8b8e81" stroke-width="2.5"/>
+      <text x="435" y="70">Binary · uniform sampling</text>
+      <path d="M697 64h30" stroke="#a47458" stroke-width="3" stroke-dasharray="3 5"/>
+      <path d="m712 58 6 6-6 6-6-6z" fill="#a47458"/>
+      <text x="738" y="70">Dense · beta</text>
+    </g>
+    <g stroke="#e8e9e3" stroke-width="1">
+      <path d="M100 110H836M100 166H836M100 222H836M100 278H836M100 334H836M100 390H836"/>
+    </g>
+    <g font-size="18" text-anchor="end" fill="#686d62">
+      <text x="79" y="116">100</text><text x="79" y="172">80</text>
+      <text x="79" y="228">60</text><text x="79" y="284">40</text>
+      <text x="79" y="340">20</text><text x="79" y="396">0</text>
+    </g>
+    <path d="M100 110V390H836" fill="none" stroke="#a5a99c" stroke-width="1.2"/>
+    <g font-size="18" text-anchor="middle" fill="#686d62">
+      <text x="100" y="423">1K</text><text x="192" y="423">2K</text>
+      <text x="284" y="423">4K</text><text x="376" y="423">8K</text>
+      <text x="468" y="423">16K</text><text x="560" y="423">32K</text>
+      <text x="652" y="423">64K</text><text x="744" y="423">128K</text>
+      <text x="836" y="423">256K</text>
+    </g>
+    <text x="468" y="464" font-size="21" text-anchor="middle">Parallel training environments (log₂)</text>
+    <text x="468" y="503" font-size="18" text-anchor="middle" fill="#686d62">Means of five evaluation seeds · 25,000 training iterations · K = 1,024</text>
+  </g>
+  <g id="beta_sparse" fill="#546540" stroke="#546540" stroke-width="2.5" data-label="Binary reward · beta sampling">
+    <polyline points="100,282.052632 192,266.026316 284,168.947368 376,146.657895 468,131.736842 560,126.118421 652,121.328947 744,117.828947 836,117.368421" fill="none" stroke-width="3"/>
+    <circle cx="100" cy="282.052632" r="4.5" data-mean="38.55263157894737"><title>1,024 environments: 38.55263157894737%</title></circle>
+    <circle cx="192" cy="266.026316" r="4.5" data-mean="44.276315789473685"><title>2,048 environments: 44.276315789473685%</title></circle>
+    <circle cx="284" cy="168.947368" r="4.5" data-mean="78.94736842105263"><title>4,096 environments: 78.94736842105263%</title></circle>
+    <circle cx="376" cy="146.657895" r="4.5" data-mean="86.90789473684211"><title>8,192 environments: 86.90789473684211%</title></circle>
+    <circle cx="468" cy="131.736842" r="4.5" data-mean="92.23684210526315"><title>16,384 environments: 92.23684210526315%</title></circle>
+    <circle cx="560" cy="126.118421" r="4.5" data-mean="94.24342105263158"><title>32,768 environments: 94.24342105263158%</title></circle>
+    <circle cx="652" cy="121.328947" r="4.5" data-mean="95.95394736842105"><title>65,536 environments: 95.95394736842105%</title></circle>
+    <circle cx="744" cy="117.828947" r="4.5" data-mean="97.20394736842105"><title>131,072 environments: 97.20394736842105%</title></circle>
+    <circle cx="836" cy="117.368421" r="4.5" data-mean="97.36842105263158"><title>262,144 environments: 97.36842105263158%</title></circle>
+  </g>
+  <g id="uniform_sparse" fill="#fff" stroke="#8b8e81" stroke-width="2.5" data-label="Binary reward · uniform sampling">
+    <polyline points="100,292.368421 192,272.473684 284,255.342105 376,167.934211 468,159.552632 560,156.328947 652,159.092105 744,157.618421 836,154.026316" fill="none" stroke-width="3" stroke-dasharray="8 5"/>
+    <circle cx="100" cy="292.368421" r="4.5" data-mean="34.86842105263158"><title>1,024 environments: 34.86842105263158%</title></circle>
+    <circle cx="192" cy="272.473684" r="4.5" data-mean="41.973684210526315"><title>2,048 environments: 41.973684210526315%</title></circle>
+    <circle cx="284" cy="255.342105" r="4.5" data-mean="48.0921052631579"><title>4,096 environments: 48.0921052631579%</title></circle>
+    <circle cx="376" cy="167.934211" r="4.5" data-mean="79.3092105263158"><title>8,192 environments: 79.3092105263158%</title></circle>
+    <circle cx="468" cy="159.552632" r="4.5" data-mean="82.30263157894737"><title>16,384 environments: 82.30263157894737%</title></circle>
+    <circle cx="560" cy="156.328947" r="4.5" data-mean="83.45394736842105"><title>32,768 environments: 83.45394736842105%</title></circle>
+    <circle cx="652" cy="159.092105" r="4.5" data-mean="82.46710526315789"><title>65,536 environments: 82.46710526315789%</title></circle>
+    <circle cx="744" cy="157.618421" r="4.5" data-mean="82.99342105263158"><title>131,072 environments: 82.99342105263158%</title></circle>
+    <circle cx="836" cy="154.026316" r="4.5" data-mean="84.27631578947368"><title>262,144 environments: 84.27631578947368%</title></circle>
+  </g>
+  <g id="beta_dense" fill="#a47458" stroke="#a47458" stroke-width="2" data-label="Dense reward · beta sampling">
+    <polyline points="100,356.657895 192,356.750000 284,357.026316 376,356.473684 468,356.565789 560,355.828947 652,355.921053 744,215.368421 836,173.184211" fill="none" stroke-width="3" stroke-dasharray="3 5"/>
+    <path d="m100 351.157895 5.5 5.5-5.5 5.5-5.5-5.5z" data-mean="11.907894736842106"><title>1,024 environments: 11.907894736842106%</title></path>
+    <path d="m192 351.250000 5.5 5.5-5.5 5.5-5.5-5.5z" data-mean="11.875"><title>2,048 environments: 11.875%</title></path>
+    <path d="m284 351.526316 5.5 5.5-5.5 5.5-5.5-5.5z" data-mean="11.776315789473683"><title>4,096 environments: 11.776315789473683%</title></path>
+    <path d="m376 350.973684 5.5 5.5-5.5 5.5-5.5-5.5z" data-mean="11.973684210526315"><title>8,192 environments: 11.973684210526315%</title></path>
+    <path d="m468 351.065789 5.5 5.5-5.5 5.5-5.5-5.5z" data-mean="11.940789473684209"><title>16,384 environments: 11.940789473684209%</title></path>
+    <path d="m560 350.328947 5.5 5.5-5.5 5.5-5.5-5.5z" data-mean="12.203947368421051"><title>32,768 environments: 12.203947368421051%</title></path>
+    <path d="m652 350.421053 5.5 5.5-5.5 5.5-5.5-5.5z" data-mean="12.171052631578947"><title>65,536 environments: 12.171052631578947%</title></path>
+    <path d="m744 209.868421 5.5 5.5-5.5 5.5-5.5-5.5z" data-mean="62.368421052631575"><title>131,072 environments: 62.368421052631575%</title></path>
+    <path d="m836 167.684211 5.5 5.5-5.5 5.5-5.5-5.5z" data-mean="77.43421052631578"><title>262,144 environments: 77.43421052631578%</title></path>
+  </g>
+</svg>

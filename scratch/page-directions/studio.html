@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#f6f5f0">
+  <meta name="description" content="AlphaNIST — learning robotic assembly in simulation from binary task rewards. A film-led view of selected ten-component assembly episodes.">
+  <title>AlphaNIST · Design study B</title>
+  <style>
+    :root { color-scheme: light; --paper:#f6f5f0; --ink:#242522; --muted:#686b61; --line:#d9dad2; --stage:#20231f; --gold:#d4bf6e; --stage-muted:#aeb4a6; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.6 Arial, Helvetica, sans-serif; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; text-underline-offset:4px; }
+    button { font:inherit; cursor:pointer; }
+    a, button { -webkit-tap-highlight-color:transparent; }
+    button:disabled { cursor:wait; opacity:.55; }
+    :focus-visible { outline:2px solid #a48a31; outline-offset:5px; }
+    [hidden] { display:none !important; }
+    .wrap { width:min(1400px, calc(100% - 96px)); margin-inline:auto; }
+    .skip { position:absolute; z-index:5; top:-60px; left:20px; padding:10px 18px; background:var(--paper); }
+    .skip:focus { top:12px; }
+    .header { display:flex; align-items:center; min-height:88px; border-bottom:1px solid var(--line); gap:32px; }
+    .brand { font-size:18px; text-decoration:none; letter-spacing:-.5px; }
+    .brand span { color:var(--muted); }
+    .study { margin-left:auto; color:var(--muted); font-size:11px; letter-spacing:.07em; }
+    .directions { display:flex; gap:6px; }
+    .directions a { display:grid; place-items:center; width:29px; height:29px; text-decoration:none; font-size:12px; border:1px solid transparent; }
+    .directions a:hover { border-color:var(--line); }
+    .directions [aria-current] { background:var(--ink); color:var(--paper); }
+    .compare { font-size:12px; color:var(--muted); text-decoration:none; }
+    .compare:hover { color:var(--ink); text-decoration:underline; }
+    .intro { display:grid; grid-template-columns:1fr 1fr; gap:60px; padding:52px 0 40px; align-items:end; }
+    .eyebrow { margin:0 0 12px; color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.14em; line-height:1.5; }
+    h1, h2, h3, p { margin-top:0; }
+    h1 { font-size:32px; line-height:1.22; letter-spacing:-.9px; font-weight:400; margin:0; max-width:520px; }
+    .intro-copy { max-width:550px; justify-self:end; padding-bottom:2px; }
+    .intro-copy p { margin:0; color:#575b51; font-size:15px; line-height:1.7; }
+    .cinema { background:var(--stage); color:#f3f4ec; }
+    .cinema-top { display:flex; justify-content:space-between; align-items:center; min-height:54px; padding:0 24px; border-bottom:1px solid #3b3e36; gap:20px; font-size:11px; }
+    .cinema-label { display:flex; align-items:center; gap:12px; }
+    .signal { width:5px; height:5px; display:inline-block; background:var(--gold); }
+    .cinema-meta { color:var(--stage-muted); }
+    .screen-layout { display:grid; grid-template-columns:minmax(0, 1fr) 270px; align-items:start; }
+    .screen { background:#151714; min-width:0; }
+    .frame { width:100%; aspect-ratio:16/9; background:#151714; }
+    video { display:block; width:100%; height:100%; object-fit:contain; }
+    .transport { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:65px; padding:12px 20px; border-top:1px solid #3b3e36; background:var(--stage); }
+    .view-buttons { display:flex; padding:3px; border:1px solid #454a40; gap:2px; }
+    .view-buttons button { border:0; background:transparent; color:#bdc1b6; padding:4px 11px; font-size:11px; line-height:1.7; }
+    .view-buttons button[aria-pressed="true"] { background:#43483d; color:#fff; }
+    .full-film { color:var(--gold); background:none; border:0; font-size:11px; padding:7px 0; text-align:right; }
+    .full-film:hover { text-decoration:underline; text-underline-offset:4px; }
+    .full-film span { margin-left:7px; }
+    .observations { padding:24px 23px 0; }
+    .rail-heading { font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--stage-muted); margin:0 0 9px; }
+    .rail-help { font-size:11px; color:var(--stage-muted); margin:0 0 18px; line-height:1.5; }
+    .moment { display:block; width:100%; text-align:left; color:#e6e9df; background:transparent; padding:16px 0 18px; border:0; border-top:1px solid #41463b; }
+    .moment:hover .observed, .moment[aria-pressed="true"] .observed { color:var(--gold); }
+    .moment-head { display:flex; justify-content:space-between; align-items:center; color:var(--stage-muted); font-size:10px; font-variant-numeric:tabular-nums; margin-bottom:9px; }
+    .moment-index { letter-spacing:.08em; }
+    .moment-title { display:block; font-size:14px; font-weight:400; line-height:1.45; margin-bottom:6px; }
+    .observed { display:block; font-size:12px; color:#b7beac; line-height:1.55; transition:color .15s; }
+    .observed svg { height:9px; width:12px; margin-right:5px; fill:currentColor; }
+    .moment[aria-pressed="true"] .moment-index::after { content:" / SELECTED"; color:var(--gold); font-size:8px; }
+    .rail-foot { margin:7px 0 0; font-size:10px; line-height:1.6; color:var(--stage-muted); }
+    .episodes { display:grid; grid-template-columns:45.74fr 44.5fr 42.5fr 28.26fr; padding:0 20px 18px; gap:4px; background:var(--stage); }
+    .episode { min-width:0; display:block; padding:10px 0 0; background:none; border:0; border-top:2px solid #4a5043; color:#aeb5a3; font-size:10px; text-align:left; line-height:1.5; }
+    .episode[aria-pressed="true"] { color:var(--gold); border-color:var(--gold); }
+    .episode:hover { color:#fff; border-color:#fff; }
+    .episode time { font-variant-numeric:tabular-nums; margin-left:7px; color:#868f7c; }
+    .cinema-caption { display:flex; justify-content:space-between; align-items:flex-start; gap:36px; margin:14px 0 0; color:var(--muted); font-size:11px; line-height:1.65; }
+    .cinema-caption p { margin:0; max-width:750px; }
+    .live-status { text-align:right; min-width:180px; color:#575c4d; }
+    .research { display:grid; grid-template-columns:1.12fr 1fr; gap:105px; margin:70px 0 0; padding-bottom:54px; }
+    h2 { font-size:24px; font-weight:400; letter-spacing:-.5px; line-height:1.3; margin-bottom:18px; }
+    .research-copy > p:not(.eyebrow) { color:#585e50; font-size:14px; line-height:1.8; max-width:600px; margin-bottom:14px; }
+    .research-copy strong { font-weight:400; color:var(--ink); }
+    .overview-link { display:inline-flex; gap:16px; align-items:center; margin-top:12px; padding-bottom:5px; text-decoration:none; border-bottom:1px solid #8b907e; font-size:12px; }
+    .overview-link:hover { border-color:var(--ink); }
+    .overview-link span { color:var(--muted); }
+    .contract { margin:2px 0 0; }
+    .contract-row { display:grid; grid-template-columns:100px 1fr; gap:20px; padding:16px 0; border-top:1px solid var(--line); }
+    .contract dt { font-size:11px; color:var(--muted); }
+    .contract dd { margin:0; color:#42483c; font-size:12px; line-height:1.75; }
+    .scope { display:grid; grid-template-columns:1.12fr 1fr; gap:105px; padding:24px 0 30px; border-top:1px solid var(--line); }
+    .scope p { margin:0; color:var(--muted); font-size:11px; line-height:1.8; }
+    .scope h2 { font-size:12px; letter-spacing:0; margin:0 0 7px; }
+    footer { display:flex; justify-content:space-between; gap:24px; padding:25px 0 28px; border-top:1px solid var(--line); color:var(--muted); font-size:10px; }
+    footer a { text-decoration:none; }
+    footer a:hover { text-decoration:underline; }
+    @media (min-width:1600px) { .intro { padding-top:66px; padding-bottom:48px; } .observations { padding-top:32px; } .moment { padding-top:23px; padding-bottom:24px; } }
+    @media (max-width:1100px) { .wrap { width:calc(100% - 56px); } .screen-layout { grid-template-columns:minmax(0,1fr) 235px; } .observations { padding:18px 18px 0; } .moment { padding:12px 0 14px; } .rail-help { margin-bottom:11px; } .rail-foot { display:none; } .research, .scope { gap:54px; } .episode time { display:none; } }
+    @media (max-width:850px) { .intro { gap:36px; } h1 { font-size:28px; } .intro-copy p { font-size:13px; } .screen-layout { grid-template-columns:1fr; } .observations { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; padding:19px 20px 4px; border-top:1px solid #41463b; } .rail-heading { grid-column:1/-1; margin:0; } .rail-help { display:none; } .moment { border-top:0; padding-top:0; } .moment-title { font-size:13px; } .moment-head { font-size:9px; } .research { margin-top:50px; gap:34px; } .scope { gap:34px; } .contract-row { grid-template-columns:72px 1fr; gap:12px; } }
+    @media (max-width:600px) { .wrap { width:calc(100% - 36px); } .header { min-height:74px; gap:14px; flex-wrap:wrap; } .brand { font-size:16px; } .study { font-size:9px; } .compare { display:none; } .directions { gap:2px; } .directions a { width:24px; height:25px; font-size:10px; } .intro { grid-template-columns:1fr; gap:20px; padding:36px 0 30px; } h1 { max-width:330px; font-size:28px; } .intro-copy { justify-self:start; max-width:450px; } .intro-copy p { font-size:14px; } .eyebrow { font-size:9px; } .cinema { margin-inline:-18px; } .cinema-top { min-height:47px; padding:0 18px; font-size:10px; } .cinema-meta { font-size:9px; } .frame.closeup { aspect-ratio:1; } .transport { padding:12px 18px; } .episodes { padding-inline:18px; } .episode { font-size:9px; } .observations { display:block; padding:22px 18px 0; } .rail-heading { margin-bottom:17px; } .moment { display:grid; grid-template-columns:86px 1fr; column-gap:14px; border-top:1px solid #41463b; padding:15px 0; } .moment-head { grid-column:1; grid-row:1 / 3; display:block; margin:2px 0 0; line-height:1.75; } .moment-head time { display:block; font-size:9px; } .moment-title { grid-column:2; margin-bottom:3px; font-size:14px; } .observed { grid-column:2; font-size:12px; } .moment[aria-pressed="true"] .moment-index::after { content:" ·"; } .cinema-caption { display:block; margin-top:13px; font-size:10px; } .live-status { text-align:left; margin-top:5px !important; } .research { grid-template-columns:1fr; margin-top:42px; gap:28px; padding-bottom:32px; } h2 { font-size:23px; } .research-copy > p:not(.eyebrow) { font-size:13px; } .contract-row { grid-template-columns:90px 1fr; padding:14px 0; } .scope { grid-template-columns:1fr; gap:20px; padding-top:22px; } footer { gap:16px; font-size:9px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *, *::before, *::after { transition:none !important; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header wrap">
+    <a class="brand" href="/">Alpha<span>NIST</span></a>
+    <span class="study">Design study B</span>
+    <nav class="directions" aria-label="Page design studies">
+      <a href="research.html" aria-label="Design study A — research">A</a>
+      <a href="studio.html" aria-label="Design study B — film" aria-current="page">B</a>
+      <a href="essay.html" aria-label="Design study C — essay">C</a>
+    </nav>
+    <a class="compare" href="/scratch/">Compare studies ↗</a>
+  </header>
+  <main class="wrap" id="main">
+    <section class="intro" aria-labelledby="project-title">
+      <div>
+        <p class="eyebrow">Robotic assembly · learned in simulation</p>
+        <h1 id="project-title">A clear goal.<br>More than one way to get there.</h1>
+      </div>
+      <div class="intro-copy"><p>AlphaNIST studies how a robot can learn dexterity and coordination from a reward for completed assembly—without demonstrations or prescribed manipulation stages.</p></div>
+    </section>
+
+    <section aria-label="Selected ten-component assembly film">
+      <div class="cinema" id="cinema">
+        <div class="cinema-top">
+          <span class="cinema-label"><span class="signal" aria-hidden="true"></span>Ten components. One assembly task.</span>
+          <span class="cinema-meta">K10 / Selected episodes / 2:41</span>
+        </div>
+        <div class="screen-layout">
+          <div class="screen">
+            <div class="frame" id="frame">
+              <video id="film" controls playsinline preload="metadata" width="1920" height="1080" poster="/assets/k10-strategies/poster-fixed.jpg" src="/assets/k10-strategies/selected-episodes-fixed.mp4" aria-label="Four selected ten-component assembly episodes in simulation, board view" aria-describedby="film-caption">
+                Your browser does not support embedded video. <a href="/assets/k10-strategies/selected-episodes-fixed.mp4">Open the assembly film.</a>
+              </video>
+            </div>
+            <div class="transport" data-enhance hidden>
+              <div class="view-buttons" role="group" aria-label="Camera view">
+                <button type="button" data-view="fixed" aria-pressed="true" aria-controls="film">Board view</button>
+                <button type="button" data-view="closeup" aria-pressed="false" aria-controls="film">Close-up</button>
+              </div>
+              <button class="full-film" id="full-film" type="button" aria-controls="film">Play full film <span aria-hidden="true">↗</span></button>
+            </div>
+            <div class="episodes" role="group" aria-label="Play from a selected episode" data-enhance hidden>
+              <button class="episode" type="button" data-episode="0" aria-pressed="true" aria-controls="film">Episode 01 <time>0:00</time></button>
+              <button class="episode" type="button" data-episode="1" aria-pressed="false" aria-controls="film">Episode 02 <time>0:45.74</time></button>
+              <button class="episode" type="button" data-episode="2" aria-pressed="false" aria-controls="film">Episode 03 <time>1:30.24</time></button>
+              <button class="episode" type="button" data-episode="3" aria-pressed="false" aria-controls="film">Episode 04 <time>2:12.74</time></button>
+            </div>
+          </div>
+          <aside class="observations" aria-label="Three observed moments" data-enhance hidden>
+            <h2 class="rail-heading">Watch the response</h2>
+            <p class="rail-help">A physical constraint → an observed action.<br>Select a short passage.</p>
+            <button class="moment" type="button" data-moment="0" aria-pressed="false" aria-controls="film">
+              <span class="moment-head"><span class="moment-index">01 / THREADING</span><time>0:07–0:16</time></span>
+              <span class="moment-title">A thread needs rotation.</span>
+              <span class="observed"><svg viewBox="0 0 12 10" aria-hidden="true"><path d="M0 4h8L5 1l1-1 5 5-5 5-1-1 3-3H0z"/></svg>Repeated contacts turn the nut.</span>
+            </button>
+            <button class="moment" type="button" data-moment="1" aria-pressed="false" aria-controls="film">
+              <span class="moment-head"><span class="moment-index">02 / ALIGNMENT</span><time>0:37–0:42</time></span>
+              <span class="moment-title">Gear teeth must meet.</span>
+              <span class="observed"><svg viewBox="0 0 12 10" aria-hidden="true"><path d="M0 4h8L5 1l1-1 5 5-5 5-1-1 3-3H0z"/></svg>A small adjustment brings them into alignment.</span>
+            </button>
+            <button class="moment" type="button" data-moment="2" aria-pressed="false" aria-controls="film">
+              <span class="moment-head"><span class="moment-index">03 / CLUTTER</span><time>1:30–1:44</time></span>
+              <span class="moment-title">Loose parts crowd the board.</span>
+              <span class="observed"><svg viewBox="0 0 12 10" aria-hidden="true"><path d="M0 4h8L5 1l1-1 5 5-5 5-1-1 3-3H0z"/></svg>The robot moves objects aside.</span>
+            </button>
+            <p class="rail-foot">Observed behavior, not a programmed sequence of stages.</p>
+          </aside>
+        </div>
+      </div>
+      <div class="cinema-caption" id="film-caption">
+        <p>Four separate reset-to-success episodes from a ten-component policy. These selected successes illustrate behavior; they are not a continuous rollout or a success-rate evaluation.</p>
+        <p class="live-status" id="film-status" role="status" aria-live="polite" aria-atomic="true">Board view · Episode 01 of 04</p>
+      </div>
+      <noscript><p>Use the native video controls to watch all four selected episodes. <a href="/assets/k10-strategies/selected-episodes-closeup.mp4">Watch the close-up film.</a></p></noscript>
+    </section>
+
+    <section class="research" aria-labelledby="research-title">
+      <div class="research-copy">
+        <p class="eyebrow">The learning problem</p>
+        <h2 id="research-title">Specify the outcome.<br>Leave the maneuvers open.</h2>
+        <p>Assembly involves more than bringing a part to a target. Contact changes a grasp; a tooth blocks a gear; another object occupies the approach. The policy must respond to what happens.</p>
+        <p><strong>One shared single-component policy, K1, learns across twenty NIST assembly tasks.</strong> The multi-component policies are trained separately. The K10 policy shown above must assemble all ten active parts; neither their order nor the individual maneuvers are prescribed.</p>
+        <a class="overview-link" href="/assets/overview.mp4">Watch the narrated overview <span>2:57 ↗</span></a>
+      </div>
+      <dl class="contract" aria-label="Training setup">
+        <div class="contract-row"><dt>Observations</dt><dd>Point clouds and robot state provide the policy’s input.</dd></div>
+        <div class="contract-row"><dt>Task reward</dt><dd>A binary signal for completed assembly. Reaching, grasping, and partial insertion have no task-progress rewards; control costs are retained.</dd></div>
+        <div class="contract-row"><dt>Starting states</dt><dd>A cached bank of physically valid states: loose parts, in-hand grasps, and partial assemblies. These resets are not demonstrations.</dd></div>
+        <div class="contract-row"><dt>Experience</dt><dd>Large-scale parallel training with beta sampling of starting states, emphasizing states the policy sometimes solves while keeping every state eligible.</dd></div>
+      </dl>
+    </section>
+    <section class="scope" aria-labelledby="scope-title">
+      <div>
+        <h2 id="scope-title">What these observations establish</h2>
+        <p>These are examples of learned assembly behavior in simulation, not a claim of reliability on physical hardware. Successful clips alone cannot establish how often a policy succeeds.</p>
+      </div>
+      <div>
+        <h2>Keep the evaluation conditions in view</h2>
+        <p>Success measurements depend on the task, policy, and reset distribution. In particular, mixed starting-state results can include held parts and partial assemblies; they should not be read as loose-part-only success.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap"><span>AlphaNIST · Robotic assembly in simulation</span><a href="/scratch/">Design study B · Compare all directions ↗</a></footer>
+  <script>
+    (() => {
+      const film = document.getElementById('film');
+      const frame = document.getElementById('frame');
+      const status = document.getElementById('film-status');
+      const fullFilm = document.getElementById('full-film');
+      const moments = [...document.querySelectorAll('[data-moment]')];
+      const episodes = [...document.querySelectorAll('[data-episode]')];
+      const views = [...document.querySelectorAll('[data-view]')];
+      const episodeStarts = [0, 45.74, 90.24, 132.74];
+      const clips = [
+        { start:7, end:16, label:'Threading', episode:1 },
+        { start:37, end:42, label:'Gear alignment', episode:1 },
+        { start:90.24, end:104.24, label:'Moving objects aside', episode:3 }
+      ];
+      let camera = 'fixed';
+      let clip = null;
+      let switching = false;
+      let lastEpisode = 0;
+      let clipFinished = false;
+
+      document.querySelectorAll('[data-enhance]').forEach(element => { element.hidden = false; });
+
+      function currentEpisode() {
+        for (let index = episodeStarts.length - 1; index >= 0; index--) {
+          if (film.currentTime >= episodeStarts[index]) return index;
+        }
+        return 0;
+      }
+
+      function announce(message) {
+        status.textContent = message || `${camera === 'fixed' ? 'Board view' : 'Close-up'} · Episode 0${currentEpisode() + 1} of 04`;
+      }
+
+      function clearMoment() {
+        clip = null;
+        clipFinished = false;
+        moments.forEach(button => button.setAttribute('aria-pressed', 'false'));
+        fullFilm.innerHTML = 'Play full film <span aria-hidden="true">↗</span>';
+      }
+
+      async function play() {
+        try { await film.play(); }
+        catch (error) {
+          if (error.name !== 'AbortError') announce('Use the video’s play button to start playback.');
+        }
+      }
+
+      function jump(time) {
+        if (film.readyState >= 1) {
+          film.currentTime = time;
+          play();
+        } else {
+          film.addEventListener('loadedmetadata', () => { film.currentTime = time; play(); }, { once:true });
+          film.load();
+        }
+      }
+
+      moments.forEach((button, index) => button.addEventListener('click', () => {
+        if (switching) return;
+        clip = clips[index];
+        clipFinished = false;
+        moments.forEach((item, itemIndex) => item.setAttribute('aria-pressed', String(itemIndex === index)));
+        fullFilm.innerHTML = 'Return to full film <span aria-hidden="true">↗</span>';
+        announce(`${clip.label} · Episode 0${clip.episode} · Pauses at the end of this passage`);
+        jump(clip.start);
+      }));
+
+      episodes.forEach((button, index) => button.addEventListener('click', () => {
+        if (switching) return;
+        clearMoment();
+        jump(episodeStarts[index]);
+        announce(`${camera === 'fixed' ? 'Board view' : 'Close-up'} · Episode 0${index + 1} of 04`);
+      }));
+
+      fullFilm.addEventListener('click', () => {
+        if (switching) return;
+        clearMoment();
+        jump(0);
+        announce('Full film · Four separate selected episodes · 2:41');
+      });
+
+      views.forEach(button => button.addEventListener('click', () => {
+        const nextCamera = button.dataset.view;
+        if (nextCamera === camera || switching) return;
+        switching = true;
+        const time = film.currentTime;
+        const wasPlaying = !film.paused;
+        film.pause();
+        camera = nextCamera;
+        views.forEach(item => {
+          item.disabled = true;
+          item.setAttribute('aria-pressed', String(item.dataset.view === camera));
+        });
+        frame.classList.toggle('closeup', camera === 'closeup');
+        film.poster = `/assets/k10-strategies/poster-${camera}.jpg`;
+        film.setAttribute('aria-label', `Four selected ten-component assembly episodes in simulation, ${camera === 'fixed' ? 'board view' : 'close-up view'}`);
+        film.addEventListener('loadedmetadata', () => {
+          film.currentTime = Math.min(time, film.duration);
+          switching = false;
+          views.forEach(item => { item.disabled = false; });
+          if (wasPlaying) play();
+          announce(clip ? `${clip.label} · ${camera === 'fixed' ? 'Board view' : 'Close-up'}` : undefined);
+        }, { once:true });
+        film.src = `/assets/k10-strategies/selected-episodes-${camera}.mp4`;
+        film.load();
+      }));
+
+      film.addEventListener('timeupdate', () => {
+        if (switching) return;
+        const episode = currentEpisode();
+        episodes.forEach((button, index) => button.setAttribute('aria-pressed', String(index === episode)));
+        if (episode !== lastEpisode && !clip) announce();
+        lastEpisode = episode;
+        if (clip && !clipFinished && film.currentTime >= clip.end) {
+          film.pause();
+          clipFinished = true;
+          film.currentTime = clip.end;
+          announce(`${clip.label} · Passage complete. Select it to replay, or return to the full film.`);
+        }
+      });
+
+      film.addEventListener('seeking', () => {
+        if (switching || !clip) return;
+        if (film.currentTime < clip.start - .1 || film.currentTime > clip.end + .4) {
+          clearMoment();
+          announce();
+        }
+      });
+
+      film.addEventListener('play', () => {
+        if (clip && clipFinished) {
+          clipFinished = false;
+          film.currentTime = clip.start;
+          announce(`${clip.label} · Replaying passage`);
+        }
+      });
+
+      film.addEventListener('error', () => {
+        switching = false;
+        views.forEach(item => { item.disabled = false; });
+        announce('The film could not load. Try the other camera view or open the narrated overview below.');
+      });
+    })();
+  </script>
+</body>
+</html>
