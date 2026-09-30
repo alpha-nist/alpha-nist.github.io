@@ -6,10 +6,21 @@
   <style>
     :root{font-family:Arial,Helvetica,sans-serif;color:#262b29;background:#f6f6f2;font-synthesis:none}*{box-sizing:border-box}body{margin:0}a{color:inherit;text-underline-offset:4px}a:focus-visible{outline:2px solid #777328;outline-offset:5px}.wrap{width:min(1300px,calc(100% - 80px));margin:auto}header{padding:28px 0;display:flex;justify-content:space-between;gap:24px;border-bottom:1px solid #d8dcd5;font-size:14px}header .brand{font-size:19px;letter-spacing:-.6px;text-decoration:none}.intro{padding:64px 0 43px;display:flex;justify-content:space-between;align-items:end;gap:48px}h1,h2,p{margin:0}h1{font-size:34px;line-height:1.2;letter-spacing:-.9px;font-weight:400;max-width:420px}.intro p{font-size:15px;line-height:1.75;color:#62675f;max-width:455px}.directions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}.sample{min-width:0}.image-link{display:block;border:1px solid #d8dcd5;background:white;overflow:hidden}.image-link img{display:block;width:100%;height:auto;aspect-ratio:1.44;object-fit:cover;object-position:top}.sample-head{display:flex;gap:18px;align-items:baseline;margin:23px 0 11px}.letter{font-size:14px;color:#7c7528}h2{font-weight:400;font-size:22px;letter-spacing:-.35px}.sample p{font-size:14px;line-height:1.7;color:#62675f;max-width:350px;min-height:71px}.open{display:inline-block;margin:18px 0 0;font-size:14px}.notes{margin:62px 0 40px;padding-top:26px;border-top:1px solid #d8dcd5;display:grid;grid-template-columns:1fr 2fr;gap:35px}.notes h2{font-size:16px}.notes p{font-size:14px;line-height:1.75;color:#62675f;max-width:790px}footer{padding:20px 0 35px;font-size:13px;color:#62675f}@media(max-width:800px){.wrap{width:calc(100% - 36px)}.intro{padding:38px 0 32px;display:block}.intro p{margin-top:20px}h1{font-size:30px}.directions{grid-template-columns:1fr;gap:44px}.sample p{min-height:0;max-width:none}.image-link img{aspect-ratio:1.44}.sample-head{margin-top:18px}.notes{grid-template-columns:1fr;gap:15px;margin-top:45px}header{padding:22px 0;font-size:13px}}
   </style>
+  <style>
+    .current-preview { padding: 32px 0; border-bottom: 1px solid #d8dcd5; display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
+    .current-preview h2 { font-size: 24px; }
+    .current-preview p { color: #62675f; font-size: 14px; line-height: 1.7; margin-top: 12px; max-width: 550px; }
+    .current-preview nav { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 20px; font-size: 14px; }
+    @media (max-width: 800px) { .current-preview { grid-template-columns: 1fr; gap: 20px; } .current-preview nav { justify-content: flex-start; } }
+  </style>
 </head>
 <body>
   <header class="wrap"><a class="brand" href="/">AlphaNIST</a><a href="/">Current project page ↗</a></header>
   <main class="wrap">
+    <section class="current-preview" aria-labelledby="current-layout-title">
+      <div><h2 id="current-layout-title">Current design · Layout revision</h2><p>The existing page, with a wider starting-state video, a more balanced text layout, and individual navigation for all twenty assembly clips.</p></div>
+      <nav aria-label="Review the current design revision"><a href="assembly-layout/#assembly-introduction">Challenge &amp; starting states ↗</a><a href="assembly-layout/#demo">Twenty assembly buttons ↗</a></nav>
+    </section>
     <section class="intro"><h1>Three directions.<br>The same research.</h1><p>Working previews for the AlphaNIST project page. Each uses the existing research and footage, with a different editorial structure. The main page is unchanged.</p></section>
     <div class="directions">
       <article class="sample"><a class="image-link" href="page-directions/research.html" aria-label="Open direction A, research-first"><img src="page-directions/preview-research.jpg" width="1440" height="1000" alt="Preview of the research-first AlphaNIST page"></a><div class="sample-head"><span class="letter">A</span><h2>Research-first</h2></div><p>The question, learning setup, and measured comparisons lead. Demonstrations make the results concrete.</p><a class="open" href="page-directions/research.html">Explore A ↗</a></article>

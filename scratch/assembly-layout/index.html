@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="AlphaNIST studies how dexterity and coordination can be learned in simulation with binary task rewards, cached starting states, and large-scale training, without prescribed manipulation stages.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AlphaNIST">
+    <meta property="og:description" content="Learning dexterity and coordination for robotic assembly in simulation, with binary task rewards and no prescribed manipulation stages.">
+    <meta property="og:url" content="https://alpha-nist.github.io/scratch/assembly-layout/">
+    <meta property="og:image" content="https://alpha-nist.github.io/assets/k10-strategies/poster.jpg?v=detail-1">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:image:alt" content="A Franka robot assembling components on the NIST board in simulation.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://alpha-nist.github.io/assets/k10-strategies/poster.jpg?v=detail-1">
+    <meta name="twitter:image:alt" content="A Franka robot assembling components on the NIST board in simulation.">
+    <link rel="canonical" href="https://alpha-nist.github.io/scratch/assembly-layout/">
+    <link rel="stylesheet" href="/styles.css?v=studio-29">
+    <title>AlphaNIST — Layout preview</title>
+    <meta name="robots" content="noindex,nofollow">
+    
+  <style>
+      .preview-links { display: flex; align-items: center; gap: 20px; font-size: 12px; color: var(--secondary); }
+      .preview-links a { text-decoration-color: #b3b3b8; }
+      .assembly-introduction { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; padding: 64px 0 48px; }
+      .assembly-introduction .task-challenge, .assembly-introduction .story { padding: 0; }
+      .assembly-introduction .story-body { width: 100%; margin: 0; }
+      .assembly-introduction h2 { margin: 0 0 16px; }
+      #starting-states .research-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      #starting-states .reset-explanation { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; }
+      #starting-states .reset-explanation p { margin: 0; }
+      #starting-states { padding-bottom: 48px; }
+      #demo .chapter-navigation { display: block; margin-top: 20px; }
+      #demo .chapters { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; border-radius: 0; background: transparent; }
+      #demo .chapter { min-height: 40px; padding: 9px 16px; background: #e9e9ed; }
+      #demo .chapter[aria-pressed="true"] { background: #29292c; }
+      @media (max-width: 900px) {
+        .assembly-introduction { gap: 36px; padding: 44px 0 36px; }
+        #starting-states .reset-explanation { gap: 36px; }
+      }
+      @media (max-width: 700px) {
+        .assembly-introduction { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+        #starting-states .reset-explanation { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+        #starting-states { padding-bottom: 36px; }
+        #demo .chapters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+        #demo .chapter { min-height: 42px; padding-inline: 10px; font-size: 12px; text-align: left; }
+        .preview-links { gap: 12px; }
+        .preview-links span { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="#" aria-label="Alpha NIST home">Alpha NIST</a>
+        <div class="preview-links"><span>Layout preview</span><a href="/scratch/">Scratch</a><a href="/">Current page ↗</a></div>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="project-title">
+        <div class="hero-copy media-shell">
+          <h1 id="project-title">AlphaNIST</h1>
+          <p class="hero-description">Assembly has a clear goal, but many possible solutions. In simulation, AlphaNIST learns to grasp, reorient, and assemble parts using binary task rewards, without demonstrations or prescribed manipulation stages.</p>
+          <p class="hero-description"><a href="/assets/overview.mp4" type="video/mp4" target="_blank" rel="noopener">Narrated overview · 2:57</a></p>
+        </div>
+        <section class="strategies" id="strategies" aria-label="Multi-component assembly demonstrations">
+          <div class="strategy-shell media-shell">
+            <figure class="film-figure" id="strategy-player">
+              <div class="video-frame">
+                <video id="strategy-video" src="/assets/k10-strategies/selected-episodes-fixed.mp4?v=fixed-2" controls playsinline preload="none" poster="/assets/k10-strategies/poster-fixed.jpg?v=fixed-2" width="1920" height="1080" aria-label="Four selected ten-component assembly episodes, fixed camera view with optional synchronized close-up" aria-describedby="strategy-caption strategy-context">
+                  Your browser does not support embedded video. <a href="/assets/k10-strategies/selected-episodes-fixed.mp4?v=fixed-2">Download the film.</a>
+                </video>
+                <video id="strategy-detail" src="/assets/k10-strategies/selected-episodes-closeup.mp4?v=layer-1" poster="/assets/k10-strategies/poster-closeup.jpg?v=layer-1" width="736" height="736" muted playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture hidden></video>
+                <button class="film-play" type="button" aria-controls="strategy-video" hidden>
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>
+                  <span>Play</span><span class="film-duration">2:41</span>
+                </button>
+              </div>
+              <figcaption id="strategy-caption">
+                Ten-component assembly.
+                <span class="strategy-view-controls">
+                  <button class="closeup-toggle" type="button" role="switch" aria-checked="true" aria-controls="strategy-detail" hidden>Close-up<span class="switch-track" aria-hidden="true"></span></button>
+                  <button class="strategy-fullscreen" type="button" aria-label="Enter fullscreen" aria-controls="strategy-player" title="Fullscreen" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H3v4M13 3h4v4M3 13v4h4M17 13v4h-4"/></svg></button>
+                </span>
+              </figcaption>
+            </figure>
+            <div class="strategy-moments" role="group" aria-label="Jump to a moment" hidden>
+              <div class="moment-groups"></div>
+            </div>
+            <p class="strategy-status film-context" role="status" aria-atomic="true"></p>
+            <p class="film-context" id="strategy-context">Four separate reset-to-success runs, not a continuous rollout or a success-rate evaluation.</p>
+            <noscript><p class="film-context">Use the video controls to watch the film. <a href="/assets/k10-strategies/timeline.json?v=detail-1">View the episode timeline.</a></p></noscript>
+          </div>
+        </section>
+      </section>
+      <div class="assembly-introduction media-shell" id="assembly-introduction">
+      <section class="task-challenge" aria-labelledby="task-challenge-title">
+        <div class="story-body">
+          <h2 id="task-challenge-title">The assembly challenge</h2>
+          <p>The NIST board combines twenty assemblies, from nut threading and gear meshing to peg and connector insertion. Parts as small as 4&nbsp;mm in diameter must be grasped, reoriented, and aligned with tight-fitting mating surfaces.</p>
+          <p>Small errors can cause slipping or jamming, requiring the robot to recover and try again. With several components on the board, it must also handle clutter and choose an assembly order: placing one part can obstruct access to another.</p>
+        </div>
+      </section>
+      <section class="story" id="idea" aria-label="Overview">
+        <div class="story-body">
+          <h2>Learning setup</h2>
+          <p>We ask how much dexterity and coordination can be learned from a reward for the completed task. In the single-component experiments, one shared policy learns across twenty NIST assembly tasks.</p>
+          <p>Training combines cached starting states, beta sampling, and large-scale parallel experience. The task reward is binary: completed assembly receives a reward; reaching, grasping, and partial insertion do not receive progress rewards.</p>
+          <p>Multi-component policies are trained separately from the single-component policy. Here, the task reward requires all active parts to be assembled. Neither the assembly order nor the individual maneuvers are prescribed.</p>
+        </div>
+      </section>
+      </div>
+      <section class="research-section" id="starting-states" aria-labelledby="starting-states-title">
+        <div class="research-content media-shell">
+          <div class="research-layout">
+            <div class="research-copy">
+              <h2 id="starting-states-title">Starting states</h2>
+              <div class="reset-explanation">
+              <p>A cached bank contains physically valid starting states: loose parts, in-hand grasps, and partial assemblies.</p>
+              <p>Beta sampling puts more training on states the policy sometimes solves, while retaining a chance to sample every state. These are starting states, not demonstrations of how to finish.</p>
+              </div>
+            </div>
+            <figure class="research-figure">
+              <div class="video-frame">
+                <video id="starting-states-video" src="/assets/research/k1-starting-states.mp4" controls muted loop playsinline preload="none" poster="/assets/research/k1-starting-states-poster.jpg" width="1920" height="1080" aria-label="Sampled single-component starting states, held briefly without policy actions" aria-describedby="starting-states-caption">
+                  Your browser does not support embedded video. <a href="/assets/research/k1-starting-states.mp4">Download the video.</a>
+                </video>
+                <button class="film-play" type="button" aria-controls="starting-states-video" hidden>
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>
+                  <span>Play</span><span class="film-duration">0:34</span>
+                </button>
+              </div>
+              <figcaption id="starting-states-caption">Sampled k=1 resets.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+      <section class="experiments" id="experiments" aria-labelledby="experiments-title">
+        <div class="section-intro media-shell">
+          <h2 id="experiments-title">Single-component assembly</h2>
+        </div>
+        <section class="demo media-shell" id="demo" aria-label="Assembly demonstration">
+          <figure class="film-figure">
+            <div class="video-frame">
+              <video id="assembly-video" controls playsinline preload="metadata" poster="/assets/assembly-poster.jpg" width="3840" height="1080" aria-label="Alpha NIST assembly film, with a fixed view on the left and a synchronized close-up on the right" aria-describedby="film-caption film-context">
+                <source src="/assets/assembly-demo.mp4" type="video/mp4">
+                Your browser does not support embedded video. <a href="/assets/assembly-demo.mp4">Download the film.</a>
+              </video>
+              <button class="film-play" type="button" aria-controls="assembly-video" hidden>
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>
+                <span>Play</span><span class="film-duration">1:43</span>
+              </button>
+            </div>
+            <figcaption id="film-caption">Single-component examples. <span>Fixed view + synchronized close-up.</span></figcaption>
+          </figure>
+          <div class="chapter-navigation">
+            <div class="chapters" role="group" aria-label="Jump to an assembly asset">
+              <button class="chapter" type="button" data-start="0" aria-pressed="true" aria-controls="assembly-video" disabled><span class="chapter-name">Small gear</span></button>
+              <button class="chapter" type="button" data-start="4.08" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Medium gear</span></button>
+              <button class="chapter" type="button" data-start="8.08" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Large gear</span></button>
+              <button class="chapter" type="button" data-start="10.76" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">M4 nut</span></button>
+              <button class="chapter" type="button" data-start="20.92" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">M8 nut</span></button>
+              <button class="chapter" type="button" data-start="28" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">M12 nut</span></button>
+              <button class="chapter" type="button" data-start="35.08" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">M16 nut</span></button>
+              <button class="chapter" type="button" data-start="43.64" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">4 mm rod</span></button>
+              <button class="chapter" type="button" data-start="49" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">8 mm rod</span></button>
+              <button class="chapter" type="button" data-start="51.48" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">12 mm rod</span></button>
+              <button class="chapter" type="button" data-start="53.72" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">16 mm rod</span></button>
+              <button class="chapter" type="button" data-start="57.16" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">4 mm peg</span></button>
+              <button class="chapter" type="button" data-start="61.6" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">8 mm peg</span></button>
+              <button class="chapter" type="button" data-start="64.44" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">12 mm peg</span></button>
+              <button class="chapter" type="button" data-start="67.6" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">16 mm peg</span></button>
+              <button class="chapter" type="button" data-start="73.68" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">USB-A</span></button>
+              <button class="chapter" type="button" data-start="78.08" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Waterproof</span></button>
+              <button class="chapter" type="button" data-start="84.48" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">BNC</span></button>
+              <button class="chapter" type="button" data-start="94.24" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">D-sub</span></button>
+              <button class="chapter" type="button" data-start="97.28" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Ethernet</span></button>
+            </div>
+          </div>
+          <p class="chapter-status visually-hidden" role="status" aria-atomic="true"></p>
+          <p class="film-context" id="film-context">Selected successful single-asset demonstrations in simulation.<br>Not a continuous full-board rollout or a success-rate evaluation.</p>
+          <noscript><p class="film-context">Use the video controls to watch the complete film.</p></noscript>
+        </section>
+      </section>
+      <section class="research-section training-comparison" id="training-across-assemblies" aria-labelledby="training-across-assemblies-title">
+        <div class="research-content media-shell">
+          <div class="research-layout">
+            <div class="research-copy">
+              <h2 id="training-across-assemblies-title">Training across assemblies</h2>
+              <p>With binary task rewards, one shared policy reaches higher training success than twenty separately trained specialists. In this comparison, adding the tested dense reward shaping reduces success, especially for shared training.</p>
+            </div>
+            <figure class="research-figure">
+              <div class="research-plot" tabindex="0" role="region" aria-label="Figure 5 comparison; scroll horizontally on smaller screens">
+                <img src="/assets/research/heterogeneous-training.svg?v=paper-values" alt="Figure 5 comparison: success by task for four training conditions, alongside overall success of 98.2% for a shared policy with binary rewards, 81.4% for separate policies with binary rewards, 17.8% for a shared policy with dense rewards, and 78.3% for separate policies with dense rewards." width="1120" height="440" loading="lazy" decoding="async">
+              </div>
+              <figcaption><span class="research-plot-hint">Swipe or scroll horizontally to view the full figure.</span>Training success across mixed starting states, including partial assemblies. Error bars show variation across nearby checkpoints, not independent seeds. The two panels use different reported checkpoints; total compute is not matched. <a href="/assets/research/heterogeneous-training.svg?v=paper-values" target="_blank" rel="noopener">Full size ↗</a> · <a href="/assets/research/heterogeneous-training-data.json?v=paper-values">Figure details and data</a></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+      <section class="discovery" id="discoveries" aria-labelledby="discovery-title">
+        <div class="section-intro media-shell">
+          <h2 id="discovery-title">Observed assembly behaviors</h2>
+          <p>The robot sets down a center-held peg and grasps nearer its end for insertion. It uses the board to reorient a connector, and turns nuts through repeated fingertip contacts.</p>
+        </div>
+        <div class="behavior-gallery media-shell">
+          <div class="behavior-track" id="behavior-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Assembly strategy sequences" aria-describedby="behavior-help">
+            <article class="behavior-slide" id="behavior-peg" data-label="Peg regrasp" aria-label="Peg regrasp">
+              <figure>
+                <a href="/assets/peg-regrasp.png" target="_blank" rel="noopener" aria-label="Open peg regrasp sequence at full resolution"><img src="/assets/peg-regrasp.png" alt="Five successive frames: the robot holds an 8 mm peg at its center, releases it onto the board, grasps near its end, lifts it, and inserts it into its socket." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-waterproof" data-label="Board reorientation" aria-label="Board reorientation">
+              <figure>
+                <a href="/assets/assembly-strategies/waterproof.png" target="_blank" rel="noopener" aria-label="Open board-assisted connector reorientation at full resolution"><img src="/assets/assembly-strategies/waterproof.png" alt="Five frames show the gripper using the board surface to reorient a waterproof connector before insertion." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-dsub" data-label="Connector regrasp" aria-label="Connector regrasp">
+              <figure>
+                <a href="/assets/assembly-strategies/dsub.png" target="_blank" rel="noopener" aria-label="Open D-sub connector regrasp sequence at full resolution"><img src="/assets/assembly-strategies/dsub.png" alt="Five frames show the gripper setting down a D-sub connector and regrasping it for socket alignment." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-gear" data-label="Gear placement" aria-label="Gear placement">
+              <figure>
+                <a href="/assets/assembly-strategies/gear-medium.png" target="_blank" rel="noopener" aria-label="Open gear placement sequence at full resolution"><img src="/assets/assembly-strategies/gear-medium.png" alt="Five frames show a medium gear pivoting from a side grasp toward a horizontal pose over its mounting post." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-m12" data-label="Nut reorientation" aria-label="Nut reorientation">
+              <figure>
+                <a href="/assets/assembly-strategies/nut-m12.png" target="_blank" rel="noopener" aria-label="Open M12 nut reorientation sequence at full resolution"><img src="/assets/assembly-strategies/nut-m12.png" alt="Five frames show an M12 nut being rolled from its edge onto a flat face and positioned on a bolt." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-m4" data-label="Nut tapping" aria-label="Nut tapping">
+              <figure>
+                <a href="/assets/assembly-strategies/nut-m4.png" target="_blank" rel="noopener" aria-label="Open M4 nut tapping sequence at full resolution"><img src="/assets/assembly-strategies/nut-m4.png" alt="Five frames show successive one-sided fingertip contacts advancing an M4 nut along a bolt." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-rod" data-label="Rod repositioning" aria-label="Rod repositioning">
+              <figure>
+                <a href="/assets/assembly-strategies/rod-8mm.png" target="_blank" rel="noopener" aria-label="Open rod repositioning sequence at full resolution"><img src="/assets/assembly-strategies/rod-8mm.png" alt="Five frames show a fingertip pushing an 8 mm rod across the surface, followed by grasping and lifting." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-m16" data-label="Circular threading" aria-label="Circular threading">
+              <figure>
+                <a href="/assets/assembly-strategies/nut-m16.png" target="_blank" rel="noopener" aria-label="Open M16 circular threading sequence at full resolution"><img src="/assets/assembly-strategies/nut-m16.png" alt="Five frames show different gripper positions around an M16 nut while fingertip contacts turn the nut along the bolt." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+          </div>
+          <div class="behavior-navigation chapters" role="group" aria-label="Choose an assembly strategy" hidden></div>
+          <div class="behavior-controls" hidden>
+            <button class="behavior-prev" type="button" aria-label="Previous strategy" aria-controls="behavior-track">←</button>
+            <p class="behavior-status" role="status" aria-live="polite" aria-atomic="true"></p>
+            <button class="behavior-next" type="button" aria-label="Next strategy" aria-controls="behavior-track">→</button>
+          </div>
+          <p class="behavior-help" id="behavior-help">Each sequence reads left to right. Swipe or scroll horizontally to browse strategies; open an image for the full-resolution view.</p>
+        </div>
+      </section>
+      <section class="story" aria-labelledby="findings-title">
+        <div class="story-body research-copy">
+          <h2 id="findings-title">Learning dexterity and coordination</h2>
+          <p>Training for completed assembly produces both precise manipulation and choices about how to organize longer sequences. The policies learn grasp changes, move obstructing parts, and adjust their motions around neighboring components, without prescribed manipulation stages.</p>
+          <p>In these experiments, shared training gives higher training success than separate specialists, and binary task rewards outperform the dense shaping tested here. The multi-component examples show that the same kind of objective can also support sequences in which the policy chooses what to assemble next.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="wordmark" href="#">Alpha NIST</a>
+        <p>Robotic assembly experiments in simulation.</p>
+      </div>
+    </footer>
+    <script>
+const video = document.querySelector("#assembly-video");
+const chapters = [...document.querySelectorAll("#demo .chapter")];
+const chapterStatus = document.querySelector("#demo .chapter-status");
+const films = [...document.querySelectorAll("video:not(#strategy-detail)")];
+
+for (const player of films) {
+  player.addEventListener("play", () => {
+    for (const other of films) if (other !== player) other.pause();
+  });
+}
+
+for (const section of document.querySelectorAll("#demo, #starting-states")) {
+  const player = section.querySelector("video");
+  const play = section.querySelector(".film-play");
+  if (!player || !play) continue;
+  player.controls = false;
+  play.hidden = false;
+  const startFilm = () => {
+    player.controls = true;
+    play.hidden = true;
+    player.focus({ preventScroll: true });
+    player.play().catch(() => { if (player.paused) play.hidden = false; });
+  };
+  play.addEventListener("click", startFilm);
+  player.addEventListener("play", () => { play.hidden = true; });
+  player.addEventListener("error", () => { player.controls = true; play.hidden = true; });
+}
+
+if (video && chapters.length) {
+  const updateChapter = () => {
+    let activeIndex = 0;
+    chapters.forEach((chapter, index) => {
+      if (video.currentTime >= Number(chapter.dataset.start)) activeIndex = index;
+    });
+    chapters.forEach((chapter, index) => {
+      chapter.setAttribute("aria-pressed", String(index === activeIndex));
+    });
+  };
+
+  const enableChapters = () => {
+    chapters.forEach((chapter) => { chapter.disabled = false; });
+  };
+
+  chapters.forEach((chapter) => {
+    chapter.addEventListener("click", () => {
+      video.currentTime = Number(chapter.dataset.start);
+      updateChapter();
+      chapterStatus.textContent = `Selected ${chapter.querySelector(".chapter-name").textContent}. Press play in the video to watch.`;
+      if (!video.paused) chapterStatus.textContent = `Playing ${chapter.querySelector(".chapter-name").textContent}.`;
+    });
+  });
+
+  video.addEventListener("loadedmetadata", enableChapters);
+  video.addEventListener("timeupdate", updateChapter);
+  video.addEventListener("seeked", updateChapter);
+  if (video.readyState >= 1) enableChapters();
+}
+
+const gallery = document.querySelector(".behavior-gallery");
+if (gallery) {
+  const track = gallery.querySelector(".behavior-track");
+  const slides = [...track.querySelectorAll(".behavior-slide")];
+  const navigation = gallery.querySelector(".behavior-navigation");
+  const controls = gallery.querySelector(".behavior-controls");
+  const previous = controls.querySelector(".behavior-prev");
+  const next = controls.querySelector(".behavior-next");
+  const status = controls.querySelector(".behavior-status");
+  let activeIndex = 0, scrollFrame;
+
+  const update = (index) => {
+    activeIndex = index;
+    [...navigation.children].forEach((button, candidate) => button.setAttribute("aria-pressed", String(candidate === index)));
+    previous.disabled = index === 0;
+    next.disabled = index === slides.length - 1;
+    const position = `${index + 1} / ${slides.length}`;
+    if (status.textContent !== position) status.textContent = position;
+  };
+  const goTo = (index) => {
+    index = Math.max(0, Math.min(slides.length - 1, index));
+    track.scrollTo({ left: slides[index].offsetLeft - slides[0].offsetLeft, behavior: "instant" });
+    update(index);
+  };
+  slides.forEach((slide, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "chapter";
+    button.textContent = slide.dataset.label;
+    button.setAttribute("aria-controls", slide.id);
+    button.addEventListener("click", () => goTo(index));
+    navigation.append(button);
+  });
+  previous.addEventListener("click", () => goTo(activeIndex - 1));
+  next.addEventListener("click", () => goTo(activeIndex + 1));
+  track.addEventListener("keydown", event => {
+    if (event.target !== track) return;
+    const targets = { ArrowLeft: activeIndex - 1, ArrowRight: activeIndex + 1, Home: 0, End: slides.length - 1 };
+    if (!(event.key in targets)) return;
+    event.preventDefault();
+    goTo(targets[event.key]);
+  });
+  track.addEventListener("scroll", () => {
+    if (scrollFrame) return;
+    scrollFrame = requestAnimationFrame(() => {
+      scrollFrame = undefined;
+      const distances = slides.map(slide => Math.abs(slide.offsetLeft - slides[0].offsetLeft - track.scrollLeft));
+      update(distances.indexOf(Math.min(...distances)));
+    });
+  }, { passive: true });
+  new ResizeObserver(() => goTo(activeIndex)).observe(track);
+  navigation.hidden = false;
+  controls.hidden = false;
+  update(0);
+}
+
+const strategies = document.querySelector("#strategies");
+if (strategies) {
+  const player = strategies.querySelector("video");
+  const play = strategies.querySelector(".film-play");
+  const moments = strategies.querySelector(".strategy-moments");
+  const labels = moments.querySelector(".moment-groups");
+  const status = strategies.querySelector(".strategy-status");
+  const closeup = strategies.querySelector(".closeup-toggle");
+  const detail = strategies.querySelector("#strategy-detail");
+  const frame = strategies.querySelector("#strategy-player");
+  const fullscreen = strategies.querySelector(".strategy-fullscreen");
+  let pendingSeek, loading = false, playRequest = 0;
+  let detailStarted = false, detailFailed = false, detailReady = true, detailPlayPending = false;
+  let exactDetailSeek = false, lastDetailSeek = -Infinity;
+  player.controls = false;
+  play.hidden = false;
+  closeup.hidden = false;
+
+  const updateDetailVisibility = () => {
+    detail.hidden = closeup.getAttribute("aria-checked") !== "true" || detailFailed || !detailReady;
+  };
+  closeup.addEventListener("click", () => {
+    closeup.setAttribute("aria-checked", String(closeup.getAttribute("aria-checked") !== "true"));
+    updateDetailVisibility();
+  });
+  updateDetailVisibility();
+
+  const failDetail = () => {
+    detailFailed = true;
+    closeup.disabled = true;
+    closeup.setAttribute("aria-checked", "false");
+    updateDetailVisibility();
+    status.textContent = "The close-up is unavailable. The fixed view can still be played.";
+  };
+  const syncDetail = (force = false) => {
+    exactDetailSeek ||= force;
+    if (detailFailed || player.readyState < 1) return;
+    if (!detailStarted) {
+      detailStarted = true;
+      detailReady = false;
+      updateDetailVisibility();
+      detail.preload = "auto";
+      detail.load();
+      return;
+    }
+    if (detail.readyState < 1) return;
+    if (detail.playbackRate !== player.playbackRate) detail.playbackRate = player.playbackRate;
+    const masterStable = !player.seeking && (player.paused || player.readyState >= 3);
+    if (player.paused || player.ended || !masterStable) {
+      if (!detail.paused) detail.pause();
+    } else if (detail.paused && !detailPlayPending) {
+      detailPlayPending = true;
+      detail.play().catch(error => {
+        if (error.name !== "AbortError") failDetail();
+      }).finally(() => { detailPlayPending = false; });
+    }
+    const offset = Math.abs(detail.currentTime - player.currentTime);
+    if (offset <= .001) exactDetailSeek = false;
+    if (!detail.seeking && (exactDetailSeek || (masterStable && offset > .06 && performance.now() - lastDetailSeek > 500))) {
+      detail.currentTime = Math.min(player.currentTime, detail.duration);
+      exactDetailSeek = false;
+      lastDetailSeek = performance.now();
+    }
+    detailReady = masterStable && detail.readyState >= (player.paused ? 2 : 3) && !detail.seeking && offset <= .06;
+    updateDetailVisibility();
+  };
+  for (const event of ["loadedmetadata", "play", "playing", "canplay", "waiting", "stalled", "ratechange", "timeupdate", "ended"]) {
+    player.addEventListener(event, () => syncDetail());
+  }
+  for (const event of ["pause", "seeked"]) player.addEventListener(event, () => syncDetail(true));
+  player.addEventListener("seeking", () => {
+    detailReady = false;
+    updateDetailVisibility();
+    syncDetail(true);
+  });
+  for (const event of ["loadedmetadata", "loadeddata", "canplay", "seeked", "timeupdate"]) {
+    detail.addEventListener(event, () => syncDetail());
+  }
+  detail.addEventListener("waiting", () => {
+    detailReady = false;
+    updateDetailVisibility();
+  });
+  detail.addEventListener("error", failDetail);
+  if (player.requestVideoFrameCallback) {
+    const followFrame = () => {
+      syncDetail();
+      player.requestVideoFrameCallback(followFrame);
+    };
+    player.requestVideoFrameCallback(followFrame);
+  }
+
+  if (frame.requestFullscreen && document.fullscreenEnabled) {
+    fullscreen.hidden = false;
+    player.controlsList?.add("nofullscreen");
+    fullscreen.addEventListener("click", () => {
+      const request = document.fullscreenElement === frame ? document.exitFullscreen() : frame.requestFullscreen();
+      request.catch(() => { status.textContent = "Fullscreen is unavailable in this browser."; });
+    });
+    document.addEventListener("fullscreenchange", () => {
+      const label = document.fullscreenElement === frame ? "Exit fullscreen" : "Enter fullscreen";
+      fullscreen.setAttribute("aria-label", label);
+      fullscreen.title = label;
+    });
+  }
+
+  const startPlayback = () => {
+    const request = ++playRequest;
+    player.play().catch(() => {
+      if (request !== playRequest || !player.paused) return;
+      play.hidden = false;
+      status.textContent = "Press Play in the video controls to continue.";
+    });
+  };
+  const restoreSeek = () => {
+    if (!pendingSeek || player.readyState < 1) return;
+    const restore = pendingSeek;
+    pendingSeek = undefined;
+    player.currentTime = Math.min(restore.time, player.duration);
+    player.playbackRate = restore.rate;
+    if (restore.playing) startPlayback();
+  };
+  const seek = (time) => {
+    pendingSeek = { time, rate: pendingSeek?.rate ?? player.playbackRate, playing: pendingSeek?.playing ?? !player.paused };
+    player.controls = true;
+    play.hidden = true;
+    status.textContent = "";
+    if (player.readyState >= 1) restoreSeek();
+    else if (!loading) {
+      loading = true;
+      player.preload = "auto";
+      player.defaultPlaybackRate = pendingSeek.rate;
+      player.load();
+    }
+  };
+  play.addEventListener("click", () => {
+    player.controls = true;
+    play.hidden = true;
+    if (pendingSeek) pendingSeek.playing = true;
+    startPlayback();
+  });
+  player.addEventListener("loadedmetadata", () => { loading = false; restoreSeek(); });
+  player.addEventListener("ratechange", () => { if (pendingSeek) pendingSeek.rate = player.playbackRate; });
+  player.addEventListener("play", () => {
+    play.hidden = true;
+    status.textContent = "";
+  });
+  for (const other of films) {
+    if (other !== player) other.addEventListener("play", () => {
+      playRequest++;
+      if (pendingSeek) pendingSeek.playing = false;
+    });
+  }
+  player.addEventListener("error", () => {
+    loading = false;
+    pendingSeek = undefined;
+    playRequest++;
+    player.controls = true;
+    play.hidden = true;
+    status.textContent = "The film could not load. Try reloading the page.";
+  });
+  fetch("/assets/k10-strategies/timeline.json?v=detail-1").then(response => {
+    if (!response.ok) throw new Error("Timeline unavailable.");
+    return response.json();
+  }).then(timeline => {
+    if (!Number.isFinite(timeline.duration_s) || !Array.isArray(timeline.episodes) || !timeline.episodes.length) throw new Error("Invalid timeline.");
+    let end = 0;
+    for (const episode of timeline.episodes) {
+      if (!Number.isFinite(episode.start_s) || episode.start_s < end - 0.001 || !Number.isFinite(episode.duration_s) || episode.duration_s <= 0 || !Array.isArray(episode.keyframes)) throw new Error("Invalid episode.");
+      end = episode.start_s + episode.duration_s;
+      if (end > timeline.duration_s + 0.001 || episode.keyframes.some(marker => !Number.isFinite(marker.time_s) || marker.time_s < episode.start_s || marker.time_s >= end || typeof marker.label !== "string" || !marker.label.trim())) throw new Error("Invalid labeled moment.");
+    }
+    const groupNames = {
+      "Move / toss object away": "Moving objects aside",
+      "Throw / toss object away": "Moving objects aside",
+      "Toss object away": "Moving objects aside",
+      "Separate closely spaced objects": "Object separation",
+      "Long-range threading": "Long-range manipulation",
+      "Long-range insertion": "Long-range manipulation",
+      "Check assembly completion (patrolling)": "Revisiting assembled parts",
+    };
+    const groups = new Map();
+    for (const marker of timeline.episodes.flatMap(episode => episode.keyframes)) {
+      const name = groupNames[marker.label] ?? marker.label;
+      if (!groups.has(name)) {
+        const group = document.createElement("div");
+        group.className = "moment-group";
+        group.setAttribute("role", "group");
+        group.setAttribute("aria-label", name);
+        const label = document.createElement("p");
+        label.className = "moment-label";
+        label.textContent = name;
+        const times = document.createElement("div");
+        times.className = "moment-times";
+        group.append(label, times);
+        labels.append(group);
+        groups.set(name, times);
+      }
+      const times = groups.get(name);
+      const button = document.createElement("button");
+      button.className = "moment-time";
+      button.type = "button";
+      button.setAttribute("aria-controls", player.id);
+      const time = document.createElement("time");
+      time.textContent = `${Math.floor(marker.time_s / 60)}:${String(Math.floor(marker.time_s % 60)).padStart(2, "0")}`;
+      time.dateTime = `PT${marker.time_s}S`;
+      button.setAttribute("aria-label", `${name} at ${time.textContent}`);
+      button.append(time);
+      button.addEventListener("click", () => seek(marker.time_s));
+      times.append(button);
+    }
+    moments.hidden = labels.children.length === 0;
+  }).catch(() => { status.textContent = "Moment labels are unavailable. You can still watch the film using the video controls."; });
+}
+
+    </script>
+  </body>
+</html>
+
