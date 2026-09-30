@@ -9,7 +9,7 @@ for (const player of films) {
   });
 }
 
-for (const section of document.querySelectorAll("#demo, #starting-states")) {
+for (const section of document.querySelectorAll("#demo, #starting-states, #sampling")) {
   const player = section.querySelector("video");
   const play = section.querySelector(".film-play");
   if (!player || !play) continue;

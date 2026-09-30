@@ -18,9 +18,9 @@
     <meta name="twitter:image" content="https://alpha-nist.github.io/assets/k10-strategies/poster.jpg?v=detail-1">
     <meta name="twitter:image:alt" content="A Franka robot assembling components on the NIST board in simulation.">
     <link rel="canonical" href="https://alpha-nist.github.io/">
-    <link rel="stylesheet" href="styles.css?v=studio-29">
+    <link rel="stylesheet" href="styles.css?v=studio-30">
     <title>AlphaNIST</title>
-    <script src="main.js?v=studio-24" defer></script>
+    <script src="main.js?v=studio-25" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -84,7 +84,7 @@
             <div class="research-copy">
               <h2 id="starting-states-title">Starting states</h2>
               <p>A cached bank contains physically valid starting states: loose parts, in-hand grasps, and partial assemblies.</p>
-              <p>Beta sampling puts more training on states the policy sometimes solves, while retaining a chance to sample every state. These are starting states, not demonstrations of how to finish.</p>
+              <p>These are starting states, not demonstrations of how to finish.</p>
             </div>
             <figure class="research-figure">
               <div class="video-frame">
@@ -97,6 +97,29 @@
                 </button>
               </div>
               <figcaption id="starting-states-caption">Examples of diverse training starting states</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+      <section class="research-section sampling-section" id="sampling" aria-labelledby="sampling-title">
+        <div class="research-content media-shell">
+          <div class="research-layout">
+            <div class="research-copy">
+              <h2 id="sampling-title">Success-guided sampling</h2>
+              <p>Some starting states are already easy for the robot, while others are rarely completed. Success-guided sampling (SGS) uses recent success rates to choose which states receive more training.</p>
+              <p>We use its beta-sampling rule: states solved about half the time receive the most weight, while every state keeps a chance of being sampled. As the policy learns, these weights change.</p>
+            </div>
+            <figure class="research-figure">
+              <div class="video-frame">
+                <video id="sgs-video" src="assets/research/sgs-method.mp4" controls muted loop playsinline preload="none" poster="assets/research/sgs-method-poster.jpg" width="1920" height="1080" aria-label="Illustration of success-guided sampling: select starting states, collect attempts, update the policy, and refresh sampling weights" aria-describedby="sgs-caption">
+                  Your browser does not support embedded video. <a href="assets/research/sgs-method.mp4">Download the video.</a>
+                </video>
+                <button class="film-play" type="button" aria-controls="sgs-video" hidden>
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>
+                  <span>Play</span><span class="film-duration">0:27</span>
+                </button>
+              </div>
+              <figcaption id="sgs-caption">How success-guided sampling reallocates training across starting states. <a href="https://sgs-rl.github.io/" target="_blank" rel="noopener">SGS project ↗</a></figcaption>
             </figure>
           </div>
         </div>
