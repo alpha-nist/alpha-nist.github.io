@@ -288,12 +288,14 @@ if (strategies) {
       "Throw / toss object away": "Moving objects aside",
       "Toss object away": "Moving objects aside",
       "Separate closely spaced objects": "Object separation",
+      "Prehensile maneuver": "Long-range manipulation",
       "Long-range threading": "Long-range manipulation",
       "Long-range insertion": "Long-range manipulation",
-      "Check assembly completion (patrolling)": "Revisiting assembled parts",
+      "Grasp failure": "Recovery",
     };
     const groups = new Map();
     for (const marker of timeline.episodes.flatMap(episode => episode.keyframes)) {
+      if (marker.label === "Check assembly completion (patrolling)") continue;
       const name = groupNames[marker.label] ?? marker.label;
       if (!groups.has(name)) {
         const group = document.createElement("div");
