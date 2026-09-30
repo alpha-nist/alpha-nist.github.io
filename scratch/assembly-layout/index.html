@@ -25,27 +25,27 @@
   <style>
       .preview-links { display: flex; align-items: center; gap: 20px; font-size: 12px; color: var(--secondary); }
       .preview-links a { text-decoration-color: #b3b3b8; }
-      .assembly-introduction { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; padding: 64px 0 48px; }
+      .assembly-introduction { width: min(var(--reading-width), calc(100% - 2 * var(--page-gutter))); padding: 64px 0 40px; }
       .assembly-introduction .task-challenge, .assembly-introduction .story { padding: 0; }
+      .assembly-introduction .story { margin-top: 32px; }
       .assembly-introduction .story-body { width: 100%; margin: 0; }
       .assembly-introduction h2 { margin: 0 0 16px; }
       #starting-states .research-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-      #starting-states .reset-explanation { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; }
+      #starting-states .research-copy { width: min(100%, var(--reading-width)); margin-inline: auto; }
       #starting-states .reset-explanation p { margin: 0; }
+      #starting-states .reset-explanation p + p { margin-top: 16px; }
       #starting-states { padding-bottom: 48px; }
       #demo .chapter-navigation { display: block; margin-top: 20px; }
-      #demo .chapters { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; border-radius: 0; background: transparent; }
-      #demo .chapter { min-height: 40px; padding: 9px 16px; background: #e9e9ed; }
+      #demo .chapters { display: flex; width: 100%; flex-wrap: nowrap; gap: 8px; padding: 6px 3px 10px; border-radius: 0; background: transparent; overflow-x: auto; overscroll-behavior-x: contain; scroll-padding-inline: 3px; scrollbar-width: thin; scrollbar-color: #bdbdbf transparent; }
+      #demo .chapter { flex: 0 0 auto; min-height: 40px; padding: 9px 16px; background: #e9e9ed; }
       #demo .chapter[aria-pressed="true"] { background: #29292c; }
       @media (max-width: 900px) {
-        .assembly-introduction { gap: 36px; padding: 44px 0 36px; }
-        #starting-states .reset-explanation { gap: 36px; }
+        .assembly-introduction { padding: 44px 0 36px; }
       }
       @media (max-width: 700px) {
-        .assembly-introduction { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-        #starting-states .reset-explanation { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+        .assembly-introduction .story { margin-top: 28px; }
         #starting-states { padding-bottom: 36px; }
-        #demo .chapters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+        #demo .chapters { gap: 6px; }
         #demo .chapter { min-height: 42px; padding-inline: 10px; font-size: 12px; text-align: left; }
         .preview-links { gap: 12px; }
         .preview-links span { display: none; }
@@ -158,7 +158,7 @@
             <figcaption id="film-caption">Single-component examples. <span>Fixed view + synchronized close-up.</span></figcaption>
           </figure>
           <div class="chapter-navigation">
-            <div class="chapters" role="group" aria-label="Jump to an assembly asset">
+            <div class="chapters" role="group" aria-label="Jump to an assembly asset; scroll horizontally for all twenty">
               <button class="chapter" type="button" data-start="0" aria-pressed="true" aria-controls="assembly-video" disabled><span class="chapter-name">Small gear</span></button>
               <button class="chapter" type="button" data-start="4.08" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Medium gear</span></button>
               <button class="chapter" type="button" data-start="8.08" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Large gear</span></button>
@@ -304,6 +304,7 @@ for (const section of document.querySelectorAll("#demo, #starting-states")) {
 
 if (video && chapters.length) {
   const updateChapter = () => {
+    const previous = chapters.find(chapter => chapter.getAttribute("aria-pressed") === "true");
     let activeIndex = 0;
     chapters.forEach((chapter, index) => {
       if (video.currentTime >= Number(chapter.dataset.start)) activeIndex = index;
@@ -311,6 +312,15 @@ if (video && chapters.length) {
     chapters.forEach((chapter, index) => {
       chapter.setAttribute("aria-pressed", String(index === activeIndex));
     });
+    const active = chapters[activeIndex];
+    if (active !== previous) {
+      const strip = active.parentElement;
+      const bounds = strip.getBoundingClientRect();
+      const item = active.getBoundingClientRect();
+      const offset = item.left < bounds.left + 6 ? item.left - bounds.left - 6
+        : item.right > bounds.right - 6 ? item.right - bounds.right + 6 : 0;
+      if (offset) strip.scrollBy({ left: offset, behavior: "instant" });
+    }
   };
 
   const enableChapters = () => {
@@ -605,4 +615,3 @@ if (strategies) {
     </script>
   </body>
 </html>
-
