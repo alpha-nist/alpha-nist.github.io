@@ -18,9 +18,9 @@
     <meta name="twitter:image" content="https://alpha-nist.github.io/assets/k10-strategies/poster.jpg?v=detail-1">
     <meta name="twitter:image:alt" content="A Franka robot assembling components on the NIST board in simulation.">
     <link rel="canonical" href="https://alpha-nist.github.io/">
-    <link rel="stylesheet" href="styles.css?v=studio-30">
+    <link rel="stylesheet" href="styles.css?v=studio-31">
     <title>AlphaNIST</title>
-    <script src="main.js?v=studio-25" defer></script>
+    <script src="main.js?v=studio-26" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -111,13 +111,10 @@
             </div>
             <figure class="research-figure">
               <div class="video-frame">
-                <video id="sgs-video" src="assets/research/sgs-method.mp4?v=2" controls muted loop playsinline preload="none" poster="assets/research/sgs-method-poster.jpg?v=2" width="1920" height="1080" aria-label="Illustration of success-guided sampling: select starting states, collect attempts, update the policy, and refresh sampling weights" aria-describedby="sgs-caption">
-                  Your browser does not support embedded video. <a href="assets/research/sgs-method.mp4?v=2">Download the video.</a>
-                </video>
-                <button class="film-play" type="button" aria-controls="sgs-video" hidden>
-                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>
-                  <span>Play</span><span class="film-duration">0:30</span>
-                </button>
+                <picture>
+                  <source media="(prefers-reduced-motion: reduce)" srcset="assets/research/sgs-method-poster.jpg?v=3">
+                  <img id="sgs-animation" src="assets/research/sgs-method.gif" width="1920" height="1080" loading="lazy" decoding="async" alt="Success-guided sampling: starting states are selected, data flows into the policy, and success estimates update the sampling weights." aria-describedby="sgs-caption">
+                </picture>
               </div>
               <figcaption id="sgs-caption">How success-guided sampling reallocates training across starting states. <a href="https://sgs-rl.github.io/" target="_blank" rel="noopener">SGS project ↗</a></figcaption>
             </figure>
