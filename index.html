@@ -61,7 +61,7 @@
               <div class="moment-groups"></div>
             </div>
             <p class="strategy-status film-context" role="status" aria-atomic="true"></p>
-            <p class="film-context" id="strategy-context">Four separate reset-to-success runs, not a continuous rollout or a success-rate evaluation.</p>
+            <p class="film-context" id="strategy-context">Four selected successful attempts from the ten-part policy, trained separately from the single-part policy below. The task reward requires all ten parts to be assembled.</p>
             <noscript><p class="film-context">Use the video controls to watch the film. <a href="assets/k10-strategies/timeline.json?v=detail-1">View the episode timeline.</a></p></noscript>
           </div>
         </section>
@@ -69,15 +69,13 @@
       <section class="task-challenge" aria-labelledby="task-challenge-title">
         <div class="story-body">
           <h2 id="task-challenge-title">The assembly challenge</h2>
-          <p>The NIST board combines twenty assemblies, from nut threading and gear meshing to peg and connector insertion. Parts as small as 4&nbsp;mm in diameter must be grasped, reoriented, and aligned with tight-fitting mating surfaces.</p>
-          <p>Small errors can cause slipping or jamming, requiring the robot to recover and try again. With several components on the board, it must also handle clutter and choose an assembly order: placing one part can obstruct access to another.</p>
+          <p>The NIST board brings together twenty assembly tasks, including threading nuts, meshing gears, and inserting pegs and connectors. Parts as small as 4&nbsp;mm must be picked up, oriented, and fitted into place. A grasp that lifts a part may still leave it difficult to insert.</p>
+          <p>With several parts on the board, the robot also has to decide what to assemble next. Loose objects can obstruct a grasp, and parts already assembled can limit how the gripper approaches another. Completing the task can require changing a grasp, moving objects aside, or recovering from a failed attempt.</p>
         </div>
       </section>
       <section class="story" id="idea" aria-label="Overview">
         <div class="story-body">
-          <p>We ask how much dexterity and coordination can be learned from a reward for the completed task. In the single-component experiments, one shared policy learns across twenty NIST assembly tasks.</p>
-          <p>Training combines cached starting states, beta sampling, and large-scale parallel experience. The task reward is binary: completed assembly receives a reward; reaching, grasping, and partial insertion do not receive progress rewards.</p>
-          <p>Multi-component policies are trained separately from the single-component policy. Here, the task reward requires all active parts to be assembled. Neither the assembly order nor the individual maneuvers are prescribed.</p>
+          <p>We train with binary task rewards: the robot receives a task reward for completing the assembly, rather than for intermediate steps such as reaching or grasping. How to reach that outcome—the grasps, movements, and assembly order—is learned rather than prescribed.</p>
         </div>
       </section>
       <section class="research-section" id="starting-states" aria-labelledby="starting-states-title">
