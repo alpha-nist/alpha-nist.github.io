@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <base href="/">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="AlphaNIST studies how dexterity and coordination can be learned in simulation with binary task rewards, cached starting states, and large-scale training, without prescribed manipulation stages.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AlphaNIST">
+    <meta property="og:description" content="Learning dexterity and coordination for robotic assembly in simulation, with binary task rewards and no prescribed manipulation stages.">
+    <meta property="og:url" content="https://alpha-nist.github.io/scratch/copy-review/">
+    <meta property="og:image" content="https://alpha-nist.github.io/assets/k10-strategies/poster.jpg?v=detail-1">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:image:alt" content="A Franka robot assembling components on the NIST board in simulation.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://alpha-nist.github.io/assets/k10-strategies/poster.jpg?v=detail-1">
+    <meta name="twitter:image:alt" content="A Franka robot assembling components on the NIST board in simulation.">
+    <link rel="canonical" href="https://alpha-nist.github.io/scratch/copy-review/">
+    <link rel="stylesheet" href="styles.css?v=studio-31">
+    <title>AlphaNIST — Copy review</title>
+    <script src="main.js?v=studio-26" defer></script>
+
+    <style>
+      .copy-review-bar { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid #e5e5e5; }
+      .copy-review-inner { max-width: 1320px; margin: auto; padding: 10px 24px; display: flex; align-items: center; gap: 18px; font-size: 13px; }
+      .copy-review-inner p { margin: 0 auto 0 0; }
+      .copy-review-switch { display: flex; gap: 4px; }
+      .copy-review-switch button { font: inherit; padding: 6px 12px; border: 1px solid transparent; background: transparent; color: #666; cursor: pointer; }
+      .copy-review-switch button[aria-pressed="true"] { border-color: #aaa; color: #171717; background: #f6f5f1; }
+      .copy-review-switch button:focus-visible { outline: 2px solid #746321; outline-offset: 2px; }
+      .copy-review-home { color: #555; white-space: nowrap; }
+      @media (max-width: 540px) { .copy-review-inner { padding: 9px 14px; gap: 8px; font-size: 12px; } .copy-review-switch button { padding: 6px 9px; } }
+    </style>
+  </head>
+  <body>
+    <aside class="copy-review-bar" aria-label="Review draft wording">
+      <div class="copy-review-inner">
+        <p>Copy review</p>
+        <div class="copy-review-switch" role="group" aria-label="Choose wording">
+          <button type="button" data-copy-mode="current" aria-pressed="false">Current</button>
+          <button type="button" data-copy-mode="draft" aria-pressed="true">Draft</button>
+        </div>
+        <a class="copy-review-home" href="/" target="_blank" rel="noopener">Live page ↗</a>
+      </div>
+    </aside>
+    <a class="skip-link" href="/scratch/copy-review/#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="/scratch/copy-review/#" aria-label="Alpha NIST home">Alpha NIST</a>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="project-title">
+        <div class="hero-copy media-shell">
+          <h1 id="project-title">AlphaNIST</h1>
+          <p class="hero-description" data-review-copy="0">We train a robot to assemble parts without demonstrating how to do it. AlphaNIST learns through reinforcement learning in simulation, with a binary task reward for completed assembly. The learned behaviors include changing a grasp for insertion and moving loose parts aside before returning to assemble them.</p>
+          <p class="hero-description"><a href="assets/overview.mp4" type="video/mp4" target="_blank" rel="noopener">Narrated overview · 2:57</a></p>
+        </div>
+        <section class="strategies" id="strategies" aria-label="Multi-component assembly demonstrations">
+          <div class="strategy-shell media-shell">
+            <figure class="film-figure" id="strategy-player">
+              <div class="video-frame">
+                <video id="strategy-video" src="assets/k10-strategies/selected-episodes-fixed.mp4?v=fixed-2" controls playsinline preload="none" poster="assets/k10-strategies/poster-fixed.jpg?v=fixed-2" width="1920" height="1080" aria-label="Four selected ten-component assembly episodes, fixed camera view with optional synchronized close-up" aria-describedby="strategy-caption strategy-context">
+                  Your browser does not support embedded video. <a href="assets/k10-strategies/selected-episodes-fixed.mp4?v=fixed-2">Download the film.</a>
+                </video>
+                <video id="strategy-detail" src="assets/k10-strategies/selected-episodes-closeup.mp4?v=layer-1" poster="assets/k10-strategies/poster-closeup.jpg?v=layer-1" width="736" height="736" muted playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture hidden></video>
+                <button class="film-play" type="button" aria-controls="strategy-video" hidden>
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>
+                  <span>Play</span><span class="film-duration">2:41</span>
+                </button>
+              </div>
+              <figcaption id="strategy-caption">
+                Ten-component assembly.
+                <span class="strategy-view-controls">
+                  <button class="closeup-toggle" type="button" role="switch" aria-checked="true" aria-controls="strategy-detail" hidden>Close-up<span class="switch-track" aria-hidden="true"></span></button>
+                  <button class="strategy-fullscreen" type="button" aria-label="Enter fullscreen" aria-controls="strategy-player" title="Fullscreen" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H3v4M13 3h4v4M3 13v4h4M17 13v4h-4"/></svg></button>
+                </span>
+              </figcaption>
+            </figure>
+            <div class="strategy-moments" role="group" aria-label="Jump to a moment" hidden>
+              <div class="moment-groups"></div>
+            </div>
+            <p class="strategy-status film-context" role="status" aria-atomic="true"></p>
+            <p class="film-context" id="strategy-context" data-review-copy="1">Four successful runs from a policy trained to assemble ten parts. The task reward is given only when all ten are assembled. This policy is trained separately from the single-component policy below.</p>
+            <noscript><p class="film-context">Use the video controls to watch the film. <a href="assets/k10-strategies/timeline.json?v=detail-1">View the episode timeline.</a></p></noscript>
+          </div>
+        </section>
+      </section>
+      <section class="task-challenge" aria-labelledby="task-challenge-title">
+        <div class="story-body">
+          <h2 id="task-challenge-title">The assembly challenge</h2>
+          <p data-review-copy="2">The NIST Assembly Task Board contains twenty tasks, including threading nuts, meshing gears, and inserting electrical connectors. Some parts are just 4&nbsp;mm in diameter. Picking them up is only part of the problem: the fingers can cover the end needed for insertion, and a small misalignment can cause a part to jam.</p>
+          <p data-review-copy="3">The problem changes as more parts are assembled. A connector already in place can leave less room to turn a nearby nut. Loose parts may obstruct a grasp. The robot has to work with the space available and choose what to assemble next.</p>
+        </div>
+      </section>
+      <section class="story" id="idea" aria-label="Overview">
+        <div class="story-body">
+          <p data-review-copy="4">We use a binary task reward for completed assembly, with no progress rewards for reaching, grasping, or partial insertion. Training draws on a bank of starting configurations and many parallel simulated attempts. We do not supply demonstrations or a sequence of manipulation steps.</p>
+        </div>
+      </section>
+      <section class="research-section" id="starting-states" aria-labelledby="starting-states-title">
+        <div class="research-content media-shell">
+          <div class="research-layout">
+            <div class="research-copy">
+              <h2 id="starting-states-title">Starting states</h2>
+              <p data-review-copy="5">A robot learning from loose parts may rarely reach the insertion step at first. We give it practice from a wider range of configurations, including parts already grasped or partly assembled. These states are generated in simulation and saved for reuse.</p>
+              <p data-review-copy="6">Starting near completion lets the robot encounter successful assemblies while it is still learning to handle loose parts. Each saved state specifies where an attempt begins, not which actions should follow.</p>
+            </div>
+            <figure class="research-figure">
+              <div class="video-frame">
+                <video id="starting-states-video" src="assets/research/k1-starting-states.mp4" controls muted loop playsinline preload="none" poster="assets/research/k1-starting-states-poster.jpg" width="1920" height="1080" aria-label="Sampled single-component starting states, held briefly without policy actions" aria-describedby="starting-states-caption">
+                  Your browser does not support embedded video. <a href="assets/research/k1-starting-states.mp4">Download the video.</a>
+                </video>
+                <button class="film-play" type="button" aria-controls="starting-states-video" hidden>
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>
+                  <span>Play</span><span class="film-duration">0:34</span>
+                </button>
+              </div>
+              <figcaption id="starting-states-caption">Examples of diverse training starting states</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+      <section class="research-section sampling-section" id="sampling" aria-labelledby="sampling-title">
+        <div class="research-content media-shell">
+          <div class="research-layout">
+            <div class="research-copy">
+              <h2 id="sampling-title">Success-guided sampling</h2>
+              <p data-review-copy="7">As learning progresses, some starting states become easy while others remain out of reach. Success-guided sampling uses the outcomes of recent attempts to adjust how often each state is revisited.</p>
+              <p data-review-copy="8">We use beta sampling, which gives the greatest weight to states the policy solves about half the time. Every state retains a chance of being sampled. Practice elsewhere can also make a previously unsuccessful state easier; when the robot returns to it, new outcomes update its sampling weight.</p>
+            </div>
+            <figure class="research-figure">
+              <div class="video-frame">
+                <picture>
+                  <source media="(prefers-reduced-motion: reduce)" srcset="assets/research/sgs-method-poster.jpg?v=5">
+                  <img id="sgs-animation" src="assets/research/sgs-method.gif?v=3" width="1920" height="1080" loading="lazy" decoding="async" alt="Success-guided sampling: starting states are selected, data flows into the policy, and success estimates update the sampling weights." aria-describedby="sgs-caption">
+                </picture>
+              </div>
+              <figcaption id="sgs-caption" data-review-copy="9">Starting states receive different amounts of practice as the policy learns. <a href="https://sgs-rl.github.io/" target="_blank" rel="noopener">SGS project ↗</a></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+      <section class="experiments" id="experiments" aria-labelledby="experiments-title">
+        <div class="section-intro media-shell">
+          <h2 id="experiments-title">Single-component assembly</h2>
+        </div>
+        <section class="demo media-shell" id="demo" aria-label="Assembly demonstration">
+          <figure class="film-figure">
+            <div class="video-frame">
+              <video id="assembly-video" controls playsinline preload="metadata" poster="assets/assembly-poster.jpg" width="3840" height="1080" aria-label="Alpha NIST assembly film, with a fixed view on the left and a synchronized close-up on the right" aria-describedby="film-caption">
+                <source src="assets/assembly-demo.mp4" type="video/mp4">
+                Your browser does not support embedded video. <a href="assets/assembly-demo.mp4">Download the film.</a>
+              </video>
+              <button class="film-play" type="button" aria-controls="assembly-video" hidden>
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7z"/></svg>
+                <span>Play</span><span class="film-duration">1:43</span>
+              </button>
+            </div>
+            <figcaption id="film-caption" data-review-copy="10">One policy performs all twenty assembly tasks, with one component to assemble in each run.</figcaption>
+          </figure>
+          <div class="chapter-navigation">
+            <div class="chapters" role="group" aria-label="Jump to an assembly family">
+              <button class="chapter" type="button" data-start="0" aria-pressed="true" aria-controls="assembly-video" disabled><span class="chapter-name">Gears</span></button>
+              <button class="chapter" type="button" data-start="10.76" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Nuts</span></button>
+              <button class="chapter" type="button" data-start="43.64" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Rods</span></button>
+              <button class="chapter" type="button" data-start="57.16" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Pegs</span></button>
+              <button class="chapter" type="button" data-start="73.68" aria-pressed="false" aria-controls="assembly-video" disabled><span class="chapter-name">Connectors</span></button>
+            </div>
+          </div>
+          <p class="chapter-status visually-hidden" role="status" aria-atomic="true"></p>
+          <noscript><p class="film-context">Use the video controls to watch the complete film.</p></noscript>
+        </section>
+      </section>
+      <section class="research-section training-comparison" id="training-across-assemblies" aria-labelledby="training-across-assemblies-title">
+        <div class="research-content media-shell">
+          <div class="research-layout">
+            <div class="research-copy">
+              <h2 id="training-across-assemblies-title">Training across assemblies</h2>
+              <p data-review-copy="11">We compare one policy trained across all twenty tasks with twenty policies trained separately. With binary task rewards, the shared policy reaches higher training success. Adding rewards for reaching and alignment lowers success in this comparison, particularly for the shared policy.</p>
+            </div>
+            <figure class="research-figure">
+              <div class="research-plot" tabindex="0" role="region" aria-label="Figure 5 comparison; scroll horizontally on smaller screens">
+                <img src="assets/research/heterogeneous-training.svg?v=paper-values" alt="Figure 5 comparison: success by task for four training conditions, alongside overall success of 98.2% for a shared policy with binary rewards, 81.4% for separate policies with binary rewards, 17.8% for a shared policy with dense rewards, and 78.3% for separate policies with dense rewards." width="1120" height="440" loading="lazy" decoding="async">
+              </div>
+              <figcaption data-review-copy="12"><span class="research-plot-hint">Swipe or scroll horizontally to view the full figure.</span>Training success across mixed starting states, including partial assemblies. Error bars show variation across nearby checkpoints, not independent training seeds. The two panels use different reported checkpoints; total compute is not matched. <a href="assets/research/heterogeneous-training.svg?v=paper-values" target="_blank" rel="noopener">Full size ↗</a> · <a href="assets/research/heterogeneous-training-data.json?v=paper-values">Figure details and data</a></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+      <section class="discovery" id="discoveries" aria-labelledby="discovery-title">
+        <div class="section-intro media-shell">
+          <h2 id="discovery-title">Observed assembly behaviors</h2>
+          <p data-review-copy="13">The robot sometimes puts a part down before trying to insert it. For an 8&nbsp;mm peg, it releases a grasp at the center and picks the peg up near one end, leaving more of it exposed. Other sequences show a connector turned against the board and a small nut threaded with repeated fingertip taps. These maneuvers were not demonstrated or assigned their own rewards.</p>
+        </div>
+        <div class="behavior-gallery media-shell">
+          <div class="behavior-track" id="behavior-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Assembly strategy sequences" aria-describedby="behavior-help">
+            <article class="behavior-slide" id="behavior-peg" data-label="Peg regrasp" aria-label="Peg regrasp">
+              <figure>
+                <a href="assets/peg-regrasp.png" target="_blank" rel="noopener" aria-label="Open peg regrasp sequence at full resolution"><img src="assets/peg-regrasp.png" alt="Five successive frames: the robot holds an 8 mm peg at its center, releases it onto the board, grasps near its end, lifts it, and inserts it into its socket." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-waterproof" data-label="Board reorientation" aria-label="Board reorientation">
+              <figure>
+                <a href="assets/assembly-strategies/waterproof.png" target="_blank" rel="noopener" aria-label="Open board-assisted connector reorientation at full resolution"><img src="assets/assembly-strategies/waterproof.png" alt="Five frames show the gripper using the board surface to reorient a waterproof connector before insertion." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-dsub" data-label="Connector regrasp" aria-label="Connector regrasp">
+              <figure>
+                <a href="assets/assembly-strategies/dsub.png" target="_blank" rel="noopener" aria-label="Open D-sub connector regrasp sequence at full resolution"><img src="assets/assembly-strategies/dsub.png" alt="Five frames show the gripper setting down a D-sub connector and regrasping it for socket alignment." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-gear" data-label="Gear placement" aria-label="Gear placement">
+              <figure>
+                <a href="assets/assembly-strategies/gear-medium.png" target="_blank" rel="noopener" aria-label="Open gear placement sequence at full resolution"><img src="assets/assembly-strategies/gear-medium.png" alt="Five frames show a medium gear pivoting from a side grasp toward a horizontal pose over its mounting post." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-m12" data-label="Nut reorientation" aria-label="Nut reorientation">
+              <figure>
+                <a href="assets/assembly-strategies/nut-m12.png" target="_blank" rel="noopener" aria-label="Open M12 nut reorientation sequence at full resolution"><img src="assets/assembly-strategies/nut-m12.png" alt="Five frames show an M12 nut being rolled from its edge onto a flat face and positioned on a bolt." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-m4" data-label="Nut tapping" aria-label="Nut tapping">
+              <figure>
+                <a href="assets/assembly-strategies/nut-m4.png" target="_blank" rel="noopener" aria-label="Open M4 nut tapping sequence at full resolution"><img src="assets/assembly-strategies/nut-m4.png" alt="Five frames show successive one-sided fingertip contacts advancing an M4 nut along a bolt." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-rod" data-label="Rod repositioning" aria-label="Rod repositioning">
+              <figure>
+                <a href="assets/assembly-strategies/rod-8mm.png" target="_blank" rel="noopener" aria-label="Open rod repositioning sequence at full resolution"><img src="assets/assembly-strategies/rod-8mm.png" alt="Five frames show a fingertip pushing an 8 mm rod across the surface, followed by grasping and lifting." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+            <article class="behavior-slide" id="behavior-m16" data-label="Circular threading" aria-label="Circular threading">
+              <figure>
+                <a href="assets/assembly-strategies/nut-m16.png" target="_blank" rel="noopener" aria-label="Open M16 circular threading sequence at full resolution"><img src="assets/assembly-strategies/nut-m16.png" alt="Five frames show different gripper positions around an M16 nut while fingertip contacts turn the nut along the bolt." width="3840" height="1440" loading="lazy" decoding="async"></a>
+              </figure>
+            </article>
+          </div>
+          <div class="behavior-navigation chapters" role="group" aria-label="Choose an assembly strategy" hidden></div>
+          <div class="behavior-controls" hidden>
+            <button class="behavior-prev" type="button" aria-label="Previous strategy" aria-controls="behavior-track">←</button>
+            <p class="behavior-status" role="status" aria-live="polite" aria-atomic="true"></p>
+            <button class="behavior-next" type="button" aria-label="Next strategy" aria-controls="behavior-track">→</button>
+          </div>
+          <p class="behavior-help" id="behavior-help">Each sequence reads left to right. Swipe or scroll horizontally to browse strategies; open an image for the full-resolution view.</p>
+        </div>
+      </section>
+      <section class="story" aria-labelledby="findings-title">
+        <div class="story-body research-copy">
+          <h2 id="findings-title">Learning dexterity and coordination</h2>
+          <p data-review-copy="14">In the ten-component runs, the robot sometimes brings a connector within reach, assembles another part, and then returns to the connector. It also uses short turns when threading a nut beside an assembled Ethernet connector, avoiding contact between its hand and the connector.</p>
+          <p data-review-copy="15">The task reward requires every active part to be assembled, but does not specify their order. The policy fits individual parts and adjusts its actions as the board fills up.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="wordmark" href="/scratch/copy-review/#">Alpha NIST</a>
+        <p>Robotic assembly experiments in simulation.</p>
+      </div>
+    </footer>
+
+    <script>
+      const reviewCopy = [{"current":"Assembly has a clear goal, but many possible solutions. In simulation, AlphaNIST learns to grasp, reorient, and assemble parts using binary task rewards, without demonstrations or prescribed manipulation stages.","draft":"We train a robot to assemble parts without demonstrating how to do it. AlphaNIST learns through reinforcement learning in simulation, with a binary task reward for completed assembly. The learned behaviors include changing a grasp for insertion and moving loose parts aside before returning to assemble them."},{"current":"Four selected successful attempts from the ten-part policy, trained separately from the single-part policy below. The task reward requires all ten parts to be assembled.","draft":"Four successful runs from a policy trained to assemble ten parts. The task reward is given only when all ten are assembled. This policy is trained separately from the single-component policy below."},{"current":"The NIST board brings together twenty assembly tasks, including threading nuts, meshing gears, and inserting pegs and connectors. Parts as small as 4&nbsp;mm must be picked up, oriented, and fitted into place. A grasp that lifts a part may still leave it difficult to insert.","draft":"The NIST Assembly Task Board contains twenty tasks, including threading nuts, meshing gears, and inserting electrical connectors. Some parts are just 4&nbsp;mm in diameter. Picking them up is only part of the problem: the fingers can cover the end needed for insertion, and a small misalignment can cause a part to jam."},{"current":"With several parts on the board, the robot also has to decide what to assemble next. Loose objects can obstruct a grasp, and parts already assembled can limit how the gripper approaches another. Completing the task can require changing a grasp, moving objects aside, or recovering from a failed attempt.","draft":"The problem changes as more parts are assembled. A connector already in place can leave less room to turn a nearby nut. Loose parts may obstruct a grasp. The robot has to work with the space available and choose what to assemble next."},{"current":"We train with binary task rewards: the robot receives a task reward for completing the assembly, rather than for intermediate steps such as reaching or grasping. How to reach that outcome—the grasps, movements, and assembly order—is learned rather than prescribed.","draft":"We use a binary task reward for completed assembly, with no progress rewards for reaching, grasping, or partial insertion. Training draws on a bank of starting configurations and many parallel simulated attempts. We do not supply demonstrations or a sequence of manipulation steps."},{"current":"A cached bank contains physically valid starting states: loose parts, in-hand grasps, and partial assemblies.","draft":"A robot learning from loose parts may rarely reach the insertion step at first. We give it practice from a wider range of configurations, including parts already grasped or partly assembled. These states are generated in simulation and saved for reuse."},{"current":"These are starting states, not demonstrations of how to finish.","draft":"Starting near completion lets the robot encounter successful assemblies while it is still learning to handle loose parts. Each saved state specifies where an attempt begins, not which actions should follow."},{"current":"Some starting states are already easy for the robot, while others are rarely completed. Success-guided sampling (SGS) uses recent success rates to choose which states receive more training.","draft":"As learning progresses, some starting states become easy while others remain out of reach. Success-guided sampling uses the outcomes of recent attempts to adjust how often each state is revisited."},{"current":"We use its beta-sampling rule: states solved about half the time receive the most weight, while every state keeps a chance of being sampled. As the policy learns, these weights change.","draft":"We use beta sampling, which gives the greatest weight to states the policy solves about half the time. Every state retains a chance of being sampled. Practice elsewhere can also make a previously unsuccessful state easier; when the robot returns to it, new outcomes update its sampling weight."},{"current":"How success-guided sampling reallocates training across starting states. \u003ca href=\"https://sgs-rl.github.io/\" target=\"_blank\" rel=\"noopener\">SGS project ↗\u003c/a>","draft":"Starting states receive different amounts of practice as the policy learns. \u003ca href=\"https://sgs-rl.github.io/\" target=\"_blank\" rel=\"noopener\">SGS project ↗\u003c/a>"},{"current":"A single policy performs twenty assembly tasks spanning gears, nuts, rods, pegs, and connectors.","draft":"One policy performs all twenty assembly tasks, with one component to assemble in each run."},{"current":"With binary task rewards, one shared policy reaches higher training success than twenty separately trained specialists. In this comparison, adding the tested dense reward shaping reduces success, especially for shared training.","draft":"We compare one policy trained across all twenty tasks with twenty policies trained separately. With binary task rewards, the shared policy reaches higher training success. Adding rewards for reaching and alignment lowers success in this comparison, particularly for the shared policy."},{"current":"\u003cspan class=\"research-plot-hint\">Swipe or scroll horizontally to view the full figure.\u003c/span>Training success across mixed starting states, including partial assemblies. Error bars show variation across nearby checkpoints, not independent seeds. The two panels use different reported checkpoints; total compute is not matched. \u003ca href=\"assets/research/heterogeneous-training.svg?v=paper-values\" target=\"_blank\" rel=\"noopener\">Full size ↗\u003c/a> · \u003ca href=\"assets/research/heterogeneous-training-data.json?v=paper-values\">Figure details and data\u003c/a>","draft":"\u003cspan class=\"research-plot-hint\">Swipe or scroll horizontally to view the full figure.\u003c/span>Training success across mixed starting states, including partial assemblies. Error bars show variation across nearby checkpoints, not independent training seeds. The two panels use different reported checkpoints; total compute is not matched. \u003ca href=\"assets/research/heterogeneous-training.svg?v=paper-values\" target=\"_blank\" rel=\"noopener\">Full size ↗\u003c/a> · \u003ca href=\"assets/research/heterogeneous-training-data.json?v=paper-values\">Figure details and data\u003c/a>"},{"current":"The robot sets down a center-held peg and grasps nearer its end for insertion. It uses the board to reorient a connector, and turns nuts through repeated fingertip contacts.","draft":"The robot sometimes puts a part down before trying to insert it. For an 8&nbsp;mm peg, it releases a grasp at the center and picks the peg up near one end, leaving more of it exposed. Other sequences show a connector turned against the board and a small nut threaded with repeated fingertip taps. These maneuvers were not demonstrated or assigned their own rewards."},{"current":"Training for completed assembly produces both precise manipulation and choices about how to organize longer sequences. The policies learn grasp changes, move obstructing parts, and adjust their motions around neighboring components, without prescribed manipulation stages.","draft":"In the ten-component runs, the robot sometimes brings a connector within reach, assembles another part, and then returns to the connector. It also uses short turns when threading a nut beside an assembled Ethernet connector, avoiding contact between its hand and the connector."},{"current":"In these experiments, shared training gives higher training success than separate specialists, and binary task rewards outperform the dense shaping tested here. The multi-component examples show that the same kind of objective can also support sequences in which the policy chooses what to assemble next.","draft":"The task reward requires every active part to be assembled, but does not specify their order. The policy fits individual parts and adjusts its actions as the board fills up."}];
+      const copyButtons = document.querySelectorAll("[data-copy-mode]");
+      for (const button of copyButtons) {
+        button.addEventListener("click", () => {
+          const mode = button.dataset.copyMode;
+          for (const node of document.querySelectorAll("[data-review-copy]")) {
+            node.innerHTML = reviewCopy[Number(node.dataset.reviewCopy)][mode];
+          }
+          for (const option of copyButtons) option.setAttribute("aria-pressed", String(option === button));
+        });
+      }
+    </script>
+  </body>
+</html>
