@@ -48,6 +48,26 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 32 / 9; object-
 .chapter:focus-visible { outline-offset: 2px; }
 .film-context { margin: 16px 0 0; text-align: left; color: #707075; font-size: 12px; line-height: 1.65; }
 
+#idea .story-body p { max-width: none; }
+.task-challenge .story-body { display: flex; flex-direction: column; }
+.challenge-board { order: 1; max-width: var(--reading-width); margin: 24px 0; }
+.board-orbit-frame { position: relative; }
+.challenge-board picture, .challenge-board img { display: block; width: 100%; }
+.challenge-board img { height: auto; border-radius: 22px; }
+.challenge-board figcaption { margin-top: 10px; color: var(--secondary); font-size: 12px; line-height: 1.6; }
+#board-orbit-toggle { position: absolute; right: 12px; bottom: 12px; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid #fff; border-radius: 50%; background: rgb(255 255 255 / 90%); color: #454545; cursor: pointer; opacity: 0; pointer-events: none; }
+#board-orbit-toggle svg { width: 14px; height: 14px; }
+#board-orbit-toggle .board-play-icon, #board-orbit-toggle.is-paused .board-pause-icon { display: none; }
+#board-orbit-toggle.is-paused .board-play-icon { display: block; }
+.board-orbit-frame:hover #board-orbit-toggle, .board-orbit-frame:focus-within #board-orbit-toggle { opacity: 1; pointer-events: auto; }
+@media (min-width: 900px) {
+  .task-challenge .story-body { display: flow-root; }
+  .task-challenge .story-body > p { max-width: none; }
+  .challenge-board { float: left; width: 46%; max-width: 520px; margin: 4px 36px 20px 0; }
+}
+@media (hover: none) { #board-orbit-toggle { opacity: 1; pointer-events: auto; } }
+@media (prefers-reduced-motion: reduce) { #board-orbit-toggle { display: none; } }
+
 .task-challenge { padding: 64px 0 0; }
 .task-challenge h2 { margin-bottom: 16px; }
 .story { padding: 32px 0 64px; }

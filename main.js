@@ -56,6 +56,18 @@ if (video && chapters.length) {
   if (video.readyState >= 1) enableChapters();
 }
 
+const boardOrbit = document.querySelector("#board-orbit");
+const boardOrbitToggle = document.querySelector("#board-orbit-toggle");
+if (boardOrbit && boardOrbitToggle) {
+  boardOrbitToggle.hidden = false;
+  boardOrbitToggle.addEventListener("click", () => {
+    const paused = boardOrbit.src.endsWith(".jpg");
+    boardOrbit.src = paused ? "/assets/research/nist-board-orbit.gif" : "/assets/research/nist-board-orbit-poster.jpg";
+    boardOrbitToggle.setAttribute("aria-label", paused ? "Pause rotation" : "Play rotation");
+    boardOrbitToggle.classList.toggle("is-paused", !paused);
+  });
+}
+
 const gallery = document.querySelector(".behavior-gallery");
 if (gallery) {
   const track = gallery.querySelector(".behavior-track");
