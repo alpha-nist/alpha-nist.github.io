@@ -98,9 +98,9 @@
         <div class="research-content media-shell">
           <div class="research-layout">
             <div class="research-copy">
-              <h2 id="starting-states-title">Experience diversity: assets and starting states</h2>
-              <p>A robot learning from loose parts may rarely reach the insertion step at first. We give it practice from a wider range of configurations, including parts already grasped or partly assembled. These states are generated in simulation and saved for reuse.</p>
-              <p>Starting near completion lets the robot encounter successful assemblies while it is still learning to handle loose parts. Each saved state specifies where an attempt begins, not which actions should follow.</p>
+              <h2 id="starting-states-title">Experience diversity: heterogeneous assets and initial states</h2>
+              <p>We train one policy across twenty assembly tasks involving nuts, gears, rods, pegs, and connectors. These heterogeneous assets differ in shape, size, and how they must be grasped and fitted together. Experience from all twenty tasks updates the same policy, rather than twenty separate specialists.</p>
+              <p>For each task, we also vary the initial state. A cached bank of simulated configurations includes loose parts, in-hand grasps, and partial assemblies. Near-complete starts let the robot encounter successful assembly while it is still learning to grasp and reorient loose parts. The bank supplies starting configurations, not demonstrations of how to finish.</p>
             </div>
             <figure class="research-figure">
               <div class="video-frame">
@@ -236,13 +236,6 @@
             <button class="behavior-next" type="button" aria-label="Next strategy" aria-controls="behavior-track">→</button>
           </div>
           <p class="behavior-help" id="behavior-help">Each sequence reads left to right. Swipe or scroll horizontally to browse strategies; open an image for the full-resolution view.</p>
-        </div>
-      </section>
-      <section class="story" aria-labelledby="findings-title">
-        <div class="story-body research-copy">
-          <h2 id="findings-title">Learning dexterity and coordination</h2>
-          <p>In the ten-component runs, the robot sometimes brings a connector within reach, assembles another part, and then returns to the connector. It also uses short turns when threading a nut beside an assembled Ethernet connector, avoiding contact between its hand and the connector.</p>
-          <p>The task reward requires every active part to be assembled, but does not specify their order. The policy fits individual parts and adjusts its actions as the board fills up.</p>
         </div>
       </section>
     </main>
