@@ -18,7 +18,7 @@
     <meta name="twitter:image" content="https://alpha-nist.github.io/assets/k10-strategies/poster.jpg?v=detail-1">
     <meta name="twitter:image:alt" content="A Franka robot assembling components on the NIST board in simulation.">
     <link rel="canonical" href="https://alpha-nist.github.io/">
-    <link rel="stylesheet" href="styles.css?v=studio-32">
+    <link rel="stylesheet" href="styles.css?v=studio-33">
     <title>AlphaNIST</title>
     <script src="main.js?v=studio-27" defer></script>
   </head>
@@ -123,7 +123,7 @@
             <div class="research-copy">
               <h2 id="sampling-title">Success-guided sampling</h2>
               <p>As learning progresses, some starting states become easy while others remain out of reach. Success-guided sampling uses the outcomes of recent attempts to adjust how often each state is revisited.</p>
-              <p>We use beta sampling, which gives the greatest weight to states the policy solves about half the time. Every state retains a chance of being sampled. Practice elsewhere can also make a previously unsuccessful state easier; when the robot returns to it, new outcomes update its sampling weight.</p>
+              <p>Beta sampling gives the greatest weight to states the policy solves about half the time. Every state retains a chance of being sampled. Practice elsewhere can also make a previously unsuccessful state easier; when the robot returns to it, new outcomes update its sampling weight.</p>
             </div>
             <figure class="research-figure">
               <div class="video-frame">
@@ -170,7 +170,7 @@
         <div class="training-comparison media-shell" id="training-across-assemblies">
           <div class="research-layout">
             <div class="research-copy">
-              <p>We compare one policy trained across all twenty tasks with twenty policies trained separately. With binary task rewards, the shared policy reaches higher training success. Adding rewards for reaching and alignment lowers success in this comparison, particularly for the shared policy.</p>
+              <p>A single policy trained across all twenty assemblies reaches higher training success than separate specialists, each trained on just one task. Both use binary task rewards. More detailed guidance does not help here: adding rewards for reaching and alignment lowers success, especially for the shared policy.</p>
             </div>
             <figure class="research-figure">
               <div class="research-plot" tabindex="0" role="region" aria-label="Figure 5 comparison; scroll horizontally on smaller screens">
@@ -184,48 +184,55 @@
       <section class="discovery" id="discoveries" aria-labelledby="discovery-title">
         <div class="section-intro media-shell">
           <h2 id="discovery-title">Emergent assembly behavior</h2>
-          <p>The robot sometimes puts a part down before trying to insert it. For an 8&nbsp;mm peg, it releases a grasp at the center and picks the peg up near one end, leaving more of it exposed. Other sequences show a connector turned against the board and a small nut threaded with repeated fingertip taps. These maneuvers were not demonstrated or assigned their own rewards.</p>
         </div>
         <div class="behavior-gallery media-shell">
           <div class="behavior-track" id="behavior-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Assembly strategy sequences" aria-describedby="behavior-help">
             <article class="behavior-slide" id="behavior-peg" data-label="Peg regrasp" aria-label="Peg regrasp">
               <figure>
                 <a href="assets/peg-regrasp.png" target="_blank" rel="noopener" aria-label="Open peg regrasp sequence at full resolution"><img src="assets/peg-regrasp.png" alt="Five successive frames: the robot holds an 8 mm peg at its center, releases it onto the board, grasps near its end, lifts it, and inserts it into its socket." width="3840" height="1440" loading="lazy" decoding="async"></a>
+                <figcaption>The gripper puts down the 8&nbsp;mm peg and picks it up near one end, leaving more of the peg exposed for insertion.</figcaption>
               </figure>
             </article>
             <article class="behavior-slide" id="behavior-waterproof" data-label="Board reorientation" aria-label="Board reorientation">
               <figure>
                 <a href="assets/assembly-strategies/waterproof.png" target="_blank" rel="noopener" aria-label="Open board-assisted connector reorientation at full resolution"><img src="assets/assembly-strategies/waterproof.png" alt="Five frames show the gripper using the board surface to reorient a waterproof connector before insertion." width="3840" height="1440" loading="lazy" decoding="async"></a>
+                <figcaption>The gripper uses contact with the board to turn the waterproof connector before inserting it.</figcaption>
               </figure>
             </article>
             <article class="behavior-slide" id="behavior-dsub" data-label="Connector regrasp" aria-label="Connector regrasp">
               <figure>
                 <a href="assets/assembly-strategies/dsub.png" target="_blank" rel="noopener" aria-label="Open D-sub connector regrasp sequence at full resolution"><img src="assets/assembly-strategies/dsub.png" alt="Five frames show the gripper setting down a D-sub connector and regrasping it for socket alignment." width="3840" height="1440" loading="lazy" decoding="async"></a>
+                <figcaption>The D-sub connector is set down and regrasped to align it with its socket.</figcaption>
               </figure>
             </article>
             <article class="behavior-slide" id="behavior-gear" data-label="Gear placement" aria-label="Gear placement">
               <figure>
                 <a href="assets/assembly-strategies/gear-medium.png" target="_blank" rel="noopener" aria-label="Open gear placement sequence at full resolution"><img src="assets/assembly-strategies/gear-medium.png" alt="Five frames show a medium gear pivoting from a side grasp toward a horizontal pose over its mounting post." width="3840" height="1440" loading="lazy" decoding="async"></a>
+                <figcaption>Held from the side, the medium gear pivots into a horizontal pose above its mounting post.</figcaption>
               </figure>
             </article>
             <article class="behavior-slide" id="behavior-m12" data-label="Nut reorientation" aria-label="Nut reorientation">
               <figure>
                 <a href="assets/assembly-strategies/nut-m12.png" target="_blank" rel="noopener" aria-label="Open M12 nut reorientation sequence at full resolution"><img src="assets/assembly-strategies/nut-m12.png" alt="Five frames show an M12 nut being rolled from its edge onto a flat face and positioned on a bolt." width="3840" height="1440" loading="lazy" decoding="async"></a>
+                <figcaption>The gripper rolls the M12 nut from its edge onto a flat face before placing it on the bolt.</figcaption>
               </figure>
             </article>
             <article class="behavior-slide" id="behavior-m4" data-label="Nut tapping" aria-label="Nut tapping">
               <figure>
                 <a href="assets/assembly-strategies/nut-m4.png" target="_blank" rel="noopener" aria-label="Open M4 nut tapping sequence at full resolution"><img src="assets/assembly-strategies/nut-m4.png" alt="Five frames show successive one-sided fingertip contacts advancing an M4 nut along a bolt." width="3840" height="1440" loading="lazy" decoding="async"></a>
+                <figcaption>One-sided fingertip taps turn the M4 nut along the bolt.</figcaption>
               </figure>
             </article>
             <article class="behavior-slide" id="behavior-rod" data-label="Rod repositioning" aria-label="Rod repositioning">
               <figure>
                 <a href="assets/assembly-strategies/rod-8mm.png" target="_blank" rel="noopener" aria-label="Open rod repositioning sequence at full resolution"><img src="assets/assembly-strategies/rod-8mm.png" alt="Five frames show a fingertip pushing an 8 mm rod across the surface, followed by grasping and lifting." width="3840" height="1440" loading="lazy" decoding="async"></a>
+                <figcaption>A fingertip pushes the 8&nbsp;mm rod across the surface before the gripper picks it up.</figcaption>
               </figure>
             </article>
             <article class="behavior-slide" id="behavior-m16" data-label="Circular threading" aria-label="Circular threading">
               <figure>
                 <a href="assets/assembly-strategies/nut-m16.png" target="_blank" rel="noopener" aria-label="Open M16 circular threading sequence at full resolution"><img src="assets/assembly-strategies/nut-m16.png" alt="Five frames show different gripper positions around an M16 nut while fingertip contacts turn the nut along the bolt." width="3840" height="1440" loading="lazy" decoding="async"></a>
+                <figcaption>The gripper moves around the M16 nut, using fingertip contact to turn it along the bolt.</figcaption>
               </figure>
             </article>
           </div>

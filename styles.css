@@ -103,6 +103,7 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 32 / 9; object-
 .behavior-track:focus-visible { outline: 3px solid #687586; outline-offset: 5px; }
 .behavior-slide { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; }
 .behavior-slide figure { margin: 0; }
+.behavior-slide figcaption { max-width: var(--reading-width); margin-top: 14px; color: var(--secondary); font-size: 14px; line-height: 1.65; }
 .behavior-slide figure > a { display: block; border-radius: 22px; }
 .behavior-slide img { display: block; width: 100%; height: auto; border-radius: 22px; }
 .behavior-controls { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 16px; }
