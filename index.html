@@ -18,7 +18,7 @@
     <meta name="twitter:image" content="https://alpha-nist.github.io/assets/k10-strategies/poster.jpg?v=detail-1">
     <meta name="twitter:image:alt" content="A Franka robot assembling components on the NIST board in simulation.">
     <link rel="canonical" href="https://alpha-nist.github.io/">
-    <link rel="stylesheet" href="styles.css?v=studio-33">
+    <link rel="stylesheet" href="styles.css?v=studio-34">
     <title>AlphaNIST</title>
     <script src="main.js?v=studio-27" defer></script>
   </head>
@@ -33,8 +33,8 @@
       <section class="hero" aria-labelledby="project-title">
         <div class="hero-copy media-shell">
           <h1 id="project-title">AlphaNIST</h1>
-          <p class="hero-description">The progression from <a href="https://deepmind.google/research/alphago/" target="_blank" rel="noopener">AlphaGo</a> to <a href="https://deepmind.google/blog/alphazero-shedding-new-light-on-chess-shogi-and-go/" target="_blank" rel="noopener">AlphaZero</a> showed how reinforcement learning, through experience at scale and without human demonstrations, could develop creative strategies that surprised even expert players.</p>
-          <p class="hero-description">What does it take for that to happen in robotics?</p>
+          <p class="hero-description">From <a href="https://deepmind.google/research/alphago/" target="_blank" rel="noopener">AlphaGo</a> to <a href="https://deepmind.google/blog/alphazero-shedding-new-light-on-chess-shogi-and-go/" target="_blank" rel="noopener">AlphaZero</a>, reinforcement learning produced strategies that surprised expert players. AlphaZero learned from experience at scale, without human demonstrations.</p>
+          <p class="hero-description">AlphaNIST brings this philosophy to contact-rich, high-precision robotic assembly in simulation. An end-to-end policy learns how to complete the task, without prescribed manipulation stages.</p>
           <p class="hero-description"><a href="assets/overview.mp4" type="video/mp4" target="_blank" rel="noopener">Narrated overview · 2:57</a></p>
         </div>
         <section class="strategies" id="strategies" aria-label="Multi-component assembly demonstrations">
@@ -62,7 +62,7 @@
               <div class="moment-groups"></div>
             </div>
             <p class="strategy-status film-context" role="status" aria-atomic="true"></p>
-            <p class="film-context" id="strategy-context">Four successful runs from a policy trained to assemble ten parts. The task reward is given only when all ten are assembled. This policy is trained separately from the single-component policy below.</p>
+            <p class="film-context" id="strategy-context">Four successful ten-part runs, using a policy trained separately from the single-component policy below.</p>
             <noscript><p class="film-context">Use the video controls to watch the film. <a href="assets/k10-strategies/timeline.json?v=detail-1">View the episode timeline.</a></p></noscript>
           </div>
         </section>
@@ -83,8 +83,8 @@
             </div>
             <figcaption id="board-orbit-caption">NIST Assembly Task Board #1, shown fully assembled.</figcaption>
           </figure>
-          <p>The NIST board combines twenty assembly tasks, with parts as small as 4&nbsp;mm. A single assembly may require repeated changes of grasp and orientation before insertion is possible. Tight clearances and friction make contact difficult to control: a slight tilt can cause a nut to cross-thread or jam instead of advancing along the bolt. Parts can also slip during manipulation, requiring the robot to recover and try again.</p>
-          <p>With several components, each assembly changes the conditions for the next. Installing one part can obstruct access to another or leave less room for the gripper to move. The robot may need to bring a part within reach, leave it unfinished, and return after assembling something else. These decisions have consequences much later in the sequence, while the task reward is withheld until every active component is assembled.</p>
+          <p>The <a href="https://www.nist.gov/el/intelligent-systems-division-73500/robotic-grasping-and-manipulation-assembly/assembly" target="_blank" rel="noopener">NIST board</a> has twenty assembly tasks, with parts as small as 4&nbsp;mm. Fitting one part can take several changes of grasp and orientation. Tight clearances leave little room for error: a tilted nut can jam or cross-thread.</p>
+          <p>With several parts, the robot also has to choose an order. An installed component may block the gripper’s next move.</p>
         </div>
       </section>
       <section class="story" id="idea" aria-label="Overview">
@@ -94,13 +94,15 @@
           <p>Perhaps the answer is to stop telling the robot how we think the task should be done, and let it learn how to get there. We give it a binary task reward for success and train it through vast amounts of diverse experience. That leaves room for the robot to discover solutions we might never have thought to teach.</p>
         </div>
       </section>
+      <section id="method" aria-labelledby="method-title">
+        <h2 class="method-heading media-shell" id="method-title">How the robot learns</h2>
       <section class="research-section" id="starting-states" aria-labelledby="starting-states-title">
         <div class="research-content media-shell">
           <div class="research-layout">
             <div class="research-copy">
-              <h2 id="starting-states-title">Experience diversity:<br>heterogeneous assets and initial states</h2>
-              <p>We train one policy across twenty assembly tasks involving nuts, gears, rods, pegs, and connectors. These heterogeneous assets differ in shape, size, and how they must be grasped and fitted together. Experience from all twenty tasks updates the same policy, rather than twenty separate specialists.</p>
-              <p>For each task, we also vary the initial state. A cached bank of simulated configurations includes loose parts, in-hand grasps, and partial assemblies. Near-complete starts let the robot encounter successful assembly while it is still learning to grasp and reorient loose parts. The bank supplies starting configurations, not demonstrations of how to finish.</p>
+              <h3 id="starting-states-title">Experience diversity:<br>heterogeneous assets and initial states</h3>
+              <p>One policy trains across twenty heterogeneous assemblies, starting from loose parts, in-hand grasps, and partial assemblies cached in simulation.</p>
+              <p>Near-complete starts let the robot practice finishing an assembly before it can solve the whole task. The cache supplies starting states, not demonstrations.</p>
             </div>
             <figure class="research-figure">
               <div class="video-frame">
@@ -121,9 +123,8 @@
         <div class="research-content media-shell">
           <div class="research-layout">
             <div class="research-copy">
-              <h2 id="sampling-title">Success-guided sampling</h2>
-              <p>As learning progresses, some starting states become easy while others remain out of reach. Success-guided sampling uses the outcomes of recent attempts to adjust how often each state is revisited.</p>
-              <p>Beta sampling gives the greatest weight to states the policy solves about half the time. Every state retains a chance of being sampled. Practice elsewhere can also make a previously unsuccessful state easier; when the robot returns to it, new outcomes update its sampling weight.</p>
+              <h3 id="sampling-title">Success-guided sampling</h3>
+              <p>Beta sampling favors starting states the policy solves about half the time, while giving every state a chance. Progress on one state can make another solvable; its sampling weight then changes with new outcomes.</p>
             </div>
             <figure class="research-figure">
               <div class="video-frame">
@@ -136,6 +137,7 @@
             </figure>
           </div>
         </div>
+      </section>
       </section>
       <section class="experiments" id="experiments" aria-labelledby="experiments-title">
         <div class="section-intro media-shell">
@@ -170,7 +172,7 @@
         <div class="training-comparison media-shell" id="training-across-assemblies">
           <div class="research-layout">
             <div class="research-copy">
-              <p>A single policy trained across all twenty assemblies reaches higher training success than separate specialists, each trained on just one task. Both use binary task rewards. More detailed guidance does not help here: adding rewards for reaching and alignment lowers success, especially for the shared policy.</p>
+              <p>With binary task rewards, one policy trained across all twenty tasks reaches higher training success than twenty separate specialists. Adding rewards for reaching and alignment reduces success in this experiment.</p>
             </div>
             <figure class="research-figure">
               <div class="research-plot" tabindex="0" role="region" aria-label="Figure 5 comparison; scroll horizontally on smaller screens">
@@ -242,7 +244,7 @@
             <p class="behavior-status" role="status" aria-live="polite" aria-atomic="true"></p>
             <button class="behavior-next" type="button" aria-label="Next strategy" aria-controls="behavior-track">→</button>
           </div>
-          <p class="behavior-help" id="behavior-help">Each sequence reads left to right. Swipe or scroll horizontally to browse strategies; open an image for the full-resolution view.</p>
+          <p class="behavior-help" id="behavior-help">Read each sequence left to right. Choose a behavior; open any image for full resolution.</p>
         </div>
       </section>
     </main>

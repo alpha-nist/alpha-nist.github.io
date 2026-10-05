@@ -77,6 +77,8 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 32 / 9; object-
 .story-body a:hover { text-decoration-color: currentColor; }
 .research-section { padding: 0 0 40px; }
 .research-copy h2 { margin-bottom: 16px; }
+.method-heading { margin-bottom: 28px; font-size: 28px; font-weight: 400; line-height: 1.25; letter-spacing: -.6px; }
+#method .research-copy h3 { margin-bottom: 16px; }
 .research-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.75fr); gap: 64px; align-items: start; }
 .research-figure { min-width: 0; margin: 0; }
 .research-figure img { display: block; width: 100%; height: auto; }
@@ -178,6 +180,7 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 32 / 9; object-
   .story-body p { font-size: 15px; }
   .research-section { padding-bottom: 28px; }
   .research-copy p { font-size: 15px; }
+  .method-heading { margin-bottom: 24px; font-size: 24px; }
   .training-comparison { padding: 32px 0 0; }
   .experiments { padding-block: 36px; }
   .section-intro > p { font-size: 15px; }
