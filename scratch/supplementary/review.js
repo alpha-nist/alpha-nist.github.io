@@ -12,6 +12,7 @@ let activeSection = -1;
 let activeChapter = -1;
 let requestedTime = null;
 let filmDuration = Number(player.dataset.duration);
+const reviewRevision = player.dataset.reviewRevision;
 
 function timestamp(seconds) {
   const whole = Math.max(0, Math.floor(Number(seconds) || 0));
@@ -126,6 +127,11 @@ function renderStory(story) {
       visual.append(makeElement("span", "visual-label", "On screen"), document.createTextNode(section.visual));
       article.append(visual);
     }
+    if (section.evidence) {
+      const evidence = makeElement("details", "visual-direction");
+      evidence.append(makeElement("summary", "visual-label", "Evidence and scope"), makeElement("p", "", section.evidence));
+      article.append(evidence);
+    }
     scriptContainer.append(article);
     return { ...section, element: article };
   });
@@ -140,7 +146,7 @@ player.addEventListener("timeupdate", () => updatePosition(requestedTime ?? play
 player.addEventListener("seeked", () => updatePosition());
 player.addEventListener("ended", () => updatePosition());
 
-fetch("story.json?v=4", { cache: "no-cache" })
+fetch(`story.json?v=${reviewRevision}`, { cache: "no-cache" })
   .then(response => {
     if (!response.ok) throw new Error("Story unavailable");
     return response.json();
@@ -151,7 +157,7 @@ fetch("story.json?v=4", { cache: "no-cache" })
     document.getElementById("data-error").hidden = false;
   });
 
-fetch("captions.srt?v=4", { method: "HEAD", cache: "no-cache" })
+fetch(`captions.srt?v=${reviewRevision}`, { method: "HEAD", cache: "no-cache" })
   .then(response => { document.getElementById("srt-download").hidden = !response.ok; })
   .catch(() => {});
 
@@ -210,7 +216,7 @@ disableNativeCaptions();
 function saveCaptions() {
   if (!storageKey || !cues.length) return;
   try {
-    localStorage.setItem(storageKey, JSON.stringify({ schema_version: 1, fingerprint, cues, enabled: captionsEnabled, size: Number(sizeField.value), placement: placementField.value }));
+    localStorage.setItem(storageKey, JSON.stringify({ schema_version: 2, review_revision: reviewRevision, fingerprint, cues, enabled: captionsEnabled, size: Number(sizeField.value), placement: placementField.value }));
     saveStatus.textContent = "Saved on this device";
   } catch {
     saveStatus.textContent = "Autosave unavailable — export edits";
@@ -367,7 +373,7 @@ for (const button of document.querySelectorAll("[data-caption-export]")) button.
   if (!cueError.hidden && !window.confirm("Invalid draft times are not included. Export the saved, valid subtitle times?")) return;
   const format = button.dataset.captionExport;
   let content;
-  if (format === "json") content = JSON.stringify({ schema_version: 1, source_fingerprint: fingerprint, duration_s: filmDuration, cues }, null, 2);
+  if (format === "json") content = JSON.stringify({ schema_version: 2, review_revision: reviewRevision, source_fingerprint: fingerprint, duration_s: filmDuration, cues }, null, 2);
   else {
     const separator = format === "srt" ? "," : ".";
     content = (format === "vtt" ? "WEBVTT\n\n" : "") + cues.filter(cue => cue.text.trim()).map((cue, index) => {
@@ -415,13 +421,13 @@ async function loadCaptions() {
     const source = await response.text();
     originals = parseCaptions(source);
     if (!validCues(originals)) throw new Error("Invalid subtitles");
-    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(source));
+    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(reviewRevision + "\n" + source));
     fingerprint = Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, "0")).join("");
-    storageKey = `alphanist:subtitle-review:v1:${location.pathname}:${fingerprint}`;
+    storageKey = `alphanist:subtitle-review:v2:${location.pathname}:${reviewRevision}:${fingerprint}`;
     cues = structuredClone(originals);
     try {
       const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
-      if (saved?.schema_version === 1 && saved.fingerprint === fingerprint && saved.cues?.length === cues.length && validCues(saved.cues)) {
+      if (saved?.schema_version === 2 && saved.review_revision === reviewRevision && saved.fingerprint === fingerprint && saved.cues?.length === cues.length && validCues(saved.cues)) {
         cues = saved.cues.map(({ start, end, text }) => ({ start, end, text }));
         captionsEnabled = saved.enabled !== false;
         if (Number.isFinite(saved.size) && saved.size >= 24 && saved.size <= 48) sizeField.value = saved.size;

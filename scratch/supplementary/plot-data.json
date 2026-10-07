@@ -67,7 +67,7 @@
   },
   "series": {
     "beta_sparse": {
-      "label": "Binary reward · success-guided sampling",
+      "label": "Binary reward · beta sampling",
       "sampling": "beta",
       "mean_percent": [
         38.55263157894737,
@@ -119,7 +119,7 @@
       ]
     },
     "beta_dense": {
-      "label": "Dense reward · success-guided sampling",
+      "label": "Dense reward · beta sampling",
       "sampling": "beta",
       "mean_percent": [
         11.907894736842106,
