@@ -1,8 +1,8 @@
 {
   "title": "AlphaNIST — supplementary film",
-  "version": "Learning dexterity and coordination · Bella review",
-  "duration_s": 167.9,
-  "voice": "Stock synthetic English Kokoro-82M / af_bella; no voice cloning",
+  "version": "Learning dexterity and coordination · original voice",
+  "duration_s": 163.78,
+  "voice": "Stock synthetic English Kokoro-82M / af_heart; original voice; no voice cloning",
   "scope": "Simulation footage. Selected successful runs are illustrations, not a success-rate evaluation. Single-component and ten-component policies are different trained models.",
   "chapters": [
     {
@@ -10,23 +10,23 @@
       "title": "Paper and benchmark"
     },
     {
-      "start": 12.6,
+      "start": 11.96,
       "title": "Four method components"
     },
     {
-      "start": 55.7,
+      "start": 53.36,
       "title": "Experimental results"
     },
     {
-      "start": 81.28,
+      "start": 78.5,
       "title": "Short-horizon dexterity"
     },
     {
-      "start": 119.76,
+      "start": 116.2,
       "title": "Long-horizon behavior"
     },
     {
-      "start": 151.1,
+      "start": 147.22,
       "title": "Conclusion"
     }
   ],
@@ -34,79 +34,79 @@
     {
       "id": "opening",
       "start": 0.0,
-      "end": 4.78,
+      "end": 4.62,
       "title": "AlphaNIST",
       "narration": "AlphaNIST: Emergent Assembly Skills from Binary Task Rewards.",
-      "visual": "The full paper title appears over fixed-camera footage from ten-component episode 404. This is an introduction, not a complete rollout. This revision trims from frame 0, filling 4.78 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
+      "visual": "The full paper title appears over fixed-camera footage from ten-component episode 404. This is an introduction, not a complete rollout. This revision trims from frame 0, filling 4.62 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
       "evidence": "Paper title verified against main.tex:37. Footage is a selected successful ten-component rollout; the single-component policy discussed later is a different trained model."
     },
     {
       "id": "board",
-      "start": 4.78,
-      "end": 12.6,
+      "start": 4.62,
+      "end": 11.96,
       "title": "The NIST assembly benchmark",
       "narration": "The NIST board is an assembly benchmark with twenty tasks, including gear meshing, threading, and connector insertion.",
-      "visual": "An orbit of the fully assembled NIST board introduces its nuts, gears, rods, pegs, and connectors. This is a rendered asset illustration, not footage of a policy completing twenty parts. This revision loops the existing edited sequence from frame 0, filling 7.82 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
+      "visual": "An orbit of the fully assembled NIST board introduces its nuts, gears, rods, pegs, and connectors. This is a rendered asset illustration, not footage of a policy completing twenty parts. This revision loops the existing edited sequence from frame 0, filling 7.34 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
       "evidence": "NIST Assembly Task Board 1 with twenty assembly tasks; local paper Introduction and Task sections."
     },
     {
       "id": "method_overview",
-      "start": 12.6,
-      "end": 19.58,
+      "start": 11.96,
+      "end": 18.56,
       "title": "Four components",
       "narration": "We use binary task rewards, cached resets, beta sampling, and large-scale reinforcement learning.",
-      "visual": "A two-by-two overview presents binary task reward, cached resets, beta sampling, and training at scale. It combines a completion schematic, real reset thumbnails, an illustrative sampling curve, and a parallel-environment schematic. This revision trims from frame 0, filling 6.98 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
+      "visual": "A two-by-two overview presents binary task reward, cached resets, beta sampling, and training at scale. It combines a completion schematic, real reset thumbnails, an illustrative sampling curve, and a parallel-environment schematic. This revision trims from frame 0, filling 6.60 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
       "evidence": "Local paper sections/05_method.tex: binary completion reward, cached joint geometry/start-state bank, beta-sampling equation, and parallel PPO training. Diagrams are illustrations, not additional measurements."
     },
     {
       "id": "objective",
-      "start": 19.58,
-      "end": 28.36,
+      "start": 18.56,
+      "end": 26.94,
       "title": "1 · Binary task reward",
       "narration": "The task reward arrives only when assembly is complete. We do not prescribe grasping, reorientation, or insertion stages.",
-      "visual": "Paired starting/completed states show a waterproof connector, large gear, M12 nut, and 16 mm rod. Initial parts rest on surfaces. Incomplete states receive task reward 0; completion receives task reward 1. Reaching, grasping, and partial insertion receive no assembly-progress reward; per-step control costs remain part of training. This revision trims from frame 0, filling 8.78 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
+      "visual": "Paired starting/completed states show a waterproof connector, large gear, M12 nut, and 16 mm rod. Initial parts rest on surfaces. Incomplete states receive task reward 0; completion receives task reward 1. Reaching, grasping, and partial insertion receive no assembly-progress reward; per-step control costs remain part of training. This revision trims from frame 0, filling 8.38 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
       "evidence": "Method: Binary Full-Assembly Objective, including per-step control regularization."
     },
     {
       "id": "resets",
-      "start": 28.36,
-      "end": 36.48,
+      "start": 26.94,
+      "end": 34.66,
       "title": "2 · Cached resets",
       "narration": "Training starts from a bank of loose parts, held parts, and partial assemblies. These are starting states, not demonstrations.",
-      "visual": "A reset-only montage shows loose parts, held parts, and partial assemblies from the cached bank. These are sampled starting states, not policy actions or demonstrations. The main label reads Cached resets. This revision trims from frame 0, filling 8.12 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
+      "visual": "A reset-only montage shows loose parts, held parts, and partial assemblies from the cached bank. These are sampled starting states, not policy actions or demonstrations. The main label reads Cached resets. This revision trims from frame 0, filling 7.72 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
       "evidence": "Method: Reset Coverage and Experience Allocation; reset-only showcase contains no policy actions."
     },
     {
       "id": "sampling",
-      "start": 36.48,
-      "end": 44.62,
+      "start": 34.66,
+      "end": 42.58,
       "title": "3 · Beta sampling",
       "narration": "Beta sampling puts more training effort into states the policy sometimes solves, while retaining a chance to revisit every state.",
-      "visual": "An illustrative animation shows the beta-sampling rule: preference for intermediate success, a nonzero sampling floor, and geometry plus starting state treated as one joint sample. This is a schematic, not another experimental result. This revision trims from frame 0, filling 8.14 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
+      "visual": "An illustrative animation shows the beta-sampling rule: preference for intermediate success, a nonzero sampling floor, and geometry plus starting state treated as one joint sample. This is a schematic, not another experimental result. This revision trims from frame 0, filling 7.92 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
       "evidence": "Method beta-sampling equation: probability proportional to epsilon plus square root of p times one minus p, normalized over the joint bank. Terminology follows the paper’s beta-sampling rule (Method, Eq. beta-sampling) and beta-versus-uniform comparison (Experiments)."
     },
     {
       "id": "training_scale",
-      "start": 44.62,
-      "end": 49.72,
+      "start": 42.58,
+      "end": 47.6,
       "title": "4 · Training at scale",
       "narration": "We train with up to two hundred and fifty-six thousand parallel environments.",
-      "visual": "A training-statistics slide shows up to 256K parallel rollout environments and 4K environments per GPU. The grid illustrates allocation; it is not a recording of hardware or additional scaling evidence. This revision trims from frame 0, filling 5.10 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
+      "visual": "A training-statistics slide shows up to 256K parallel rollout environments and 4K environments per GPU. The grid illustrates allocation; it is not a recording of hardware or additional scaling evidence. This revision trims from frame 0, filling 5.02 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
       "evidence": "Local paper sections/05_method.tex:565–575, PPO training at 1K–256K parallel environments and 4K environments per GPU. The illustrated 64-device grid follows from 256K divided by 4K."
     },
     {
       "id": "policy_bridge",
-      "start": 49.72,
-      "end": 55.7,
+      "start": 47.6,
+      "end": 53.36,
       "title": "One shared policy",
       "narration": "One policy learns all twenty individual tasks, using point clouds and robot state.",
-      "visual": "A surface-point-cloud schematic and robot state feed one shared policy, linked to twenty individual task icons: four nuts, three gears, four rods, four pegs, and five connectors. The input drawing is an illustration, not a recorded sensor frame. The film makes no novelty-priority claim. This revision trims from frame 0, filling 5.98 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
+      "visual": "A surface-point-cloud schematic and robot state feed one shared policy, linked to twenty individual task icons: four nuts, three gears, four rods, four pegs, and five connectors. The input drawing is an illustration, not a recorded sensor frame. The film makes no novelty-priority claim. This revision trims from frame 0, filling 5.76 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
       "evidence": "Point clouds plus robot state: sections/05_method.tex:449–465. Twenty-task single-policy coverage: sections/02_introduction.tex, contribution paragraph. This refers to one trained policy across twenty individual tasks, not a continuous twenty-part rollout. The revised film omits the previous qualified novelty claim."
     },
     {
       "id": "heterogeneity",
-      "start": 55.7,
-      "end": 61.7,
+      "start": 53.36,
+      "end": 59.36,
       "title": "Learning across assemblies",
       "narration": "Training across assemblies gives higher training success than learning each task separately.",
       "visual": "The existing bar comparison shows 98.2% shared-policy training success and 81.4% mean success for separately trained specialists, using binary task rewards. These are training-success values, not random-start evaluation results. This revision trims from frame 0, filling 6.00 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
@@ -114,8 +114,8 @@
     },
     {
       "id": "scaling",
-      "start": 61.7,
-      "end": 81.28,
+      "start": 59.36,
+      "end": 78.5,
       "title": "Scaling and ablations",
       "narration": "Success increases as we train with more parallel environments. Adding dense rewards for reaching and alignment lowers success by twenty percentage points at the largest scale. Replacing beta sampling with uniform sampling lowers success by thirteen percentage points, compared with the full method.",
       "visual": "Fixed axes reveal three measured conditions in narration order: Full method (binary task reward and beta sampling), Add dense shaping (the tested reaching and alignment terms), and Use uniform sampling (binary task reward with uniform training reset sampling). Each ablation is independent, relative to the full method; the changes are not cumulative. At 256K, success is 97.4%, 77.4%, and 84.3%; decreases are 19.9 and 13.1 percentage points. All nine measured means and sample SDs across five evaluation seeds remain unchanged for each displayed curve. The fourth source curve is not displayed. Curve reveals and annotations follow the new native-speed narration.",
@@ -124,30 +124,30 @@
         {
           "id": "scaling_ours",
           "curve": "ours",
-          "start": 61.7,
-          "end": 66.22,
+          "start": 59.36,
+          "end": 63.72,
           "narration": "Success increases as we train with more parallel environments."
         },
         {
           "id": "scaling_dense",
           "curve": "dense",
-          "start": 66.22,
-          "end": 73.22,
+          "start": 63.72,
+          "end": 70.62,
           "narration": "Adding dense rewards for reaching and alignment lowers success by twenty percentage points at the largest scale."
         },
         {
           "id": "scaling_uniform",
           "curve": "uniform",
-          "start": 73.22,
-          "end": 81.28,
+          "start": 70.62,
+          "end": 78.5,
           "narration": "Replacing beta sampling with uniform sampling lowers success by thirteen percentage points, compared with the full method."
         }
       ]
     },
     {
       "id": "short_horizon",
-      "start": 81.28,
-      "end": 88.28,
+      "start": 78.5,
+      "end": 85.5,
       "title": "Short-horizon dexterity",
       "narration": "The gripper holds the gear at an angle, turns it into alignment, and lowers it onto the post.",
       "visual": "The first homepage single-component demonstration shows a tilted small gear being turned into alignment and lowered onto its post. The source is native 25 fps footage presented in a 50 fps edited clip by frame duplication, not AI interpolation. Existing replays and the completion hold belong to the source edit. This revision reuses the existing sequence, filling 7.00 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
@@ -155,17 +155,17 @@
     },
     {
       "id": "peg",
-      "start": 88.28,
-      "end": 94.74,
+      "start": 85.5,
+      "end": 91.76,
       "title": "Peg regrasp",
       "narration": "This grasp leaves too little of the peg exposed. The robot sets it down and grasps nearer the end.",
-      "visual": "A close-up shows the 8 mm peg being released, regrasped nearer an end, and inserted. The existing edited sequence was built from source 0.5–3.1 seconds and includes replay and a completion hold. The spoken explanation describes the exposed length needed for insertion. This revision trims from frame 0, filling 6.46 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
+      "visual": "A close-up shows the 8 mm peg being released, regrasped nearer an end, and inserted. The existing edited sequence was built from source 0.5–3.1 seconds and includes replay and a completion hold. The spoken explanation describes the exposed length needed for insertion. This revision trims from frame 0, filling 6.26 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
       "evidence": "Experiments: Emergent Strategies over Short Horizons; visually checked peg clip and gallery sequence."
     },
     {
       "id": "peg_shovel",
-      "start": 94.74,
-      "end": 99.54,
+      "start": 91.76,
+      "end": 96.56,
       "title": "Repositioning before pickup",
       "narration": "It moves this peg away from the board edge before picking it up.",
       "visual": "A local maneuver from ten-component episode 163 shows the 16 mm rectangular peg on the floor against the board edge, moved outward before grasping and insertion. The existing edit comes from source 34.1–36.6 seconds. No adjacent asset manipulation is introduced. This revision reuses the existing sequence, filling 4.80 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
@@ -173,8 +173,8 @@
     },
     {
       "id": "connector",
-      "start": 99.54,
-      "end": 104.54,
+      "start": 96.56,
+      "end": 101.56,
       "title": "Board-assisted reorientation",
       "narration": "The gripper presses the connector against the board to turn it before insertion.",
       "visual": "Board contact turns the waterproof connector, followed by lift and insertion. The existing edited sequence comes from source 0.3–2.8 seconds and excludes the episode reset. This revision trims from frame 0, filling 5.00 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
@@ -182,46 +182,46 @@
     },
     {
       "id": "tapping",
-      "start": 104.54,
-      "end": 119.76,
+      "start": 101.56,
+      "end": 116.2,
       "title": "Nut size, reach, and threading motion",
       "narration": "Threading varies with nut size and reach. On the left, a fingertip taps the small, nearby M4 nut. In the middle, the outside of a finger turns the farther M12 nut. On the right, the gripper circles the nearby M8 nut.",
-      "visual": "Three independently cropped close-ups remain visible for 15.22 seconds. Their original 50 fps source windows play at native speed, looping without slowdowns. A gold top rule follows the new narration: left M4, middle M12, right M8, with no highlighted panel during the introduction. The original panel crops and main labels are retained. These qualitative views are not to scale and are not a controlled comparison of nut size or reach distance.",
+      "visual": "Three independently cropped close-ups remain visible for 14.64 seconds. Their original 50 fps source windows play at native speed, looping without slowdowns. A gold top rule follows the new narration: left M4, middle M12, right M8, with no highlighted panel during the introduction. The original panel crops and main labels are retained. These qualitative views are not to scale and are not a controlled comparison of nut size or reach distance.",
       "evidence": "Qualitative comparison, not a controlled size-or-distance experiment. The M4 catalog identifies an exact saved-state replay with checkpoint_native=false; its original trajectory is unavailable, so no checkpoint identity or measured distance is assigned. Its nearby context follows the user-provided scene identification. E404 saved states verify M12 held_05 variant 1 at 0.8865–0.8883 m horizontal distance from robot base during 10.5–14.4 s, compared with M8 held_07 variant 0 at 0.6781–0.6784 m during 25–27 s. M12 is approximately 21 cm farther in horizontal reach. Cropped magnification is not used to infer distance.",
       "phases": [
         {
           "position": "introduction",
-          "start": 104.54,
-          "end": 107.631,
+          "start": 101.56,
+          "end": 104.504,
           "narration": "Threading varies with nut size and reach."
         },
         {
           "position": "left",
           "nut": "M4",
-          "start": 107.631,
-          "end": 112.294,
+          "start": 104.504,
+          "end": 108.867,
           "narration": "On the left, a fingertip taps the small, nearby M4 nut."
         },
         {
           "position": "middle",
           "nut": "M12",
-          "start": 112.294,
-          "end": 116.481,
+          "start": 108.867,
+          "end": 112.829,
           "narration": "In the middle, the outside of a finger turns the farther M12 nut."
         },
         {
           "position": "right",
           "nut": "M8",
-          "start": 116.481,
-          "end": 119.76,
+          "start": 112.829,
+          "end": 116.2,
           "narration": "On the right, the gripper circles the nearby M8 nut."
         }
       ]
     },
     {
       "id": "coordination",
-      "start": 119.76,
-      "end": 136.88,
+      "start": 116.2,
+      "end": 133.32,
       "title": "Changing the workspace",
       "narration": "For multi-component tasks, the reward arrives only when all active parts are assembled. The robot moves parts aside and separates overlapping gears before returning to the remaining assemblies.",
       "visual": "Fixed-camera episode 396 shows parts moved aside, gears separated, and later assembly. The existing edited sequence uses chronological excerpts from source 0–15.74 and 24–28.26 seconds. There is no close-up overlay; this is not represented as one continuous complete rollout. The binary task reward is given only when all active components are assembled. This revision reuses the existing sequence, filling 17.12 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
@@ -229,26 +229,26 @@
     },
     {
       "id": "gear_meshing",
-      "start": 136.88,
-      "end": 143.56,
+      "start": 133.32,
+      "end": 139.82,
       "title": "Gear-tooth alignment",
       "narration": "With a neighboring gear in place, the gripper rotates the raised gear to align the teeth, then lets it settle.",
-      "visual": "Side-by-side close-ups from separate ten-component episodes show small and medium gears turned before seating beside already placed gears. The existing edited comparison includes replay cycles and a completion hold; neither panel continues into connector manipulation. These are separate operations, not synchronized views of the same action. This revision trims from frame 0, filling 6.68 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
+      "visual": "Side-by-side close-ups from separate ten-component episodes show small and medium gears turned before seating beside already placed gears. The existing edited comparison includes replay cycles and a completion hold; neither panel continues into connector manipulation. These are separate operations, not synchronized views of the same action. This revision trims from frame 0, filling 6.50 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
       "evidence": "Both examples visibly show fingertip adjustment followed by a raised gear seating beside an already placed gear. These are separate operations and not synchronized recordings of the same motion; the comparison is labeled accordingly. The revised explanation distinguishes straight downward insertion from rotation to align neighboring teeth. Sideways turning and seating are visible; no contact-force measurement or passive gravity-only descent is claimed."
     },
     {
       "id": "nut_clearance",
-      "start": 143.56,
-      "end": 151.1,
+      "start": 139.82,
+      "end": 147.22,
       "title": "Neighbor-aware turning",
       "narration": "Beside an inserted Ethernet connector, the gripper makes short turns and repositions its fingers to keep its hand clear.",
-      "visual": "Two independent close-ups show short turns and finger repositioning near other parts. The left M12 example includes an inserted Ethernet connector. Its existing header reads M12 · beside an Ethernet connector; both footage panels and the layout are retained. No connector identity is assigned to the right example. This revision trims from frame 0, filling 7.54 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
+      "visual": "Two independent close-ups show short turns and finger repositioning near other parts. The left M12 example includes an inserted Ethernet connector. Its existing header reads M12 · beside an Ethernet connector; both footage panels and the layout are retained. No connector identity is assigned to the right example. This revision trims from frame 0, filling 7.40 seconds. There is no additional picture-speed change. Replays or holds already present in the input edit remain part of that source edit.",
       "evidence": "The right excerpt shows the nut lowered to a bolt, followed by short turns and finger repositioning beside an upright part. Neighboring objects remain visually in place during the chosen window. Neighbor-aware is a qualitative description, not a measured zero-contact guarantee or a claim about internal policy representations. The source checkpoint and neighboring part identity are unverified. No same-checkpoint comparison is claimed. The narration now explicitly describes hand clearance around the inserted Ethernet connector in the left M12 example, rather than merely unchanged object positions. This is a visible clearance strategy, not a measured guarantee of zero contact; no connector identity is assigned to the right excerpt."
     },
     {
       "id": "scope",
-      "start": 151.1,
-      "end": 167.9,
+      "start": 147.22,
+      "end": 163.78,
       "title": "Learning dexterity and coordination",
       "narration": "Binary task rewards and training at scale can produce dexterity and coordination. Shared training improves training success over separate specialists; adding dense shaping lowers success. Multi-part policies also learn which parts to work on and when.",
       "visual": "Learning dexterity and coordination closes the film with three findings: shared training improves training success; binary task rewards outperform the tested dense shaping; multi-part policies learn assembly order. A fixed-angle episode 471 excerpt plays beside the findings at native 50 fps, from source 25.5–44.5 seconds. The section ends within that source window, without a new loop. The project QR code and alpha-nist.github.io remain above the caption-safe area. Selected behavior is qualitative evidence, not another quantitative evaluation.",
@@ -258,89 +258,89 @@
   "behavior_names": [
     {
       "name": "Small-gear placement",
-      "time": 81.28,
+      "time": 78.5,
       "horizon": "short",
       "category": "Grasp and orientation",
       "description": "A tilted small gear is oriented and lowered onto its post."
     },
     {
       "name": "Peg regrasp",
-      "time": 88.28,
+      "time": 85.5,
       "horizon": "short",
       "category": "Grasp and orientation",
       "description": "Release and end regrasp expose the peg for insertion."
     },
     {
       "name": "Repositioning before pickup",
-      "time": 94.74,
+      "time": 91.76,
       "horizon": "short",
       "category": "Grasp and orientation",
       "description": "A local maneuver from K10: a peg is shoveled away from the board edge before grasping."
     },
     {
       "name": "Board-assisted reorientation",
-      "time": 99.54,
+      "time": 96.56,
       "horizon": "short",
       "category": "Grasp and orientation",
       "description": "Board contact changes the connector pose before insertion."
     },
     {
       "name": "Nut size and reach",
-      "time": 104.54,
+      "time": 101.56,
       "horizon": "short",
       "category": "Threading contacts",
       "description": "Three qualitative examples with different nut sizes and reach distances."
     },
     {
       "name": "One-sided tapping",
-      "time": 107.631,
+      "time": 104.504,
       "horizon": "short",
       "category": "Threading contacts",
       "description": "Left: fingertip tapping on a small, nearby M4 nut."
     },
     {
       "name": "Outside-finger turning",
-      "time": 112.294,
+      "time": 108.867,
       "horizon": "short",
       "category": "Threading contacts",
       "description": "Middle: the outside of a finger turns the farther M12 nut."
     },
     {
       "name": "Circular threading",
-      "time": 116.481,
+      "time": 112.829,
       "horizon": "short",
       "category": "Threading contacts",
       "description": "Right: circular gripper motion around the nearby M8 nut."
     },
     {
       "name": "Changing the workspace",
-      "time": 119.76,
+      "time": 116.2,
       "horizon": "long",
       "category": "Reach and workspace",
       "description": "The robot moves parts aside before working on other parts."
     },
     {
       "name": "Object separation",
-      "time": 123.51,
+      "time": 119.95,
       "horizon": "long",
       "category": "Reach and workspace",
       "description": "Overlapping gears are separated before assembly."
     },
     {
       "name": "Gear-tooth alignment",
-      "time": 136.88,
+      "time": 133.32,
       "horizon": "long",
       "category": "Interacting assemblies",
       "description": "The gripper rotates a raised gear to align neighboring teeth before seating."
     },
     {
       "name": "Neighbor-aware turning",
-      "time": 143.56,
+      "time": 139.82,
       "horizon": "long",
       "category": "Interacting assemblies",
       "description": "Short turns and finger repositioning keep the hand clear of the nearby Ethernet connector in the left example."
     }
   ],
-  "presentation_notes": "Narration is newly synthesized with stock Kokoro af_bella at speed 1.0, without waveform retiming. Existing edited method and behavior clips retain their playback pace; section lengths follow the new narration. Opening, objective, and sampling trim or hold their final frame rather than restart. Other retained edits trim or loop as documented per shot. Scaling, threading emphasis, and conclusion match the new word timings. The review master has editable browser captions; the downloadable film has visible embedded captions. Protocol and evidence qualifiers are available in expandable notes and the unchanged plot-data.json.",
-  "review_revision": "bella-ffcaf7ffcd92cb096392"
+  "presentation_notes": "Narration is newly synthesized with the original stock Kokoro af_heart voice at speed 1.0, without waveform retiming. Existing edited method and behavior clips retain their playback pace; section lengths follow the new narration. Opening, objective, and sampling trim or hold their final frame rather than restart. Other retained edits trim or loop as documented per shot. Scaling, threading emphasis, and conclusion match the new word timings. The review master has editable browser captions; the downloadable film has visible embedded captions. Protocol and evidence qualifiers are available in expandable notes and the unchanged plot-data.json.",
+  "review_revision": "heart-86f92be55a1b1ea3bf9c"
 }
