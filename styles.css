@@ -26,7 +26,7 @@ a:focus-visible, button:focus-visible, video:focus-visible { outline: 3px solid 
 .header-inner { min-height: 68px; }
 .wordmark { font-size: 17px; font-weight: 500; letter-spacing: -.4px; text-decoration: none; white-space: nowrap; }
 
-.hero-copy { text-align: center; padding: 40px 0 40px; }
+.hero-copy { text-align: center; padding: 96px 0 40px; }
 h1 { margin: 0; font-size: 48px; font-weight: 400; line-height: 1.15; letter-spacing: -1.4px; }
 .hero-description { max-width: 620px; margin: 16px auto 0; color: var(--secondary); font-size: 16px; line-height: 1.65; text-wrap: pretty; }
 h2, h3 { margin: 0; font-size: 16px; font-weight: 400; letter-spacing: 0; line-height: 1.5; }
@@ -162,7 +162,7 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 32 / 9; object-
   .header-inner, .footer-inner { gap: 20px; }
   .header-inner { min-height: 64px; }
   .wordmark { font-size: 17px; }
-  .hero-copy { padding: 28px 0 28px; }
+  .hero-copy { padding: 64px 0 28px; }
   h1 { font-size: 38px; letter-spacing: -.9px; }
   .hero-description { margin-top: 14px; font-size: 15px; }
   .video-frame { border-radius: 14px; }
