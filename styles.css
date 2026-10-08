@@ -128,7 +128,8 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 32 / 9; object-
 .training-comparison { padding: 48px 0 0; }
 .training-comparison .research-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
 .sampling-section .research-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-.research-plot { overflow-x: auto; background: #fff; border-radius: 8px; }
+.sampling-section .video-frame { background: var(--page); }
+.research-plot { overflow-x: auto; background: var(--surface); border-radius: 8px; }
 .research-plot img { min-width: 840px; }
 .research-plot-hint { display: none; }
 .experiments { padding: 48px 0; background: var(--surface); }

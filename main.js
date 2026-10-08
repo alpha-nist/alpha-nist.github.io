@@ -5,6 +5,9 @@ if (themeToggle) {
   const applyTheme = () => {
     const dark = chosenTheme === "dark" || (chosenTheme !== "light" && systemTheme.matches);
     document.documentElement.dataset.theme = dark ? "dark" : "light";
+    for (const source of document.querySelectorAll("source[data-dark-media]")) {
+      source.media = dark ? source.dataset.darkMedia : "not all";
+    }
     document.querySelector('meta[name="theme-color"]').content = getComputedStyle(document.documentElement).getPropertyValue("--page").trim();
     themeToggle.title = `Switch to ${dark ? "light" : "dark"} appearance`;
     themeToggle.setAttribute("aria-label", themeToggle.title);

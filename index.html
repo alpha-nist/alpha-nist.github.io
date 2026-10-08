@@ -24,9 +24,9 @@
       document.documentElement.dataset.theme = savedTheme === "light" || savedTheme === "dark" ? savedTheme :
         (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     </script>
-    <link rel="stylesheet" href="styles.css?v=studio-36">
+    <link rel="stylesheet" href="styles.css?v=studio-37">
     <title>AlphaNIST</title>
-    <script src="main.js?v=studio-28" defer></script>
+    <script src="main.js?v=studio-29" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -137,8 +137,10 @@
             <figure class="research-figure">
               <div class="video-frame">
                 <picture>
-                  <source media="(prefers-reduced-motion: reduce)" srcset="assets/research/sgs-method-poster.jpg?v=5">
-                  <img id="sgs-animation" src="assets/research/sgs-method.gif?v=3" width="1920" height="1080" loading="lazy" decoding="async" alt="Success-guided sampling: starting states are selected, data flows into the policy, and success estimates update the sampling weights." aria-describedby="sgs-caption">
+                  <source data-dark-media="(prefers-reduced-motion: reduce)" media="not all" srcset="assets/research/sgs-method-dark-poster.jpg">
+                  <source media="(prefers-reduced-motion: reduce)" srcset="assets/research/sgs-method-light-poster.jpg">
+                  <source data-dark-media="all" media="not all" srcset="assets/research/sgs-method-dark.gif">
+                  <img id="sgs-animation" src="assets/research/sgs-method-light.gif" width="1920" height="1080" loading="lazy" decoding="async" alt="Success-guided sampling: starting states are selected, data flows into the policy, and success estimates update the sampling weights." aria-describedby="sgs-caption">
                 </picture>
               </div>
               <figcaption id="sgs-caption">Starting states receive different amounts of practice as the policy learns. <a href="https://sgs-rl.github.io/" target="_blank" rel="noopener">SGS project ↗</a></figcaption>
@@ -184,7 +186,10 @@
             </div>
             <figure class="research-figure">
               <div class="research-plot" tabindex="0" role="region" aria-label="Figure 5 comparison; scroll horizontally on smaller screens">
-                <img src="assets/research/heterogeneous-training.svg?v=paper-values" alt="Figure 5 comparison: success by task for four training conditions, alongside overall success of 98.2% for a shared policy with binary rewards, 81.4% for separate policies with binary rewards, 17.8% for a shared policy with dense rewards, and 78.3% for separate policies with dense rewards." width="1120" height="440" loading="lazy" decoding="async">
+                <picture>
+                  <source data-dark-media="all" media="not all" srcset="assets/research/heterogeneous-training-dark.svg">
+                  <img src="assets/research/heterogeneous-training-light.svg" alt="Figure 5 comparison: success by task for four training conditions, alongside overall success of 98.2% for a shared policy with binary rewards, 81.4% for separate policies with binary rewards, 17.8% for a shared policy with dense rewards, and 78.3% for separate policies with dense rewards." width="1120" height="440" loading="lazy" decoding="async">
+                </picture>
               </div>
               <figcaption><span class="research-plot-hint">Swipe or scroll horizontally to view the full figure.</span>Training success across varied starting states.</figcaption>
             </figure>
