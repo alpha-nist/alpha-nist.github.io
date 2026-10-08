@@ -1,3 +1,25 @@
+const themeToggle = document.querySelector("#theme-toggle");
+if (themeToggle) {
+  const systemTheme = matchMedia("(prefers-color-scheme: dark)");
+  let chosenTheme = savedTheme;
+  const applyTheme = () => {
+    const dark = chosenTheme === "dark" || (chosenTheme !== "light" && systemTheme.matches);
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    document.querySelector('meta[name="theme-color"]').content = getComputedStyle(document.documentElement).getPropertyValue("--page").trim();
+    themeToggle.title = `Switch to ${dark ? "light" : "dark"} appearance`;
+    themeToggle.setAttribute("aria-label", themeToggle.title);
+    themeToggle.querySelector(".theme-label").textContent = dark ? "Light" : "Dark";
+  };
+  themeToggle.addEventListener("click", () => {
+    chosenTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    try { localStorage.setItem("alphanist-theme", chosenTheme); } catch (_) {}
+    applyTheme();
+  });
+  systemTheme.addEventListener("change", applyTheme);
+  applyTheme();
+  themeToggle.hidden = false;
+}
+
 const video = document.querySelector("#assembly-video");
 const chapters = [...document.querySelectorAll("#demo .chapter")];
 const chapterStatus = document.querySelector("#demo .chapter-status");
