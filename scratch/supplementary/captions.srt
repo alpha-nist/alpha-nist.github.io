@@ -4,343 +4,324 @@ AlphaNIST: Emergent Assembly
 Skills from Binary Task Rewards.
 
 2
-00:00:05,750 --> 00:00:10,075
+00:00:05,745 --> 00:00:10,070
 We focus on the NIST board,
 an assembly benchmark with twenty tasks,
 
 3
-00:00:10,075 --> 00:00:14,625
+00:00:10,070 --> 00:00:13,946
 from gear meshing and nut threading
 to peg and connector insertion.
 
 4
-00:00:14,625 --> 00:00:17,724
-A two-finger gripper has
-to handle each geometry
-
-5
-00:00:17,724 --> 00:00:20,534
-and make the contacts needed
-to fit the parts together.
-
-6
-00:00:21,311 --> 00:00:25,323
+00:00:14,711 --> 00:00:18,723
 Four components make up the training
 setup: binary task rewards,
 
-7
-00:00:25,323 --> 00:00:30,093
+5
+00:00:18,723 --> 00:00:23,493
 cached starting states, beta sampling,
 and large-scale parallel experience.
 
-8
-00:00:30,816 --> 00:00:35,941
+6
+00:00:24,216 --> 00:00:29,341
 The task reward is binary: one for
 a completed assembly, zero otherwise.
 
-9
-00:00:35,941 --> 00:00:40,778
+7
+00:00:29,341 --> 00:00:34,178
 There is no progress reward for reaching,
 grasping, or partial insertion.
 
-10
-00:00:40,778 --> 00:00:43,943
+8
+00:00:34,178 --> 00:00:37,343
 The robot has to learn which
 actions lead to completion.
 
-11
-00:00:44,685 --> 00:00:49,623
+9
+00:00:38,085 --> 00:00:43,023
 From loose parts alone, an untrained
 policy may rarely reach insertion.
 
-12
-00:00:49,623 --> 00:00:54,473
+10
+00:00:43,023 --> 00:00:47,873
 A cached bank lets it also start with
 parts already grasped or partly assembled,
 
-13
-00:00:54,473 --> 00:00:56,448
+11
+00:00:47,873 --> 00:00:49,848
 so it can practice finishing.
 
-14
-00:00:56,448 --> 00:00:59,260
+12
+00:00:49,848 --> 00:00:52,660
 These states are generated in simulation.
 
-15
-00:00:59,260 --> 00:01:03,285
+13
+00:00:52,660 --> 00:00:56,686
 They specify where an attempt begins,
 not which actions should follow.
 
-16
-00:01:04,028 --> 00:01:07,178
+14
+00:00:57,428 --> 00:01:00,578
 Not every starting state
 needs equal practice.
 
-17
-00:01:07,178 --> 00:01:10,778
+15
+00:01:00,578 --> 00:01:04,178
 Beta sampling gives the most weight
 to states the policy solves about
 
-18
-00:01:10,778 --> 00:01:14,328
+16
+00:01:04,178 --> 00:01:07,728
 half the time, while keeping
 every state available.
 
-19
-00:01:14,328 --> 00:01:17,228
+17
+00:01:07,728 --> 00:01:10,628
 Learning from one state
 can make another solvable;
 
-20
-00:01:17,228 --> 00:01:20,011
+18
+00:01:10,628 --> 00:01:13,411
 new outcomes then update
 its sampling weight.
 
-21
-00:01:20,757 --> 00:01:25,707
+19
+00:01:14,157 --> 00:01:19,107
 Training runs in up to two hundred and
 fifty-six thousand parallel environments,
 
-22
-00:01:25,707 --> 00:01:28,794
+20
+00:01:19,107 --> 00:01:22,194
 with four thousand environments per GPU.
 
-23
-00:01:28,794 --> 00:01:31,265
+21
+00:01:22,194 --> 00:01:24,665
 They collect experience
 for a shared policy.
 
-24
-00:01:31,987 --> 00:01:34,950
+22
+00:01:25,387 --> 00:01:28,350
 Together, these components
 train one policy across
 
-25
-00:01:34,950 --> 00:01:37,687
+23
+00:01:28,350 --> 00:01:31,087
 all twenty individual assembly tasks.
 
-26
-00:01:37,687 --> 00:01:40,962
+24
+00:01:31,087 --> 00:01:34,362
 It takes point clouds
 and robot state as input,
 
-27
-00:01:40,962 --> 00:01:44,563
+25
+00:01:34,362 --> 00:01:37,963
 without demonstrations or
 a separate controller for each part.
 
-28
-00:01:45,296 --> 00:01:47,983
+26
+00:01:38,696 --> 00:01:41,383
 Training across heterogeneous
 assemblies gives
 
-29
-00:01:47,983 --> 00:01:52,046
+27
+00:01:41,383 --> 00:01:45,446
 higher training success than
 learning each task separately.
 
-30
-00:01:52,046 --> 00:01:56,771
+28
+00:01:45,446 --> 00:01:50,171
 With binary task rewards, the shared
 policy reaches ninety-eight percent,
 
-31
-00:01:56,771 --> 00:01:59,745
+29
+00:01:50,171 --> 00:01:53,145
 compared with eighty-one percent
 for the separate policies.
 
-32
-00:02:00,522 --> 00:02:06,147
+30
+00:01:53,922 --> 00:01:59,547
 First, look at the full method in yellow:
 binary task rewards with beta sampling.
 
-33
-00:02:06,147 --> 00:02:10,484
+31
+00:01:59,547 --> 00:02:03,884
 Evaluated success rises at every
 tested scale, reaching about
 
-34
-00:02:10,484 --> 00:02:15,297
+32
+00:02:03,884 --> 00:02:08,697
 ninety-seven percent with two hundred and
 fifty-six thousand parallel environments.
 
-35
-00:02:16,305 --> 00:02:20,805
+33
+00:02:09,705 --> 00:02:14,205
 Now add rewards for reaching
 and alignment, keeping beta sampling.
 
-36
-00:02:20,805 --> 00:02:25,318
+34
+00:02:14,205 --> 00:02:18,718
 Success at the largest scale drops
 by about twenty percentage points.
 
-37
-00:02:25,318 --> 00:02:28,055
+35
+00:02:18,718 --> 00:02:21,455
 The gap shows that more
 detailed rewards do not
 
-38
-00:02:28,055 --> 00:02:30,886
+36
+00:02:21,455 --> 00:02:24,286
 necessarily make this
 task easier to learn.
 
-39
-00:02:31,855 --> 00:02:35,880
+37
+00:02:25,258 --> 00:02:29,308
 Return to the full method,
 and change only the sampling rule.
 
-40
-00:02:35,880 --> 00:02:38,930
+38
+00:02:29,308 --> 00:02:32,233
 Choosing cached starting
 states uniformly lowers
 
-41
-00:02:38,930 --> 00:02:42,280
+39
+00:02:32,233 --> 00:02:35,107
 success by about thirteen
 percentage points.
 
-42
-00:02:42,280 --> 00:02:44,605
-Binary task rewards are retained,
-
-43
-00:02:44,605 --> 00:02:48,612
-and all three conditions are evaluated
-on the same bank of starting states.
-
-44
-00:02:49,564 --> 00:02:53,427
+40
+00:02:36,064 --> 00:02:39,927
 Without a prescribed grasp,
 the gripper holds this gear at an angle,
 
-45
-00:02:53,427 --> 00:02:56,554
+41
+00:02:39,927 --> 00:02:43,054
 turns it into alignment,
 and lowers it onto the post.
 
-46
-00:02:59,583 --> 00:03:02,521
+42
+00:02:46,083 --> 00:02:49,021
 This grasp leaves too little
 of the peg exposed.
 
-47
-00:03:02,521 --> 00:03:05,424
+43
+00:02:49,021 --> 00:02:51,924
 The robot sets it down
 and grasps nearer the end.
 
-48
-00:03:06,124 --> 00:03:09,439
+44
+00:02:52,624 --> 00:02:55,939
 It moves this peg away from
 the board edge before picking it up.
 
-49
-00:03:11,135 --> 00:03:15,312
+45
+00:02:57,635 --> 00:03:01,812
 The gripper presses the connector against
 the board to turn it before insertion.
 
-50
-00:03:16,704 --> 00:03:19,404
+46
+00:03:03,204 --> 00:03:05,904
 Threading varies with nut size and reach.
 
-51
-00:03:19,404 --> 00:03:23,767
+47
+00:03:05,904 --> 00:03:10,267
 On the left, a fingertip taps
 the small, nearby M4 nut.
 
-52
-00:03:23,767 --> 00:03:27,729
+48
+00:03:10,267 --> 00:03:14,229
 In the middle, the outside
 of a finger turns the farther M12 nut.
 
-53
-00:03:27,729 --> 00:03:30,880
+49
+00:03:14,229 --> 00:03:17,380
 On the right, the gripper
 circles the nearby M8 nut.
 
-54
-00:03:31,595 --> 00:03:35,645
+50
+00:03:18,095 --> 00:03:22,145
 The same training formulation also
 works with several components.
 
-55
-00:03:35,645 --> 00:03:40,632
+51
+00:03:22,145 --> 00:03:27,132
 Now the binary task reward arrives only
 when all active parts are assembled.
 
-56
-00:03:40,632 --> 00:03:44,507
+52
+00:03:27,132 --> 00:03:31,007
 There are many possible orders,
 and the policy has to choose.
 
-57
-00:03:44,507 --> 00:03:49,770
+53
+00:03:31,007 --> 00:03:36,270
 In this ten-component run, it moves
 parts aside, separates overlapping gears,
 
-58
-00:03:49,770 --> 00:03:53,674
+54
+00:03:36,270 --> 00:03:40,174
 and returns to the remaining
 assemblies as space becomes available.
 
-59
-00:03:59,869 --> 00:04:02,056
+55
+00:03:46,369 --> 00:03:48,556
 Once a neighboring gear is in place,
 
-60
-00:04:02,056 --> 00:04:05,044
+56
+00:03:48,556 --> 00:03:51,544
 lowering this gear straight
 down is not enough.
 
-61
-00:04:05,044 --> 00:04:09,115
+57
+00:03:51,544 --> 00:03:55,615
 The gripper turns it to line up the teeth,
 then lets it settle into the mesh.
 
-62
-00:04:09,883 --> 00:04:13,545
+58
+00:03:56,383 --> 00:04:00,045
 Nearby parts also change
 how the robot threads a nut.
 
-63
-00:04:13,545 --> 00:04:17,408
+59
+00:04:00,045 --> 00:04:03,908
 Beside an inserted Ethernet connector,
 it uses short turns
 
-64
-00:04:17,408 --> 00:04:21,531
+60
+00:04:03,908 --> 00:04:08,031
 and repositions its fingers,
 keeping its hand clear of the connector.
 
-65
-00:04:22,262 --> 00:04:25,650
-AlphaNIST shows that dexterity
-and coordination can be learned
+61
+00:04:08,728 --> 00:04:12,728
+We didn't prescribe how to turn the nut
+or when to move another part aside.
 
-66
-00:04:25,650 --> 00:04:30,537
-with binary task rewards, diverse
-starting states, and training at scale.
+62
+00:04:12,728 --> 00:04:16,815
+The policy learned these choices while
+working toward a completed assembly.
 
-67
-00:04:30,537 --> 00:04:34,500
+63
+00:04:16,815 --> 00:04:20,890
 Shared training improves training success
 over separate specialists.
 
-68
-00:04:34,500 --> 00:04:38,387
+64
+00:04:20,890 --> 00:04:24,853
 Binary task rewards outperform
 the dense shaping we tested.
 
-69
-00:04:38,387 --> 00:04:43,200
+65
+00:04:24,853 --> 00:04:29,615
 And with multiple parts, the policy learns
 which assemblies to work on and when.
 
-70
-00:04:43,200 --> 00:04:45,412
+66
+00:04:29,615 --> 00:04:31,828
 The reward specifies the outcome,
 
-71
-00:04:45,412 --> 00:04:48,122
+67
+00:04:31,828 --> 00:04:34,512
 while the robot learns
 the maneuvers and their order.

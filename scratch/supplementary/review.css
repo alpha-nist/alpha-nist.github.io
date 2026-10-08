@@ -106,6 +106,8 @@ h2 { margin: 0; font-size: 13px; font-weight: 550; }
 .caption-toolbar button, .caption-editor button { min-height: 30px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 5px; background: #fdfcf9; color: var(--ink); font-size: 11px; }
 .caption-toolbar button:hover, .caption-editor button:hover { background: #eeede6; }
 .caption-toolbar button[aria-pressed="true"] { background: var(--yellow-soft); border-color: #d3cb83; }
+.caption-mode { flex: 1 1 220px; line-height: 1.6; }
+.caption-preview-controls { display: flex; flex: 1 0 100%; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
 .caption-size-label { display: flex; align-items: center; gap: 7px; }
 .caption-size-label input { width: 80px; margin: 0; accent-color: #8a7c19; }
 .caption-size-label output { width: 17px; font-variant-numeric: tabular-nums; }

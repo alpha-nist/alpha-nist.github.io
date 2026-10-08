@@ -1,5 +1,5 @@
 AlphaNIST — Website film
-Website review · learning dexterity and coordination · original voice · 4:48 (288.58 seconds)
+Website review · learning dexterity and coordination · original voice · 4:34 (274.98 seconds)
 Stock synthetic English Kokoro-82M / af_heart; original voice; no voice cloning
 Native synthesis speed 1.0; no post-generation speech speed change.
 
@@ -13,15 +13,15 @@ On screen: The full paper title appears over fixed-camera footage from ten-compo
 
 Evidence: Paper title verified against main.tex:37. Footage is a selected successful ten-component rollout; the single-component policy discussed later is a different trained model.
 
-0:05.50–0:21.00  The NIST assembly benchmark
+0:05.50–0:14.40  The NIST assembly benchmark
 
-We focus on the NIST board, an assembly benchmark with twenty tasks, from gear meshing and nut threading to peg and connector insertion. A two-finger gripper has to handle each geometry and make the contacts needed to fit the parts together.
+We focus on the NIST board, an assembly benchmark with twenty tasks, from gear meshing and nut threading to peg and connector insertion.
 
-On screen: One continuous pass of the original fully assembled twenty-task board asset orbit. The camera orbit is slowed to fit narration; this is an asset illustration, not policy footage.
+On screen: A continuous excerpt of the original fully assembled twenty-task board asset orbit. The camera orbit plays at native speed. This is an asset illustration, not policy footage.
 
 Evidence: NIST Assembly Task Board 1 with twenty assembly tasks; local paper Introduction and Task sections.
 
-0:21.00–0:30.56  Four components
+0:14.40–0:23.96  Four components
 
 Four components make up the training setup: binary task rewards, cached starting states, beta sampling, and large-scale parallel experience.
 
@@ -29,7 +29,7 @@ On screen: A two-by-two overview presents binary task reward, cached resets, bet
 
 Evidence: Local paper sections/05_method.tex: binary completion reward, cached joint geometry/start-state bank, beta-sampling equation, and parallel PPO training. Diagrams are illustrations, not additional measurements.
 
-0:30.56–0:44.40  1 · Binary task reward
+0:23.96–0:37.80  1 · Binary task reward
 
 The task reward is binary: one for a completed assembly, zero otherwise. There is no progress reward for reaching, grasping, or partial insertion. The robot has to learn which actions lead to completion.
 
@@ -37,7 +37,7 @@ On screen: Four authentic starting/completed state pairs, each shown once for ro
 
 Evidence: Method: Binary Full-Assembly Objective, including per-step control regularization.
 
-0:44.40–1:03.74  2 · Cached resets
+0:37.80–0:57.14  2 · Cached resets
 
 From loose parts alone, an untrained policy may rarely reach insertion. A cached bank lets it also start with parts already grasped or partly assembled, so it can practice finishing. These states are generated in simulation. They specify where an attempt begins, not which actions should follow.
 
@@ -45,7 +45,7 @@ On screen: A continuous native-speed excerpt of the original cached-starting-sta
 
 Evidence: Method: Reset Coverage and Experience Allocation; reset-only showcase contains no policy actions.
 
-1:03.74–1:20.48  3 · Beta sampling
+0:57.14–1:13.88  3 · Beta sampling
 
 Not every starting state needs equal practice. Beta sampling gives the most weight to states the policy solves about half the time, while keeping every state available. Learning from one state can make another solvable; new outcomes then update its sampling weight.
 
@@ -53,7 +53,7 @@ On screen: The original beta-sampling schematic is rerendered at a readable narr
 
 Evidence: Method beta-sampling equation: probability proportional to epsilon plus square root of p times one minus p, normalized over the joint bank. Terminology follows the paper’s beta-sampling rule (Method, Eq. beta-sampling) and beta-versus-uniform comparison (Experiments).
 
-1:20.48–1:31.72  4 · Training at scale
+1:13.88–1:25.12  4 · Training at scale
 
 Training runs in up to two hundred and fifty-six thousand parallel environments, with four thousand environments per GPU. They collect experience for a shared policy.
 
@@ -61,7 +61,7 @@ On screen: A training-statistics slide shows up to 256K parallel rollout environ
 
 Evidence: Local paper sections/05_method.tex:565–575, PPO training at 1K–256K parallel environments and 4K environments per GPU. The illustrated 64-device grid follows from 256K divided by 4K.
 
-1:31.72–1:45.02  One shared policy
+1:25.12–1:38.42  One shared policy
 
 Together, these components train one policy across all twenty individual assembly tasks. It takes point clouds and robot state as input, without demonstrations or a separate controller for each part.
 
@@ -69,7 +69,7 @@ On screen: A surface-point-cloud schematic and robot state feed one shared polic
 
 Evidence: Point clouds plus robot state: sections/05_method.tex:449–465. Twenty-task single-policy coverage: sections/02_introduction.tex, contribution paragraph. This refers to one trained policy across twenty individual tasks, not a continuous twenty-part rollout. The revised film omits the previous qualified novelty claim.
 
-1:45.02–2:00.20  Learning across assemblies
+1:38.42–1:53.60  Learning across assemblies
 
 Training across heterogeneous assemblies gives higher training success than learning each task separately. With binary task rewards, the shared policy reaches ninety-eight percent, compared with eighty-one percent for the separate policies.
 
@@ -77,15 +77,15 @@ On screen: The existing bar comparison shows 98.2% shared-policy training succes
 
 Evidence: Experiments: Asset Heterogeneity Enables Learning. 98.2 and 81.4 are training success, not random-start evaluation.
 
-2:00.20–2:49.32  Scaling and ablations
+1:53.60–2:35.82  Scaling and ablations
 
-First, look at the full method in yellow: binary task rewards with beta sampling. Evaluated success rises at every tested scale, reaching about ninety-seven percent with two hundred and fifty-six thousand parallel environments. Now add rewards for reaching and alignment, keeping beta sampling. Success at the largest scale drops by about twenty percentage points. The gap shows that more detailed rewards do not necessarily make this task easier to learn. Return to the full method, and change only the sampling rule. Choosing cached starting states uniformly lowers success by about thirteen percentage points. Binary task rewards are retained, and all three conditions are evaluated on the same bank of starting states.
+First, look at the full method in yellow: binary task rewards with beta sampling. Evaluated success rises at every tested scale, reaching about ninety-seven percent with two hundred and fifty-six thousand parallel environments. Now add rewards for reaching and alignment, keeping beta sampling. Success at the largest scale drops by about twenty percentage points. The gap shows that more detailed rewards do not necessarily make this task easier to learn. Return to the full method, and change only the sampling rule. Choosing cached starting states uniformly lowers success by about thirteen percentage points.
 
 On screen: Fixed axes reveal three measured conditions in narration order: Full method (binary task reward and beta sampling), Add dense shaping (the tested reaching and alignment terms), and Use uniform sampling (binary task reward with uniform training reset sampling). Each ablation is independent, relative to the full method; the changes are not cumulative. At 256K, success is 97.4%, 77.4%, and 84.3%; decreases are 19.9 and 13.1 percentage points. All nine measured means and sample SDs across five evaluation seeds remain unchanged for each displayed curve. The fourth source curve is not displayed. Curve reveals and annotations follow the new native-speed narration.
 
 Evidence: Underlying scaling evaluation seed data and protocol: 19 evaluated assets (M4 excluded), five evaluation seeds, 32 trials per asset per seed, stochastic actions, 15-second episodes, 25K-iteration checkpoints. SD is across evaluation seeds, not independently trained policies. The reward ablation adds reach and alignment terms, each weighted 0.01, while retaining the binary completion reward and control costs. Terminology follows the paper’s beta-sampling rule (Method, Eq. beta-sampling) and beta-versus-uniform comparison (Experiments). Parallel environment count, GPU count, and rollout batch size increase together at fixed training iterations; this is not a single-variable compute attribution. All three displayed conditions share the frozen evaluation bank and evaluation reset distribution. No cached-reset removal result is claimed; that ablation is not included.
 
-2:49.32–2:59.32  Short-horizon dexterity
+2:35.82–2:45.82  Short-horizon dexterity
 
 Without a prescribed grasp, the gripper holds this gear at an angle, turns it into alignment, and lowers it onto the post.
 
@@ -93,7 +93,7 @@ On screen: The first homepage single-component demonstration shows a tilted smal
 
 Evidence: Visually verified first clip of the homepage single-component montage. Tilt, alignment adjustments, and seating are visible; a release-and-regrasp is not claimed.
 
-2:59.32–3:05.88  Peg regrasp
+2:45.82–2:52.38  Peg regrasp
 
 This grasp leaves too little of the peg exposed. The robot sets it down and grasps nearer the end.
 
@@ -101,7 +101,7 @@ On screen: A close-up shows the 8 mm peg being released, regrasped nearer an end
 
 Evidence: Experiments: Emergent Strategies over Short Horizons; visually checked peg clip and gallery sequence.
 
-3:05.88–3:10.88  Repositioning before pickup
+2:52.38–2:57.38  Repositioning before pickup
 
 It moves this peg away from the board edge before picking it up.
 
@@ -109,7 +109,7 @@ On screen: A local maneuver from ten-component episode 163 shows the 16 mm recta
 
 Evidence: Saved state identifies held_04, variant 13, as peg_insert_16mm. Visual audit places the outward slide around 34.3–35.05 seconds, pivot/grasp 35.1–35.55, lift 35.6–35.95, insertion/release 36.15–36.5. The part starts on the floor against the board, not above or on the board. The source is K10, not a K1-policy rollout.
 
-3:10.88–3:16.38  Board-assisted reorientation
+2:57.38–3:02.88  Board-assisted reorientation
 
 The gripper presses the connector against the board to turn it before insertion.
 
@@ -117,7 +117,7 @@ On screen: Board contact turns the waterproof connector, followed by lift and in
 
 Evidence: Experiments: extrinsic reorientation; visually checked waterproof connector clip.
 
-3:16.38–3:31.34  Nut size, reach, and threading motion
+3:02.88–3:17.84  Nut size, reach, and threading motion
 
 Threading varies with nut size and reach. On the left, a fingertip taps the small, nearby M4 nut. In the middle, the outside of a finger turns the farther M12 nut. On the right, the gripper circles the nearby M8 nut.
 
@@ -125,7 +125,7 @@ On screen: Three independently cropped close-ups remain visible for 14.96 second
 
 Evidence: Qualitative comparison, not a controlled size-or-distance experiment. The M4 catalog identifies an exact saved-state replay with checkpoint_native=false; its original trajectory is unavailable, so no checkpoint identity or measured distance is assigned. Its nearby context follows the user-provided scene identification. E404 saved states verify M12 held_05 variant 1 at 0.8865–0.8883 m horizontal distance from robot base during 10.5–14.4 s, compared with M8 held_07 variant 0 at 0.6781–0.6784 m during 25–27 s. M12 is approximately 21 cm farther in horizontal reach. Cropped magnification is not used to infer distance.
 
-3:31.34–3:59.60  Changing the workspace
+3:17.84–3:46.10  Changing the workspace
 
 The same training formulation also works with several components. Now the binary task reward arrives only when all active parts are assembled. There are many possible orders, and the policy has to choose. In this ten-component run, it moves parts aside, separates overlapping gears, and returns to the remaining assemblies as space becomes available.
 
@@ -133,7 +133,7 @@ On screen: The original fixed-camera episode 396 plays continuously at native sp
 
 Evidence: Original fixed-camera episode_000396_env005, uninterrupted source 0–28.26 s at 1×. This describes continuity of the recording, not independent verification of complete rollout boundaries. Object separation jump 4.2 s was transformed from the earlier edit timing and checked against source frames 2–7 s. Selected successful ten-component behavior is qualitative evidence, not a success-rate evaluation. Single-component and ten-component policies are separate trained models. In the multi-component training formulation, the task reward is issued only when every active part is assembled. Visible changes to part order and accessibility do not establish an explicit planner or zero-shot reuse of the single-component policy.
 
-3:59.60–4:09.58  Gear-tooth alignment
+3:46.10–3:56.08  Gear-tooth alignment
 
 Once a neighboring gear is in place, lowering this gear straight down is not enough. The gripper turns it to line up the teeth, then lets it settle into the mesh.
 
@@ -141,7 +141,7 @@ On screen: Side-by-side close-ups from separate ten-component episodes show smal
 
 Evidence: Both examples visibly show fingertip adjustment followed by a raised gear seating beside an already placed gear. These are separate operations and not synchronized recordings of the same motion; the comparison is labeled accordingly. The revised explanation distinguishes straight downward insertion from rotation to align neighboring teeth. Sideways turning and seating are visible; no contact-force measurement or passive gravity-only descent is claimed.
 
-4:09.58–4:22.00  Neighbor-aware turning
+3:56.08–4:08.50  Neighbor-aware turning
 
 Nearby parts also change how the robot threads a nut. Beside an inserted Ethernet connector, it uses short turns and repositions its fingers, keeping its hand clear of the connector.
 
@@ -149,10 +149,10 @@ On screen: Two independent close-ups show short turns and finger repositioning n
 
 Evidence: The right excerpt shows the nut lowered to a bolt, followed by short turns and finger repositioning beside an upright part. Neighboring objects remain visually in place during the chosen window. Neighbor-aware is a qualitative description, not a measured zero-contact guarantee or a claim about internal policy representations. The source checkpoint and neighboring part identity are unverified. No same-checkpoint comparison is claimed. The narration now explicitly describes hand clearance around the inserted Ethernet connector in the left M12 example, rather than merely unchanged object positions. This is a visible clearance strategy, not a measured guarantee of zero contact; no connector identity is assigned to the right excerpt.
 
-4:22.00–4:48.58  Learning dexterity and coordination
+4:08.50–4:34.98  Learning dexterity and coordination
 
-AlphaNIST shows that dexterity and coordination can be learned with binary task rewards, diverse starting states, and training at scale. Shared training improves training success over separate specialists. Binary task rewards outperform the dense shaping we tested. And with multiple parts, the policy learns which assemblies to work on and when. The reward specifies the outcome, while the robot learns the maneuvers and their order.
+We didn't prescribe how to turn the nut or when to move another part aside. The policy learned these choices while working toward a completed assembly. Shared training improves training success over separate specialists. Binary task rewards outperform the dense shaping we tested. And with multiple parts, the policy learns which assemblies to work on and when. The reward specifies the outcome, while the robot learns the maneuvers and their order.
 
-On screen: One contiguous native-speed studio source window with no loop or freeze. Learning dexterity and coordination closes the film with three findings: shared training improves training success; binary task rewards outperform the tested dense shaping; multi-part policies learn assembly order. A fixed-angle episode 471 excerpt plays beside the findings at native 50 fps, from source 17.92–44.5 seconds, without repetition or a frozen tail. The project QR code and alpha-nist.github.io remain above the caption-safe area. Selected behavior is qualitative evidence, not another quantitative evaluation.
+On screen: The same edited two-panel nut sequence continues at its preceding phase, using its original 8.08-second cycle at native speed. One cycle wrap is needed; these are qualitative replays, not an additional action claim or rollout. At 8.32 seconds into this section, a 0.4-second crossfade introduces the closing findings. Learning dexterity and coordination closes the film with three findings: shared training improves training success; binary task rewards outperform the tested dense shaping; multi-part policies learn assembly order. A fixed-angle episode 471 excerpt plays beside the findings at native 50 fps, from source 25.5–43.66 seconds, without repetition or a frozen tail. The project QR code and alpha-nist.github.io remain above the caption-safe area. Selected behavior is qualitative evidence, not another quantitative evaluation.
 
 Evidence: Local paper sections/08_conclusion.tex: a shared policy over twenty ATB1 tasks, benefits over specialists on difficult small parts, the binary objective exceeding the tested dense shaping, and learned dexterity and coordination. Shared-versus-specialist values are training success, not random-start evaluation. Dense shaping refers specifically to the tested reaching-and-alignment formulation. Multi-part policies learn which parts to work on and when, without a prescribed assembly order; selected sequences are qualitative evidence, not evidence of an explicit planner or zero-shot reuse of the single-part policy. Cached starts, adaptive sampling, and control regularization remain method components. Simulation scope remains explicit.

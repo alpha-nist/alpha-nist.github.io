@@ -7,8 +7,8 @@
     <meta name="theme-color" content="#f7f6f2">
     <meta name="description" content="A website film for AlphaNIST, with chapter navigation and a synchronized narration transcript.">
     <title>AlphaNIST · website film</title>
-    <link rel="stylesheet" href="review.css?v=website-heart-4b48b6a524029210fe9f">
-    <script src="review.js?v=website-heart-4b48b6a524029210fe9f" defer></script>
+    <link rel="stylesheet" href="review.css?v=website-heart-3ea0d28b96aceb9208d7">
+    <script src="review.js?v=website-heart-3ea0d28b96aceb9208d7" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#film">Skip to film</a>
@@ -21,37 +21,39 @@
         <p class="eyebrow">Assembly through reinforcement learning</p>
         <h1 id="page-title">AlphaNIST <span>· website film</span></h1>
         <p class="lede">Learning precise manipulation and multi-component coordination from binary task rewards, without prescribed manipulation stages.</p>
-        <p class="edition"><span class="edition-dot" aria-hidden="true"></span>Website review · original voice <span aria-hidden="true">·</span> <span data-film-duration>4:48</span></p>
+        <p class="edition"><span class="edition-dot" aria-hidden="true"></span>Website review · original voice <span aria-hidden="true">·</span> <span data-film-duration>4:34</span></p>
       </section>
       <section id="film" class="film-section" aria-label="Website film">
-        <div id="review-layout" class="review-layout">
+        <div id="review-layout" class="review-layout editor-hidden">
         <div class="film-column">
         <figure>
-          <div id="player-frame" class="video-frame caption-below">
-            <video id="film-player" data-duration="288.58" data-review-revision="website-heart-4b48b6a524029210fe9f" controls controlslist="nofullscreen" playsinline preload="metadata" poster="poster.jpg?v=website-heart-4b48b6a524029210fe9f" width="1920" height="1080" aria-label="AlphaNIST website film" aria-describedby="film-context">
-              <source src="supplementary-review.mp4?v=website-heart-4b48b6a524029210fe9f" type="video/mp4">
-              <track kind="captions" src="captions.vtt?v=website-heart-4b48b6a524029210fe9f" srclang="en" label="English">
-              Your browser does not support embedded video. <a href="supplementary-v1.mp4?v=website-heart-4b48b6a524029210fe9f">Download the film.</a>
+          <div id="player-frame" class="video-frame" data-subtitle-mode="baked">
+            <video id="film-player" data-duration="274.98" data-review-revision="website-heart-3ea0d28b96aceb9208d7" controls playsinline preload="metadata" poster="poster.jpg?v=website-heart-3ea0d28b96aceb9208d7" width="1920" height="1080" aria-label="AlphaNIST website film" aria-describedby="film-context">
+              <source src="supplementary-v1.mp4?v=website-heart-3ea0d28b96aceb9208d7" type="video/mp4">
+              Your browser does not support embedded video. <a href="supplementary-v1.mp4?v=website-heart-3ea0d28b96aceb9208d7">Download the film.</a>
             </video>
-            <div id="caption-overlay" class="caption-overlay" aria-live="off"><span id="caption-display"></span></div>
+            <div id="caption-overlay" class="caption-overlay" aria-live="off" hidden><span id="caption-display"></span></div>
             <button id="fullscreen-toggle" class="fullscreen-toggle" type="button" aria-label="Enter fullscreen with subtitles" title="Fullscreen with subtitles" hidden>⛶</button>
           </div>
           <figcaption>
             <p id="current-section" aria-live="polite" aria-atomic="true"><span class="status-dot" aria-hidden="true"></span><span id="current-title">AlphaNIST</span></p>
-            <span class="time-readout"><span id="current-time">0:00</span> <span class="time-divider">/</span> <span data-film-duration>4:48</span></span>
+            <span class="time-readout"><span id="current-time">0:00</span> <span class="time-divider">/</span> <span data-film-duration>4:34</span></span>
           </figcaption>
         </figure>
         <div class="caption-toolbar" aria-label="Subtitle controls">
-          <button id="captions-toggle" type="button" aria-pressed="true" aria-controls="caption-overlay">Subtitles on</button>
-          <label class="caption-size-label" for="caption-size">Size <input id="caption-size" type="range" min="24" max="48" value="36" step="2"><output id="caption-size-value" for="caption-size">36</output></label>
-          <label class="caption-placement-label" for="caption-placement">Placement <select id="caption-placement"><option value="below">Below video</option><option value="over">Over video</option></select></label>
-          <button id="editor-toggle" type="button" aria-expanded="true" aria-controls="caption-editor">Hide editor</button>
+          <span id="caption-mode" class="caption-mode" role="status">Burned-in subtitles · included in the film download.</span>
+          <button id="editor-toggle" type="button" aria-expanded="false" aria-controls="caption-editor" hidden>Edit subtitles</button>
+          <div id="caption-preview-controls" class="caption-preview-controls" hidden>
+          <button id="captions-toggle" type="button" aria-pressed="true" aria-controls="caption-overlay">Preview subtitles on</button>
+          <label class="caption-size-label" for="caption-size">Preview size <input id="caption-size" type="range" min="24" max="48" value="36" step="2"><output id="caption-size-value" for="caption-size">36</output></label>
+          <label class="caption-placement-label" for="caption-placement">Placement <select id="caption-placement"><option value="over">Over video</option><option value="below">Below video</option></select></label>
+          </div>
         </div>
         <p id="film-context" class="context">Simulation footage. Selected successful runs illustrate behavior; they are not a success-rate evaluation. Single- and ten-component examples use different trained policies.</p>
         </div>
-        <aside id="caption-editor" class="caption-editor" aria-labelledby="editor-title">
-          <h2 id="editor-title">Edit subtitles</h2>
-          <p class="editor-help">Subtitles only; the voiceover is unchanged. Edits stay on this device. Nothing is uploaded.</p>
+        <aside id="caption-editor" class="caption-editor" aria-labelledby="editor-title" hidden>
+          <h2 id="editor-title">Edit subtitles · preview</h2>
+          <p class="editor-help">Preview only: edits do not change the voiceover or captioned MP4. Edits stay on this device; export SRT, VTT, or JSON to share them. Nothing is uploaded.</p>
           <p id="caption-status" class="caption-status" role="status">Loading subtitles…</p>
           <fieldset id="caption-fields" disabled>
             <legend class="sr-only">Subtitle editing controls</legend>
@@ -64,8 +66,8 @@
             <label for="cue-text">Subtitle text</label>
             <textarea id="cue-text" rows="4" maxlength="3000" spellcheck="true" aria-describedby="caption-status"></textarea>
             <div class="cue-timing">
-              <label for="cue-start">Start · seconds<input id="cue-start" type="number" min="0" max="288.58" step="0.01" inputmode="decimal"></label>
-              <label for="cue-end">End · seconds<input id="cue-end" type="number" min="0" max="288.58" step="0.01" inputmode="decimal"></label>
+              <label for="cue-start">Start · seconds<input id="cue-start" type="number" min="0" max="274.98" step="0.01" inputmode="decimal"></label>
+              <label for="cue-end">End · seconds<input id="cue-end" type="number" min="0" max="274.98" step="0.01" inputmode="decimal"></label>
             </div>
             <p id="cue-error" class="cue-error" role="alert" hidden></p>
             <div class="cue-actions"><button id="cue-jump" type="button">Go to this subtitle</button><span id="caption-save" role="status">Original subtitles</span></div>
@@ -101,11 +103,11 @@
       </details>
       <section class="downloads" aria-label="Download review files">
         <span class="downloads-label">Review files</span>
-        <a href="supplementary-v1.mp4?v=website-heart-4b48b6a524029210fe9f" download>Film with captions <span>MP4</span><span class="download-arrow" aria-hidden="true">↗</span></a>
-        <a id="script-download" href="narration.txt?v=website-heart-4b48b6a524029210fe9f" download>Narration <span>TXT</span><span class="download-arrow" aria-hidden="true">↗</span></a>
-        <a id="srt-download" href="captions.srt?v=website-heart-4b48b6a524029210fe9f" download hidden>Original subtitles <span>SRT</span><span class="download-arrow" aria-hidden="true">↗</span></a>
+        <a href="supplementary-v1.mp4?v=website-heart-3ea0d28b96aceb9208d7" download>Film with captions <span>MP4</span><span class="download-arrow" aria-hidden="true">↗</span></a>
+        <a id="script-download" href="narration.txt?v=website-heart-3ea0d28b96aceb9208d7" download>Narration <span>TXT</span><span class="download-arrow" aria-hidden="true">↗</span></a>
+        <a id="srt-download" href="captions.srt?v=website-heart-3ea0d28b96aceb9208d7" download hidden>Original subtitles <span>SRT</span><span class="download-arrow" aria-hidden="true">↗</span></a>
       </section>
-      <noscript><p class="notice">JavaScript is needed for chapter jumps and the synchronized script. The video controls, captions, and download links still work.</p></noscript>
+      <noscript><p class="notice">JavaScript is needed for chapter jumps, the synchronized script, and subtitle editing. The film, burned-in subtitles, fullscreen, and downloads still work.</p></noscript>
     </main>
     <footer class="site-footer shell">
       <span>AlphaNIST <span aria-hidden="true">·</span> Website review</span>

@@ -204,14 +204,66 @@ function validCues(items) {
     (!index || cue.start >= items[index - 1].end));
 }
 
-function disableNativeCaptions() {
-  for (const track of player.textTracks) {
-    if (["captions", "subtitles"].includes(track.kind) && track.mode !== "disabled") track.mode = "disabled";
-  }
+// Burned-in playback is the default; local edits use the separate clean-video preview.
+const editorToggle = document.getElementById("editor-toggle");
+const previewControls = document.getElementById("caption-preview-controls");
+const captionMode = document.getElementById("caption-mode");
+const burnedSource = player.querySelector("source").src;
+const cleanSource = new URL("supplementary-review.mp4", burnedSource);
+cleanSource.search = new URL(burnedSource).search;
+let editingPreview = false, sourceTransition = null;
+
+function describeCaptionMode() {
+  captionMode.textContent = editingPreview
+    ? "Editing preview · local edits do not change the captioned MP4."
+    : "Burned-in subtitles · included in the film download.";
 }
-player.textTracks.addEventListener("addtrack", disableNativeCaptions);
-player.textTracks.addEventListener("change", disableNativeCaptions);
-disableNativeCaptions();
+
+editorToggle.addEventListener("click", () => {
+  if (sourceTransition || (editingPreview && !mayLeaveCue())) return;
+  const time = requestedTime ?? player.currentTime;
+  sourceTransition = { resume: !player.paused && !player.ended, rate: player.playbackRate };
+  player.pause();
+  editingPreview = !editingPreview;
+  editor.hidden = !editingPreview;
+  previewControls.hidden = !editingPreview;
+  document.getElementById("review-layout").classList.toggle("editor-hidden", !editingPreview);
+  frame.classList.toggle("caption-below", editingPreview && placementField.value === "below");
+  frame.dataset.subtitleMode = editingPreview ? "preview" : "baked";
+  editorToggle.setAttribute("aria-expanded", String(editingPreview));
+  editorToggle.textContent = editingPreview ? "Return to captioned film" : "Edit subtitles";
+  editorToggle.disabled = true;
+  captionMode.textContent = editingPreview ? "Loading editable preview…" : "Loading captioned film…";
+  // Native video fullscreen includes baked captions; preview fullscreen needs the whole frame.
+  if (player.controlsList) player.controlsList.toggle("nofullscreen", editingPreview);
+  requestedTime = time;
+  paintCaptions();
+  player.src = editingPreview ? cleanSource.href : burnedSource;
+  player.load();
+});
+
+player.addEventListener("canplay", () => {
+  if (!sourceTransition) return;
+  const { resume, rate } = sourceTransition;
+  sourceTransition = null;
+  editorToggle.disabled = false;
+  player.playbackRate = rate;
+  describeCaptionMode();
+  sizeCaptions();
+  paintCaptions();
+  if (resume) player.play().catch(() => {
+    captionMode.textContent += " Press Play to continue.";
+  });
+});
+player.addEventListener("error", () => {
+  if (!sourceTransition) return;
+  sourceTransition = null;
+  editorToggle.disabled = false;
+  captionMode.textContent = editingPreview
+    ? "Preview could not load. Return to the captioned film to continue."
+    : "The captioned film could not load. Reload to retry.";
+  paintCaptions();
+});
 
 function saveCaptions() {
   if (!storageKey || !cues.length) return;
@@ -280,16 +332,16 @@ function activeCue(time = player.currentTime) {
 function paintCaptions() {
   const index = activeCue();
   const text = index >= 0 ? cues[index].text : "";
-  const visibleText = captionsEnabled ? text : "";
+  const visibleText = editingPreview && !sourceTransition && captionsEnabled ? text : "";
   if (display.textContent !== visibleText) display.textContent = visibleText;
-  overlay.hidden = placementField.value === "over" && !visibleText.trim();
+  overlay.hidden = !editingPreview || Boolean(sourceTransition) || (placementField.value === "over" && !visibleText.trim());
   if (following && index >= 0 && index !== selectedCue) selectCue(index);
 }
 
 function animateCaptions() {
   cancelAnimationFrame(animation);
   paintCaptions();
-  if (!player.paused && !player.ended) animation = requestAnimationFrame(animateCaptions);
+  if (editingPreview && !player.paused && !player.ended) animation = requestAnimationFrame(animateCaptions);
 }
 for (const event of ["timeupdate", "seeked", "loadedmetadata", "pause", "ended"]) player.addEventListener(event, paintCaptions);
 player.addEventListener("play", animateCaptions);
@@ -347,23 +399,18 @@ document.getElementById("cue-jump").addEventListener("click", () => { if (select
 captionToggle.addEventListener("click", () => {
   captionsEnabled = !captionsEnabled;
   captionToggle.setAttribute("aria-pressed", String(captionsEnabled));
-  captionToggle.textContent = captionsEnabled ? "Subtitles on" : "Subtitles off";
+  captionToggle.textContent = captionsEnabled ? "Preview subtitles on" : "Preview subtitles off";
   paintCaptions();
   scheduleSave();
 });
 sizeField.addEventListener("input", () => { sizeCaptions(); scheduleSave(); });
 placementField.addEventListener("change", () => {
-  frame.classList.toggle("caption-below", placementField.value === "below");
+  frame.classList.toggle("caption-below", editingPreview && placementField.value === "below");
   sizeCaptions();
   paintCaptions();
   scheduleSave();
 });
-document.getElementById("editor-toggle").addEventListener("click", event => {
-  editor.hidden = !editor.hidden;
-  document.getElementById("review-layout").classList.toggle("editor-hidden", editor.hidden);
-  event.currentTarget.setAttribute("aria-expanded", String(!editor.hidden));
-  event.currentTarget.textContent = editor.hidden ? "Show editor" : "Hide editor";
-});
+
 
 function exportTimestamp(seconds, separator) {
   const total = Math.round(seconds * 1000);
@@ -416,7 +463,7 @@ if (document.fullscreenEnabled && frame.requestFullscreen) {
 
 async function loadCaptions() {
   try {
-    const response = await fetch(player.querySelector("track").src, { cache: "no-cache" });
+    const response = await fetch(`captions.vtt?v=${reviewRevision}`, { cache: "no-cache" });
     if (!response.ok) throw new Error("Subtitles unavailable");
     const source = await response.text();
     originals = parseCaptions(source);
@@ -436,14 +483,16 @@ async function loadCaptions() {
       }
     } catch { saveStatus.textContent = "Autosave unavailable — export edits"; }
     document.getElementById("caption-fields").disabled = false;
+    editorToggle.hidden = false;
     captionToggle.setAttribute("aria-pressed", String(captionsEnabled));
-    captionToggle.textContent = captionsEnabled ? "Subtitles on" : "Subtitles off";
-    frame.classList.toggle("caption-below", placementField.value === "below");
+    captionToggle.textContent = captionsEnabled ? "Preview subtitles on" : "Preview subtitles off";
+    frame.classList.toggle("caption-below", editingPreview && placementField.value === "below");
     selectCue(Math.max(0, activeCue()));
     sizeCaptions();
     paintCaptions();
   } catch {
-    captionStatus.textContent = "Subtitles could not be loaded. Reload to retry; the film still plays.";
+    captionStatus.textContent = "Editing subtitles could not be loaded. Reload to retry; the captioned film still plays.";
+    captionMode.textContent = "Burned-in subtitles · editing preview unavailable. Reload to retry.";
   }
 }
 loadCaptions();
