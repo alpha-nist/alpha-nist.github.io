@@ -1,7 +1,7 @@
 AlphaNIST — Website film
-Website review · learning dexterity and coordination · original voice · 4:34 (274.98 seconds)
+Website review · learning dexterity and coordination · original voice · 4:36 (276.46 seconds)
 Stock synthetic English Kokoro-82M / af_heart; original voice; no voice cloning
-Native synthesis speed 1.0; no post-generation speech speed change.
+Original voice with sentence-specific synthesis pacing; no post-generation speech speed change.
 
 Simulation footage. Selected successful runs are illustrations, not a success-rate evaluation. Single-component and ten-component policies are different trained models.
 
@@ -149,10 +149,10 @@ On screen: Two independent close-ups show short turns and finger repositioning n
 
 Evidence: The right excerpt shows the nut lowered to a bolt, followed by short turns and finger repositioning beside an upright part. Neighboring objects remain visually in place during the chosen window. Neighbor-aware is a qualitative description, not a measured zero-contact guarantee or a claim about internal policy representations. The source checkpoint and neighboring part identity are unverified. No same-checkpoint comparison is claimed. The narration now explicitly describes hand clearance around the inserted Ethernet connector in the left M12 example, rather than merely unchanged object positions. This is a visible clearance strategy, not a measured guarantee of zero contact; no connector identity is assigned to the right excerpt.
 
-4:08.50–4:34.98  Learning dexterity and coordination
+4:08.50–4:36.46  Learning dexterity and coordination
 
 We didn't prescribe how to turn the nut or when to move another part aside. The policy learned these choices while working toward a completed assembly. Shared training improves training success over separate specialists. Binary task rewards outperform the dense shaping we tested. And with multiple parts, the policy learns which assemblies to work on and when. The reward specifies the outcome, while the robot learns the maneuvers and their order.
 
-On screen: The same edited two-panel nut sequence continues at its preceding phase, using its original 8.08-second cycle at native speed. One cycle wrap is needed; these are qualitative replays, not an additional action claim or rollout. At 8.32 seconds into this section, a 0.4-second crossfade introduces the closing findings. Learning dexterity and coordination closes the film with three findings: shared training improves training success; binary task rewards outperform the tested dense shaping; multi-part policies learn assembly order. A fixed-angle episode 471 excerpt plays beside the findings at native 50 fps, from source 25.5–43.66 seconds, without repetition or a frozen tail. The project QR code and alpha-nist.github.io remain above the caption-safe area. Selected behavior is qualitative evidence, not another quantitative evaluation.
+On screen: The same edited two-panel nut sequence continues at its preceding phase, using its original 8.08-second cycle at native speed. One cycle wrap is needed; these are qualitative replays, not an additional action claim or rollout. At 9.8 seconds into this section, a 0.4-second crossfade introduces the closing findings. Learning dexterity and coordination closes the film with three findings: shared training improves training success; binary task rewards outperform the tested dense shaping; multi-part policies learn assembly order. A fixed-angle episode 471 excerpt plays beside the findings at native 50 fps, from source 25.5–43.66 seconds, without repetition or a frozen tail. The project QR code and alpha-nist.github.io remain above the caption-safe area. Selected behavior is qualitative evidence, not another quantitative evaluation.
 
 Evidence: Local paper sections/08_conclusion.tex: a shared policy over twenty ATB1 tasks, benefits over specialists on difficult small parts, the binary objective exceeding the tested dense shaping, and learned dexterity and coordination. Shared-versus-specialist values are training success, not random-start evaluation. Dense shaping refers specifically to the tested reaching-and-alignment formulation. Multi-part policies learn which parts to work on and when, without a prescribed assembly order; selected sequences are qualitative evidence, not evidence of an explicit planner or zero-shot reuse of the single-part policy. Cached starts, adaptive sampling, and control regularization remain method components. Simulation scope remains explicit.

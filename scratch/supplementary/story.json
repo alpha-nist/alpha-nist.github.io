@@ -1,7 +1,7 @@
 {
   "title": "AlphaNIST — Website film",
   "version": "Website review · learning dexterity and coordination · original voice",
-  "duration_s": 274.98,
+  "duration_s": 276.46,
   "voice": "Stock synthetic English Kokoro-82M / af_heart; original voice; no voice cloning",
   "scope": "Simulation footage. Selected successful runs are illustrations, not a success-rate evaluation. Single-component and ten-component policies are different trained models.",
   "chapters": [
@@ -248,10 +248,10 @@
     {
       "id": "scope",
       "start": 248.5,
-      "end": 274.98,
+      "end": 276.46,
       "title": "Learning dexterity and coordination",
       "narration": "We didn't prescribe how to turn the nut or when to move another part aside. The policy learned these choices while working toward a completed assembly. Shared training improves training success over separate specialists. Binary task rewards outperform the dense shaping we tested. And with multiple parts, the policy learns which assemblies to work on and when. The reward specifies the outcome, while the robot learns the maneuvers and their order.",
-      "visual": "The same edited two-panel nut sequence continues at its preceding phase, using its original 8.08-second cycle at native speed. One cycle wrap is needed; these are qualitative replays, not an additional action claim or rollout. At 8.32 seconds into this section, a 0.4-second crossfade introduces the closing findings. Learning dexterity and coordination closes the film with three findings: shared training improves training success; binary task rewards outperform the tested dense shaping; multi-part policies learn assembly order. A fixed-angle episode 471 excerpt plays beside the findings at native 50 fps, from source 25.5–43.66 seconds, without repetition or a frozen tail. The project QR code and alpha-nist.github.io remain above the caption-safe area. Selected behavior is qualitative evidence, not another quantitative evaluation.",
+      "visual": "The same edited two-panel nut sequence continues at its preceding phase, using its original 8.08-second cycle at native speed. One cycle wrap is needed; these are qualitative replays, not an additional action claim or rollout. At 9.8 seconds into this section, a 0.4-second crossfade introduces the closing findings. Learning dexterity and coordination closes the film with three findings: shared training improves training success; binary task rewards outperform the tested dense shaping; multi-part policies learn assembly order. A fixed-angle episode 471 excerpt plays beside the findings at native 50 fps, from source 25.5–43.66 seconds, without repetition or a frozen tail. The project QR code and alpha-nist.github.io remain above the caption-safe area. Selected behavior is qualitative evidence, not another quantitative evaluation.",
       "evidence": "Local paper sections/08_conclusion.tex: a shared policy over twenty ATB1 tasks, benefits over specialists on difficult small parts, the binary objective exceeding the tested dense shaping, and learned dexterity and coordination. Shared-versus-specialist values are training success, not random-start evaluation. Dense shaping refers specifically to the tested reaching-and-alignment formulation. Multi-part policies learn which parts to work on and when, without a prescribed assembly order; selected sequences are qualitative evidence, not evidence of an explicit planner or zero-shot reuse of the single-part policy. Cached starts, adaptive sampling, and control regularization remain method components. Simulation scope remains explicit."
     }
   ],
@@ -341,6 +341,6 @@
       "description": "Short turns and finger repositioning keep the hand clear of the nearby Ethernet connector in the left example."
     }
   ],
-  "presentation_notes": "Narration is newly synthesized with the original stock Kokoro af_heart voice at speed 1.0, without waveform retiming. The website cut has no three-minute duration limit. The board orbit, binary-objective diagrams, cached resets, beta-sampling schematic, and continuous coordination excerpt are rebuilt for the expanded explanation; their source mappings and playback rates are documented per shot. Retained method slides and the opening trim or hold their final frame rather than restart. Retained behavior edits trim or loop as documented per shot. Scaling and threading emphasis follow the new word timings. The final behavior continues during the spoken bridge, then fades into the closing findings with a moving fixed-camera inset. Default playback and the downloadable film have burned-in captions. An optional editing preview uses the clean master with live browser captions; edits do not change the baked MP4. Protocol and evidence qualifiers are available in expandable notes and the unchanged plot-data.json.",
-  "review_revision": "website-heart-3ea0d28b96aceb9208d7"
+  "presentation_notes": "Narration uses the original stock Kokoro af_heart voice. The opening sentence of the conclusion is regenerated at a calmer synthesis pace; all other speech is retained, without waveform retiming. The website cut has no three-minute duration limit. The board orbit, binary-objective diagrams, cached resets, beta-sampling schematic, and continuous coordination excerpt are rebuilt for the expanded explanation; their source mappings and playback rates are documented per shot. Retained method slides and the opening trim or hold their final frame rather than restart. Retained behavior edits trim or loop as documented per shot. Scaling and threading emphasis follow the new word timings. The final behavior continues during the spoken bridge, then fades into the closing findings with a moving fixed-camera inset. Default playback and the downloadable film have burned-in captions. An optional editing preview uses the clean master with live browser captions; edits do not change the baked MP4. Protocol and evidence qualifiers are available in expandable notes and the unchanged plot-data.json.",
+  "review_revision": "website-heart-c486038fcf62155ea07f"
 }

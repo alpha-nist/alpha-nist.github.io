@@ -293,35 +293,35 @@ and repositions its fingers,
 keeping its hand clear of the connector.
 
 61
-00:04:08,728 --> 00:04:12,728
+00:04:08,816 --> 00:04:14,208
 We didn't prescribe how to turn the nut
 or when to move another part aside.
 
 62
-00:04:12,728 --> 00:04:16,815
+00:04:14,208 --> 00:04:18,295
 The policy learned these choices while
 working toward a completed assembly.
 
 63
-00:04:16,815 --> 00:04:20,890
+00:04:18,295 --> 00:04:22,370
 Shared training improves training success
 over separate specialists.
 
 64
-00:04:20,890 --> 00:04:24,853
+00:04:22,370 --> 00:04:26,333
 Binary task rewards outperform
 the dense shaping we tested.
 
 65
-00:04:24,853 --> 00:04:29,615
+00:04:26,333 --> 00:04:31,095
 And with multiple parts, the policy learns
 which assemblies to work on and when.
 
 66
-00:04:29,615 --> 00:04:31,828
+00:04:31,095 --> 00:04:33,308
 The reward specifies the outcome,
 
 67
-00:04:31,828 --> 00:04:34,512
+00:04:33,308 --> 00:04:35,992
 while the robot learns
 the maneuvers and their order.
