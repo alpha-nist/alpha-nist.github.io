@@ -24,7 +24,7 @@
       document.documentElement.dataset.theme = savedTheme === "light" || savedTheme === "dark" ? savedTheme :
         (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     </script>
-    <link rel="stylesheet" href="styles.css?v=studio-37">
+    <link rel="stylesheet" href="styles.css?v=studio-38">
     <title>AlphaNIST</title>
     <script src="main.js?v=studio-29" defer></script>
   </head>
@@ -201,7 +201,7 @@
           <h2 id="discovery-title">Emergent assembly behavior</h2>
         </div>
         <div class="behavior-gallery media-shell">
-          <div class="behavior-track" id="behavior-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Assembly strategy sequences" aria-describedby="behavior-help">
+          <div class="behavior-track" id="behavior-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Assembly strategy sequences">
             <article class="behavior-slide" id="behavior-peg" data-label="Peg regrasp" aria-label="Peg regrasp">
               <figure>
                 <a href="assets/peg-regrasp.png" target="_blank" rel="noopener" aria-label="Open peg regrasp sequence at full resolution"><img src="assets/peg-regrasp.png" alt="Five successive frames: the robot holds an 8 mm peg at its center, releases it onto the board, grasps near its end, lifts it, and inserts it into its socket." width="3840" height="1440" loading="lazy" decoding="async"></a>
@@ -257,7 +257,6 @@
             <p class="behavior-status" role="status" aria-live="polite" aria-atomic="true"></p>
             <button class="behavior-next" type="button" aria-label="Next strategy" aria-controls="behavior-track">→</button>
           </div>
-          <p class="behavior-help" id="behavior-help">Read each sequence left to right. Choose a behavior; open any image for full resolution.</p>
         </div>
       </section>
     </main>

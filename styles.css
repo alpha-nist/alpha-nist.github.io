@@ -153,7 +153,6 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 32 / 9; object-
 .behavior-controls button:hover:not(:disabled) { background: var(--control-hover); }
 .behavior-controls button:disabled { opacity: .35; cursor: default; }
 .behavior-status { min-width: 48px; margin: 0; color: var(--secondary); font-size: 13px; font-variant-numeric: tabular-nums; text-align: center; }
-.behavior-help { max-width: var(--reading-width); margin: 18px 0 0; color: var(--muted); text-align: left; font-size: 12px; line-height: 1.7; }
 #strategy-video, #starting-states-video { aspect-ratio: 16 / 9; }
 .strategies { padding: 0; }
 #strategy-caption { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 12px 0 0; text-align: left; font-size: 12px; }
@@ -230,7 +229,6 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 32 / 9; object-
   .behavior-navigation { gap: 6px; margin: 22px 8px 0; }
   .behavior-navigation .chapter { padding: 8px 12px; font-size: 12px; }
   .behavior-slide img, .behavior-slide figure > a { border-radius: 14px; }
-  .behavior-help { font-size: 11px; }
   .moment-groups { gap: 6px 16px; }
   .moment-time { min-height: 36px; padding-inline: 6px; }
   #strategy-context { margin-inline: 0; }
