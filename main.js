@@ -23,6 +23,38 @@ if (themeToggle) {
   themeToggle.hidden = false;
 }
 
+const copyCitation = document.querySelector("#copy-citation");
+if (copyCitation) {
+  const citation = document.querySelector("#citation-bibtex");
+  const status = document.querySelector("#citation-status");
+  let resetLabel;
+  copyCitation.hidden = false;
+  copyCitation.addEventListener("click", async () => {
+    clearTimeout(resetLabel);
+    copyCitation.classList.remove("is-copied");
+    copyCitation.setAttribute("aria-label", "Copy BibTeX");
+    copyCitation.title = "Copy BibTeX";
+    status.textContent = "";
+    try {
+      await navigator.clipboard.writeText(citation.textContent.trim());
+      copyCitation.classList.add("is-copied");
+      copyCitation.setAttribute("aria-label", "Copied");
+      copyCitation.title = "Copied";
+      status.classList.add("visually-hidden");
+      status.textContent = "BibTeX citation copied.";
+    } catch {
+      status.classList.remove("visually-hidden");
+      status.textContent = "Couldn't copy automatically. Select the citation text and copy it manually.";
+      citation.focus({ preventScroll: true });
+    }
+    resetLabel = setTimeout(() => {
+      copyCitation.classList.remove("is-copied");
+      copyCitation.setAttribute("aria-label", "Copy BibTeX");
+      copyCitation.title = "Copy BibTeX";
+    }, 2000);
+  });
+}
+
 const video = document.querySelector("#assembly-video");
 const chapters = [...document.querySelectorAll("#demo .chapter")];
 const chapterStatus = document.querySelector("#demo .chapter-status");

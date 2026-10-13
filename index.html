@@ -24,9 +24,9 @@
       document.documentElement.dataset.theme = savedTheme === "light" || savedTheme === "dark" ? savedTheme :
         (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     </script>
-    <link rel="stylesheet" href="styles.css?v=studio-38">
+    <link rel="stylesheet" href="styles.css?v=studio-41">
     <title>AlphaNIST</title>
-    <script src="main.js?v=studio-29" defer></script>
+    <script src="main.js?v=studio-31" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -43,6 +43,17 @@
           <h1 id="project-title">AlphaNIST</h1>
           <p class="hero-description">From <a href="https://deepmind.google/research/alphago/" target="_blank" rel="noopener">AlphaGo</a> to <a href="https://deepmind.google/blog/alphazero-shedding-new-light-on-chess-shogi-and-go/" target="_blank" rel="noopener">AlphaZero</a>, reinforcement learning produced strategies that surprised expert players. AlphaZero learned from experience at scale, without human demonstrations.</p>
           <p class="hero-description">AlphaNIST brings this philosophy to contact-rich, high-precision robotic assembly in simulation. An end-to-end policy learns how to complete the task, without prescribed manipulation stages.</p>
+          <div class="project-actions" role="group" aria-label="Project resources">
+            <a class="project-action" href="https://arxiv.org/abs/2610.13354" target="_blank" rel="noopener" aria-label="Read the paper on arXiv (opens in a new tab)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8zM14 3v5h5M9 12h6M9 16h6"/></svg>
+              <span>Paper</span>
+            </a>
+            <button class="project-action" type="button" disabled>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg>
+              <span>Code</span>
+              <span class="project-action-status">Release soon</span>
+            </button>
+          </div>
           <p class="hero-description"><a href="assets/overview.mp4?v=charcoal-4f75bd85" type="video/mp4" target="_blank" rel="noopener">Narrated overview · 4:36</a></p>
         </div>
         <section class="strategies" id="strategies" aria-label="Multi-component assembly demonstrations">
@@ -258,6 +269,29 @@
             <button class="behavior-next" type="button" aria-label="Next strategy" aria-controls="behavior-track">→</button>
           </div>
         </div>
+      </section>
+      <section class="citation media-shell" id="citation" aria-labelledby="citation-title">
+        <h2 id="citation-title">Citation</h2>
+        <div class="citation-block">
+          <button class="citation-copy" id="copy-citation" type="button" aria-label="Copy BibTeX" title="Copy BibTeX" aria-controls="citation-bibtex" hidden>
+            <svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4"/></svg>
+            <svg class="copied-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>
+          </button>
+          <pre id="citation-bibtex" tabindex="0" aria-label="BibTeX citation"><code>@misc{zhang2026alphanistemergentassemblyskills,
+  title={AlphaNIST: Emergent Assembly Skills from Binary Task Rewards},
+  author={Octi Zhang and Iretiayo Akinola and Rosario Scalise and
+          Mateo Guaman Castro and Patrick Yin and Tobias Widmer and
+          Miles Macklin and Chris Amevor and Dylan Turpin and
+          Dirk Van Gelder and Jan Carius and Ankur Handa and
+          Gavriel State and Yunrong Guo and Yashraj Narang},
+  year={2026},
+  eprint={2610.13354},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2610.13354},
+}</code></pre>
+        </div>
+        <p class="citation-status" id="citation-status" role="status"></p>
       </section>
     </main>
     <footer class="site-footer">

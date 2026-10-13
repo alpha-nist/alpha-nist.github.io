@@ -68,6 +68,12 @@ a:focus-visible, button:focus-visible, video:focus-visible { outline: 3px solid 
 h1 { margin: 0; font-size: 48px; font-weight: 400; line-height: 1.15; letter-spacing: -1.4px; }
 .hero-description { max-width: 620px; margin: 16px auto 0; color: var(--secondary); font-size: 16px; line-height: 1.65; text-wrap: pretty; }
 h1 + .hero-description { margin-top: 40px; }
+.project-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 24px; }
+.project-action { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 44px; padding: 10px 17px; border: 1px solid var(--border); border-radius: 24px; background: var(--control); color: var(--ink); font-size: 14px; line-height: 1.4; text-decoration: none; white-space: nowrap; }
+.project-action:not(:disabled):hover { background: var(--control-hover); }
+.project-action:disabled { opacity: 1; cursor: default; }
+.project-action svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.project-action-status { padding-left: 9px; border-left: 1px solid var(--border); color: var(--secondary); font-size: 12px; }
 h2, h3 { margin: 0; font-size: 16px; font-weight: 400; letter-spacing: 0; line-height: 1.5; }
 .film-figure { margin: 0; }
 .video-frame { position: relative; overflow: hidden; border-radius: 22px; background: #b6b6b6; isolation: isolate; }
@@ -180,6 +186,19 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 32 / 9; object-
 .moment-time:focus-visible { outline-offset: 2px; }
 #strategy-context { margin-top: 12px; text-align: left; }
 .strategy-status:empty { display: none; }
+.citation { padding-bottom: 64px; }
+.citation h2 { margin-bottom: 16px; }
+.citation-block { position: relative; }
+.citation-copy { position: absolute; top: 10px; right: 10px; display: grid; place-items: center; width: 36px; height: 36px; padding: 8px; border: 0; border-radius: 6px; background: var(--surface); color: var(--secondary); cursor: pointer; }
+.citation-copy:hover { background: var(--control-hover); }
+.citation-copy svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.citation-copy .copied-icon, .citation-copy.is-copied .copy-icon { display: none; }
+.citation-copy.is-copied .copied-icon { display: block; }
+.citation pre { margin: 0; padding: 24px 56px 24px 24px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); color: var(--secondary); white-space: pre-wrap; overflow-wrap: anywhere; font: 13px/1.75 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; }
+.citation code { font: inherit; }
+.citation pre:focus-visible { outline: 3px solid var(--focus); outline-offset: 5px; }
+.citation-status { margin: 12px 0 0; color: var(--secondary); font-size: 13px; line-height: 1.5; }
+.citation-status:empty { display: none; }
 .site-footer { background: var(--surface); }
 .footer-inner { border-top: 1px solid var(--border); padding-block: 26px 32px; }
 .site-footer .wordmark { font-size: 16px; }
@@ -226,6 +245,8 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 32 / 9; object-
   .experiments { padding-block: 36px; }
   .section-intro > p { font-size: 15px; }
   .discovery { padding: 44px 0 55px; }
+  .citation { padding-bottom: 44px; }
+  .citation pre { padding: 52px 16px 16px; font-size: 12px; }
   .behavior-navigation { gap: 6px; margin: 22px 8px 0; }
   .behavior-navigation .chapter { padding: 8px 12px; font-size: 12px; }
   .behavior-slide img, .behavior-slide figure > a { border-radius: 14px; }
