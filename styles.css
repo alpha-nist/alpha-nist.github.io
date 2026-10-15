@@ -68,12 +68,6 @@ a:focus-visible, button:focus-visible, video:focus-visible { outline: 3px solid 
 h1 { margin: 0; font-size: 48px; font-weight: 400; line-height: 1.15; letter-spacing: -1.4px; }
 .hero-description { max-width: 620px; margin: 16px auto 0; color: var(--secondary); font-size: 16px; line-height: 1.65; text-wrap: pretty; }
 h1 + .hero-description { margin-top: 40px; }
-.project-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 24px; }
-.project-action { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 44px; padding: 10px 17px; border: 1px solid var(--border); border-radius: 24px; background: var(--control); color: var(--ink); font-size: 14px; line-height: 1.4; text-decoration: none; white-space: nowrap; }
-.project-action:not(:disabled):hover { background: var(--control-hover); }
-.project-action:disabled { opacity: 1; cursor: default; }
-.project-action svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.project-action-status { padding-left: 9px; border-left: 1px solid var(--border); color: var(--secondary); font-size: 12px; }
 h2, h3 { margin: 0; font-size: 16px; font-weight: 400; letter-spacing: 0; line-height: 1.5; }
 .film-figure { margin: 0; }
 .video-frame { position: relative; overflow: hidden; border-radius: 22px; background: #b6b6b6; isolation: isolate; }
